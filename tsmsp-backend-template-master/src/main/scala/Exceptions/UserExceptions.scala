@@ -15,3 +15,7 @@ case class WrongPasswordException() extends Exception {
 case class UserNameAlreadyExistsException() extends Exception {
   override def getMessage: String = "错误！用户名已经存在了"
 }
+
+case class NucleicTestExpiredException() extends Exception {
+  override def getMessage: String = "错误！用户核酸已过期，请尽快进行核酸检测"
+}
