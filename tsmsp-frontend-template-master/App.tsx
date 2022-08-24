@@ -6,6 +6,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
 import {RegisterPage} from "Pages/RegisterPage";
+import {PasswordPage} from "Pages/PasswordPage";
 import {TracePage} from "Pages/TracePage";
 import {ScanQRCodePage} from "Pages/ScanQRCodePage";
 import {QRCodePage} from "Pages/QRCodePage";
@@ -21,6 +22,9 @@ export default function App() {
                       options={{ headerShown: false }}
         />
         <Stack.Screen name="Register" component={RegisterPage}
+                      options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Password" component={PasswordPage}
                       options={{ headerShown: false }}
         />
         <Stack.Screen name="Trace" component={TracePage}
