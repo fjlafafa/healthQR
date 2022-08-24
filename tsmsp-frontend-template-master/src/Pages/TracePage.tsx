@@ -71,6 +71,11 @@ export function TracePage({ navigation }: any){
                    })}>
             <Text>获取我的历史轨迹</Text>
         </Pressable>
+
+        <Pressable onPress={() => navigation.navigate('Root')}>
+            <Text>返回登录页</Text>
+        </Pressable>
+
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
