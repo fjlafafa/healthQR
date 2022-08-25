@@ -5,15 +5,16 @@ import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "Messages/UserUpdatePasswordMessage";
 import {APIUrl} from "Globals/GlobalVariables";
+import {styles} from "Pages/LoginPage"
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#ffffff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         backgroundColor: '#ffffff',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//     },
+// });
 
 const passwordStore= create(() => ({
     password:"",
@@ -27,8 +28,8 @@ export function PasswordPage({ navigation }: any){
     const {token} = TokenStore()
     const {password, confirmed_password}=passwordStore()
     return <View style={styles.container}>
-        <TextInput placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
-        <TextInput placeholder={"确认密码"}  value={confirmed_password} onChangeText={(newText)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
+        <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInput style={styles.text} placeholder={"确认密码"}  value={confirmed_password} onChangeText={(newText)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
         <Pressable
             onPress={() => {
                     if (password.localeCompare(confirmed_password) == 0) {
@@ -55,10 +56,10 @@ export function PasswordPage({ navigation }: any){
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
             })}>
-            <Text> 提交修改 </Text>
+            <Text style={styles.text}> 提交修改 </Text>
         </Pressable>
         <Pressable onPress={() => navigation.navigate('Trace')}>
-            <Text>返回主页</Text>
+            <Text style={styles.text}>返回主页</Text>
         </Pressable>
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}

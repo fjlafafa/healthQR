@@ -6,17 +6,17 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
 import {APIUrl} from "Globals/GlobalVariables";
+import {styles} from "Pages/LoginPage";
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 100,
-        backgroundColor: '#ffffff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         paddingTop: 100,
+//         backgroundColor: '#ffffff',
+//         alignItems: 'center',
+//         justifyContent: 'center'
+//     },
+// });
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -30,10 +30,10 @@ export function TracePage({ navigation }: any){
     const {token} = TokenStore()
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>
-        <Text>欢迎使用模板</Text>
+        <Text style={{ fontSize: 30, fontFamily: "Arial" }} >欢迎来到主界面(*￣︶￣)</Text>
 
 
-        <TextInput placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
+        <TextInput style={{ fontSize: 30, fontFamily: "Arial" }} placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
 
 
         <Pressable
@@ -56,7 +56,7 @@ export function TracePage({ navigation }: any){
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
             })}>
-            <Text> 上传新轨迹 </Text>
+            <Text style={styles.text}> 上传新轨迹 </Text>
         </Pressable>
 
 
@@ -77,25 +77,25 @@ export function TracePage({ navigation }: any){
                    style={({ pressed }) => ({
                        opacity: pressed ? 0.5 : 1,
                    })}>
-            <Text>获取我的历史轨迹</Text>
+            <Text style={styles.text}>获取我的历史轨迹</Text>
         </Pressable>
 
 
         <Pressable onPress={() => navigation.navigate('DeleteTrace')}>
-            <Text>删除记录</Text>
+            <Text style={styles.text}>删除记录</Text>
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Root')}>
-            <Text>退出登录</Text>
+            <Text style={styles.text}>退出登录</Text>
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('DeleteAccount')}>
-            <Text>注销账户</Text>
+            <Text style={styles.text}>注销账户</Text>
         </Pressable>
 
 
         <Pressable onPress={() => navigation.navigate('Password')}>
-            <Text>修改密码</Text>
+            <Text style={styles.text}>修改密码</Text>
         </Pressable>
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>

@@ -5,15 +5,16 @@ import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
 import {APIUrl} from "Globals/GlobalVariables";
+import {styles} from "Pages/LoginPage";
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         backgroundColor: '#fff',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//     },
+// });
 
 
 export function DeleteAccountPage({ navigation }: any){
@@ -42,11 +43,11 @@ export function DeleteAccountPage({ navigation }: any){
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
             })}>
-            <Text> 确认注销 </Text>
+            <Text style={styles.text}> 确认注销 </Text>
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Trace')}>
-            <Text>返回</Text>
+            <Text style={styles.text}>返回</Text>
         </Pressable>
 
         <StatusBar style="auto" />

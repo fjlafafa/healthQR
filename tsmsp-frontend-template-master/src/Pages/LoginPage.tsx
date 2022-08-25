@@ -1,19 +1,17 @@
 import React from 'react'
-import {Pressable, StyleSheet, Text, TextInput, View, Button} from 'react-native'
+import {Pressable, ImageBackground,StyleSheet, Text, TextInput, View, Button} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
 import {UserLoginMessage} from "Messages/UserLoginMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import QRCode from "react-native-qrcode-svg";
+const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
 import LoginIcon from '@mui/icons-material/Login';
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundImage: "url("+require("../Assets/icon.png")+")",
-        backgroundColor: '#ffffff',
-        backgroundSize: '100% 100%',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -21,6 +19,19 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
     },
+
+    backgroundImage:{
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+    },
+
+    text:{
+        fontSize: 30,
+        fontFamily: "Arial"
+    }
+
+
 });
 
 const loginStore= create(() => ({
@@ -34,8 +45,11 @@ export const setPassword= (password:string) => loginStore.setState({ password })
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
     return <View style={styles.container}>
-            <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
-            <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
+        <ImageBackground source={image} style={styles.backgroundImage}>
+        </ImageBackground>
+
+            <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
+            <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
             <table>
                 <tr>
                     <th><Button
@@ -60,18 +74,27 @@ export function LoginPage({ navigation }: any){
                         }}>
                     </Button>
                     </th>
+
                     <th><LoginIcon fontSize="large" > </LoginIcon></th>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <Button title="切换至注册界面" onPress = {() => navigation.navigate('Register')}>
+                    </Button>
+                </tr>
+                <tr>
+                    <Button title='切换至扫码示例界面'onPress={() => navigation.navigate('ScanQRCode')}>
+                    </Button>
+                </tr>
+                <tr>
+                    <Button title='切换至二维码示例界面' onPress={() => navigation.navigate('QRCode')}>
+                    </Button>
                 </tr>
 
             </table>
-        <Button title="切换至注册界面" onPress = {() => navigation.navigate('Register')}>
-        </Button>
-        <Pressable onPress={() => navigation.navigate('ScanQRCode')}>
-            <Text style={{ fontSize: 30, fontFamily: "KaiTi"} } >切换至扫码示例界面</Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('QRCode')}>
-            <Text style={{ fontSize: 30, fontFamily: "KaiTi"} }>切换至二维码示例界面</Text>
-        </Pressable>
+
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
         {/*    style={({ pressed }) => ({*/}

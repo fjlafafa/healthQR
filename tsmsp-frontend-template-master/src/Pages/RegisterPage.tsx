@@ -5,15 +5,16 @@ import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
 import {UserRegisterMessage} from "Messages/UserRegisterMessage";
 import {APIUrl} from "Globals/GlobalVariables";
+import {styles} from "Pages/LoginPage";
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         backgroundColor: '#fff',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//     },
+// });
 
 const registerStore= create(() => ({
     userName:"",
@@ -28,9 +29,9 @@ export const setRealName= (realName:string) => registerStore.setState({ realName
 export function RegisterPage({ navigation }: any){
     const {userName,password, realName}=registerStore()
     return <View style={styles.container}>
-        <TextInput placeholder={"用户名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>
-        <TextInput placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
-        <TextInput placeholder={"真实姓名"}  value={realName} onChangeText={(newText)=>setRealName(newText)}/>
+        <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>
+        <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInput style={styles.text} placeholder={"真实姓名"}  value={realName} onChangeText={(newText)=>setRealName(newText)}/>
         <Pressable
             onPress={() => {
                 console.log("试图使用用户名"+userName+",密码"+password + ",真实姓名"+realName + "登录！")
@@ -53,10 +54,10 @@ export function RegisterPage({ navigation }: any){
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
             })}>
-            <Text> 注册 </Text>
+            <Text style={styles.text}> 注册 </Text>
         </Pressable>
         <Pressable onPress={() => navigation.navigate('Root')}>
-            <Text>切换至登录界面</Text>
+            <Text style={styles.text}>切换至登录界面</Text>
         </Pressable>
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
