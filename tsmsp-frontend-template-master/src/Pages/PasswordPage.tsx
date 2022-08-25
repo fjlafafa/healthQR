@@ -32,6 +32,7 @@ export function PasswordPage({ navigation }: any){
         <Pressable
             onPress={() => {
                     if (password.localeCompare(confirmed_password) == 0) {
+                        // alert("Attempting to modify password")
                         fetch(APIUrl, {
                             method: "POST",
                             headers: {"Content-Type":"text/plain"},
@@ -39,7 +40,7 @@ export function PasswordPage({ navigation }: any){
                         }).then((response) => response.json()).then((replyJson) => {
                             console.log(replyJson)
                             if (replyJson.status === 0) {
-                                alert(replyJson.message)
+                                alert("用户" + replyJson.message + "的密码已修改")
                                 navigation.navigate('Trace')
                             }
                             else {

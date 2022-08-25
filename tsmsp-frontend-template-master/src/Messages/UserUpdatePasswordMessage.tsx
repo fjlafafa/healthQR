@@ -1,11 +1,11 @@
 import {TSMSPMessage} from "Messages/TSMSPMessage";
 
 export class UserUpdatePasswordMessage extends TSMSPMessage {
-    userName : string
+    userToken : string
     password : string
-    constructor(userName : string, password : string) {
+    constructor(userToken : string, password : string) {
         super();
-        this.userName = userName
+        this.userToken = userToken
         this.password = password
     }
 }

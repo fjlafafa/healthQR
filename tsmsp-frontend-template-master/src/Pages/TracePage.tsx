@@ -73,7 +73,7 @@ export function TracePage({ navigation }: any){
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Root')}>
-            <Text>返回登录页</Text>
+            <Text>退出登录</Text>
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Password')}>
