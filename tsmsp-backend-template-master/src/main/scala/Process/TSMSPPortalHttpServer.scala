@@ -37,6 +37,5 @@ object TSMSPPortalHttpServer {
         Logger("HttpServer").error("Failed to bind HTTP endpoint, terminating system " + ex.getMessage)
         system.terminate()
     }
-
   }
 }
