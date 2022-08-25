@@ -7,6 +7,7 @@ import {UserLoginMessage} from "Messages/UserLoginMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import QRCode from "react-native-qrcode-svg";
 
+import LoginIcon from '@mui/icons-material/Login';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -51,7 +52,12 @@ export function LoginPage({ navigation }: any){
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
             })}>
-            <Text> 登录 </Text>
+            <table>
+                <tr>
+                    <th><Text >登录</Text></th>
+                    <th><LoginIcon></LoginIcon></th>
+                </tr>
+            </table>
         </Pressable>
         <Pressable onPress={() => navigation.navigate('Register')}>
             <Text>切换至注册界面</Text>
