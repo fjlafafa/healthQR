@@ -7,12 +7,14 @@ import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        paddingTop: 100,
+        backgroundColor: '#ffffff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
 });
 
@@ -80,7 +82,7 @@ export function TracePage({ navigation }: any){
 
 
         <Pressable onPress={() => navigation.navigate('DeleteTrace')}>
-            <text> 删除记录 </text>
+            <Text>删除记录</Text>
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Root')}>
@@ -95,11 +97,6 @@ export function TracePage({ navigation }: any){
         <Pressable onPress={() => navigation.navigate('Password')}>
             <Text>修改密码</Text>
         </Pressable>
-
-        <Pressable onPress={() => navigation.navigate('Root')}>
-            <Text>返回登录页</Text>
-        </Pressable>
-
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}
