@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
 });
 
@@ -95,11 +95,6 @@ export function TracePage({ navigation }: any){
         <Pressable onPress={() => navigation.navigate('Password')}>
             <Text>修改密码</Text>
         </Pressable>
-
-        <Pressable onPress={() => navigation.navigate('Root')}>
-            <Text>返回登录页</Text>
-        </Pressable>
-
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}

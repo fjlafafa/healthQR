@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
 });
 
@@ -28,8 +28,8 @@ export const setPassword= (password:string) => loginStore.setState({ password })
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
     return <View style={styles.container}>
-        <TextInput placeholder={"用户名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>
-        <TextInput placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
+        <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
         <Pressable
             onPress={() => {
                     console.log("试图使用用户名"+userName+",密码"+password + "登录！")
@@ -41,6 +41,8 @@ export function LoginPage({ navigation }: any){
                         console.log(replyJson)
                         if (replyJson.status === 0) {
                             setUserToken(replyJson.message)
+                            setUserName("")
+                            setPassword("")
                             navigation.navigate('Trace')
                         }
                         else {
@@ -51,22 +53,23 @@ export function LoginPage({ navigation }: any){
             }}
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
+                fontSize: 40
             })}>
             <table>
                 <tr>
-                    <th><Text >登录</Text></th>
-                    <th><LoginIcon></LoginIcon></th>
+                    <th><Text style={{ fontSize: 30, fontFamily: "Arial" } }>登录</Text></th>
+                    <th><LoginIcon fontSize="large" ></LoginIcon></th>
                 </tr>
             </table>
         </Pressable>
         <Pressable onPress={() => navigation.navigate('Register')}>
-            <Text>切换至注册界面</Text>
+            <Text style={{ fontSize: 30, fontFamily: "KaiTi"} }>切换至注册界面</Text>
         </Pressable>
         <Pressable onPress={() => navigation.navigate('ScanQRCode')}>
-            <Text>切换至扫码示例界面</Text>
+            <Text style={{ fontSize: 30, fontFamily: "KaiTi"} } >切换至扫码示例界面</Text>
         </Pressable>
         <Pressable onPress={() => navigation.navigate('QRCode')}>
-            <Text>切换至二维码示例界面</Text>
+            <Text style={{ fontSize: 30, fontFamily: "KaiTi"} }>切换至二维码示例界面</Text>
         </Pressable>
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
