@@ -1,5 +1,5 @@
 import React from 'react'
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Pressable, StyleSheet, Text, TextInput, View, Button} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
@@ -11,9 +11,15 @@ import LoginIcon from '@mui/icons-material/Login';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundImage: "url("+require("../Assets/icon.png")+")",
         backgroundColor: '#ffffff',
+        backgroundSize: '100% 100%',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    tinyLogo: {
+        width: 50,
+        height: 50,
     },
 });
 
@@ -28,43 +34,38 @@ export const setPassword= (password:string) => loginStore.setState({ password })
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
     return <View style={styles.container}>
-        <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
-        <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
-        <Pressable
-            onPress={() => {
-                    console.log("试图使用用户名"+userName+",密码"+password + "登录！")
-                    fetch(APIUrl, {
-                        method: "POST",
-                        headers: {"Content-Type":"text/plain"},
-                        body: JSON.stringify(new UserLoginMessage(userName, password))
-                    }).then((response) => response.json()).then((replyJson) => {
-                        console.log(replyJson)
-                        if (replyJson.status === 0) {
-                            setUserToken(replyJson.message)
-                            setUserName("")
-                            setPassword("")
-                            navigation.navigate('Trace')
-                        }
-                        else {
-                            alert(replyJson.message)
-                        }
-                    })
-                    .catch((e) => console.log(e))
-            }}
-            style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-                fontSize: 40
-            })}>
+            <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
+            <TextInput style={{ fontSize: 40, fontFamily: "Arial" }} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
             <table>
                 <tr>
-                    <th><Text style={{ fontSize: 30, fontFamily: "Arial" } }>登录</Text></th>
-                    <th><LoginIcon fontSize="large" ></LoginIcon></th>
+                    <th><Button
+                        title = '登录'
+                        onPress={() => {
+                            console.log("试图使用用户名"+userName+",密码"+password + "登录！")
+                            fetch(APIUrl, {
+                                method: "POST",
+                                headers: {"Content-Type":"text/plain"},
+                                body: JSON.stringify(new UserLoginMessage(userName, password))
+                            }).then((response) => response.json()).then((replyJson) => {
+                                console.log(replyJson)
+                                if (replyJson.status === 0) {
+                                    setUserToken(replyJson.message)
+                                    navigation.navigate('Trace')
+                                }
+                                else {
+                                    alert(replyJson.message)
+                                }
+                            })
+                                .catch((e) => console.log(e))
+                        }}>
+                    </Button>
+                    </th>
+                    <th><LoginIcon fontSize="large" > </LoginIcon></th>
                 </tr>
+
             </table>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Register')}>
-            <Text style={{ fontSize: 30, fontFamily: "KaiTi"} }>切换至注册界面</Text>
-        </Pressable>
+        <Button title="切换至注册界面" onPress = {() => navigation.navigate('Register')}>
+        </Button>
         <Pressable onPress={() => navigation.navigate('ScanQRCode')}>
             <Text style={{ fontSize: 30, fontFamily: "KaiTi"} } >切换至扫码示例界面</Text>
         </Pressable>
