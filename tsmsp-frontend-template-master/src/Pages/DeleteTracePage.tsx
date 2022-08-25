@@ -41,7 +41,7 @@ export function DeleteTracePage({ navigation }: any){
                 }).then((response) => response.json()).then((replyJson) => {
                     console.log(replyJson)
                     if (replyJson.status === 0) {
-                        alert(replyJson.message)
+                        alert("轨迹\"" + replyJson.message + "\"删除成功！")
                     }
                     else {
                         alert(replyJson.message)

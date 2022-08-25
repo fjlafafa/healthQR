@@ -19,3 +19,7 @@ case class UserNameAlreadyExistsException() extends Exception {
 case class NucleicTestExpiredException() extends Exception {
   override def getMessage: String = "错误！用户核酸已过期，请尽快进行核酸检测"
 }
+
+case class NoTraceException() extends Exception {
+  override def getMessage: String = "错误！未查询到该条轨迹"
+}

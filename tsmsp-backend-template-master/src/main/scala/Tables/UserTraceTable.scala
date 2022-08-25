@@ -29,4 +29,9 @@ object UserTraceTable {
   def checkTrace(userName : String, startTime : Long, endTime : Long) : Try[List[UserTraceRow]] = Try {
     DBUtils.exec(userTraceTable.filter(ut => ut.userName === userName && ut.time<= endTime && ut.time >= startTime).sortBy(_.time).result).toList
   }
+
+  def checkTraceExists(userName: String, trace: String): Try[Boolean] = Try(DBUtils.exec(userTraceTable.filter(ut => ut.userName === userName && ut.trace === trace).size.result) > 0)
+  def dropTrace(userName: String, trace : String): Try[DBIO[Int]] = Try {
+    userTraceTable.filter(ut => ut.userName === userName && ut.trace === trace).delete
+  }
 }
