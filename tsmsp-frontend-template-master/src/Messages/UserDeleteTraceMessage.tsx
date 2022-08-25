@@ -1,6 +1,6 @@
 import {TSMSPMessage} from "Messages/TSMSPMessage";
 
-export class UserUpdateTraceMessage extends TSMSPMessage {
+export class UserDeleteTraceMessage extends TSMSPMessage {
     userToken : string
     trace : string
     constructor(userToken : string, trace : string) {

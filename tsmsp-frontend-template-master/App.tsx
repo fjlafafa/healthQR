@@ -10,6 +10,7 @@ import {PasswordPage} from "Pages/PasswordPage";
 import {TracePage} from "Pages/TracePage";
 import {ScanQRCodePage} from "Pages/ScanQRCodePage";
 import {QRCodePage} from "Pages/QRCodePage";
+import {DeleteTracePage} from "Pages/DeleteTracePage";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,9 @@ export default function App() {
                       options={{ headerShown: false }}
         />
         <Stack.Screen name="QRCode" component={QRCodePage}
+                      options={{ headerShown: false }}
+        />
+        <Stack.Screen name="DeleteTrace" component={DeleteTracePage}
                       options={{ headerShown: false }}
         />
       </Stack.Navigator>

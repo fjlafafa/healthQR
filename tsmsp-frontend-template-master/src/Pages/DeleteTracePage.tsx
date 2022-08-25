@@ -3,8 +3,7 @@ import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-nati
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
-import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
-import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
+import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
 import {APIUrl} from "Globals/GlobalVariables";
 
 const styles = StyleSheet.create({
@@ -24,7 +23,7 @@ const registerStore= create(() => ({
 export const setNewTrace= (newTrace:string) => registerStore.setState({ newTrace })
 export const setTraceHistory = (traceHistory:string[]) => registerStore.setState({traceHistory})
 
-export function TracePage({ navigation }: any){
+export function DeleteTracePage({ navigation }: any){
     const {token} = TokenStore()
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>
