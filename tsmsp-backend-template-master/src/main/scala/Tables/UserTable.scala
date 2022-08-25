@@ -29,5 +29,5 @@ object UserTable {
 
   def checkPassword(userName: String, password: String): Try[Boolean] = Try(DBUtils.exec(userTable.filter(u => u.userName === userName && u.password === password).size.result) > 0)
 
-  def updatePassword(userName: String, newPassword: String): Try[Int] = Try(DBUtils.exec(userTable.filter(_.userName === userName).map(u => u.password).update(newPassword)))
+  def updatePassword(userName: String, newPassword: String): Try[DBIO[Int]] = Try(userTable.filter(_.userName === userName).map(u => u.password).update(newPassword))
 }
