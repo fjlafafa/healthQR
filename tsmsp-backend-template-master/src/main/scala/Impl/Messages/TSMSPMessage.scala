@@ -14,7 +14,8 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserRegisterMessage], name = "UserRegisterMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdatePasswordMessage], name = "UserUpdatePasswordMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdateTraceMessage], name = "UserUpdateTraceMessage"),
-    new JsonSubTypes.Type(value = classOf[UserDeleteTraceMessage], name = "UserDeleteTraceMessage")
+    new JsonSubTypes.Type(value = classOf[UserDeleteTraceMessage], name = "UserDeleteTraceMessage"),
+    new JsonSubTypes.Type (value = classOf[UserDeleteAccountMessage], name = "UserDeleteAccountMessage")
   ))
 abstract class TSMSPMessage extends JacksonSerializable {
   def handle() : TSMSPReply = reaction(DateTime.now()) match {

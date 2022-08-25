@@ -11,6 +11,7 @@ import {TracePage} from "Pages/TracePage";
 import {ScanQRCodePage} from "Pages/ScanQRCodePage";
 import {QRCodePage} from "Pages/QRCodePage";
 import {DeleteTracePage} from "Pages/DeleteTracePage";
+import {DeleteAccountPage} from "Pages/ConfirmAccountDeletionPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,9 @@ export default function App() {
                       options={{ headerShown: false }}
         />
         <Stack.Screen name="DeleteTrace" component={DeleteTracePage}
+                      options={{ headerShown: false }}
+        />
+        <Stack.Screen name="DeleteAccount" component={DeleteAccountPage}
                       options={{ headerShown: false }}
         />
       </Stack.Navigator>

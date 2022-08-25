@@ -87,6 +87,10 @@ export function TracePage({ navigation }: any){
             <Text>退出登录</Text>
         </Pressable>
 
+        <Pressable onPress={() => navigation.navigate('DeleteAccount')}>
+            <Text>注销账户</Text>
+        </Pressable>
+
 
         <Pressable onPress={() => navigation.navigate('Password')}>
             <Text>修改密码</Text>

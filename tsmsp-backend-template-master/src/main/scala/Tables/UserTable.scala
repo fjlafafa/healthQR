@@ -25,6 +25,8 @@ object UserTable {
 
   def addUser(userName: String, password: String, realName: String): Try[DBIO[Int]] = Try(userTable += UserRow(userName, password, realName))
 
+  def dropUser(userName: String): Try[DBIO[Int]] = Try(userTable.filter(u => u.userName === userName).delete)
+
   def checkUserExists(userName: String): Try[Boolean] = Try(DBUtils.exec(userTable.filter(_.userName === userName).size.result) > 0)
 
   def checkPassword(userName: String, password: String): Try[Boolean] = Try(DBUtils.exec(userTable.filter(u => u.userName === userName && u.password === password).size.result) > 0)

@@ -46,4 +46,8 @@ object UserTokenTable {
       throw TokenNotExistsException()
     )
   }
+
+  def dropUserName(token: String): Try[DBIO[Int]] = Try {
+    userTokenTable.filter(ut => ut.token === token).delete
+  }
 }
