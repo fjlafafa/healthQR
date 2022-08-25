@@ -28,10 +28,9 @@ export function TracePage({ navigation }: any){
     const {token} = TokenStore()
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>
-        <Text>欢迎使用模板</Text>
 
 
-        <TextInput placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
+        <TextInput placeholder={"删除轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
 
 
         <Pressable
@@ -39,7 +38,7 @@ export function TracePage({ navigation }: any){
                 fetch(APIUrl, {
                     method: "POST",
                     headers: {"Content-Type":"text/plain"},
-                    body: JSON.stringify(new UserUpdateTraceMessage(token, newTrace))
+                    body: JSON.stringify(new UserDeleteTraceMessage(token, newTrace))
                 }).then((response) => response.json()).then((replyJson) => {
                     console.log(replyJson)
                     if (replyJson.status === 0) {
@@ -54,39 +53,9 @@ export function TracePage({ navigation }: any){
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
             })}>
-            <Text> 上传新轨迹 </Text>
+            <Text> 删除记录 </Text>
         </Pressable>
 
-
-        <Pressable onPress={() => {
-                    fetch(APIUrl, {
-                        method: "POST",
-                        headers: {"Content-Type":"text/plain"},
-                        body: JSON.stringify(new UserGetTraceMessage(token, new Date().getTime() - 86400000, new Date().getTime()))
-                    }).then((response) => response.json()).then((replyJson) => {
-                        console.log(replyJson)
-                        if (replyJson.status === 0) {
-                            setTraceHistory(JSON.parse(replyJson.message) as string[])
-                        }
-                        else {
-                            alert(replyJson.message)
-                        }
-                    }).catch((e) => console.log(e))}}
-                   style={({ pressed }) => ({
-                       opacity: pressed ? 0.5 : 1,
-                   })}>
-            <Text>获取我的历史轨迹</Text>
-        </Pressable>
-
-
-        <Pressable onPress={() => navigation.navigate('DeleteTrace')}>
-            <text> 删除记录 </text>
-        </Pressable>
-
-
-        <Pressable onPress={() => navigation.navigate('Password')}>
-            <Text>修改密码</Text>
-        </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Root')}>
             <Text>返回登录页</Text>
