@@ -30,11 +30,9 @@ export function TracePage({ navigation }: any){
     const {token} = TokenStore()
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>
+
         <Text style={{ fontSize: 30, fontFamily: "Arial" }} >欢迎来到主界面(*￣︶￣)</Text>
-
-
         <TextInput style={{ fontSize: 30, fontFamily: "Arial" }} placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
-
 
         <Pressable
             onPress={() => {
