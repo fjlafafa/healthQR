@@ -1,37 +1,16 @@
 import React from 'react'
-import {Pressable, ImageBackground,StyleSheet, Text, TextInput, View} from 'react-native'
+import {Pressable, ImageBackground, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
 import {UserLoginMessage} from "Messages/UserLoginMessage";
 import {APIUrl} from "Globals/GlobalVariables";
+import {styles} from "Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
 import { Button } from 'react-native-paper';
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
 // import LoginIcon from '@mui/icons-material/Login';
-
-export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    backgroundImage:{
-        flex: 1,
-        resizeMode: "cover",
-        alignItems: 'center',
-        justifyContent: "center",
-    },
-
-    text:{
-        fontSize: 30,
-        fontFamily: "Arial"
-    }
-
-
-});
 
 const loginStore= create(() => ({
     userName:"",
@@ -69,18 +48,18 @@ export function LoginPage({ navigation }: any){
                 })
                     .catch((e) => console.log(e))
             }}>
-            登录
+            <Text style={styles.text}>登录</Text>
         </Button>
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}
 
         <Button mode = 'outlined' onPress = {() => navigation.navigate('Register')}>
-            切换至注册界面
+            <Text style={styles.text}>切换至注册界面</Text>
         </Button>
         <Button mode = 'outlined' onPress={() => navigation.navigate('ScanQRCode')}>
-            切换至扫码示例界面
+            <Text style={styles.text}>切换至扫码示例界面</Text>
         </Button>
         <Button mode = 'outlined' onPress={() => navigation.navigate('QRCode')}>
-            切换至二维码示例界面
+            <Text style={styles.text}>切换至二维码示例界面</Text>
         </Button>
 
         {/*<Pressable*/}

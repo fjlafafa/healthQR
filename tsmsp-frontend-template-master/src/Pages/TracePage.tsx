@@ -1,22 +1,13 @@
 import React from 'react'
-import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import {FlatList, Pressable, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
 import {APIUrl} from "Globals/GlobalVariables";
-import {styles} from "Pages/LoginPage";
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         paddingTop: 100,
-//         backgroundColor: '#ffffff',
-//         alignItems: 'center',
-//         justifyContent: 'center'
-//     },
-// });
+import { Button } from 'react-native-paper';
+import {styles} from "Utils/Styles";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -34,7 +25,9 @@ export function TracePage({ navigation }: any){
         <Text style={{ fontSize: 30, fontFamily: "Arial" }} >欢迎来到主界面(*￣︶￣)</Text>
         <TextInput style={{ fontSize: 30, fontFamily: "Arial" }} placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
 
-        <Pressable
+        <Button
+            icon = 'upload'
+            mode = 'elevated'
             onPress={() => {
                 fetch(APIUrl, {
                     method: "POST",
@@ -50,15 +43,14 @@ export function TracePage({ navigation }: any){
                     }
                 })
                     .catch((e) => console.log(e))
-            }}
-            style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-            })}>
+            }}>
             <Text style={styles.text}> 上传新轨迹 </Text>
-        </Pressable>
+        </Button>
 
 
-        <Pressable onPress={() => {
+        <Button
+            mode = 'elevated'
+            onPress={() => {
                     fetch(APIUrl, {
                         method: "POST",
                         headers: {"Content-Type":"text/plain"},
@@ -71,30 +63,26 @@ export function TracePage({ navigation }: any){
                         else {
                             alert(replyJson.message)
                         }
-                    }).catch((e) => console.log(e))}}
-                   style={({ pressed }) => ({
-                       opacity: pressed ? 0.5 : 1,
-                   })}>
+                    }).catch((e) => console.log(e))}}>
             <Text style={styles.text}>获取我的历史轨迹</Text>
-        </Pressable>
+        </Button>
 
 
-        <Pressable onPress={() => navigation.navigate('DeleteTrace')}>
+        <Button onPress={() => navigation.navigate('DeleteTrace')}>
             <Text style={styles.text}>删除记录</Text>
-        </Pressable>
+        </Button>
 
-        <Pressable onPress={() => navigation.navigate('Root')}>
+        <Button onPress={() => navigation.navigate('Root')}>
             <Text style={styles.text}>退出登录</Text>
-        </Pressable>
+        </Button>
 
-        <Pressable onPress={() => navigation.navigate('DeleteAccount')}>
+        <Button onPress={() => navigation.navigate('DeleteAccount')}>
             <Text style={styles.text}>注销账户</Text>
-        </Pressable>
+        </Button>
 
-
-        <Pressable onPress={() => navigation.navigate('Password')}>
+        <Button onPress={() => navigation.navigate('Password')}>
             <Text style={styles.text}>修改密码</Text>
-        </Pressable>
+        </Button>
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}

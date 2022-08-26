@@ -1,20 +1,11 @@
 import React from 'react'
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Pressable, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "Messages/UserUpdatePasswordMessage";
 import {APIUrl} from "Globals/GlobalVariables";
-import {styles} from "Pages/LoginPage"
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         backgroundColor: '#ffffff',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//     },
-// });
+import {styles} from "Utils/Styles"
 
 const passwordStore= create(() => ({
     password:"",

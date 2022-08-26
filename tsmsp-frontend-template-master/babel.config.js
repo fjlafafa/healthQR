@@ -11,7 +11,8 @@ module.exports = function(api) {
             Pages: './src/Pages',
             Globals: './src/Globals',
             Messages: './src/Messages',
-            Types: './src/Types'
+            Types: './src/Types',
+            Utils: './src/Utils'
           },
         },
       ],

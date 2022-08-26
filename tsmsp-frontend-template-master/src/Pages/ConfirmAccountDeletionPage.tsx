@@ -5,17 +5,7 @@ import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
 import {APIUrl} from "Globals/GlobalVariables";
-import {styles} from "Pages/LoginPage";
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         backgroundColor: '#fff',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//     },
-// });
-
+import {styles} from "../Utils/Styles";
 
 export function DeleteAccountPage({ navigation }: any){
     const {token} = TokenStore()

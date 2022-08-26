@@ -1,20 +1,11 @@
 import React from 'react'
-import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import {FlatList, Pressable, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
 import {APIUrl} from "Globals/GlobalVariables";
-import {styles} from "Pages/LoginPage";
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         backgroundColor: '#fff',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//     },
-// });
+import {styles} from "Utils/Styles";
 
 const registerStore= create(() => ({
     newTrace: "",

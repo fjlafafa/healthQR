@@ -1,20 +1,11 @@
 import React from 'react'
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Pressable, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
 import {UserRegisterMessage} from "Messages/UserRegisterMessage";
 import {APIUrl} from "Globals/GlobalVariables";
-import {styles} from "Pages/LoginPage";
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         backgroundColor: '#fff',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//     },
-// });
+import {styles} from "../Utils/Styles";
 
 const registerStore= create(() => ({
     userName:"",
