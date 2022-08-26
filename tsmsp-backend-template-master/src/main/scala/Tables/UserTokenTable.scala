@@ -1,6 +1,5 @@
 package Tables
 
-
 import Exceptions.{TokenNotExistsException, UserNotExistsException}
 import Globals.GlobalVariables
 import Utils.{DBUtils, StringUtils}

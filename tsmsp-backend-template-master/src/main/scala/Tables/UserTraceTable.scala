@@ -1,6 +1,5 @@
 package Tables
 
-
 import Globals.GlobalVariables
 import Utils.DBUtils
 import org.joda.time.DateTime

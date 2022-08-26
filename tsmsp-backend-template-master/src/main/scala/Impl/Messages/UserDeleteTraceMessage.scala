@@ -1,8 +1,8 @@
 package Impl.Messages
 
 import Impl.{STATUS_OK, TSMSPReply}
-import Tables.{UserTokenTable, UserTraceTable}
 import Exceptions.NoTraceException
+import Tables.{UserTokenTable, UserTraceTable}
 import Utils.DBUtils
 import org.joda.time.DateTime
 

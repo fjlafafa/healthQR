@@ -1,4 +1,5 @@
 package Impl.Messages
+
 import Exceptions.WrongPasswordException
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserTable, UserTokenTable}
