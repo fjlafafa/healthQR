@@ -8,12 +8,8 @@ import {APIUrl} from "Globals/GlobalVariables";
 import QRCode from "react-native-qrcode-svg";
 import { Button } from 'react-native-paper';
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
-import { useFonts } from 'expo-font';
 
 // import LoginIcon from '@mui/icons-material/Login';
-const [fontsLoaded] = useFonts({
-    'Arial': require('./fonts/Arial.ttf'),
-});
 
 export const styles = StyleSheet.create({
     container: {
