@@ -25,7 +25,8 @@
       "Globals/*": ["Globals/*"],
       "Messages/*": ["Messages/*"],
       "Pages/*": ["Pages/*"],
-      "Types/*": ["Types/*"]
+      "Types/*": ["Types/*"],
+      "Utils/*": ["Utils/*"]
     },
     "types": [
       "reflect-metadata",
@@ -34,7 +35,7 @@
     "jsx": "react-native"
   },
   "include": [
-    "src/**/*",
+//    "src/**/*",
     "src/declaration.d.ts",
     "src/Assets/Image.d.ts"
   ]

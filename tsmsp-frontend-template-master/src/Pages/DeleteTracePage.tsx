@@ -1,19 +1,11 @@
 import React from 'react'
-import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import {FlatList, Pressable, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
 import {APIUrl} from "Globals/GlobalVariables";
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+import {styles} from "Utils/Styles";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -29,7 +21,7 @@ export function DeleteTracePage({ navigation }: any){
     return <View style={styles.container}>
 
 
-        <TextInput placeholder={"删除轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
+        <TextInput style={styles.text} placeholder={"删除轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
 
 
         <Pressable
@@ -52,12 +44,12 @@ export function DeleteTracePage({ navigation }: any){
             style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
             })}>
-            <Text> 删除记录 </Text>
+            <Text style={styles.text}> 删除记录 </Text>
         </Pressable>
 
 
         <Pressable onPress={() => navigation.navigate('Root')}>
-            <Text>返回登录页</Text>
+            <Text style={styles.text}>返回登录页</Text>
         </Pressable>
 
 

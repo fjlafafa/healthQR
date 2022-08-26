@@ -12,10 +12,13 @@ import {ScanQRCodePage} from "Pages/ScanQRCodePage";
 import {QRCodePage} from "Pages/QRCodePage";
 import {DeleteTracePage} from "Pages/DeleteTracePage";
 import {DeleteAccountPage} from "Pages/ConfirmAccountDeletionPage";
+import { loadAsync, useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  loadAsync({'Arial': require('Assets/fonts/Arial.ttf'),});
+  useFonts({'Arial': require('Assets/fonts/Arial.ttf'),});
   return (
     <SafeAreaProvider>
     <NavigationContainer>
