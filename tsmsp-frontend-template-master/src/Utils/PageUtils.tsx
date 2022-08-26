@@ -1,42 +1,42 @@
 import React from 'react'
-import { Button } from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {APIUrl} from "../Globals/GlobalVariables";
-import {UserLoginMessage} from "../Messages/UserLoginMessage";
 import {setUserToken} from "../Globals/TokenStore";
 import {Text} from "react-native";
 import {styles} from "./Styles";
 
 
-interface Props {
-    message: any,
-    navigation: any
-}
-export class TestPageButton extends React.Component<Props, {}> {
-    constructor(props: { message: any, navigation: any}) {
-        super(props);
-    }
-    render() {
-        return <Button
-            icon = 'login'
-            mode = 'elevated'
-            onPress={() => {
-                    fetch(APIUrl, {
+export function ButtonToSendMessage({
+                                        ifSuccess,
+                                        message = null,
+                                        icon = null,
+                                        mode = 'elevated',
+                                        text = null,
+                                        children = null}:any) {
+    return <Button
+        icon = {icon}
+        mode = {mode}
+        onPress={() => {
+            if(message == null) {
+                ifSuccess()
+            } else {
+                fetch(APIUrl, {
                     method: "POST",
-                    headers: {"Content-Type":"text/plain"},
-                    body: JSON.stringify(this.props.message)
+                    headers: {"Content-Type": "text/plain"},
+                    body: JSON.stringify(message)
                 }).then((response) => response.json()).then((replyJson) => {
                     console.log(replyJson)
                     if (replyJson.status === 0) {
                         setUserToken(replyJson.message)
-                        this.props.navigation.navigate('Trace')
-                    }
-                    else {
+                        ifSuccess()
+                    } else {
                         alert(replyJson.message)
                     }
                 })
                     .catch((e) => console.log(e))
-            }}>
-            <Text style={styles.text}>登录</Text>
-        </Button>
-    }
+            }
+        }}>
+        <Text style={styles.text}>{text}</Text>
+        {children}
+    </Button>
 }
