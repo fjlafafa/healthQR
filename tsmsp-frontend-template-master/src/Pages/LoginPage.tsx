@@ -9,6 +9,7 @@ import {styles} from "Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
 import { Button } from 'react-native-paper';
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
+import {TestPageButton} from "Utils/PageUtils";
 
 // import LoginIcon from '@mui/icons-material/Login';
 
@@ -27,6 +28,10 @@ export function LoginPage({ navigation }: any){
 
         <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
         <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
+        <TestPageButton
+            message ={new UserLoginMessage(userName, password)}
+            navigation={navigation}
+        />
         <Button
             icon = 'login'
             mode = 'elevated'

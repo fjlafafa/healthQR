@@ -6,8 +6,13 @@ import {setUserToken} from "../Globals/TokenStore";
 import {Text} from "react-native";
 import {styles} from "./Styles";
 
-export class TestPageButton extends React.Component {
-    constructor({props}: { props: any }) {
+
+interface Props {
+    message: any,
+    navigation: any
+}
+export class TestPageButton extends React.Component<Props, {}> {
+    constructor(props: { message: any, navigation: any}) {
         super(props);
     }
     render() {
