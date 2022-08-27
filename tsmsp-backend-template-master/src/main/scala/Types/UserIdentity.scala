@@ -1,6 +1,6 @@
-package Classes
+package Types
 
-import Classes.UserMeta._
+import Types.UserMeta._
 
 case class UserIdentity(
                  id : UserId,

@@ -1,10 +1,8 @@
 import React from 'react'
-import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import {View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
-import create from 'zustand'
 import {clearUserToken, TokenStore} from "Globals/TokenStore";
 import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
-import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 

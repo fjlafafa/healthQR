@@ -1,7 +1,7 @@
-package Classes
+package Types
 
-import Classes.PlaceMeta.{DetailedPlaceDescription, PlaceId}
-import Classes.TraceMeta._
+import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId}
+import Types.TraceMeta._
 import org.joda.time.DateTime
 
 case class Trace(

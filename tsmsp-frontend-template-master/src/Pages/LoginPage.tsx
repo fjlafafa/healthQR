@@ -1,16 +1,15 @@
 import React from 'react'
-import {Pressable, ImageBackground, Text, TextInput, View} from 'react-native'
+import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
 import {UserLoginMessage} from "Messages/UserLoginMessage";
-import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
-import { Button } from 'react-native-paper';
-const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 import {TextClock} from "../Utils/PageUtils/PageClockUtil";
+
+const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
 // import LoginIcon from '@mui/icons-material/Login';
 
@@ -36,6 +35,8 @@ export function LoginPage({ navigation }: any){
             ifSuccess = {(replyJson: any)=>{
                 //alert(replyJson.message);
                 setUserToken(replyJson.message)
+                setUserName("")
+                setPassword("")
                 //alert("登陆成功！")
                 navigation.navigate('Trace');
             }}

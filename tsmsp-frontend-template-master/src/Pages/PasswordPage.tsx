@@ -1,10 +1,9 @@
 import React from 'react'
-import {Pressable, Text, TextInput, View} from 'react-native'
+import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "Messages/UserUpdatePasswordMessage";
-import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles"
 import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 
@@ -24,10 +23,15 @@ export function PasswordPage({ navigation }: any){
         <TextInput style={styles.text} placeholder={"确认密码"}  value={confirmed_password} onChangeText={(newText)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             checkBeforeSendMessage = {()=>(password.localeCompare(confirmed_password)==0)}
-            checkElse = {()=>alert("两次输入密码不一致！请重新输入！")}
+            checkElse = {()=>{
+                alert("两次输入密码不一致！请重新输入！")
+                setConfirmedPassword("")
+            }}
             toSendMessage ={new UserUpdatePasswordMessage(token, password)}
             ifSuccess = {(replyJson: any)=> {
                 alert("用户" + replyJson.message + "的密码已修改");
+                setPassword("")
+                setConfirmedPassword("")
                 navigation.navigate('Trace');
             }}
             text = '提交修改'

@@ -1,6 +1,6 @@
-package Classes
+package Types
 
-import Classes.PlaceMeta.{City, District, PlaceId, SubDistrict, PlaceRiskLevel}
+import Types.PlaceMeta._
 
 case class Place(
                   id : PlaceId,

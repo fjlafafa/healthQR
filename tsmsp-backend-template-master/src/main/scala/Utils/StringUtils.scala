@@ -26,14 +26,14 @@ object StringUtils {
     }
   }
   /** 产生一个length长度的随机数字串 */
-  def randomNumber(length: Int): String = {
+  def randomNumber(length: Int): Long = {
     val chars = ('0' to '9')
     val sb = new StringBuilder
     for (_ <- 1 to length) {
       val randomNum = util.Random.nextInt(chars.length)
       sb.append(chars(randomNum))
     }
-    sb.toString
+    sb.toString.toLong
   }
 
   /** 产生一个length长度的随机字符串 */

@@ -1,6 +1,6 @@
-package Classes
+package Types
 
-import Classes.UserMeta._
+import Types.UserMeta._
 import org.joda.time.DateTime
 
 case class UserInformation(

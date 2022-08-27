@@ -1,7 +1,7 @@
 package Utils
 
 import Globals.GlobalVariables
-import Tables.{UserTable, UserTokenTable, UserTraceTable}
+import Tables.{UserIdentityTable, UserTokenTable, UserTraceTable}
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
@@ -22,7 +22,7 @@ object DBUtils {
     exec(
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
-        UserTable.userTable.schema.createIfNotExists,
+        UserIdentityTable.userIdentityTable.schema.createIfNotExists,
         UserTokenTable.userTokenTable.schema.createIfNotExists,
         UserTraceTable.userTraceTable.schema.createIfNotExists,
       )
@@ -31,7 +31,7 @@ object DBUtils {
   def dropDatabases():Unit={
     exec(
       DBIO.seq(
-        UserTable.userTable.schema.dropIfExists,
+        UserIdentityTable.userIdentityTable.schema.dropIfExists,
         UserTokenTable.userTokenTable.schema.dropIfExists,
         UserTraceTable.userTraceTable.schema.dropIfExists,
         sql"DROP SCHEMA IF EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
