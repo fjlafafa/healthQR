@@ -34,6 +34,7 @@ export function LoginPage({ navigation }: any){
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(replyJson: any)=>{
                 //alert(replyJson.message);
+                setUserToken(replyJson.message)
                 alert("登陆成功！")
                 navigation.navigate('Trace');
             }}
