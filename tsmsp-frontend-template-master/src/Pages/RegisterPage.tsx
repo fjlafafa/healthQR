@@ -30,9 +30,8 @@ export function RegisterPage({ navigation }: any){
             toSendMessage ={new UserRegisterMessage(userName, password, realName)}
             text = '注册'
             ifSuccess = {(replyJson: any)=>{
-                alert(replyJson.message);
+                setUserToken(replyJson.message);
                 navigation.navigate("Root");
-                setUserToken(replyJson.message)
             }}
         />
         {/*<Pressable onPress={() => navigation.navigate('Root')}>

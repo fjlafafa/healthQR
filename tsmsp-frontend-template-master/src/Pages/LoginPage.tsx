@@ -28,13 +28,14 @@ export function LoginPage({ navigation }: any){
 
         <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
         <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
+        <text>{new Date().toLocaleTimeString()}</text>
         <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
-            ifSuccess = {(replyJson:any)=>{
-                alert('success')
-                setUserToken(replyJson.message);
-                navigation.navigate('Trace');}}
+            ifSuccess = {(replyJson: any)=>{
+                alert(replyJson.message);
+                navigation.navigate('Trace');
+            }}
             text = '登录'
         />
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}

@@ -26,13 +26,13 @@ export class ButtonToSendMessage extends React.Component<any> {
             onPress={() => {
                 this.props.onPress()
                 if(this.props.checkBeforeSendMessage()) {
-                    if (this.props.message == null) {
+                    if (this.props.toSendMessage === null) {
                         this.props.ifSuccess(null)
                     } else {
                         fetch(APIUrl, {
                             method: "POST",
                             headers: {"Content-Type": "text/plain"},
-                            body: JSON.stringify(this.props.message)
+                            body: JSON.stringify(this.props.toSendMessage)
                         }).then((response) => response.json()).then((replyJson) => {
                             console.log(replyJson)
                             if (replyJson.status === 0) {
