@@ -35,7 +35,7 @@ export function LoginPage({ navigation }: any){
             ifSuccess = {(replyJson: any)=>{
                 //alert(replyJson.message);
                 setUserToken(replyJson.message)
-                alert("登陆成功！")
+                //alert("登陆成功！")
                 navigation.navigate('Trace');
             }}
             text = '登录'

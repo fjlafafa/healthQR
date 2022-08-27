@@ -6,6 +6,7 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "Messages/UserUpdatePasswordMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles"
+import {ButtonToSendMessage} from "../Utils/PageUtils";
 
 const passwordStore= create(() => ({
     password:"",
@@ -21,37 +22,20 @@ export function PasswordPage({ navigation }: any){
     return <View style={styles.container}>
         <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
         <TextInput style={styles.text} placeholder={"确认密码"}  value={confirmed_password} onChangeText={(newText)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
-        <Pressable
-            onPress={() => {
-                    if (password.localeCompare(confirmed_password) == 0) {
-                        // alert("Attempting to modify password")
-                        fetch(APIUrl, {
-                            method: "POST",
-                            headers: {"Content-Type":"text/plain"},
-                            body: JSON.stringify(new UserUpdatePasswordMessage(token, password))
-                        }).then((response) => response.json()).then((replyJson) => {
-                            console.log(replyJson)
-                            if (replyJson.status === 0) {
-                                alert("用户" + replyJson.message + "的密码已修改")
-                                navigation.navigate('Trace')
-                            }
-                            else {
-                                alert(replyJson.message)
-                            }
-                        }).catch((e) => console.log(e))
-                    }
-                    else {
-                        alert("两次输入密码不一致！请重新输入！")
-                    }
+        <ButtonToSendMessage
+            checkBeforeSendMessage = {()=>(password.localeCompare(confirmed_password)==0)}
+            checkElse = {()=>alert("两次输入密码不一致！请重新输入！")}
+            toSendMessage ={new UserUpdatePasswordMessage(token, password)}
+            ifSuccess = {(replyJson: any)=> {
+                alert("用户" + replyJson.message + "的密码已修改");
+                navigation.navigate('Trace');
             }}
-            style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-            })}>
-            <Text style={styles.text}> 提交修改 </Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Trace')}>
-            <Text style={styles.text}>返回主页</Text>
-        </Pressable>
+            text = '提交修改'
+        />
+        <ButtonToSendMessage
+            onPress = {() => navigation.navigate('Trace')}>
+            text = '返回主页'
+        </ButtonToSendMessage>
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
         {/*    style={({ pressed }) => ({*/}

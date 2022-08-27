@@ -5,10 +5,15 @@ import {setUserToken} from "../Globals/TokenStore";
 import {Text} from "react-native";
 import {styles} from "./Styles";
 
-
+/**参数说明：
+ * ifSuccess, ifFail接受含一个参数（回复message）的函数，实际用不到的话写_:any就行
+ * onPress可以在其他命令执行前运行，一般用不到，按钮不发送消息时可以用ifSuccess达到相同效果，为了统一避免使用
+ * children是react默认传递的参数，无需赋值使用
+ * 如果页面卡住可以考虑是什么参数名字或类型错误*/
 export class ButtonToSendMessage extends React.Component<any> {
     static defaultProps = {
         checkBeforeSendMessage: ()=>{return true},
+        checkElse: ()=>{},
         ifSuccess: (replyJson: any)=>{alert(replyJson.message)},
         ifFail: (replyJson: any)=>{alert(replyJson.message)},
         toSendMessage: null,
@@ -36,13 +41,14 @@ export class ButtonToSendMessage extends React.Component<any> {
                         }).then((response) => response.json()).then((replyJson) => {
                             console.log(replyJson)
                             if (replyJson.status === 0) {
-                                //setUserToken(replyJson.message)
                                 this.props.ifSuccess(replyJson)
                             } else {
                                 this.props.ifFail(replyJson)
                             }
                         }).catch((e) => console.log(e))
                     }
+                } else {
+                    this.props.checkElse()
                 }
             }}>
             <Text style={styles.text}>{this.props.text}</Text>

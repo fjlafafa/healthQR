@@ -31,26 +31,17 @@ export function TracePage({ navigation }: any){
             toSendMessage = {new UserUpdateTraceMessage(token, newTrace)}
             text = '上传新轨迹'
         />
-        <Button
-            mode = 'elevated'
-            onPress={() => {
-                    fetch(APIUrl, {
-                        method: "POST",
-                        headers: {"Content-Type":"text/plain"},
-                        body: JSON.stringify(new UserGetTraceMessage(token, new Date().getTime() - 86400000, new Date().getTime()))
-                    }).then((response) => response.json()).then((replyJson) => {
-                        console.log(replyJson)
-                        if (replyJson.status === 0) {
-                            setTraceHistory(JSON.parse(replyJson.message) as string[])
-                        }
-                        else {
-                            alert(replyJson.message)
-                        }
-                    }).catch((e) => console.log(e))}}>
-            <Text style={styles.text}>获取我的历史轨迹</Text>
-        </Button>
-
-
+        <ButtonToSendMessage
+            toSendMessage = {new UserGetTraceMessage(
+                token,
+                (new Date().getTime() - 86400000),
+                new Date().getTime())}
+            ifSuccess = {(replyJson:any)=> {
+                let TraceList: string[] = JSON.parse(replyJson.message) as string[];
+                setTraceHistory(TraceList)
+            }}
+            text = '获取我的历史轨迹'
+        />
         <Button onPress={() => navigation.navigate('DeleteTrace')}>
             <Text style={styles.text}>删除记录</Text>
         </Button>

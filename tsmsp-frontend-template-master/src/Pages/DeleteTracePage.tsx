@@ -6,6 +6,7 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles";
+import {ButtonToSendMessage} from "../Utils/PageUtils";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -19,35 +20,12 @@ export function DeleteTracePage({ navigation }: any){
     const {token} = TokenStore()
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>
-
-
         <TextInput style={styles.text} placeholder={"删除轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
-
-
-        <Pressable
-            onPress={() => {
-                fetch(APIUrl, {
-                    method: "POST",
-                    headers: {"Content-Type":"text/plain"},
-                    body: JSON.stringify(new UserDeleteTraceMessage(token, newTrace))
-                }).then((response) => response.json()).then((replyJson) => {
-                    console.log(replyJson)
-                    if (replyJson.status === 0) {
-                        alert("轨迹\"" + replyJson.message + "\"删除成功！")
-                    }
-                    else {
-                        alert(replyJson.message)
-                    }
-                })
-                    .catch((e) => console.log(e))
-            }}
-            style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-            })}>
-            <Text style={styles.text}> 删除记录 </Text>
-        </Pressable>
-
-
+        <ButtonToSendMessage
+            toSendMessage = {new UserDeleteTraceMessage(token, newTrace)}
+            ifSuccess = {(replyJson:any)=>alert("轨迹\"" + replyJson.message + "\"删除成功！")}
+            text = '删除记录'
+        />
         <Pressable onPress={() => navigation.navigate('Root')}>
             <Text style={styles.text}>返回登录页</Text>
         </Pressable>

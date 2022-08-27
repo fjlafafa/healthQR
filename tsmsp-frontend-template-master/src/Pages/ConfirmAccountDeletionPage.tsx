@@ -6,36 +6,18 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "../Utils/Styles";
+import {ButtonToSendMessage} from "../Utils/PageUtils";
 
 export function DeleteAccountPage({ navigation }: any){
     const {token} = TokenStore()
     return <View style={styles.container}>
-
-        <Pressable
-            onPress={() => {
-                alert("Warning: 注销用户后不可恢复，请谨慎选择！")
-                fetch(APIUrl, {
-                    method: "POST",
-                    headers: {"Content-Type":"text/plain"},
-                    body: JSON.stringify(new UserDeleteAccountMessage(token))
-                }).then((response) => response.json()).then((replyJson) => {
-                    console.log(replyJson)
-                    if (replyJson.status === 0) {
-                        alert("用户\"" + replyJson.message + "\"注销成功！")
-                        navigation.navigate('Root')
-                    }
-                    else {
-                        alert(replyJson.message)
-                    }
-                })
-                    .catch((e) => console.log(e))
+        <ButtonToSendMessage
+            toSendMessage = {new UserDeleteAccountMessage(token)}
+            ifSuccess = {(replyJson:any)=>{
+                alert("用户\"" + replyJson.message + "\"注销成功！");
+                navigation.navigate('Root');
             }}
-            style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-            })}>
-            <Text style={styles.text}> 确认注销 </Text>
-        </Pressable>
-
+            text = '确认注销'/>
         <Pressable onPress={() => navigation.navigate('Trace')}>
             <Text style={styles.text}>返回</Text>
         </Pressable>
