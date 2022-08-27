@@ -10,6 +10,7 @@ export function ButtonToSendMessage({
                                         ifSuccess,
                                         message = null,
                                         icon = null,
+                                        onPress = null,
                                         mode = 'elevated',
                                         text = null,
                                         children = null}:any) {
@@ -17,6 +18,7 @@ export function ButtonToSendMessage({
         icon = {icon}
         mode = {mode}
         onPress={() => {
+            onPress()
             if(message == null) {
                 ifSuccess()
             } else {
@@ -32,8 +34,7 @@ export function ButtonToSendMessage({
                     } else {
                         alert(replyJson.message)
                     }
-                })
-                    .catch((e) => console.log(e))
+                }).catch((e) => console.log(e))
             }
         }}>
         <Text style={styles.text}>{text}</Text>

@@ -33,6 +33,7 @@ export function LoginPage({ navigation }: any){
             message ={new UserLoginMessage(userName, password)}
             ifSuccess = {()=>navigation.navigate('Trace')}
             text = '登录'
+            onPress = {()=>{console.log(userName+'尝试使用'+password+'登录')}}
         />
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}
         <ButtonToSendMessage
