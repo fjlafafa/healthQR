@@ -6,6 +6,7 @@ import {setUserToken} from "Globals/TokenStore";
 import {UserRegisterMessage} from "Messages/UserRegisterMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "../Utils/Styles";
+import {ButtonToSendMessage} from "../Utils/PageUtils";
 
 const registerStore= create(() => ({
     userName:"",
@@ -23,33 +24,20 @@ export function RegisterPage({ navigation }: any){
         <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>
         <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
         <TextInput style={styles.text} placeholder={"真实姓名"}  value={realName} onChangeText={(newText)=>setRealName(newText)}/>
-        <Pressable
-            onPress={() => {
-                console.log("试图使用用户名"+userName+",密码"+password + ",真实姓名"+realName + "登录！")
-                fetch(APIUrl, {
-                    method: "POST",
-                    headers: {"Content-Type":"text/plain"},
-                    body: JSON.stringify(new UserRegisterMessage(userName, password, realName))
-                }).then((response) => response.json()).then((replyJson) => {
-                    console.log(replyJson)
-                    if (replyJson.status === 0) {
-                        setUserToken(replyJson.message)
-                        navigation.navigate('Trace')
-                    }
-                    else {
-                        alert(replyJson.message)
-                    }
-                })
-                    .catch((e) => console.log(e))
+
+        {/*console.log("试图使用用户名"+userName+",密码"+password + ",真实姓名"+realName + "登录！")*/}
+        <ButtonToSendMessage
+            toSendMessage ={new UserRegisterMessage(userName, password, realName)}
+            text = '注册'
+            ifSuccess = {(replyJson: any)=>{
+                alert(replyJson.message);
+                navigation.navigate("Root");
+                setUserToken(replyJson.message)
             }}
-            style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-            })}>
-            <Text style={styles.text}> 注册 </Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Root')}>
+        />
+        {/*<Pressable onPress={() => navigation.navigate('Root')}>
             <Text style={styles.text}>切换至登录界面</Text>
-        </Pressable>
+        </Pressable>*/}
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
         {/*    style={({ pressed }) => ({*/}

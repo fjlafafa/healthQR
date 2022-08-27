@@ -30,22 +30,24 @@ export function LoginPage({ navigation }: any){
         <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             icon = 'login'
-            message ={new UserLoginMessage(userName, password)}
-            ifSuccess = {()=>navigation.navigate('Trace')}
+            toSendMessage ={new UserLoginMessage(userName, password)}
+            ifSuccess = {(replyJson:any)=>{
+                alert('success')
+                setUserToken(replyJson.message);
+                navigation.navigate('Trace');}}
             text = '登录'
-            onPress = {()=>{console.log(userName+'尝试使用'+password+'登录')}}
         />
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}
         <ButtonToSendMessage
-            ifSuccess = {()=>navigation.navigate('Register')}
+            ifSuccess = {(_:any)=>navigation.navigate('Register')}
             text = '注册'
         />
         <ButtonToSendMessage
-            ifSuccess = {()=>navigation.navigate('ScanQRCode')}
+            ifSuccess = {(_:any)=>navigation.navigate('ScanQRCode')}
             text = '扫码示例'
         />
         <ButtonToSendMessage
-            ifSuccess = {()=>navigation.navigate('QRCode')}
+            ifSuccess = {(_:any)=>navigation.navigate('QRCode')}
             text = '二维码示例'
         />
 

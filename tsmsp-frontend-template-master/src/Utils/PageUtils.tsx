@@ -6,38 +6,47 @@ import {Text} from "react-native";
 import {styles} from "./Styles";
 
 
-export function ButtonToSendMessage({
-                                        ifSuccess,
-                                        message = null,
-                                        icon = null,
-                                        onPress = null,
-                                        mode = 'elevated',
-                                        text = null,
-                                        children = null}:any) {
-    return <Button
-        icon = {icon}
-        mode = {mode}
-        onPress={() => {
-            onPress()
-            if(message == null) {
-                ifSuccess()
-            } else {
-                fetch(APIUrl, {
-                    method: "POST",
-                    headers: {"Content-Type": "text/plain"},
-                    body: JSON.stringify(message)
-                }).then((response) => response.json()).then((replyJson) => {
-                    console.log(replyJson)
-                    if (replyJson.status === 0) {
-                        setUserToken(replyJson.message)
-                        ifSuccess()
+export class ButtonToSendMessage extends React.Component<any> {
+    static defaultProps = {
+        checkBeforeSendMessage: ()=>{return true},
+        ifSuccess: (replyJson: any)=>{alert(replyJson.message)},
+        ifFail: (replyJson: any)=>{alert(replyJson.message)},
+        toSendMessage: null,
+        icon: null,
+        onPress: ()=>{},//Usually we can use ifSuccess as inPress even if we are not sending message
+        mode: 'elevated',
+        text: null,
+        children: null,
+    }
+
+    render() {
+        return <Button
+            icon={this.props.icon}
+            mode={this.props.mode}
+            onPress={() => {
+                this.props.onPress()
+                if(this.props.checkBeforeSendMessage()) {
+                    if (this.props.message == null) {
+                        this.props.ifSuccess(null)
                     } else {
-                        alert(replyJson.message)
+                        fetch(APIUrl, {
+                            method: "POST",
+                            headers: {"Content-Type": "text/plain"},
+                            body: JSON.stringify(this.props.message)
+                        }).then((response) => response.json()).then((replyJson) => {
+                            console.log(replyJson)
+                            if (replyJson.status === 0) {
+                                //setUserToken(replyJson.message)
+                                this.props.ifSuccess(replyJson)
+                            } else {
+                                this.props.ifFail(replyJson)
+                            }
+                        }).catch((e) => console.log(e))
                     }
-                }).catch((e) => console.log(e))
-            }
-        }}>
-        <Text style={styles.text}>{text}</Text>
-        {children}
-    </Button>
+                }
+            }}>
+            <Text style={styles.text}>{this.props.text}</Text>
+            {this.props.children}
+        </Button>
+    }
 }

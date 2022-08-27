@@ -8,6 +8,7 @@ import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import { Button } from 'react-native-paper';
 import {styles} from "Utils/Styles";
+import {ButtonToSendMessage} from "../Utils/PageUtils";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -25,29 +26,11 @@ export function TracePage({ navigation }: any){
         <Text style={{ fontSize: 30, fontFamily: "Arial" }} >欢迎来到主界面(*￣︶￣)</Text>
         <TextInput style={{ fontSize: 30, fontFamily: "Arial" }} placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
 
-        <Button
+        <ButtonToSendMessage
             icon = 'upload'
-            mode = 'elevated'
-            onPress={() => {
-                fetch(APIUrl, {
-                    method: "POST",
-                    headers: {"Content-Type":"text/plain"},
-                    body: JSON.stringify(new UserUpdateTraceMessage(token, newTrace))
-                }).then((response) => response.json()).then((replyJson) => {
-                    console.log(replyJson)
-                    if (replyJson.status === 0) {
-                        alert(replyJson.message)
-                    }
-                    else {
-                        alert(replyJson.message)
-                    }
-                })
-                    .catch((e) => console.log(e))
-            }}>
-            <Text style={styles.text}> 上传新轨迹 </Text>
-        </Button>
-
-
+            toSendMessage = {new UserUpdateTraceMessage(token, newTrace)}
+            text = '上传新轨迹'
+        />
         <Button
             mode = 'elevated'
             onPress={() => {
