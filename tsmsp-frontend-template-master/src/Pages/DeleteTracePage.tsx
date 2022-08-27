@@ -29,8 +29,8 @@ export function DeleteTracePage({ navigation }: any){
         />
 
         <ButtonToSendMessage
-            onPress={() => navigation.navigate('Root')}
-            text = '返回登录页'/>
+            onPress={() => navigation.navigate('Trace')}
+            text = '返回主界面'/>
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}

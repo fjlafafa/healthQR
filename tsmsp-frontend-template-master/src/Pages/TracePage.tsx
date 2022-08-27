@@ -55,13 +55,6 @@ export function TracePage({ navigation }: any){
             text ='修改密码'/>
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
-        {/*<Pressable*/}
-        {/*    onPress={() => navigation.navigate('NotFound')}*/}
-        {/*    style={({ pressed }) => ({*/}
-        {/*        opacity: pressed ? 0.5 : 1,*/}
-        {/*    })}>*/}
-        {/*    <Text> 按我跳转 </Text>*/}
-        {/*</Pressable>*/}
         <StatusBar style="auto" />
     </View>
 }

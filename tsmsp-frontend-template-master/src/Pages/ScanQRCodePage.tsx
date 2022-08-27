@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import {ButtonTemplate} from "../Utils/PageUtils";
 
-export  function ScanQRCodePage() {
+export  function ScanQRCodePage({navigation}:any) {
     const [hasPermission, setHasPermission] = useState(null as (boolean |null));
     const [scanned, setScanned] = useState(false);
 
@@ -31,6 +32,10 @@ export  function ScanQRCodePage() {
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
             />
+
+            <ButtonTemplate
+                onPress = {()=>navigation.navigate("Root")}
+                text = '返回登录界面'/>
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
         </View>
     );

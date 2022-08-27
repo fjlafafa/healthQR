@@ -6,7 +6,7 @@ import {setUserToken} from "Globals/TokenStore";
 import {UserRegisterMessage} from "Messages/UserRegisterMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "../Utils/Styles";
-import {ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
 
 const registerStore= create(() => ({
     userName:"",
@@ -17,6 +17,7 @@ const registerStore= create(() => ({
 export const setUserName= (userName:string) => registerStore.setState({ userName })
 export const setPassword= (password:string) => registerStore.setState({ password })
 export const setRealName= (realName:string) => registerStore.setState({ realName })
+export const clearInfo= ()=> registerStore.setState(({userName: "", password: "", realName: ""}))
 
 export function RegisterPage({ navigation }: any){
     const {userName,password, realName}=registerStore()
@@ -32,8 +33,12 @@ export function RegisterPage({ navigation }: any){
             ifSuccess = {(replyJson: any)=>{
                 setUserToken(replyJson.message);
                 navigation.navigate("Root");
+                clearInfo();
             }}
         />
+        <ButtonTemplate
+            onPress = {()=>navigation.navigate("Root")}
+            text = '返回登录界面'/>
         {/*<Pressable onPress={() => navigation.navigate('Root')}>
             <Text style={styles.text}>切换至登录界面</Text>
         </Pressable>*/}
