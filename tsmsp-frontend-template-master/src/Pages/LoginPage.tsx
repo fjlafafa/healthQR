@@ -9,7 +9,7 @@ import {styles} from "Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
 import { Button } from 'react-native-paper';
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
-import {ButtonToSendMessage} from "Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils";
 
 // import LoginIcon from '@mui/icons-material/Login';
 
@@ -41,16 +41,16 @@ export function LoginPage({ navigation }: any){
             text = '登录'
         />
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}
-        <ButtonToSendMessage
-            ifSuccess = {(_:any)=>navigation.navigate('Register')}
+        <ButtonTemplate
+            onPress = {()=>navigation.navigate('Register')}
             text = '注册'
         />
-        <ButtonToSendMessage
-            ifSuccess = {(_:any)=>navigation.navigate('ScanQRCode')}
+        <ButtonTemplate
+            onPress = {()=>navigation.navigate('ScanQRCode')}
             text = '扫码示例'
         />
-        <ButtonToSendMessage
-            ifSuccess = {(_:any)=>navigation.navigate('QRCode')}
+        <ButtonTemplate
+            onPress = {()=>navigation.navigate('QRCode')}
             text = '二维码示例'
         />
 

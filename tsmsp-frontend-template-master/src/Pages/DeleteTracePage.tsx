@@ -21,15 +21,16 @@ export function DeleteTracePage({ navigation }: any){
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>
         <TextInput style={styles.text} placeholder={"删除轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
+
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteTraceMessage(token, newTrace)}
             ifSuccess = {(replyJson:any)=>alert("轨迹\"" + replyJson.message + "\"删除成功！")}
             text = '删除记录'
         />
-        <Pressable onPress={() => navigation.navigate('Root')}>
-            <Text style={styles.text}>返回登录页</Text>
-        </Pressable>
 
+        <ButtonToSendMessage
+            onPress={() => navigation.navigate('Root')}
+            text = '返回登录页'/>
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}

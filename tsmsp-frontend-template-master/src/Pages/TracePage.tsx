@@ -8,7 +8,7 @@ import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import { Button } from 'react-native-paper';
 import {styles} from "Utils/Styles";
-import {ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -42,21 +42,17 @@ export function TracePage({ navigation }: any){
             }}
             text = '获取我的历史轨迹'
         />
-        <Button onPress={() => navigation.navigate('DeleteTrace')}>
-            <Text style={styles.text}>删除记录</Text>
-        </Button>
+        <ButtonTemplate onPress={() => navigation.navigate('DeleteTrace')}
+            text ='删除记录'/>
 
-        <Button onPress={() => navigation.navigate('Root')}>
-            <Text style={styles.text}>退出登录</Text>
-        </Button>
+        <ButtonTemplate onPress={() => navigation.navigate('Root')}
+            text ='退出登录'/>
 
-        <Button onPress={() => navigation.navigate('DeleteAccount')}>
-            <Text style={styles.text}>注销账户</Text>
-        </Button>
+        <ButtonTemplate onPress={() => navigation.navigate('DeleteAccount')}
+            text ='注销账户'/>
 
-        <Button onPress={() => navigation.navigate('Password')}>
-            <Text style={styles.text}>修改密码</Text>
-        </Button>
+        <ButtonTemplate onPress={() => navigation.navigate('Password')}
+            text ='修改密码'/>
 
         <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}

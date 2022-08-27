@@ -6,7 +6,7 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "Messages/UserUpdatePasswordMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles"
-import {ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
 
 const passwordStore= create(() => ({
     password:"",
@@ -32,10 +32,10 @@ export function PasswordPage({ navigation }: any){
             }}
             text = '提交修改'
         />
-        <ButtonToSendMessage
-            onPress = {() => navigation.navigate('Trace')}>
+        <ButtonTemplate
+            onPress = {() => navigation.navigate('Trace')}
             text = '返回主页'
-        </ButtonToSendMessage>
+        />
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
         {/*    style={({ pressed }) => ({*/}

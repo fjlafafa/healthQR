@@ -10,6 +10,25 @@ import {styles} from "./Styles";
  * onPress可以在其他命令执行前运行，一般用不到，按钮不发送消息时可以用ifSuccess达到相同效果，为了统一避免使用
  * children是react默认传递的参数，无需赋值使用
  * 如果页面卡住可以考虑是什么参数名字或类型错误*/
+export class ButtonTemplate extends React.Component<any> {
+    static defaultProps = {
+        icon: null,
+        onPress: ()=>{},//Usually we can use ifSuccess as inPress even if we are not sending message
+        mode: 'elevated',
+        text: null,
+        children: null,
+    }
+
+    render() {
+        return <Button
+            icon={this.props.icon}
+            mode={this.props.mode}
+            onPress={() => this.props.onPress()}>
+            <Text style={styles.text}>{this.props.text}</Text>
+            {this.props.children}
+        </Button>
+    }
+}
 export class ButtonToSendMessage extends React.Component<any> {
     static defaultProps = {
         checkBeforeSendMessage: ()=>{return true},
@@ -25,9 +44,10 @@ export class ButtonToSendMessage extends React.Component<any> {
     }
 
     render() {
-        return <Button
+        return <ButtonTemplate
             icon={this.props.icon}
             mode={this.props.mode}
+            text={this.props.text}
             onPress={() => {
                 this.props.onPress()
                 if(this.props.checkBeforeSendMessage()) {
@@ -51,8 +71,7 @@ export class ButtonToSendMessage extends React.Component<any> {
                     this.props.checkElse()
                 }
             }}>
-            <Text style={styles.text}>{this.props.text}</Text>
             {this.props.children}
-        </Button>
+        </ButtonTemplate>
     }
 }

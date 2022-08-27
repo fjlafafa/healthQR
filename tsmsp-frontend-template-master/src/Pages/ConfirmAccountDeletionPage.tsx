@@ -6,7 +6,7 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "../Utils/Styles";
-import {ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
 
 export function DeleteAccountPage({ navigation }: any){
     const {token} = TokenStore()
@@ -18,9 +18,9 @@ export function DeleteAccountPage({ navigation }: any){
                 navigation.navigate('Root');
             }}
             text = '确认注销'/>
-        <Pressable onPress={() => navigation.navigate('Trace')}>
-            <Text style={styles.text}>返回</Text>
-        </Pressable>
+        <ButtonTemplate
+            onPress={() => navigation.navigate('Trace')}
+            text = '返回'/>
 
         <StatusBar style="auto" />
     </View>
