@@ -6,7 +6,7 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "Messages/UserUpdatePasswordMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles"
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 
 const passwordStore= create(() => ({
     password:"",

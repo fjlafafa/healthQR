@@ -9,7 +9,8 @@ import {styles} from "Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
 import { Button } from 'react-native-paper';
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
-import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
+import {TextClock} from "../Utils/PageUtils/PageClockUtil";
 
 // import LoginIcon from '@mui/icons-material/Login';
 
@@ -26,9 +27,9 @@ export function LoginPage({ navigation }: any){
     return <View style={styles.container}>
         {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
 
+        <TextClock/>
         <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
         <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
-        <text>{new Date().toLocaleTimeString()}</text>
         <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}

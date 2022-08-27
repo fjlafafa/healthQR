@@ -1,9 +1,9 @@
 import React from 'react'
 import {Button} from 'react-native-paper';
-import {APIUrl} from "../Globals/GlobalVariables";
-import {setUserToken} from "../Globals/TokenStore";
+import {APIUrl} from "../../Globals/GlobalVariables";
+import {setUserToken} from "../../Globals/TokenStore";
 import {Text} from "react-native";
-import {styles} from "./Styles";
+import {styles} from "../Styles";
 
 export class ButtonTemplate extends React.Component<any> {
     static defaultProps = {

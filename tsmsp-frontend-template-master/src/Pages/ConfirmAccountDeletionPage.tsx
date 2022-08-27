@@ -2,11 +2,11 @@ import React from 'react'
 import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {TokenStore} from "Globals/TokenStore";
+import {clearUserToken, TokenStore} from "Globals/TokenStore";
 import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "../Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 
 export function DeleteAccountPage({ navigation }: any){
     const {token} = TokenStore()
@@ -16,6 +16,7 @@ export function DeleteAccountPage({ navigation }: any){
             ifSuccess = {(replyJson:any)=>{
                 alert("用户\"" + replyJson.message + "\"注销成功！");
                 navigation.navigate('Root');
+                clearUserToken();
             }}
             text = '确认注销'/>
         <ButtonTemplate

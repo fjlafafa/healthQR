@@ -8,7 +8,7 @@ import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import { Button } from 'react-native-paper';
 import {styles} from "Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 
 const registerStore= create(() => ({
     newTrace: "",

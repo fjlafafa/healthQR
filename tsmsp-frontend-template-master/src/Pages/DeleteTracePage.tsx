@@ -6,7 +6,7 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 
 const registerStore= create(() => ({
     newTrace: "",

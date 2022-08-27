@@ -2,7 +2,7 @@ import QRCode from "react-native-qrcode-svg";
 import React from "react";
 import {styles} from "../Utils/Styles";
 import {Button, View} from "react-native";
-import {ButtonTemplate} from "../Utils/PageUtils";
+import {ButtonTemplate} from "../Utils/PageUtils/PageButtonUtil";
 
 export function QRCodePage({navigation}:any) {
     return (

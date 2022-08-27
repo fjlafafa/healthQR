@@ -6,7 +6,7 @@ import {setUserToken} from "Globals/TokenStore";
 import {UserRegisterMessage} from "Messages/UserRegisterMessage";
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "../Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
 
 const registerStore= create(() => ({
     userName:"",
