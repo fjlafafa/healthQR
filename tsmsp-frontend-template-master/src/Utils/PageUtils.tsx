@@ -36,7 +36,7 @@ export class ButtonToSendMessage extends React.Component<any> {
                         }).then((response) => response.json()).then((replyJson) => {
                             console.log(replyJson)
                             if (replyJson.status === 0) {
-                                //setUserToken(replyJson.message)
+                                setUserToken(replyJson.message)
                                 this.props.ifSuccess(replyJson)
                             } else {
                                 this.props.ifFail(replyJson)
