@@ -6,7 +6,7 @@ import {TokenStore} from "Globals/TokenStore";
 import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
 import {APIUrl} from "Globals/GlobalVariables";
 import {styles} from "Utils/Styles";
-import {ButtonToSendMessage} from "../Utils/PageUtils";
+import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -28,7 +28,7 @@ export function DeleteTracePage({ navigation }: any){
             text = '删除记录'
         />
 
-        <ButtonToSendMessage
+        <ButtonTemplate
             onPress={() => navigation.navigate('Trace')}
             text = '返回主界面'/>
 

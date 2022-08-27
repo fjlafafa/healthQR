@@ -32,7 +32,7 @@ export function RegisterPage({ navigation }: any){
             text = '注册'
             ifSuccess = {(replyJson: any)=>{
                 setUserToken(replyJson.message);
-                navigation.navigate("Root");
+                navigation.navigate("Trace");
                 clearInfo();
             }}
         />

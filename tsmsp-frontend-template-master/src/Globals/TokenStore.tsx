@@ -5,3 +5,4 @@ export const TokenStore = create(() => ({
 }))
 
 export const setUserToken= (token:string) => TokenStore.setState({ token })
+export const clearUserToken= () => TokenStore.setState({ token: "" })

@@ -2,7 +2,7 @@ import React from 'react'
 import {FlatList, Pressable, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {TokenStore} from "Globals/TokenStore";
+import {clearUserToken, TokenStore} from "Globals/TokenStore";
 import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
 import {APIUrl} from "Globals/GlobalVariables";
@@ -45,7 +45,10 @@ export function TracePage({ navigation }: any){
         <ButtonTemplate onPress={() => navigation.navigate('DeleteTrace')}
             text ='删除记录'/>
 
-        <ButtonTemplate onPress={() => navigation.navigate('Root')}
+        <ButtonTemplate onPress={() => {
+            navigation.navigate('Root');
+            clearUserToken();
+        }}
             text ='退出登录'/>
 
         <ButtonTemplate onPress={() => navigation.navigate('DeleteAccount')}

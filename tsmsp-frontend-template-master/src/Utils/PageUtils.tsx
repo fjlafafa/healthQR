@@ -5,11 +5,6 @@ import {setUserToken} from "../Globals/TokenStore";
 import {Text} from "react-native";
 import {styles} from "./Styles";
 
-/**参数说明：
- * ifSuccess, ifFail接受含一个参数（回复message）的函数，实际用不到的话写_:any就行
- * onPress可以在其他命令执行前运行，一般用不到，按钮不发送消息时可以用ifSuccess达到相同效果，为了统一避免使用
- * children是react默认传递的参数，无需赋值使用
- * 如果页面卡住可以考虑是什么参数名字或类型错误*/
 export class ButtonTemplate extends React.Component<any> {
     static defaultProps = {
         icon: null,
@@ -29,6 +24,11 @@ export class ButtonTemplate extends React.Component<any> {
         </Button>
     }
 }
+/**参数说明：
+ * ifSuccess, ifFail接受含一个参数（回复message）的函数，实际用不到的话写_:any就行
+ * onPress可以在其他命令执行前运行，一般用不到，按钮不发送消息时可以用ifSuccess达到相同效果，为了统一避免使用
+ * children是react默认传递的参数，无需赋值使用
+ * 鲁棒性可能不足，如果页面卡住可以考虑下是这里什么参数名字或类型错误*/
 export class ButtonToSendMessage extends React.Component<any> {
     static defaultProps = {
         checkBeforeSendMessage: ()=>{return true},
@@ -52,7 +52,7 @@ export class ButtonToSendMessage extends React.Component<any> {
                 this.props.onPress()
                 if(this.props.checkBeforeSendMessage()) {
                     if (this.props.toSendMessage === null) {
-                        this.props.ifSuccess(null)
+                        this.props.ifSuccess({message: null})
                     } else {
                         fetch(APIUrl, {
                             method: "POST",
