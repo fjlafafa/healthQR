@@ -1,7 +1,8 @@
 package Utils
 
 import Globals.GlobalVariables
-import Tables.{UserIdentityTable, UserTokenTable, UserTraceTable}
+import Tables._
+import Types.UserInformation
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
@@ -25,6 +26,8 @@ object DBUtils {
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
         UserTokenTable.userTokenTable.schema.createIfNotExists,
         UserTraceTable.userTraceTable.schema.createIfNotExists,
+        UserInformationTable.userInformationTable.schema.createIfNotExists,
+        PlaceTable.placeTable.schema.createIfNotExists,
       )
     )
   }
@@ -34,6 +37,8 @@ object DBUtils {
         UserIdentityTable.userIdentityTable.schema.dropIfExists,
         UserTokenTable.userTokenTable.schema.dropIfExists,
         UserTraceTable.userTraceTable.schema.dropIfExists,
+        UserInformationTable.userInformationTable.schema.dropIfExists,
+        PlaceTable.placeTable.schema.dropIfExists,
         sql"DROP SCHEMA IF EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
       )
     )
