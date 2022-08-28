@@ -1,5 +1,5 @@
 package Types.TraceMeta
 
-import Impl.JacksonSerializable
+import Types.IDClass
 
-case class TraceId(id : Long) extends JacksonSerializable
+case class TraceId(override val id : Long) extends IDClass(id)

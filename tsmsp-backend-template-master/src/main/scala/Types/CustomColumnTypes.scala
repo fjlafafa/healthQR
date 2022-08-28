@@ -19,15 +19,15 @@ object CustomColumnTypes {
       ts => new DateTime(ts.getTime)
     )
 
-//  implicit def listType[T](implicit tag: ClassTag[T]): JdbcType[List[T]] with BaseTypedType[List[T]] =
-//    MappedColumnType.base[List[T], String](
-//      a => {
-//        IOUtils.serializeList(a).get
-//      },
-//      a => {
-//        IOUtils.deserializeList[T](a).get
-//      }
-//    )
+  implicit def listType[T](implicit tag: ClassTag[T]): JdbcType[List[T]] with BaseTypedType[List[T]] =
+    MappedColumnType.base[List[T], String](
+      a => {
+        IOUtils.serializeList(a).get
+      },
+      a => {
+        IOUtils.deserializeList[T](a).get
+      }
+    )
 
   implicit def jacksonSerializableType[T <: JacksonSerializable](implicit c: ClassTag[T]): JdbcType[T] with BaseTypedType[T] = {
     MappedColumnType.base[T, String](
@@ -43,5 +43,21 @@ object CustomColumnTypes {
 //        c.runtimeClass.getConstructors.head.newInstance(a.asInstanceOf[Object]).asInstanceOf[T]
 //      }
 //    )
+
+  implicit def longType[T <: IDClass](implicit c: ClassTag[T]): JdbcType[T] with BaseTypedType[T] =
+    MappedColumnType.base[T, Long](
+      _.id,
+      a => {
+        c.runtimeClass.getConstructors.head.newInstance(a.asInstanceOf[Object]).asInstanceOf[T]
+      }
+    )
+
+  implicit def stringType[T <: NameClass](implicit c: ClassTag[T]): JdbcType[T] with BaseTypedType[T] =
+    MappedColumnType.base[T, String](
+      _.name,
+      a => {
+        c.runtimeClass.getConstructors.head.newInstance(a.asInstanceOf[Object]).asInstanceOf[T]
+      }
+    )
 
 }

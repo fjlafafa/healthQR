@@ -1,5 +1,5 @@
 package Types.UserMeta
 
-import Impl.JacksonSerializable
+import Types.NameClass
 
-case class RealName(name : String) extends JacksonSerializable
+case class RealName(override val name : String) extends NameClass(name)

@@ -1,5 +1,5 @@
 package Types.UserMeta
 
-import Impl.JacksonSerializable
+import Types.IDClass
 
-case class Password(hashValue : Int) extends JacksonSerializable
+case class Password(hashValue : Long) extends IDClass(hashValue)

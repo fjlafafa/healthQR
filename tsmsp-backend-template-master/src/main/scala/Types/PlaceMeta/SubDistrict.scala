@@ -1,5 +1,5 @@
 package Types.PlaceMeta
 
-import Impl.JacksonSerializable
+import Types.NameClass
 
-case class SubDistrict(Name : String) extends JacksonSerializable
+case class SubDistrict(override val name : String) extends NameClass(name)

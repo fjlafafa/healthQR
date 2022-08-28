@@ -12,18 +12,18 @@ import slick.lifted.Tag
 import scala.util.Try
 
 case class UserIdentityRow(
-                            id: Long,
-                            realName: String,
-                            password: Int,
-                            identityNumber: String,
+                            id: UserId,
+                            realName: RealName,
+                            password: Password,
+                            identityNumber: IdentityNumber,
                             permission: Permission
                           )
 
 class UserIdentityTable(tag : Tag) extends Table[UserIdentityRow](tag, GlobalVariables.mainSchema, "user_identity") {
-  def identityNumber = column[String]("identity_number", O.PrimaryKey)
-  def id = column[Long]("id")
-  def password = column[Int]("password")
-  def realName = column[String]("real name")
+  def id = column[UserId]("id", O.PrimaryKey)
+  def identityNumber = column[IdentityNumber]("identity_number")
+  def password = column[Password]("password")
+  def realName = column[RealName]("real_name")
   def permission = column[Permission]("permission")
   def * = (id, realName, password, identityNumber, permission).mapTo[UserIdentityRow]
 }

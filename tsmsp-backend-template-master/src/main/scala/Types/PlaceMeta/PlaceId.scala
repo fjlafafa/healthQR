@@ -1,5 +1,5 @@
 package Types.PlaceMeta
 
-import Impl.JacksonSerializable
+import Types.IDClass
 
-case class PlaceId(id : Int) extends JacksonSerializable
+case class PlaceId(override val id : Long) extends IDClass(id)

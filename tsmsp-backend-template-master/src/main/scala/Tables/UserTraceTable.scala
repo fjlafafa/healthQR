@@ -14,21 +14,21 @@ import slick.lifted.Tag
 import scala.util.Try
 
 case class UserTraceRow(
-                        id : Long,
-                        userId : Long,
+                        id : TraceId,
+                        userId : UserId,
                         time: Long,
-                        visitPlaceId: Int,
-                        detailedPlaceDescription: String,
+                        visitPlaceId: PlaceId,
+                        detailedPlaceDescription: DetailedPlaceDescription,
                         reportType: ReportType
                        )
 
 class UserTraceTable(tag : Tag) extends Table[UserTraceRow](tag, GlobalVariables.mainSchema, "user_trace") {
-  def id = column[Long]("trace_id")
-  def userId = column[Long]("user_id")
+  def id = column[TraceId]("trace_id")
+  def userId = column[UserId]("user_id")
   def time = column[Long]("time")
-  def visitPlaceId = column[Int]("visitPlaceId")
+  def visitPlaceId = column[PlaceId]("visitPlaceId")
 
-  def detailedPlaceDescription = column[String]("detailedPlaceDescription")
+  def detailedPlaceDescription = column[DetailedPlaceDescription]("detailedPlaceDescription")
 
   def reportType = column[ReportType]("reportType")
   def * = (id, userId, time, visitPlaceId, detailedPlaceDescription, reportType).mapTo[UserTraceRow]

@@ -1,5 +1,5 @@
 package Types.PlaceMeta
 
-import Impl.JacksonSerializable
+import Types.NameClass
 
-case class DetailedPlaceDescription(Name: String) extends JacksonSerializable
+case class DetailedPlaceDescription(override val name: String) extends NameClass(name)

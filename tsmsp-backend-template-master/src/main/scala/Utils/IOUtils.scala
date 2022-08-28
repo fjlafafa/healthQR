@@ -35,6 +35,10 @@ object IOUtils {
     objectMapper.readValue(bytes.getBytes(), tag.runtimeClass).asInstanceOf[T]
   }
 
+  def deserializeList[T](bytes: String)(implicit tag: ClassTag[T]): Try[List[T]] = Try{
+    bytes.split("[\\[,\\]]").drop(1).toList.map(deserialize[T](_).get) // May not be correct
+  }
+
   def toObject[T: ClassTag](inputString: Option[String]): Try[Option[T]] = Try {
     inputString.map(IOUtils.deserialize[T](_).get)
   }

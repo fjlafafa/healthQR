@@ -2,7 +2,8 @@ package Tables
 
 import Exceptions.{TokenNotExistsException, UserNotExistsException}
 import Globals.GlobalVariables
-import Types.UserMeta.UserId
+import Types.UserMeta.{Token, UserId}
+import Types.CustomColumnTypes._
 import Utils.{DBUtils, StringUtils}
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
@@ -11,15 +12,15 @@ import slick.lifted.Tag
 import scala.util.Try
 
 case class UserTokenRow(
-                          userId : Long,
-                          token : String,
-                          refreshTime : Long
+                          userId : UserId,
+                          token : Token,
+                          refreshTime : DateTime
                          )
 
 class UserTokenTable(tag : Tag) extends Table[UserTokenRow](tag, GlobalVariables.mainSchema, "user_token") {
-  def userId = column[Long]("user_name", O.PrimaryKey)
-  def token = column[String]("token")
-  def refreshTime = column[Long]("refresh_time")
+  def userId = column[UserId]("user_name", O.PrimaryKey)
+  def token = column[Token]("token")
+  def refreshTime = column[DateTime]("refresh_time")
   def * = (userId, token, refreshTime).mapTo[UserTokenRow]
 }
 

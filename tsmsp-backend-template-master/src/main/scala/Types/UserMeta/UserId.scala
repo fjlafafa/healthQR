@@ -1,5 +1,5 @@
 package Types.UserMeta
 
-import Impl.JacksonSerializable
+import Types.IDClass
 
-case class UserId(id : Long) extends JacksonSerializable
+case class UserId(override val id : Long) extends IDClass(id)

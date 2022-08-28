@@ -2,20 +2,20 @@ package Tables
 
 import Globals.GlobalVariables
 import Types.CustomColumnTypes._
-import Types.UserMeta.{UserRiskLevel, VaccinationStatus}
+import Types.UserMeta._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
 
 case class UserInformationRow(
-                               id : Long,
+                               id : UserId,
                                recentNucleicTestTime : DateTime,
                                vaccinationStatus : VaccinationStatus,
                                riskLevel : UserRiskLevel
                   )
 
 class UserInformationTable(tag : Tag) extends Table[UserInformationRow](tag, GlobalVariables.mainSchema, "user_information") {
-  def id = column[Long]("user_id", O.PrimaryKey)
+  def id = column[UserId]("user_id", O.PrimaryKey)
   def recentNucleicTestTime = column[DateTime]("Recent Nucleic Test Time")
   def vaccinationStatus = column[VaccinationStatus]("Vaccination Status")
   def RiskLevel = column[UserRiskLevel]("risk level")
