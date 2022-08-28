@@ -44,13 +44,6 @@ export function PasswordPage({ navigation }: any){
             }}
             text = '返回主页'
         />
-        {/*<Pressable*/}
-        {/*    onPress={() => navigation.navigate('NotFound')}*/}
-        {/*    style={({ pressed }) => ({*/}
-        {/*        opacity: pressed ? 0.5 : 1,*/}
-        {/*    })}>*/}
-        {/*    <Text> 按我跳转 </Text>*/}
-        {/*</Pressable>*/}
         <StatusBar style="auto" />
     </View>
 }

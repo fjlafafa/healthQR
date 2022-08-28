@@ -8,7 +8,7 @@ module.exports = function(api) {
         {
           alias: {
             Assets: './src/Assets',
-            Pages: './src/Pages',
+            Pages: './src/PagesStack',
             Globals: './src/Globals',
             Messages: './src/Messages',
             Types: './src/Types',

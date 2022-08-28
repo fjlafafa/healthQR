@@ -38,16 +38,6 @@ export function RegisterPage({ navigation }: any){
         <ButtonTemplate
             onPress = {()=>navigation.navigate("Root")}
             text = '返回登录界面'/>
-        {/*<Pressable onPress={() => navigation.navigate('Root')}>
-            <Text style={styles.text}>切换至登录界面</Text>
-        </Pressable>*/}
-        {/*<Pressable*/}
-        {/*    onPress={() => navigation.navigate('NotFound')}*/}
-        {/*    style={({ pressed }) => ({*/}
-        {/*        opacity: pressed ? 0.5 : 1,*/}
-        {/*    })}>*/}
-        {/*    <Text> 按我跳转 </Text>*/}
-        {/*</Pressable>*/}
         <StatusBar style="auto" />
     </View>
 }
