@@ -1,12 +1,12 @@
 import React from 'react'
-import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "../../Globals/TokenStore";
 import {UserRegisterMessage} from "../../Impl/Messages/UserRegisterMessage";
-import {styles} from "../../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
 
 const registerStore= create(() => ({
     userName:"",
@@ -21,10 +21,10 @@ const clearRegisterInfo= ()=> registerStore.setState(({userName: "", password: "
 
 export function RegisterPage({ navigation }: any){
     const {userName,password, realName}=registerStore()
-    return <View style={styles.container}>
-        <TextInput style={styles.text} placeholder={"真实姓名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>
-        <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
-        <TextInput style={styles.text} placeholder={"身份证号"}  value={realName} onChangeText={(newText)=>setRealName(newText)}/>
+    return <PageContainerTemplate>
+        <TextInputTemplate placeholder={"真实姓名"} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
+        <TextInputTemplate placeholder={"密码"}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInputTemplate placeholder={"身份证号"}  value={realName} onChangeText={(newText: string)=>setRealName(newText)}/>
 
         {/*console.log("试图使用用户名"+userName+",密码"+password + ",真实姓名"+realName + "注册！")*/}
         <ButtonToSendMessage
@@ -40,5 +40,5 @@ export function RegisterPage({ navigation }: any){
             onPress = {()=>navigation.navigate("Root")}
             text = '返回登录界面'/>
         <StatusBar style="auto" />
-    </View>
+    </PageContainerTemplate>
 }

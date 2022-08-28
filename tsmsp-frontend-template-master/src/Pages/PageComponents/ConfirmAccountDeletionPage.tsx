@@ -1,15 +1,14 @@
 import React from 'react'
-import {View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
 import {UserDeleteAccountMessage} from "../../Impl/Messages/UserDeleteAccountMessage"
-import {styles} from "../../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
 
 export function DeleteAccountPage({ navigation }: any){
     const {token} = TokenStore()
-    return <View style={styles.container}>
+    return <PageContainerTemplate>
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteAccountMessage(token)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
@@ -23,5 +22,5 @@ export function DeleteAccountPage({ navigation }: any){
             text = '返回主界面'/>
 
         <StatusBar style="auto" />
-    </View>
+    </PageContainerTemplate>
 }

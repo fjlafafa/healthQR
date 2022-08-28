@@ -1,12 +1,12 @@
 import React from 'react'
-import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "../../Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "../../Impl/Messages/UserUpdatePasswordMessage";
-import {styles} from "../../Utils/Styles"
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
 
 const passwordStore= create(() => ({
     password:"",
@@ -21,9 +21,9 @@ export const clearInfo= ()=> passwordStore.setState(({password: "", confirmed_pa
 export function PasswordPage({ navigation }: any){
     const {token} = TokenStore()
     const {password, confirmed_password}=passwordStore()
-    return <View style={styles.container}>
-        <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
-        <TextInput style={styles.text} placeholder={"确认密码"}  value={confirmed_password} onChangeText={(newText)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
+    return <PageContainerTemplate>
+        <TextInputTemplate placeholder={"密码"}  value={password} onChangeText={(newText:string)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInputTemplate placeholder={"确认密码"}  value={confirmed_password} onChangeText={(newText:string)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             checkBeforeSendMessage = {()=>(password.localeCompare(confirmed_password)==0)}
             checkElse = {()=>{
@@ -46,5 +46,5 @@ export function PasswordPage({ navigation }: any){
             text = '返回主页'
         />
         <StatusBar style="auto" />
-    </View>
+    </PageContainerTemplate>
 }

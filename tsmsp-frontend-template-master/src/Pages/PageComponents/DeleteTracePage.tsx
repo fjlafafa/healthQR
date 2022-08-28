@@ -1,12 +1,14 @@
 import React from 'react'
-import {FlatList, Text, TextInput, View} from 'react-native'
+import {FlatList, Text} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "../../Globals/TokenStore";
 import {UserDeleteTraceMessage} from "../../Impl/Messages/UserDeleteTraceMessage"
-import {styles} from "../../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
+import {BoundedTraceList} from "../../Utils/PageUtils/ListUtil";
 
 const registerStore= create(() => ({
     RemovedTrace: "",
@@ -20,8 +22,8 @@ const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: "", tra
 export function DeleteTracePage({ navigation }: any){
     const {token} = TokenStore()
     const {RemovedTrace, traceHistory}=registerStore()
-    return <View style={styles.container}>
-        <TextInput style={styles.text} placeholder={"删除轨迹编号"} value={RemovedTrace} onChangeText={(newText)=>setRemovedTrace(newText)}/>
+    return <PageContainerTemplate>
+        <TextInputTemplate placeholder={"删除轨迹编号"} value={RemovedTrace} onChangeText={(newText: string)=>setRemovedTrace(newText)}/>
 
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteTraceMessage(token, +RemovedTrace)}
@@ -39,14 +41,14 @@ export function DeleteTracePage({ navigation }: any){
             }}
             text = '返回主界面'/>
 
-        <FlatList
+        <BoundedTraceList
             data={traceHistory}
-            renderItem={({item, index}) =>
+            renderItem={({item, index}:any) =>
                 item[0] === "暂无踪迹/尚未查询" ?
                     <Text>暂无踪迹或尚未查询</Text> :
                     <Text>{index}. {item[2]}到访{item[0]}内{item[1]}</Text>
             } keyExtractor={(item : any, index : number) => index.toString()}/>
 
         <StatusBar style="auto" />
-    </View>
+    </PageContainerTemplate>
 }

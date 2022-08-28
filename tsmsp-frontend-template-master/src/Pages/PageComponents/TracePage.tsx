@@ -1,13 +1,16 @@
 import React from 'react'
-import {FlatList, Text, TextInput, View} from 'react-native'
+import {Text} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "../../Impl/Messages/UserGetTraceMessage";
-import {styles} from "../../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
+import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
+import {BoundedTraceList} from "../../Utils/PageUtils/ListUtil";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -28,11 +31,11 @@ export function TracePage({ navigation }: any){
     const report_type : string = "Self uploaded"
     const {token} = TokenStore()
     const {newTrace, newTraceId, traceHistory}=registerStore()
-    return <View style={styles.container}>
+    return <PageContainerTemplate>
 
-        <Text style={styles.text} > 欢迎来到主界面(*￣︶￣)</Text>
-        <TextInput style={styles.text} placeholder={"访问地点代码"} value={newTraceId} onChangeText={(newText)=>setNewTraceId(newText)}/>
-        <TextInput style={styles.text} placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
+        <TextTemplate> 欢迎来到主界面(*￣︶￣)</TextTemplate>
+        <TextInputTemplate placeholder={"访问地点代码"} value={newTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
+        <TextInputTemplate placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
 
         <ButtonToSendMessage
             icon = 'upload'
@@ -75,14 +78,14 @@ export function TracePage({ navigation }: any){
         }}
             text ='修改密码'/>
 
-        <FlatList
+        <BoundedTraceList
             data={traceHistory}
-            renderItem={({item, index}) =>
+            renderItem={({item, index}: any) =>
                 item[0] === "暂无踪迹" ?
                 <Text>暂无踪迹或尚未查询</Text> :
                     <Text>{index}. {item[2]}到访{item[0]}内{item[1]}</Text>
         } keyExtractor={(item : any, index : number) => index.toString()}/>
 
         <StatusBar style="auto" />
-    </View>
+    </PageContainerTemplate>
 }
