@@ -1,10 +1,10 @@
-import {TokenStore} from "../Globals/TokenStore";
+import {TokenStore} from "../../Globals/TokenStore";
 import {View} from "react-native";
-import {styles} from "../Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
+import {styles} from "../../Utils/Styles";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
-import {AdminDropDataBasesMessage} from "../Messages/AdminDropDataBasesMessage";
+import {AdminDropDataBasesMessage} from "../../Messages/AdminDropDataBasesMessage";
 
 export function AdminPage({ navigation }: any){
     const {token} = TokenStore()

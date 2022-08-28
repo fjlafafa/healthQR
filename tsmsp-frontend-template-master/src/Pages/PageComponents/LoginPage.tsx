@@ -2,12 +2,12 @@ import React from 'react'
 import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {setUserToken} from "Globals/TokenStore";
-import {UserLoginMessage} from "Messages/UserLoginMessage";
-import {styles} from "Utils/Styles";
+import {setUserToken} from "../../Globals/TokenStore";
+import {UserLoginMessage} from "../../Messages/UserLoginMessage";
+import {styles} from "../../Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
-import {TextClock} from "../Utils/PageUtils/PageClockUtil";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
+import {TextClock} from "../../Utils/PageUtils/PageClockUtil";
 
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
@@ -40,27 +40,25 @@ export function LoginPage({ navigation }: any){
                 setPassword("")
                 //alert("登陆成功！")
                 navigation.navigate('Trace');
+                clearInfo()
             }}
             text = '登录'
         />
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}
         <ButtonTemplate
             onPress = {()=> {
-                clearInfo()
                 navigation.navigate('Register')
             }}
             text = '注册'
         />
         <ButtonTemplate
             onPress = {()=> {
-                clearInfo()
                 navigation.navigate('ScanQRCode')
             }}
             text = '扫码示例'
         />
         <ButtonTemplate
             onPress = {()=> {
-                clearInfo()
                 navigation.navigate('QRCode')
             }}
             text = '二维码示例'

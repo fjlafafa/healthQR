@@ -2,10 +2,10 @@ import React from 'react'
 import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {TokenStore} from "Globals/TokenStore";
-import {UserUpdatePasswordMessage} from "Messages/UserUpdatePasswordMessage";
-import {styles} from "Utils/Styles"
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
+import {TokenStore} from "../../Globals/TokenStore";
+import {UserUpdatePasswordMessage} from "../../Messages/UserUpdatePasswordMessage";
+import {styles} from "../../Utils/Styles"
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 
 const passwordStore= create(() => ({
     password:"",

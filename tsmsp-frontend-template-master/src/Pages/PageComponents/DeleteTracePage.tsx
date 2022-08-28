@@ -2,10 +2,10 @@ import React from 'react'
 import {FlatList, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {TokenStore} from "Globals/TokenStore";
-import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
-import {styles} from "Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
+import {TokenStore} from "../../Globals/TokenStore";
+import {UserDeleteTraceMessage} from "../../Messages/UserDeleteTraceMessage"
+import {styles} from "../../Utils/Styles";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 
 const registerStore= create(() => ({
     RemovedTrace: "",

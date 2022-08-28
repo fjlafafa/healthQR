@@ -2,10 +2,10 @@ import React from 'react'
 import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {setUserToken} from "Globals/TokenStore";
-import {UserRegisterMessage} from "Messages/UserRegisterMessage";
-import {styles} from "../Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
+import {setUserToken} from "../../Globals/TokenStore";
+import {UserRegisterMessage} from "../../Messages/UserRegisterMessage";
+import {styles} from "../../Utils/Styles";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 
 const registerStore= create(() => ({
     userName:"",

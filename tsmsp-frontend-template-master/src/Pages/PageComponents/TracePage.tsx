@@ -2,11 +2,11 @@ import React from 'react'
 import {FlatList, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {clearUserToken, TokenStore} from "Globals/TokenStore";
-import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
-import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
-import {styles} from "Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
+import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
+import {UserUpdateTraceMessage} from "../../Messages/UserUpdateTraceMessage";
+import {UserGetTraceMessage} from "../../Messages/UserGetTraceMessage";
+import {styles} from "../../Utils/Styles";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 
 const registerStore= create(() => ({
     newTrace: "",

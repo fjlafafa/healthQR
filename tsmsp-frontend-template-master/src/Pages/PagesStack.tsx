@@ -1,14 +1,14 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import React from "react";
-import {LoginPage} from "./LoginPage";
-import {RegisterPage} from "./RegisterPage";
-import {PasswordPage} from "./PasswordPage";
-import {TracePage} from "./TracePage";
-import {ScanQRCodePage} from "./ScanQRCodePage";
-import {QRCodePage} from "./QRCodePage";
-import {DeleteTracePage} from "./DeleteTracePage";
-import {DeleteAccountPage} from "./ConfirmAccountDeletionPage";
-import {AdminPage} from "./AdminPage";
+import {LoginPage} from "./PageComponents/LoginPage";
+import {RegisterPage} from "./PageComponents/RegisterPage";
+import {PasswordPage} from "./PageComponents/PasswordPage";
+import {TracePage} from "./PageComponents/TracePage";
+import {ScanQRCodePage} from "./PageComponents/ScanQRCodePage";
+import {QRCodePage} from "./PageComponents/QRCodePage";
+import {DeleteTracePage} from "./PageComponents/DeleteTracePage";
+import {DeleteAccountPage} from "./PageComponents/ConfirmAccountDeletionPage";
+import {AdminPage} from "./PageComponents/AdminPage";
 
 const Stack = createNativeStackNavigator();
 

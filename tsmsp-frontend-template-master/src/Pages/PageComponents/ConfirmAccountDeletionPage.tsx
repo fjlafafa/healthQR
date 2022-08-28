@@ -1,10 +1,10 @@
 import React from 'react'
 import {View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
-import {clearUserToken, TokenStore} from "Globals/TokenStore";
-import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
-import {styles} from "../Utils/Styles";
-import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";
+import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
+import {UserDeleteAccountMessage} from "../../Messages/UserDeleteAccountMessage"
+import {styles} from "../../Utils/Styles";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 
 export function DeleteAccountPage({ navigation }: any){
     const {token} = TokenStore()
