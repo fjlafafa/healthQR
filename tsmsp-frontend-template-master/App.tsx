@@ -13,6 +13,7 @@ import {QRCodePage} from "Pages/QRCodePage";
 import {DeleteTracePage} from "Pages/DeleteTracePage";
 import {DeleteAccountPage} from "Pages/ConfirmAccountDeletionPage";
 import { loadAsync, useFonts } from 'expo-font';
+import {AdminPage} from "./src/Pages/AdminPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,9 @@ export default function App() {
                       options={{ headerShown: false }}
         />
         <Stack.Screen name="DeleteAccount" component={DeleteAccountPage}
+                      options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Admin" component={AdminPage}
                       options={{ headerShown: false }}
         />
       </Stack.Navigator>
