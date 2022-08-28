@@ -1,4 +1,4 @@
-import {clearUserToken, TokenStore} from "../Globals/TokenStore";
+import {TokenStore} from "../Globals/TokenStore";
 import {View} from "react-native";
 import {styles} from "../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButtonUtil";

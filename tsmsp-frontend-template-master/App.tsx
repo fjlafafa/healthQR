@@ -12,8 +12,8 @@ import {ScanQRCodePage} from "Pages/ScanQRCodePage";
 import {QRCodePage} from "Pages/QRCodePage";
 import {DeleteTracePage} from "Pages/DeleteTracePage";
 import {DeleteAccountPage} from "Pages/ConfirmAccountDeletionPage";
+import {AdminPage} from "Pages/AdminPage";
 import { loadAsync, useFonts } from 'expo-font';
-import {AdminPage} from "./src/Pages/AdminPage";
 
 const Stack = createNativeStackNavigator();
 
