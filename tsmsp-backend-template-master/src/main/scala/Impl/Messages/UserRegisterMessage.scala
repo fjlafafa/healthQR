@@ -25,7 +25,7 @@ case class UserRegisterMessage(realName : String, password : String, identityNum
       DBUtils.exec(
             UserTokenTable.addRow(userId)
       )
-      TSMSPReply(STATUS_OK,  UserTokenTable.checkToken(userId).get)
+      TSMSPReply(STATUS_OK,  UserTokenTable.checkToken(userId).get.token)
     }
   }
 }

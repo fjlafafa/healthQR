@@ -12,7 +12,7 @@ case class UserLoginMessage(realName : String, password : String) extends TSMSPM
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     if (UserIdentityTable.checkPassword(RealName(realName), Password(password.hashCode())).get) {
       val userId = UserIdentityTable.checkId(RealName(realName)).get
-      TSMSPReply(STATUS_OK, UserTokenTable.checkToken(userId).get)
+      TSMSPReply(STATUS_OK, UserTokenTable.checkToken(userId).get.token)
     }
     else throw WrongPasswordException()
   }

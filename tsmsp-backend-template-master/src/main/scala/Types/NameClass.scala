@@ -2,4 +2,4 @@ package Types
 
 import Impl.JacksonSerializable
 
-case class NameClass(name: String) extends JacksonSerializable
+abstract class NameClass(val name: String) extends JacksonSerializable

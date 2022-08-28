@@ -32,29 +32,25 @@ object UserIdentityTable {
   val userIdentityTable = TableQuery[UserIdentityTable]
 
   def addUser(realName: RealName, password: Password, identityNumber: IdentityNumber, permission : Permission): DBIO[Int] =
-    userIdentityTable += UserIdentityRow(randomNumber(IdLengths.user), realName.name, password.hashValue, identityNumber.name, permission)
+    userIdentityTable += UserIdentityRow(UserId(randomNumber(IdLengths.user)), realName, password, identityNumber, permission)
 
-  def dropUser(userId: UserId): DBIO[Int] = userIdentityTable.filter(_.id === userId.id).delete
+  def dropUser(userId: UserId): DBIO[Int] = userIdentityTable.filter(_.id === userId).delete
 
-  def checkUserExists(realName: RealName): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(_.realName === realName.name).size.result) > 0)
+  def checkUserExists(realName: RealName): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(_.realName === realName).size.result) > 0)
 
-  def checkPassword(realName: RealName, password: Password): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(u => u.realName === realName.name && u.password === password.hashValue).size.result) > 0)
+  def checkPassword(realName: RealName, password: Password): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(u => u.realName === realName && u.password === password).size.result) > 0)
 
   def checkId(realName: RealName): Try[UserId] = Try(
-    UserId(
-      DBUtils.exec(userIdentityTable.filter(u => u.realName === realName.name).map(_.id).result.headOption).getOrElse(
+      DBUtils.exec(userIdentityTable.filter(u => u.realName === realName).map(_.id).result.headOption).getOrElse(
         throw TokenNotExistsException()
       )
-    )
   )
 
   def checkRealName(userId: UserId): Try[RealName] = Try(
-    RealName(
-      DBUtils.exec(userIdentityTable.filter(u => u.id === userId.id).map(_.realName).result.headOption).getOrElse(
+      DBUtils.exec(userIdentityTable.filter(u => u.id === userId).map(_.realName).result.headOption).getOrElse(
         throw TokenNotExistsException()
-      )
     )
   )
 
-  def updatePassword(userId: UserId, newPassword: Password): DBIO[Int] = userIdentityTable.filter(_.id === userId.id).map(u => u.password).update(newPassword.hashValue)
+  def updatePassword(userId: UserId, newPassword: Password): DBIO[Int] = userIdentityTable.filter(_.id === userId).map(u => u.password).update(newPassword)
 }

@@ -17,6 +17,11 @@ const registerStore= create(() => ({
 export const setNewTrace= (newTrace:string) => registerStore.setState({ newTrace })
 export const setNewTraceId= (newTraceId:string) => registerStore.setState({ newTraceId })
 export const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
+export const clearInfo= () => registerStore.setState({
+    newTrace: "",
+    newTraceId: "",
+    traceHistory: [["暂无踪迹"]]
+})
 
 export function TracePage({ navigation }: any){
     const report_type : string = "Self uploaded"
@@ -44,19 +49,29 @@ export function TracePage({ navigation }: any){
             }}
             text = '获取我的历史轨迹'
         />
-        <ButtonTemplate onPress={() => navigation.navigate('DeleteTrace')}
+        <ButtonTemplate onPress={() => {
+            clearInfo();
+            navigation.navigate('DeleteTrace')
+        }}
             text ='删除记录'/>
 
         <ButtonTemplate onPress={() => {
+            clearInfo();
             navigation.navigate('Root');
             clearUserToken();
         }}
             text ='退出登录'/>
 
-        <ButtonTemplate onPress={() => navigation.navigate('DeleteAccount')}
+        <ButtonTemplate onPress={() => {
+            clearInfo();
+            navigation.navigate('DeleteAccount')
+        }}
             text ='注销账户'/>
 
-        <ButtonTemplate onPress={() => navigation.navigate('Password')}
+        <ButtonTemplate onPress={() => {
+            clearInfo();
+            navigation.navigate('Password')
+        }}
             text ='修改密码'/>
 
         <FlatList

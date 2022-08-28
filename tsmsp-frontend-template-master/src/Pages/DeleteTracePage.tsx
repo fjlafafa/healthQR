@@ -9,11 +9,12 @@ import {ButtonTemplate, ButtonToSendMessage} from "../Utils/PageUtils/PageButton
 
 const registerStore= create(() => ({
     RemovedTrace: "",
-    traceHistory:["暂无踪迹/尚未查询"]
+    traceHistory:[["暂无踪迹/尚未查询"]]
 }))
 
 export const setRemovedTrace= (RemovedTrace:string) => registerStore.setState({ RemovedTrace })
-export const setTraceHistory = (traceHistory:string[]) => registerStore.setState({traceHistory})
+export const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
+export const clearInfo= ()=> registerStore.setState(({RemovedTrace: "", traceHistory: [["暂无踪迹/尚未查询"]]}))
 
 export function DeleteTracePage({ navigation }: any){
     const {token} = TokenStore()
@@ -31,7 +32,10 @@ export function DeleteTracePage({ navigation }: any){
         />
 
         <ButtonTemplate
-            onPress={() => navigation.navigate('Trace')}
+            onPress={() => {
+                clearInfo()
+                navigation.navigate('Trace')
+            }}
             text = '返回主界面'/>
 
         <FlatList

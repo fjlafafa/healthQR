@@ -20,6 +20,7 @@ const loginStore= create(() => ({
 
 export const setUserName= (userName:string) => loginStore.setState({ userName })
 export const setPassword= (password:string) => loginStore.setState({ password })
+export const clearInfo= ()=> loginStore.setState(({userName: "", password: ""}))
 
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
@@ -44,15 +45,24 @@ export function LoginPage({ navigation }: any){
         />
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}
         <ButtonTemplate
-            onPress = {()=>navigation.navigate('Register')}
+            onPress = {()=> {
+                clearInfo()
+                navigation.navigate('Register')
+            }}
             text = '注册'
         />
         <ButtonTemplate
-            onPress = {()=>navigation.navigate('ScanQRCode')}
+            onPress = {()=> {
+                clearInfo()
+                navigation.navigate('ScanQRCode')
+            }}
             text = '扫码示例'
         />
         <ButtonTemplate
-            onPress = {()=>navigation.navigate('QRCode')}
+            onPress = {()=> {
+                clearInfo()
+                navigation.navigate('QRCode')
+            }}
             text = '二维码示例'
         />
 

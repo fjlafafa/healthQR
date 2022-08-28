@@ -14,6 +14,8 @@ const passwordStore= create(() => ({
 
 export const setPassword= (password:string) => passwordStore.setState({ password })
 export const setConfirmedPassword= (confirmed_password:string) => passwordStore.setState({ confirmed_password })
+export const clearConfirmedPassword= ()=> passwordStore.setState(({confirmed_password: ""}))
+export const clearInfo= ()=> passwordStore.setState(({password: "", confirmed_password: ""}))
 
 export function PasswordPage({ navigation }: any){
     const {token} = TokenStore()
@@ -25,19 +27,21 @@ export function PasswordPage({ navigation }: any){
             checkBeforeSendMessage = {()=>(password.localeCompare(confirmed_password)==0)}
             checkElse = {()=>{
                 alert("两次输入密码不一致！请重新输入！")
-                setConfirmedPassword("")
+                clearConfirmedPassword()
             }}
             toSendMessage ={new UserUpdatePasswordMessage(token, password)}
             ifSuccess = {(replyJson: any)=> {
                 alert("用户" + replyJson.message + "的密码已修改");
-                setPassword("")
-                setConfirmedPassword("")
+                clearInfo()
                 navigation.navigate('Trace');
             }}
             text = '提交修改'
         />
         <ButtonTemplate
-            onPress = {() => navigation.navigate('Trace')}
+            onPress = {() => {
+                clearInfo()
+                navigation.navigate('Trace')
+            }}
             text = '返回主页'
         />
         {/*<Pressable*/}
