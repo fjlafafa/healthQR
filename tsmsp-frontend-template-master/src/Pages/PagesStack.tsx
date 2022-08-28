@@ -9,22 +9,10 @@ import {QRCodePage} from "./PageComponents/QRCodePage";
 import {DeleteTracePage} from "./PageComponents/DeleteTracePage";
 import {DeleteAccountPage} from "./PageComponents/ConfirmAccountDeletionPage";
 import {AdminPage} from "./PageComponents/AdminPage";
+import {AllowAdmin} from "../Globals/GlobalVariables";
 
 const Stack = createNativeStackNavigator();
 
-/** How to use hierarchical navigator:
- *  -:Same Level ->:Child Level
- * e.g. navigation.navigate('Root', { screen: 'Profile' });
- * e.g. Root - Settings -> Sound -> Media
- * navigation.navigate('Root', {
- *   screen: 'Settings',
- *   params: {
- *     screen: 'Sound',
- *     params: {
- *       screen: 'Media',
- *     },
- *   },
- * });*/
 export function PagesStack ({navigation}:any) {
     return (
         <Stack.Navigator>
@@ -37,7 +25,7 @@ export function PagesStack ({navigation}:any) {
                 <Stack.Screen name="QRCode" component={QRCodePage}/>
                 <Stack.Screen name="DeleteTrace" component={DeleteTracePage}/>
                 <Stack.Screen name="DeleteAccount" component={DeleteAccountPage}/>
-                <Stack.Screen name="Admin" component={AdminPage}/>
+                {AllowAdmin ? <Stack.Screen name="Admin" component={AdminPage}/> : null}
             </Stack.Group>
         </Stack.Navigator>)
 }

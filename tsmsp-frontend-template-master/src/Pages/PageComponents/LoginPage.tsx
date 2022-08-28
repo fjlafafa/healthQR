@@ -8,6 +8,7 @@ import {styles} from "../../Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TextClock} from "../../Utils/PageUtils/PageClockUtil";
+import {AllowAdmin} from "../../Globals/GlobalVariables";
 
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
@@ -63,10 +64,12 @@ export function LoginPage({ navigation }: any){
             }}
             text = '二维码示例'
         />
-        <ButtonTemplate
-            onPress = {()=>navigation.navigate('Admin')}
-            text = '管理员'
-        />
+        {AllowAdmin?
+            <ButtonTemplate
+                onPress={() => navigation.navigate('Admin')}
+                text='管理员'
+            /> :null
+        }
 
         <StatusBar style="auto" />
     </View>

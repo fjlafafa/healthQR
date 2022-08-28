@@ -6,19 +6,37 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
 import { loadAsync, useFonts } from 'expo-font';
 import {PagesStack} from "./src/Pages/PagesStack";
+import {AppLoading} from "./src/Pages/AppLoading";
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
-  loadAsync({'Arial': require('Assets/fonts/Arial.ttf'),});
-  useFonts({'Arial': require('Assets/fonts/Arial.ttf'),});
-  return (
-    <SafeAreaProvider>
-    <NavigationContainer>
-      <PagesStack/>
-    </NavigationContainer>
-    </SafeAreaProvider>
-  );
+export default class App extends React.Component<any,any> {
+  state: {loading: boolean}
+  constructor(props: any) {
+    super(props);
+    this.state = {loading: true};
+  }
+
+  async componentWillMount() {
+    await loadAsync({
+      'Arial': require('Assets/fonts/Arial.ttf'),
+    });
+    this.setState({loading: false});
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <AppLoading/>;
+    } else {
+      return (
+          <SafeAreaProvider>
+            <NavigationContainer>
+              <PagesStack/>
+            </NavigationContainer>
+          </SafeAreaProvider>
+      )
+    }
+  }
 }
 
 function PB(){
