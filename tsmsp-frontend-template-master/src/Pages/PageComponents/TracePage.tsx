@@ -7,6 +7,7 @@ import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage
 import {UserGetTraceMessage} from "../../Impl/Messages/UserGetTraceMessage";
 import {styles} from "../../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "../../Impl/TSMSPReply";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -43,7 +44,7 @@ export function TracePage({ navigation }: any){
                 token,
                 (new Date().getTime() - 86400000),
                 new Date().getTime())}
-            ifSuccess = {(replyJson:any)=> {
+            ifSuccess = {(replyJson:TSMSPReply)=> {
                 let TraceList: string[][] = JSON.parse(replyJson.message) as string[][];
                 setTraceHistory(TraceList)
             }}
