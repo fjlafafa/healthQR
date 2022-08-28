@@ -30,7 +30,7 @@ export function LoginPage({ navigation }: any){
         {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
 
         <TextClock/>
-        <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>{setUserName(newText)}}/>
+        <TextInput style={styles.text} placeholder={"用户名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>
         <TextInput style={styles.text} placeholder={"密码"}  value={password} onChangeText={(newText)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             icon = 'login'

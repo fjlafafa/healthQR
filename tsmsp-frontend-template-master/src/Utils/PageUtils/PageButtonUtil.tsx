@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button} from 'react-native-paper';
 import {APIUrl} from "../../Globals/GlobalVariables";
-import {Text} from "react-native";
+import {Text, View} from "react-native";
 import {styles} from "../Styles";
 import {TSMSPReply} from "../../Impl/TSMSPReply";
 
@@ -15,13 +15,21 @@ export class ButtonTemplate extends React.Component<any> {
     }
 
     render() {
-        return <Button
+        let ViewStyle = {height: 60}
+        let LongButtonStyle = {width: 300}
+        let ShortButtonStyle = {width: 180}
+        return (<View style={ViewStyle}>
+            <Button style={
+                this.props.text.length>6?
+                    LongButtonStyle:
+                    ShortButtonStyle
+            }
             icon={this.props.icon}
             mode={this.props.mode}
             onPress={() => this.props.onPress()}>
             <Text style={styles.text}>{this.props.text}</Text>
             {this.props.children}
-        </Button>
+        </Button></View>)
     }
 }
 /**参数说明：

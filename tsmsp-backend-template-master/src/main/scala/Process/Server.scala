@@ -17,3 +17,9 @@ object Server {
       logger.error(exception.getMessage)
   }
 }
+
+object Dropper {
+  def main(args: Array[String]): Unit = try {
+    DBUtils.dropDatabases()
+  }
+}

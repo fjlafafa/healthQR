@@ -18,5 +18,4 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: "Arial"
     }
-
 });

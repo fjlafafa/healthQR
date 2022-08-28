@@ -18,4 +18,3 @@ yarn.lock
 
 package-lock.json
 src/config.json
-Globals/GlobalVariables.tsx
