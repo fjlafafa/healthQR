@@ -19,9 +19,9 @@ const loginStore= create(() => ({
     password:""
 }))
 
-export const setUserName= (userName:string) => loginStore.setState({ userName })
-export const setPassword= (password:string) => loginStore.setState({ password })
-export const clearInfo= ()=> loginStore.setState(({userName: "", password: ""}))
+const setUserName= (userName:string) => loginStore.setState({ userName })
+const setPassword= (password:string) => loginStore.setState({ password })
+const clearLoginInfo= ()=> loginStore.setState(({userName: "", password: ""}))
 
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
@@ -35,13 +35,9 @@ export function LoginPage({ navigation }: any){
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(replyJson: any)=>{
-                //alert(replyJson.message);
                 setUserToken(replyJson.message)
-                setUserName("")
-                setPassword("")
-                //alert("登陆成功！")
                 navigation.navigate('Trace');
-                clearInfo()
+                clearLoginInfo()
             }}
             text = '登录'
         />
@@ -49,24 +45,34 @@ export function LoginPage({ navigation }: any){
         <ButtonTemplate
             onPress = {()=> {
                 navigation.navigate('Register')
+                clearLoginInfo()
             }}
             text = '注册'
         />
         <ButtonTemplate
             onPress = {()=> {
                 navigation.navigate('ScanQRCode')
+                clearLoginInfo()
             }}
             text = '扫码示例'
         />
         <ButtonTemplate
             onPress = {()=> {
                 navigation.navigate('QRCode')
+                clearLoginInfo()
             }}
             text = '二维码示例'
         />
-        {AllowAdmin?
+        {
+            //管理员界面唯一入口
+            AllowAdmin?
             <ButtonTemplate
-                onPress={() => navigation.navigate('Admin')}
+                onPress={
+                () => {
+                    navigation.navigate('Admin');
+                    clearLoginInfo();
+                }
+            }
                 text='管理员'
             /> :null
         }

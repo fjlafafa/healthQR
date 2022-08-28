@@ -12,9 +12,9 @@ const registerStore= create(() => ({
     traceHistory:[["暂无踪迹/尚未查询"]]
 }))
 
-export const setRemovedTrace= (RemovedTrace:string) => registerStore.setState({ RemovedTrace })
-export const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
-export const clearInfo= ()=> registerStore.setState(({RemovedTrace: "", traceHistory: [["暂无踪迹/尚未查询"]]}))
+const setRemovedTrace= (RemovedTrace:string) => registerStore.setState({ RemovedTrace })
+const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
+const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: "", traceHistory: [["暂无踪迹/尚未查询"]]}))
 
 export function DeleteTracePage({ navigation }: any){
     const {token} = TokenStore()
@@ -33,8 +33,8 @@ export function DeleteTracePage({ navigation }: any){
 
         <ButtonTemplate
             onPress={() => {
-                clearInfo()
                 navigation.navigate('Trace')
+                clearRemovedTraceInfo()
             }}
             text = '返回主界面'/>
 

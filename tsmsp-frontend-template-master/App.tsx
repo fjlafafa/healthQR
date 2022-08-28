@@ -16,11 +16,12 @@ export default class App extends React.Component<any,any> {
     super(props);
     this.state = {loading: true};
   }
-
+  //Not implemented: Fronts seems not to work now
   async componentWillMount() {
     await loadAsync({
       'Arial': require('Assets/fonts/Arial.ttf'),
     });
+    //useFonts({'Arial': require('Assets/fonts/Arial.ttf')})
     this.setState({loading: false});
   }
 

@@ -13,10 +13,10 @@ const registerStore= create(() => ({
     realName:"",
 }))
 
-export const setUserName= (userName:string) => registerStore.setState({ userName })
-export const setPassword= (password:string) => registerStore.setState({ password })
-export const setRealName= (realName:string) => registerStore.setState({ realName })
-export const clearInfo= ()=> registerStore.setState(({userName: "", password: "", realName: ""}))
+const setUserName= (userName:string) => registerStore.setState({ userName })
+const setPassword= (password:string) => registerStore.setState({ password })
+const setRealName= (realName:string) => registerStore.setState({ realName })
+const clearRegisterInfo= ()=> registerStore.setState(({userName: "", password: "", realName: ""}))
 
 export function RegisterPage({ navigation }: any){
     const {userName,password, realName}=registerStore()
@@ -32,7 +32,7 @@ export function RegisterPage({ navigation }: any){
             ifSuccess = {(replyJson: any)=>{
                 setUserToken(replyJson.message);
                 navigation.navigate("Trace");
-                clearInfo();
+                clearRegisterInfo();
             }}
         />
         <ButtonTemplate

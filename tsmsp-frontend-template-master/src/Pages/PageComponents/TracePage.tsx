@@ -14,10 +14,10 @@ const registerStore= create(() => ({
     traceHistory:[["暂无踪迹"]]
 }))
 
-export const setNewTrace= (newTrace:string) => registerStore.setState({ newTrace })
-export const setNewTraceId= (newTraceId:string) => registerStore.setState({ newTraceId })
-export const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
-export const clearInfo= () => registerStore.setState({
+const setNewTrace= (newTrace:string) => registerStore.setState({ newTrace })
+const setNewTraceId= (newTraceId:string) => registerStore.setState({ newTraceId })
+const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
+const clearTraceInfo= () => registerStore.setState({
     newTrace: "",
     newTraceId: "",
     traceHistory: [["暂无踪迹"]]
@@ -50,27 +50,27 @@ export function TracePage({ navigation }: any){
             text = '获取我的历史轨迹'
         />
         <ButtonTemplate onPress={() => {
-            clearInfo();
-            navigation.navigate('DeleteTrace')
+            navigation.navigate('DeleteTrace');
+            clearTraceInfo();
         }}
             text ='删除记录'/>
 
         <ButtonTemplate onPress={() => {
-            clearInfo();
             navigation.navigate('Root');
+            clearTraceInfo();
             clearUserToken();
         }}
             text ='退出登录'/>
 
         <ButtonTemplate onPress={() => {
-            clearInfo();
             navigation.navigate('DeleteAccount')
+            clearTraceInfo();
         }}
             text ='注销账户'/>
 
         <ButtonTemplate onPress={() => {
-            clearInfo();
-            navigation.navigate('Password')
+            navigation.navigate('Password');
+            clearTraceInfo();
         }}
             text ='修改密码'/>
 
