@@ -28,7 +28,7 @@ object DBUtils {
         UserTraceTable.userTraceTable.schema.createIfNotExists,
         UserInformationTable.userInformationTable.schema.createIfNotExists,
         PlaceTable.placeTable.schema.createIfNotExists,
-      )
+      ).transactionally
     )
   }
   def dropDatabases():Unit={

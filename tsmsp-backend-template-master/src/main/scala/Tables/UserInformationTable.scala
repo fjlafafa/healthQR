@@ -16,10 +16,10 @@ case class UserInformationRow(
 
 class UserInformationTable(tag : Tag) extends Table[UserInformationRow](tag, GlobalVariables.mainSchema, "user_information") {
   def id = column[UserId]("user_id", O.PrimaryKey)
-  def recentNucleicTestTime = column[DateTime]("Recent Nucleic Test Time")
-  def vaccinationStatus = column[VaccinationStatus]("Vaccination Status")
-  def RiskLevel = column[UserRiskLevel]("risk level")
-  def * = (id, recentNucleicTestTime, vaccinationStatus, RiskLevel).mapTo[UserInformationRow]
+  def recentNucleicTestTime = column[DateTime]("recent_nucleic_test_time")
+  def vaccinationStatus = column[VaccinationStatus]("vaccination_status")
+  def riskLevel = column[UserRiskLevel]("risk_level")
+  def * = (id, recentNucleicTestTime, vaccinationStatus, riskLevel).mapTo[UserInformationRow]
 }
 
 object UserInformationTable {

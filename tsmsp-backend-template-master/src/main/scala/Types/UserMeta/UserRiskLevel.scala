@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 @JsonDeserialize(using = classOf[UserRiskLevelTypeDeserializer])
 sealed abstract class UserRiskLevel(val v:String) extends JacksonSerializable
 case object Red extends UserRiskLevel("Dangerous")
-case object Yellow extends UserRiskLevel("Closedly Related")
+case object Yellow extends UserRiskLevel("Closely Related")
 case object PopUps extends UserRiskLevel("Vulnerable")
 case object Green extends UserRiskLevel("Safe")
 
