@@ -3,9 +3,10 @@ import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "../../Globals/TokenStore";
-import {UserRegisterMessage} from "../../Messages/UserRegisterMessage";
+import {UserRegisterMessage} from "../../Impl/Messages/UserRegisterMessage";
 import {styles} from "../../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "../../Impl/TSMSPReply";
 
 const registerStore= create(() => ({
     userName:"",
@@ -29,7 +30,7 @@ export function RegisterPage({ navigation }: any){
         <ButtonToSendMessage
             toSendMessage ={new UserRegisterMessage(userName, password, realName)}
             text = '注册'
-            ifSuccess = {(replyJson: any)=>{
+            ifSuccess = {(replyJson: TSMSPReply)=>{
                 setUserToken(replyJson.message);
                 navigation.navigate("Trace");
                 clearRegisterInfo();

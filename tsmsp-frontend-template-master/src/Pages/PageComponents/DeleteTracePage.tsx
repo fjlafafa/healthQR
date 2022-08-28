@@ -3,9 +3,10 @@ import {FlatList, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "../../Globals/TokenStore";
-import {UserDeleteTraceMessage} from "../../Messages/UserDeleteTraceMessage"
+import {UserDeleteTraceMessage} from "../../Impl/Messages/UserDeleteTraceMessage"
 import {styles} from "../../Utils/Styles";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "../../Impl/TSMSPReply";
 
 const registerStore= create(() => ({
     RemovedTrace: "",
@@ -24,7 +25,7 @@ export function DeleteTracePage({ navigation }: any){
 
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteTraceMessage(token, +RemovedTrace)}
-            ifSuccess = {(replyJson:any)=>{
+            ifSuccess = {(replyJson:TSMSPReply)=>{
                 alert("轨迹\"" + replyJson.message + "\"删除成功！")
                 setRemovedTrace("")
             }}

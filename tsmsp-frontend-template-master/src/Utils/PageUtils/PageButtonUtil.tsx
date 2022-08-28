@@ -3,6 +3,7 @@ import {Button} from 'react-native-paper';
 import {APIUrl} from "../../Globals/GlobalVariables";
 import {Text} from "react-native";
 import {styles} from "../Styles";
+import {TSMSPReply} from "../../Impl/TSMSPReply";
 
 export class ButtonTemplate extends React.Component<any> {
     static defaultProps = {
@@ -36,8 +37,8 @@ export class ButtonToSendMessage extends React.Component<any> {
     static defaultProps = {
         checkBeforeSendMessage: ()=>{return true},
         checkElse: ()=>{},
-        ifSuccess: (replyJson: any)=>{alert(replyJson.message)},
-        ifFail: (replyJson: any)=>{alert(replyJson.message)},
+        ifSuccess: (replyJson: TSMSPReply)=>{alert(replyJson.message)},
+        ifFail: (replyJson: TSMSPReply)=>{alert(replyJson.message)},
         toSendMessage: null,
         icon: null,
         onPress: ()=>{},//Usually we can use ifSuccess as inPress even if we are not sending message
@@ -61,7 +62,7 @@ export class ButtonToSendMessage extends React.Component<any> {
                             method: "POST",
                             headers: {"Content-Type": "text/plain"},
                             body: JSON.stringify(this.props.toSendMessage)
-                        }).then((response) => response.json()).then((replyJson) => {
+                        }).then((response) => response.json()).then((replyJson: TSMSPReply) => {
                             console.log(replyJson)
                             if (replyJson.status === 0) {
                                 this.props.ifSuccess(replyJson)

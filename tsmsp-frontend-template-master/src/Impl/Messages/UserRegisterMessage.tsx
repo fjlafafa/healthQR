@@ -1,4 +1,4 @@
-import {TSMSPMessage} from "Messages/TSMSPMessage";
+import {TSMSPMessage} from "./TSMSPMessage";
 
 export class UserRegisterMessage extends TSMSPMessage {
     realName : string

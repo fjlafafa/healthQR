@@ -3,9 +3,10 @@ import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {TokenStore} from "../../Globals/TokenStore";
-import {UserUpdatePasswordMessage} from "../../Messages/UserUpdatePasswordMessage";
+import {UserUpdatePasswordMessage} from "../../Impl/Messages/UserUpdatePasswordMessage";
 import {styles} from "../../Utils/Styles"
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "../../Impl/TSMSPReply";
 
 const passwordStore= create(() => ({
     password:"",
@@ -30,7 +31,7 @@ export function PasswordPage({ navigation }: any){
                 clearConfirmedPassword()
             }}
             toSendMessage ={new UserUpdatePasswordMessage(token, password)}
-            ifSuccess = {(replyJson: any)=> {
+            ifSuccess = {(replyJson: TSMSPReply)=> {
                 alert("用户" + replyJson.message + "的密码已修改");
                 clearInfo()
                 navigation.navigate('Trace');

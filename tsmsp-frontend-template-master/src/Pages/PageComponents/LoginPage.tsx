@@ -3,12 +3,13 @@ import {TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "../../Globals/TokenStore";
-import {UserLoginMessage} from "../../Messages/UserLoginMessage";
+import {UserLoginMessage} from "../../Impl/Messages/UserLoginMessage";
 import {styles} from "../../Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TextClock} from "../../Utils/PageUtils/PageClockUtil";
 import {AllowAdmin} from "../../Globals/GlobalVariables";
+import {TSMSPReply} from "../../Impl/TSMSPReply";
 
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
@@ -34,7 +35,7 @@ export function LoginPage({ navigation }: any){
         <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
-            ifSuccess = {(replyJson: any)=>{
+            ifSuccess = {(replyJson:TSMSPReply)=>{
                 setUserToken(replyJson.message)
                 navigation.navigate('Trace');
                 clearLoginInfo()
