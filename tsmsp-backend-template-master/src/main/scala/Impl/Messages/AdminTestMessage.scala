@@ -1,6 +1,7 @@
 package Impl.Messages
 
 import Impl.{STATUS_OK, TSMSPReply}
+import Types.PlaceMeta.Red
 import org.joda.time.DateTime
 
 import scala.util.Try
@@ -8,6 +9,6 @@ import scala.util.Try
 //We can test communication here
 case class AdminTestMessage(userToken : String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    TSMSPReply(STATUS_OK, "发送测试数据成功")
+    TSMSPReply(STATUS_OK, Red)
   }
 }
