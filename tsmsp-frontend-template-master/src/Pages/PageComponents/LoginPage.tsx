@@ -2,7 +2,7 @@ import React from 'react'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
-import {UserLoginMessage} from "Messages/UserLoginMessage";
+import {UserLoginMessage} from "Impl/Messages/UserLoginMessage";
 import QRCode from "react-native-qrcode-svg";
 import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
 import {TextClock} from "Utils/PageUtils/PageClockUtil";

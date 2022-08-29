@@ -5,12 +5,13 @@ import {View} from "react-native";
 import {ButtonTemplate} from "Utils/PageUtils/PageButtonUtil";
 import {TokenStore} from "Globals/TokenStore";
 import {QRCodeSize} from "Globals/GlobalVariables";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 
 export function QRCodePage({navigation}:any) {
     const {token} = TokenStore()
     const avatar = require('Assets/icon.png');
     return (
-        <View style={styles.container}>
+        <PageContainerTemplate>
             <QRCode
                 value={token}
                 logo={avatar}
@@ -20,6 +21,6 @@ export function QRCodePage({navigation}:any) {
             <ButtonTemplate
                 onPress = {()=>navigation.navigate("Trace")}
                 text = '返回主页'/>
-        </View>
+        </PageContainerTemplate>
     )
 }

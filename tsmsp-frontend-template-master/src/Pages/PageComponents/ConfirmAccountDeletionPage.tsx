@@ -1,7 +1,7 @@
 import React from 'react'
 import {StatusBar} from "expo-status-bar";
 import {clearUserToken, TokenStore} from "Globals/TokenStore";
-import {UserDeleteAccountMessage} from "Messages/UserDeleteAccountMessage"
+import {UserDeleteAccountMessage} from "Impl/Messages/UserDeleteAccountMessage"
 import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "Impl/TSMSPReply";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";

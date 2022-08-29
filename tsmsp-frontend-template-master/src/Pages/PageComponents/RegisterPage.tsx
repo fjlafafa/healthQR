@@ -2,7 +2,7 @@ import React from 'react'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
-import {UserRegisterMessage} from "Messages/UserRegisterMessage";
+import {UserRegisterMessage} from "Impl/Messages/UserRegisterMessage";
 import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "Impl/TSMSPReply";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";

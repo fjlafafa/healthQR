@@ -3,8 +3,8 @@ import {Text} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {clearUserToken, TokenStore} from "Globals/TokenStore";
-import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
-import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
+import {UserUpdateTraceMessage} from "Impl/Messages/UserUpdateTraceMessage";
+import {UserGetTraceMessage} from "Impl/Messages/UserGetTraceMessage";
 import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
 import {TSMSPReply} from "Impl/TSMSPReply";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
