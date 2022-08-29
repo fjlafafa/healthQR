@@ -5,6 +5,7 @@ import Globals.GlobalVariables
 import Globals.IdLengths.userToken
 import Types.CustomColumnTypes._
 import Types.UserMeta.{Token, UserId}
+import Types.UserToken
 import Utils.TokenUtils.randomUserToken
 import Utils.{DBUtils, StringUtils}
 import org.joda.time.DateTime
@@ -13,24 +14,18 @@ import slick.lifted.Tag
 
 import scala.util.Try
 
-case class UserTokenRow(
-                          userId : UserId,
-                          token : Token,
-                          refreshTime : DateTime
-                         )
-
-class UserTokenTable(tag : Tag) extends Table[UserTokenRow](tag, GlobalVariables.mainSchema, "user_token") {
+class UserTokenTable(tag : Tag) extends Table[UserToken](tag, GlobalVariables.mainSchema, "user_token") {
   def userId = column[UserId]("user_name", O.PrimaryKey)
   def token = column[Token]("token")
   def refreshTime = column[DateTime]("refresh_time")
-  def * = (userId, token, refreshTime).mapTo[UserTokenRow]
+  def * = (userId, token, refreshTime).mapTo[UserToken]
 }
 
 object UserTokenTable {
   val userTokenTable = TableQuery[UserTokenTable]
 
   def addRow(userId : UserId) : DBIO[Int] =
-    userTokenTable += UserTokenRow(userId, Token(""), DateTime.now().minusYears(2))
+    userTokenTable += UserToken(userId, Token(""), DateTime.now().minusYears(2))
 
   def checkToken(userId : UserId) : Try[Token] = Try {
     val nowTokenPair = DBUtils.exec(userTokenTable.filter(ut => ut.userId === userId).map(ut => (ut.token, ut.refreshTime)).result.headOption).getOrElse(throw UserNotExistsException())

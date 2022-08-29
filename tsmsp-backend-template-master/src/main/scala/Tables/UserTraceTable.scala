@@ -3,6 +3,7 @@ package Tables
 import Globals.{GlobalVariables, IdLengths}
 import Types.CustomColumnTypes._
 import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId}
+import Types.Trace
 import Types.TraceMeta.{ReportType, TraceId}
 import Types.UserMeta.UserId
 import Utils.DBUtils
@@ -13,16 +14,7 @@ import slick.lifted.Tag
 
 import scala.util.Try
 
-case class UserTraceRow(
-                        id : TraceId,
-                        userId : UserId,
-                        time: DateTime,
-                        visitPlaceId: PlaceId,
-                        detailedPlaceDescription: DetailedPlaceDescription,
-                        reportType: ReportType
-                       )
-
-class UserTraceTable(tag : Tag) extends Table[UserTraceRow](tag, GlobalVariables.mainSchema, "user_trace") {
+class UserTraceTable(tag : Tag) extends Table[Trace](tag, GlobalVariables.mainSchema, "user_trace") {
   def id = column[TraceId]("trace_id")
   def userId = column[UserId]("user_id")
   def time = column[DateTime]("time")
@@ -31,7 +23,7 @@ class UserTraceTable(tag : Tag) extends Table[UserTraceRow](tag, GlobalVariables
   def detailedPlaceDescription = column[DetailedPlaceDescription]("detailed_place_description")
 
   def reportType = column[ReportType]("report_type")
-  def * = (id, userId, time, visitPlaceId, detailedPlaceDescription, reportType).mapTo[UserTraceRow]
+  def * = (id, userId, time, visitPlaceId, detailedPlaceDescription, reportType).mapTo[Trace]
 
 }
 
@@ -39,13 +31,13 @@ object UserTraceTable {
   val userTraceTable = TableQuery[UserTraceTable]
 
   def addTrace(userId : UserId, trace : PlaceId, detailedPlaceDescription : DetailedPlaceDescription, reportType: ReportType) : DBIO[Int] =
-    userTraceTable += UserTraceRow(randomTraceId(IdLengths.trace), userId, time = DateTime.now(), trace, detailedPlaceDescription, reportType)
+    userTraceTable +=Trace(randomTraceId(IdLengths.trace), userId, time = DateTime.now(), trace, detailedPlaceDescription, reportType)
 
-  def checkTrace(userId : UserId, startTime : DateTime, endTime : DateTime) : Try[List[UserTraceRow]] = Try {
+  def checkTrace(userId : UserId, startTime : DateTime, endTime : DateTime) : Try[List[Trace]] = Try {
     DBUtils.exec(userTraceTable.filter(ut => ut.userId === userId && ut.time <= endTime && ut.time >= startTime).sortBy(_.time).result).toList
   }
 
-  def checkAllTrace(userId: UserId): Try[List[UserTraceRow]] = Try {
+  def checkAllTrace(userId: UserId): Try[List[Trace]] = Try {
     DBUtils.exec(userTraceTable.filter(ut => ut.userId === userId).sortBy(_.time).result).toList
   }
 
