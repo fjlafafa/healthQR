@@ -30,7 +30,7 @@ export function LoginPage({ navigation }: any){
         {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
 
         <TextClock/>
-        <TextInputTemplate placeholder={"用户名"} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
+        <TextInputTemplate placeholder={"真实姓名"} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
         <TextInputTemplate placeholder={"密码"}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             icon = 'login'
@@ -49,20 +49,6 @@ export function LoginPage({ navigation }: any){
                 clearLoginInfo()
             }}
             text = '注册'
-        />
-        <ButtonTemplate
-            onPress = {()=> {
-                navigation.navigate('ScanQRCode')
-                clearLoginInfo()
-            }}
-            text = '扫码示例'
-        />
-        <ButtonTemplate
-            onPress = {()=> {
-                navigation.navigate('QRCode')
-                clearLoginInfo()
-            }}
-            text = '二维码示例'
         />
         {
             //管理员界面唯一入口

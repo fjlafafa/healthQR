@@ -33,9 +33,24 @@ export function TracePage({ navigation }: any){
     const {newTrace, newTraceId, traceHistory}=registerStore()
     return <PageContainerTemplate>
 
-        <TextTemplate> 欢迎来到主界面(*￣︶￣)</TextTemplate>
+        <TextTemplate> ^^OvO^^欢迎来到主界面(*￣︶￣)</TextTemplate>
         <TextInputTemplate placeholder={"访问地点代码"} value={newTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
         <TextInputTemplate placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
+
+        <ButtonTemplate
+            onPress={() => {
+                navigation.navigate('QRCode');
+                clearTraceInfo();
+            }}
+            text ='我的健康码'
+        />
+        <ButtonTemplate
+            onPress = {()=> {
+                navigation.navigate('ScanQRCode')
+                clearTraceInfo();
+            }}
+            text = '地点扫码'
+        />
 
         <ButtonToSendMessage
             icon = 'upload'
