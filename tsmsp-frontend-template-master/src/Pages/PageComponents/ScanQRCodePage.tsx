@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 import {BarCodeScanner} from 'expo-barcode-scanner';
-import {ButtonTemplate} from "../../Utils/PageUtils/PageButtonUtil";
+import {ButtonTemplate} from "Utils/PageUtils/PageButtonUtil";
 
 export  function ScanQRCodePage({navigation}:any) {
     const [hasPermission, setHasPermission] = useState(null as (boolean |null));

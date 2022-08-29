@@ -1,6 +1,6 @@
 import React from "react";
-import {styles} from "../Styles";
-import {Text, TextInput, View} from "react-native"
+import {styles} from "Utils/Styles";
+import {TextInput, View} from "react-native"
 
 
 export function TextInputTemplate(props: any) {

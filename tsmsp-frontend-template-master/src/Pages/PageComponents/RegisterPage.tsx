@@ -1,15 +1,15 @@
 import React from 'react'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {setUserToken} from "../../Globals/TokenStore";
-import {UserRegisterMessage} from "../../Impl/Messages/UserRegisterMessage";
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
-import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
-import {checkIdentityNumber} from "../../Utils/FormatUtils/IdentityNumberUtil";
-import {checkPassword} from "../../Utils/FormatUtils/PasswordUtil";
-import {checkRealName} from "../../Utils/FormatUtils/RealNameUtil";
+import {setUserToken} from "Globals/TokenStore";
+import {UserRegisterMessage} from "Messages/UserRegisterMessage";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "Impl/TSMSPReply";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
+import {checkPassword} from "Utils/FormatUtils/PasswordUtil";
+import {checkRealName} from "Utils/FormatUtils/RealNameUtil";
 
 const registerStore= create(() => ({
     realName:"",

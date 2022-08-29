@@ -2,7 +2,6 @@ package Utils
 
 import Globals.GlobalVariables
 import Tables._
-import Types.UserInformation
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._

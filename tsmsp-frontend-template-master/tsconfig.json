@@ -23,7 +23,8 @@
     "paths": {
       "Assets/*": ["Assets/*"],
       "Globals/*": ["Globals/*"],
-      "Messages/*": ["Messages/*"],
+      "Impl/*": ["Impl/*"],
+      "Messages/*": ["Impl/Messages/*"],
       "Pages/*": ["Pages/*"],
       "Types/*": ["Types/*"],
       "Utils/*": ["Utils/*"]

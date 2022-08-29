@@ -1,15 +1,15 @@
 import React from 'react'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {setUserToken} from "../../Globals/TokenStore";
-import {UserLoginMessage} from "../../Impl/Messages/UserLoginMessage";
+import {setUserToken} from "Globals/TokenStore";
+import {UserLoginMessage} from "Messages/UserLoginMessage";
 import QRCode from "react-native-qrcode-svg";
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TextClock} from "../../Utils/PageUtils/PageClockUtil";
-import {AllowAdmin} from "../../Globals/GlobalVariables";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
-import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {TextClock} from "Utils/PageUtils/PageClockUtil";
+import {AllowAdmin} from "Globals/GlobalVariables";
+import {TSMSPReply} from "Impl/TSMSPReply";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 

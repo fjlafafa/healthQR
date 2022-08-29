@@ -1,14 +1,14 @@
 import React from 'react'
-import {FlatList, Text} from 'react-native'
+import {Text} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {TokenStore} from "../../Globals/TokenStore";
-import {UserDeleteTraceMessage} from "../../Impl/Messages/UserDeleteTraceMessage"
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
-import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
-import {BoundedTraceList} from "../../Utils/PageUtils/ListUtil";
+import {TokenStore} from "Globals/TokenStore";
+import {UserDeleteTraceMessage} from "Messages/UserDeleteTraceMessage"
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "Impl/TSMSPReply";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {BoundedTraceList} from "Utils/PageUtils/ListUtil";
 
 const registerStore= create(() => ({
     RemovedTrace: "",
@@ -16,7 +16,6 @@ const registerStore= create(() => ({
 }))
 
 const setRemovedTrace= (RemovedTrace:string) => registerStore.setState({ RemovedTrace })
-const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
 const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: "", traceHistory: [["暂无踪迹/尚未查询"]]}))
 
 export function DeleteTracePage({ navigation }: any){

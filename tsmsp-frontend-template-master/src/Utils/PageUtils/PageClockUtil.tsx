@@ -1,5 +1,5 @@
 import React from "react";
-import {styles} from "../Styles";
+import {styles} from "Utils/Styles";
 import {Text} from "react-native";
 
 export class TextClock extends React.Component<any> {

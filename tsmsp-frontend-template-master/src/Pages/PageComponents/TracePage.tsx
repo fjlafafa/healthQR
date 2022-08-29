@@ -2,15 +2,15 @@ import React from 'react'
 import {Text} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
-import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
-import {UserGetTraceMessage} from "../../Impl/Messages/UserGetTraceMessage";
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
-import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
-import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
-import {BoundedTraceList} from "../../Utils/PageUtils/ListUtil";
+import {clearUserToken, TokenStore} from "Globals/TokenStore";
+import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
+import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "Impl/TSMSPReply";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {TextTemplate} from "Utils/PageUtils/TextUtil";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {BoundedTraceList} from "Utils/PageUtils/ListUtil";
 
 const registerStore= create(() => ({
     newTrace: "",
