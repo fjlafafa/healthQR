@@ -23,7 +23,7 @@ class UserInformationTable(tag : Tag) extends Table[UserInformationRow](tag, Glo
 }
 
 object UserInformationTable {
-  val userInformationTable = TableQuery[UserIdentityTable]
+  val userInformationTable = TableQuery[UserInformationTable]
 
 //  def addNucleicTest(userName: String, password: String, realName: String): Try[DBIO[Int]] = Try(userInformationTable += UserInformationRow(userName, password, realName))
 //

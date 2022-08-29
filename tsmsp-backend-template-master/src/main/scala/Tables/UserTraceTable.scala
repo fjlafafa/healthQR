@@ -26,11 +26,11 @@ class UserTraceTable(tag : Tag) extends Table[UserTraceRow](tag, GlobalVariables
   def id = column[TraceId]("trace_id")
   def userId = column[UserId]("user_id")
   def time = column[DateTime]("time")
-  def visitPlaceId = column[PlaceId]("visitPlaceId")
+  def visitPlaceId = column[PlaceId]("visit_place_id")
 
-  def detailedPlaceDescription = column[DetailedPlaceDescription]("detailedPlaceDescription")
+  def detailedPlaceDescription = column[DetailedPlaceDescription]("detailed_place_description")
 
-  def reportType = column[ReportType]("reportType")
+  def reportType = column[ReportType]("report_type")
   def * = (id, userId, time, visitPlaceId, detailedPlaceDescription, reportType).mapTo[UserTraceRow]
 
 }
