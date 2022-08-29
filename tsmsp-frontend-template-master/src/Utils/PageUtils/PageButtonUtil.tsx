@@ -3,7 +3,7 @@ import {Button} from 'react-native-paper';
 import {APIUrl} from "../../Globals/GlobalVariables";
 import {Text, View} from "react-native";
 import {styles} from "../Styles";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
 
 export class ButtonTemplate extends React.Component<any> {
     static defaultProps = {

@@ -4,7 +4,7 @@ import create from 'zustand'
 import {TokenStore} from "../../Globals/TokenStore";
 import {UserUpdatePasswordMessage} from "../../Impl/Messages/UserUpdatePasswordMessage";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
 import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
 import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
 

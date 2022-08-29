@@ -7,7 +7,7 @@ import QRCode from "react-native-qrcode-svg";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
 import {TextClock} from "../../Utils/PageUtils/PageClockUtil";
 import {AllowAdmin} from "../../Globals/GlobalVariables";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
 import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
 import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
 

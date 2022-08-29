@@ -6,7 +6,7 @@ import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "../../Impl/Messages/UserGetTraceMessage";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TSMSPReply} from "../../Impl/TSMSPReply";
+import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
 import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
 import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
 import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";

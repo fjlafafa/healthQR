@@ -1,4 +1,4 @@
-import {JacksonSerializable} from "./JacksonSerializable";
+import {JacksonSerializable} from "../JacksonSerializable";
 
 export class TSMSPReply extends JacksonSerializable {
     status : number
@@ -7,5 +7,11 @@ export class TSMSPReply extends JacksonSerializable {
         super();
         this.status = status
         this.message = message
+    }
+    getStatus() {
+        return this.status
+    }
+    getMessage() {
+        return this.message
     }
 }
