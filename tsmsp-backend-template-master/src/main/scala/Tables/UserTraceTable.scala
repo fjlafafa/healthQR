@@ -1,11 +1,11 @@
 package Tables
 
 import Globals.{GlobalVariables, IdLengths}
-import Types.CustomColumnTypes._
 import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId}
 import Types.Trace
 import Types.TraceMeta.{ReportType, TraceId}
 import Types.UserMeta.UserId
+import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
 import Utils.TokenUtils.randomTraceId
 import org.joda.time.DateTime

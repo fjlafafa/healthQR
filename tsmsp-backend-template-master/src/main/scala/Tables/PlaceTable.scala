@@ -1,9 +1,9 @@
 package Tables
 
 import Globals.GlobalVariables
-import Types.CustomColumnTypes._
 import Types.Place
 import Types.PlaceMeta._
+import Utils.CustomColumnTypesUtils._
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
 

@@ -1,5 +1,5 @@
 package Types.PlaceMeta
 
-import Types.NameClass
+import Types.Templates.NameClass
 
 case class District(override val name : String) extends NameClass(name)

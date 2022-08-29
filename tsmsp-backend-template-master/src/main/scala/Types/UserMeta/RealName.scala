@@ -1,5 +1,5 @@
 package Types.UserMeta
 
-import Types.NameClass
+import Types.Templates.NameClass
 
 case class RealName(override val name : String) extends NameClass(name)

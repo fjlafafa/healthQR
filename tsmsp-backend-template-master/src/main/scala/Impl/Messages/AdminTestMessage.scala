@@ -2,7 +2,7 @@ package Impl.Messages
 
 import Impl.{STATUS_OK, TSMSPReply}
 import Types.Place
-import Types.PlaceMeta.{City, District, PlaceId, Red, SubDistrict}
+import Types.PlaceMeta._
 import Utils.IOUtils
 import org.joda.time.DateTime
 

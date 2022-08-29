@@ -10,7 +10,7 @@ import scala.util.Try
 
 case class UserLoginMessage(realName : String, password : String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    if (UserIdentityTable.checkPassword(RealName(realName), Password(password.hashCode())).get) {
+    if (UserIdentityTable.checkPassword(RealName(realName), Password(password.hashCode().toString())).get) {
       val userId = UserIdentityTable.checkId(RealName(realName)).get
       TSMSPReply(STATUS_OK, UserTokenTable.checkToken(userId).get.token)
     }

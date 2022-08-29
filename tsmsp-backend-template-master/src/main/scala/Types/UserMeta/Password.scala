@@ -1,5 +1,5 @@
 package Types.UserMeta
 
-import Types.IDClass
+import Types.Templates.TokenClass
 
-case class Password(hashValue : Long) extends IDClass(hashValue)
+case class Password(override val token : String) extends TokenClass(token)

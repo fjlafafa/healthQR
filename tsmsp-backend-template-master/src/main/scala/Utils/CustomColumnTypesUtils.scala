@@ -1,18 +1,17 @@
-package Types
+package Utils
 
 import Impl.JacksonSerializable
-import Utils.IOUtils
+import Types.Templates.{IDClass, NameClass}
 import org.joda.time.DateTime
 import slick.ast.BaseTypedType
 import slick.jdbc.H2Profile.MappedColumnType
-import slick.jdbc.H2Profile.api.stringColumnType
 import slick.jdbc.JdbcType
 import slick.jdbc.PostgresProfile.api._
 
 import java.sql.Timestamp
 import scala.reflect.ClassTag
 
-object CustomColumnTypes {
+object CustomColumnTypesUtils {
   implicit val jodaDateTimeType: JdbcType[DateTime] with BaseTypedType[DateTime] =
     MappedColumnType.base[DateTime, Timestamp](
       dt => new Timestamp(dt.getMillis),

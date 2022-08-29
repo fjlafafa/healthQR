@@ -3,9 +3,9 @@ package Tables
 import Exceptions.{TokenNotExistsException, UserNotExistsException}
 import Globals.GlobalVariables
 import Globals.IdLengths.userToken
-import Types.CustomColumnTypes._
 import Types.UserMeta.{Token, UserId}
 import Types.UserToken
+import Utils.CustomColumnTypesUtils._
 import Utils.TokenUtils.randomUserToken
 import Utils.{DBUtils, StringUtils}
 import org.joda.time.DateTime

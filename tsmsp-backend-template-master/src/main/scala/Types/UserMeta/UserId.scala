@@ -1,5 +1,5 @@
 package Types.UserMeta
 
-import Types.IDClass
+import Types.Templates.IDClass
 
 case class UserId(override val id : Long) extends IDClass(id)

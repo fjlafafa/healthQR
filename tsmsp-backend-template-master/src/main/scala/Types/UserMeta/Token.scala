@@ -1,5 +1,5 @@
 package Types.UserMeta
 
-import Types.NameClass
+import Types.Templates.TokenClass
 
-case class Token(token: String) extends NameClass(token)
+case class Token(override val token: String) extends TokenClass(token)

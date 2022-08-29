@@ -2,9 +2,9 @@ package Tables
 
 import Exceptions.TokenNotExistsException
 import Globals.{GlobalVariables, IdLengths}
-import Types.CustomColumnTypes._
 import Types.UserIdentity
 import Types.UserMeta._
+import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
 import Utils.StringUtils.randomNumber
 import slick.jdbc.PostgresProfile.api._

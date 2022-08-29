@@ -3,8 +3,8 @@ import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
 import {UserLoginMessage} from "Impl/Messages/UserLoginMessage";
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/ButtonUtil";
-import {TextClock} from "../../Utils/PageUtils/ClockUtil";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
+import {TextClock} from "Utils/PageUtils/ClockUtil";
 import {AllowAdmin} from "Globals/GlobalVariables";
 import {TSMSPReply} from "Impl/Replies/TSMSPReply";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";

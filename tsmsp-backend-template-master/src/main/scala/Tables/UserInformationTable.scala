@@ -1,9 +1,9 @@
 package Tables
 
 import Globals.GlobalVariables
-import Types.CustomColumnTypes._
 import Types.UserInformation
 import Types.UserMeta._
+import Utils.CustomColumnTypesUtils._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag

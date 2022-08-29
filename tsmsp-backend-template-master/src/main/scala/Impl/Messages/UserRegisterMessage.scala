@@ -17,7 +17,7 @@ case class UserRegisterMessage(realName : String, password : String, identityNum
         UserIdentityTable
           .addUser(
             RealName(realName),
-            Password(password.hashCode()),
+            Password(password.hashCode().toString()),
             IdentityNumber(identityNumber),
             Permission.getType(permission)
           ))
