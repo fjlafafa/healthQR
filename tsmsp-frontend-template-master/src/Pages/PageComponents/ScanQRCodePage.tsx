@@ -1,11 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 import {BarCodeScanner} from 'expo-barcode-scanner';
-import {ButtonTemplate} from "../../Utils/PageUtils/PageButtonUtil";
+import {ButtonTemplate} from "Utils/PageUtils/PageButtonUtil";
+import {SendData} from "Utils/PageUtils/PageSendDataUtil";
+import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
+import {TokenStore} from "../../Globals/TokenStore";
 
 export  function ScanQRCodePage({navigation}:any) {
     const [hasPermission, setHasPermission] = useState(null as (boolean |null));
     const [scanned, setScanned] = useState(false);
+    const {token} = TokenStore()
+    const report_type : string = "Auto recorded";
+    const detailed_desc : string = "";
 
     useEffect(() => {
         const getBarCodeScannerPermissions = async () => {
@@ -18,7 +24,12 @@ export  function ScanQRCodePage({navigation}:any) {
 
     const handleBarCodeScanned = ({type, data} : any) => {
         setScanned(true);
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        const placeId = parseInt(data);
+        if(isNaN(placeId))
+            alert(`地点码格式不正确，请重新扫码！`);
+        else
+            SendData(new UserUpdateTraceMessage(token, placeId, detailed_desc, report_type))
     };
 
     if (hasPermission === null)
@@ -34,8 +45,8 @@ export  function ScanQRCodePage({navigation}:any) {
             />
 
             <ButtonTemplate
-                onPress = {()=>navigation.navigate("Root")}
-                text = '返回登录界面'/>
+                onPress = {()=>navigation.navigate("Trace")}
+                text = '返回主页'/>
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
         </View>
     );

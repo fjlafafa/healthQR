@@ -1,7 +1,5 @@
 package Impl.Messages
-import Exceptions.FailToDropDatabasesException
 import Impl.{STATUS_OK, TSMSPReply}
-import Utils.DBUtils
 import org.joda.time.DateTime
 
 import scala.util.Try

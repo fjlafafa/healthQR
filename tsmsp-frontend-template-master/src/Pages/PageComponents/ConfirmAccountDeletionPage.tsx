@@ -1,10 +1,10 @@
 import React from 'react'
 import {StatusBar} from "expo-status-bar";
-import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
-import {UserDeleteAccountMessage} from "../../Impl/Messages/UserDeleteAccountMessage"
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {clearUserToken, TokenStore} from "Globals/TokenStore";
+import {UserDeleteAccountMessage} from "Impl/Messages/UserDeleteAccountMessage"
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "Impl/Replies/TSMSPReply";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 
 export function DeleteAccountPage({ navigation }: any){
     const {token} = TokenStore()

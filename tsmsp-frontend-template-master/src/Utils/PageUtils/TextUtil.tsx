@@ -1,5 +1,5 @@
 import {Text} from "react-native";
-import {styles} from "../Styles";
+import {styles} from "Utils/Styles";
 import React from "react";
 
 export function TextTemplate(props: any) {

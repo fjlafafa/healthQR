@@ -2,14 +2,14 @@ package Tables
 
 import Exceptions.{TokenNotExistsException, UserNotExistsException}
 import Globals.GlobalVariables
-import Types.UserMeta.{Token, UserId}
+import Globals.IdLengths.userToken
 import Types.CustomColumnTypes._
-import Utils.{DBUtils, StringUtils}
+import Types.UserMeta.{Token, UserId}
 import Utils.TokenUtils.randomUserToken
+import Utils.{DBUtils, StringUtils}
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
-import Globals.IdLengths.userToken
 
 import scala.util.Try
 

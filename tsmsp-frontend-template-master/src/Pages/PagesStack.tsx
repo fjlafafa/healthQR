@@ -9,7 +9,7 @@ import {QRCodePage} from "./PageComponents/QRCodePage";
 import {DeleteTracePage} from "./PageComponents/DeleteTracePage";
 import {DeleteAccountPage} from "./PageComponents/ConfirmAccountDeletionPage";
 import {AdminPage} from "./PageComponents/AdminPage";
-import {AllowAdmin} from "../Globals/GlobalVariables";
+import {AllowAdmin} from "Globals/GlobalVariables";
 
 const Stack = createNativeStackNavigator();
 

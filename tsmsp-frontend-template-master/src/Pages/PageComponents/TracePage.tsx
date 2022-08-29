@@ -2,15 +2,15 @@ import React from 'react'
 import {Text} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {clearUserToken, TokenStore} from "../../Globals/TokenStore";
-import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
-import {UserGetTraceMessage} from "../../Impl/Messages/UserGetTraceMessage";
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
-import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
-import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
-import {TextInputTemplate} from "../../Utils/PageUtils/TextInputUtil";
-import {BoundedTraceList} from "../../Utils/PageUtils/ListUtil";
+import {clearUserToken, TokenStore} from "Globals/TokenStore";
+import {UserUpdateTraceMessage} from "Impl/Messages/UserUpdateTraceMessage";
+import {UserGetTraceMessage} from "Impl/Messages/UserGetTraceMessage";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {TSMSPReply} from "Impl/Replies/TSMSPReply";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {TextTemplate} from "Utils/PageUtils/TextUtil";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {BoundedTraceList} from "Utils/PageUtils/ListUtil";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -33,9 +33,24 @@ export function TracePage({ navigation }: any){
     const {newTrace, newTraceId, traceHistory}=registerStore()
     return <PageContainerTemplate>
 
-        <TextTemplate> 欢迎来到主界面(*￣︶￣)</TextTemplate>
+        <TextTemplate> ^^OvO^^欢迎来到主界面(*￣︶￣)</TextTemplate>
         <TextInputTemplate placeholder={"访问地点代码"} value={newTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
         <TextInputTemplate placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
+
+        <ButtonTemplate
+            onPress={() => {
+                navigation.navigate('QRCode');
+                clearTraceInfo();
+            }}
+            text ='我的健康码'
+        />
+        <ButtonTemplate
+            onPress = {()=> {
+                navigation.navigate('ScanQRCode')
+                clearTraceInfo();
+            }}
+            text = '地点扫码'
+        />
 
         <ButtonToSendMessage
             icon = 'upload'

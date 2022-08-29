@@ -8,9 +8,10 @@ module.exports = function(api) {
         {
           alias: {
             Assets: './src/Assets',
-            Pages: './src/PagesStack',
+            Pages: './src/Pages',
             Globals: './src/Globals',
-            Messages: './src/Messages',
+            Impl: './src/Impl',
+            Messages: './src/Impl/Messages',
             Types: './src/Types',
             Utils: './src/Utils'
           },

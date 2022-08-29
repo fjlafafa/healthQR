@@ -4,11 +4,9 @@ import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
-import { loadAsync, useFonts } from 'expo-font';
-import {PagesStack} from "./src/Pages/PagesStack";
-import {AppLoading} from "./src/Pages/AppLoading";
-
-const Stack = createNativeStackNavigator();
+import { loadAsync } from 'expo-font';
+import {PagesStack} from "Pages/PagesStack";
+import {AppLoading} from "Pages/AppLoading";
 
 export default class App extends React.Component<any,any> {
   state: {loading: boolean}
@@ -21,7 +19,6 @@ export default class App extends React.Component<any,any> {
     await loadAsync({
       'Arial': require('Assets/fonts/Arial.ttf'),
     });
-    //useFonts({'Arial': require('Assets/fonts/Arial.ttf')})
     this.setState({loading: false});
   }
 

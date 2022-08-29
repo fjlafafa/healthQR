@@ -1,10 +1,10 @@
-import {TokenStore} from "../../Globals/TokenStore";
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/PageButtonUtil";
+import {TokenStore} from "Globals/TokenStore";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
-import {AdminDropDataBasesMessage} from "../../Impl/Messages/AdminDropDataBasesMessage";
-import {AdminTestMessage} from "../../Impl/Messages/AdminTestMessage";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {AdminDropDataBasesMessage} from "Impl/Messages/AdminDropDataBasesMessage";
+import {AdminTestMessage} from "Impl/Messages/AdminTestMessage";
+import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 
 export function AdminPage({ navigation }: any){
     const {token} = TokenStore()
