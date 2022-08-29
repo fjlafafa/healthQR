@@ -5,7 +5,7 @@ import create from 'zustand'
 import {clearUserToken, TokenStore} from "Globals/TokenStore";
 import {UserUpdateTraceMessage} from "Impl/Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "Impl/Messages/UserGetTraceMessage";
-import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/ButtonUtil";
 import {TSMSPReply} from "Impl/Replies/TSMSPReply";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";

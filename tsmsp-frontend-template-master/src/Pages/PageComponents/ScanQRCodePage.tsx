@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 import {BarCodeScanner} from 'expo-barcode-scanner';
-import {ButtonTemplate} from "Utils/PageUtils/PageButtonUtil";
+import {ButtonTemplate} from "../../Utils/PageUtils/ButtonUtil";
 import {SendData} from "Utils/PageUtils/PageSendDataUtil";
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
 import {TokenStore} from "../../Globals/TokenStore";
+import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
 
 export  function ScanQRCodePage({navigation}:any) {
     const [hasPermission, setHasPermission] = useState(null as (boolean |null));
@@ -38,17 +39,18 @@ export  function ScanQRCodePage({navigation}:any) {
         return <Text>No access to camera</Text>;
 
     return (
-        <View style={styles.container}>
+        <PageContainerTemplate>
+            <View style={{flex:1}}>
             <BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
-            />
+            /></View>
 
             <ButtonTemplate
                 onPress = {()=>navigation.navigate("Trace")}
                 text = '返回主页'/>
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-        </View>
+        </PageContainerTemplate>
     );
 }
 

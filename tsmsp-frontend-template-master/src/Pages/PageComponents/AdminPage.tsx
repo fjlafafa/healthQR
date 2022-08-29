@@ -1,5 +1,5 @@
 import {TokenStore} from "Globals/TokenStore";
-import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/PageButtonUtil";
+import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
 import {AdminDropDataBasesMessage} from "Impl/Messages/AdminDropDataBasesMessage";

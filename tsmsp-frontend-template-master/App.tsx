@@ -15,7 +15,7 @@ export default class App extends React.Component<any,any> {
     this.state = {loading: true};
   }
   //Not implemented: Fronts seems not to work now
-  async componentWillMount() {
+  async componentDidMount() {
     await loadAsync({
       'Arial': require('Assets/fonts/Arial.ttf'),
     });
