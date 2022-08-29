@@ -1,4 +1,4 @@
-package Impl.Messages.Process
+package Process
 
 import Impl.Messages.TSMSPMessage
 import Server.logger

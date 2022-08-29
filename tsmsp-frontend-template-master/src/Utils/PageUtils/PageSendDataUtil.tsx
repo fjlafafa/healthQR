@@ -1,6 +1,6 @@
 import React from 'react'
 import {APIUrl} from "Globals/GlobalVariables";
-import {TSMSPReply} from "Impl/TSMSPReply";
+import {TSMSPReply} from "Impl/Replies/TSMSPReply";
 import {TSMSPMessage} from "Impl/Messages/TSMSPMessage";
 
 export function SendData(
