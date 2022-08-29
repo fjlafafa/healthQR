@@ -1,4 +1,4 @@
-package Process
+package Impl.Messages.Process
 
 import Utils.DBUtils
 import akka.actor.typed.ActorSystem

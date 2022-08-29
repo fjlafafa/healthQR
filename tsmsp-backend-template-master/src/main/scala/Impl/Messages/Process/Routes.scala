@@ -1,7 +1,7 @@
-package Process
+package Impl.Messages.Process
 
 import Impl.Messages.TSMSPMessage
-import Process.Server.logger
+import Server.logger
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
 import akka.actor.typed.ActorSystem

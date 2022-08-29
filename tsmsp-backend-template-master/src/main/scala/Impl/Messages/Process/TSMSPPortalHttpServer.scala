@@ -1,4 +1,4 @@
-package Process
+package Impl.Messages.Process
 
 import Globals.GlobalVariables
 import akka.actor.typed.ActorSystem
