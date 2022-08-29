@@ -1,0 +1,9 @@
+[submodule "tsmsp-backend-template-master/src/microservice/user-infomration-microservice"]
+	path = tsmsp-backend-template-master/src/microservice/user-infomration-microservice
+	url = git@git.tsinghua.edu.cn:wmc21/user-infomration-microservice.git
+[submodule "tsmsp-backend-template-master/src/microservice/vaccine-and-nucleic-acid-microservice"]
+	path = tsmsp-backend-template-master/src/microservice/vaccine-and-nucleic-acid-microservice
+	url = git@git.tsinghua.edu.cn:wmc21/vaccine-and-nucleic-acid-microservice.git
+[submodule "tsmsp-backend-template-master/src/microservice/place-information-microservice"]
+	path = tsmsp-backend-template-master/src/microservice/place-information-microservice
+	url = git@git.tsinghua.edu.cn:wmc21/place-information-microservice.git
