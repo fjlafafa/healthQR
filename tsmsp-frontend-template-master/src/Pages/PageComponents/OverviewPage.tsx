@@ -28,20 +28,21 @@ const clearTraceInfo = () => registerStore.setState({
     traceHistory: [['暂无踪迹']]
 })
 
+var last_fresh_time = 0
+
 export function OverviewPage({navigation}: any) {
     const {token} = TokenStore()
     const {traceHistory} = registerStore()
-
-    SendData(new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
-        (reply: TSMSPReply) => {
-            let TraceList: string[][] = JSON.parse(reply.message) as string[][]
-            setTraceHistory(TraceList)
-        })
-
-    const cv = {
-        alignItems: 'center',
-        justifyContent: 'center'
+    //refreshing
+    if(new Date().getTime()-last_fresh_time>10000) {
+        SendData(new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
+            (reply: TSMSPReply) => {
+                let TraceList: string[][] = JSON.parse(reply.message) as string[][]
+                setTraceHistory(TraceList)
+            })
+        last_fresh_time=new Date().getTime()
     }
+
     //Required data:
     const avatar = require('Assets/icon.png')
 
