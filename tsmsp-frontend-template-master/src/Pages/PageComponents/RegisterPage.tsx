@@ -39,12 +39,12 @@ export function RegisterPage({ navigation }: any){
             text = '注册'
             ifSuccess = {(replyJson: TSMSPReply)=>{
                 setUserToken(replyJson.message);
-                navigation.navigate("Trace");
+                navigation.navigate('Trace',{});
                 clearRegisterInfo();
             }}
         />
         <ButtonTemplate
-            onPress = {()=>navigation.navigate("Root")}
+            onPress = {()=>navigation.navigate('Root',{})}
             text = '返回登录界面'/>
         <StatusBar style="auto" />
     </PageContainerTemplate>

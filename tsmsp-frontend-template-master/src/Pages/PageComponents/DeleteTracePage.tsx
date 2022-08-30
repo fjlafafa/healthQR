@@ -35,7 +35,7 @@ export function DeleteTracePage({ navigation }: any){
 
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('Trace')
+                navigation.navigate('Trace',{})
                 clearRemovedTraceInfo()
             }}
             text = '返回主界面'/>

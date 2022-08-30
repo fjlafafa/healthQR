@@ -11,6 +11,7 @@ import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
 import {BoundedTraceList} from "Utils/PageUtils/ListUtil";
+import {TextClock} from "../../Utils/PageUtils/ClockUtil";
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -33,20 +34,22 @@ export function TracePage({ navigation }: any){
     const {newTrace, newTraceId, traceHistory}=registerStore()
     return <PageContainerTemplate>
 
-        <TextTemplate> ^^OvO^^欢迎来到主界面(*￣︶￣)</TextTemplate>
+        <TextTemplate> 主界面</TextTemplate>
+        <TextClock/>
+        <TextTemplate>{new Date().toLocaleTimeString()}</TextTemplate>
         <TextInputTemplate placeholder={"访问地点代码"} value={newTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
         <TextInputTemplate placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
 
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('QRCode');
+                navigation.navigate('QRCode',{});
                 clearTraceInfo();
             }}
             text ='我的健康码'
         />
         <ButtonTemplate
             onPress = {()=> {
-                navigation.navigate('ScanQRCode')
+                navigation.navigate('ScanQRCode',{})
                 clearTraceInfo();
             }}
             text = '地点扫码'
@@ -69,26 +72,25 @@ export function TracePage({ navigation }: any){
             text = '获取我的历史轨迹'
         />
         <ButtonTemplate onPress={() => {
-            navigation.navigate('DeleteTrace');
+            navigation.navigate('DeleteTrace',{});
             clearTraceInfo();
         }}
             text ='删除记录'/>
 
         <ButtonTemplate onPress={() => {
-            navigation.navigate('Root');
+            navigation.navigate('Root',{});
             clearTraceInfo();
             clearUserToken();
         }}
             text ='退出登录'/>
 
         <ButtonTemplate onPress={() => {
-            navigation.navigate('DeleteAccount')
+            navigation.navigate('DeleteAccount',{})
             clearTraceInfo();
         }}
             text ='注销账户'/>
-
         <ButtonTemplate onPress={() => {
-            navigation.navigate('Password');
+            navigation.navigate('Password',{});
             clearTraceInfo();
         }}
             text ='修改密码'/>

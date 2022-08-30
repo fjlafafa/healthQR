@@ -22,7 +22,7 @@ export function AdminPage({ navigation }: any){
             text = '注册空用户'
             ifSuccess = {(replyJson: TSMSPReply)=>{
                 setUserToken(replyJson.message);
-                navigation.navigate("Trace");}}/>
+                navigation.navigate('Trace',{});}}/>
         <ButtonTemplate
             onPress={() => navigation.navigate('Root')}
             text = '返回登录界面'/>
