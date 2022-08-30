@@ -40,11 +40,10 @@ export  function ScanQRCodePage({navigation}:any) {
 
     return (
         <PageContainerTemplate>
-            <View style={{flex:1}}>
             <BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
-            /></View>
+            />
 
             <ButtonTemplate
                 onPress = {()=>navigation.navigate('Overview',{})}

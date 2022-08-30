@@ -29,9 +29,9 @@ export function AdminPage({ navigation }: any){
             text = '注册空用户'
             ifSuccess = {(replyJson: TSMSPReply)=>{
                 setUserToken(replyJson.message)
-                navigation.navigate('Trace',{})}}/>
+                navigation.navigate('Overview',{})}}/>
         <ButtonTemplate
-            onPress={() => navigation.navigate('Root')}
+            onPress={() => navigation.navigate('Login')}
             text = '返回登录界面'/>
 
         <StatusBar style='auto' />

@@ -6,14 +6,14 @@ import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
 import {PageContainerTemplate} from 'Utils/PageUtils/PageContainerUtil'
 
-export function DeleteAccountPage({ navigation }: any){
+export function AccountDeletionPage({ navigation }: any){
     const {token} = TokenStore()
     return <PageContainerTemplate>
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteAccountMessage(token)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
                 alert('用户\'' + replyJson.message + '\'注销成功！')
-                navigation.navigate('Root',{})
+                navigation.navigate('Login',{})
                 clearUserToken()
             }}
             text = '确认注销'/>

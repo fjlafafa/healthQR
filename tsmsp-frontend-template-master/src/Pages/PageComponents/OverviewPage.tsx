@@ -46,7 +46,12 @@ export function OverviewPage({navigation}: any) {
     const avatar = require('Assets/icon.png')
 
     return <PageContainerTemplate>
-        <View style={{width: SCREEN_WIDTH, height: SCREEN_WIDTH, alignItems: 'center', justifyContent: 'center',/*backgroundColor: '#f0f'/**/}}>
+        <View style={{
+            width: SCREEN_WIDTH,
+            height: SCREEN_WIDTH,
+            alignItems: 'center',
+            justifyContent: 'center',/*backgroundColor: '#f0f'/**/
+        }}>
             <Card style={{width: '95%', height: '95%', alignItems: 'center'}}>
                 <View style={{height: SCREEN_WIDTH * 0.025}}/>
                 {/*健康码*/}
@@ -82,19 +87,41 @@ export function OverviewPage({navigation}: any) {
                             item[0] === '暂无踪迹' ?
                                 <Text>暂无踪迹或尚未查询</Text> :
                                 <Text>{index}. {item[2]}到访{item[0]}内{item[1]}</Text>
-                        } keyExtractor={(item : any, index : number) => index.toString()}/>
+                        } keyExtractor={(item: any, index: number) => index.toString()}/>
                 </Card>
             </View>
         </View>
-        <View style={{width: SCREEN_WIDTH,alignItems: 'center', justifyContent: 'center',/*backgroundColor: '#f0f'/**/}}>
+        <View
+            style={{width: SCREEN_WIDTH, alignItems: 'center', justifyContent: 'center',/*backgroundColor: '#f0f'/**/}}>
             {/*其他微服务*/}
 
             <ButtonTemplate
                 onPress={() => {
-                navigation.navigate('Root', {})
-                clearTraceInfo()
-                clearUserToken()}}
-                text='退出登录'
+                    navigation.navigate('ScanQRCode', {})
+                    clearTraceInfo()
+                }}
+                text='地点扫码'
+            />
+            <ButtonTemplate
+                onPress={() => {
+                    navigation.navigate('Account', {})
+                    clearTraceInfo()
+                }}
+                text='个人账户'
+            />
+            <ButtonTemplate
+                onPress={() => {
+                    navigation.navigate('Trace', {})
+                    clearTraceInfo()
+                }}
+                text='踪迹管理'
+            />
+            <ButtonTemplate
+                onPress={() => {
+                    navigation.navigate('Vaccine', {})
+                    clearTraceInfo()
+                }}
+                text='核酸疫苗管理'
             />
         </View>
 
@@ -145,16 +172,7 @@ export function OverviewPage({navigation}: any) {
             text ='删除记录'/>
 
 
-        <ButtonTemplate onPress={() => {
-            navigation.navigate('DeleteAccount',{})
-            clearTraceInfo()
-        }}
-            text ='注销账户'/>
-        <ButtonTemplate onPress={() => {
-            navigation.navigate('Password',{})
-            clearTraceInfo()
-        }}
-            text ='修改密码'/>
+
 
 
 

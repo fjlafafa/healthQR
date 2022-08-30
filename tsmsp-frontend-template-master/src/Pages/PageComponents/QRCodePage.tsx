@@ -4,7 +4,7 @@ import {ButtonTemplate} from 'Utils/PageUtils/ButtonUtil'
 import {TokenStore} from 'Globals/TokenStore'
 import {QRCodeSize} from 'Globals/GlobalVariables'
 import {PageContainerTemplate} from 'Utils/PageUtils/PageContainerUtil'
-
+//Not Used
 export function QRCodePage({navigation}:any) {
     const {token} = TokenStore()
     const avatar = require('Assets/icon.png')

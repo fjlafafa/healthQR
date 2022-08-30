@@ -44,7 +44,7 @@ export function RegisterPage({ navigation }: any){
             }}
         />
         <ButtonTemplate
-            onPress = {()=>navigation.navigate('Root',{})}
+            onPress = {()=>navigation.navigate('Login',{})}
             text = '返回登录界面'/>
         <StatusBar style='auto' />
     </PageContainerTemplate>

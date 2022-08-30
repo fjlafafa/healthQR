@@ -18,7 +18,7 @@ const registerStore= create(() => ({
 const setRemovedTrace= (RemovedTrace:string) => registerStore.setState({ RemovedTrace })
 const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: '', traceHistory: [['暂无踪迹/尚未查询']]}))
 
-export function DeleteTracePage({ navigation }: any){
+export function TracePage({ navigation }: any){
     const {token} = TokenStore()
     const {RemovedTrace, traceHistory}=registerStore()
     return <PageContainerTemplate>
