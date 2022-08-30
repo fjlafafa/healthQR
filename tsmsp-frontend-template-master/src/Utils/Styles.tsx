@@ -1,11 +1,8 @@
 import {StyleSheet} from "react-native";
 
+//All style should only exist in its own utils, this page will be removed in the future
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
+
 
     backgroundImage:{
         flex: 1,
@@ -14,8 +11,4 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
     },
 
-    text:{
-        fontSize: 20,
-        fontFamily: "Arial"
-    }
 });
