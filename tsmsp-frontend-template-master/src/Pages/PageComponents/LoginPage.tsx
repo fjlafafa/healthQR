@@ -9,6 +9,7 @@ import {AllowAdmin} from "Globals/GlobalVariables";
 import {TSMSPReply} from "Impl/Replies/TSMSPReply";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
 
 const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
@@ -29,6 +30,7 @@ export function LoginPage({ navigation }: any){
         {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
 
         <TextClock/>
+        <TextTemplate>{new Date().toLocaleTimeString()}</TextTemplate>
         <TextInputTemplate placeholder={"真实姓名"} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
         <TextInputTemplate placeholder={"密码"}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
@@ -36,7 +38,7 @@ export function LoginPage({ navigation }: any){
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
                 setUserToken(replyJson.message)
-                navigation.navigate('Trace');
+                navigation.navigate('Trace',{});
                 clearLoginInfo()
             }}
             text = '登录'
@@ -44,7 +46,7 @@ export function LoginPage({ navigation }: any){
         {/*<LoginIcon fontSize="large" > </LoginIcon>*/}
         <ButtonTemplate
             onPress = {()=> {
-                navigation.navigate('Register')
+                navigation.navigate('Register',{})
                 clearLoginInfo()
             }}
             text = '注册'
@@ -55,7 +57,7 @@ export function LoginPage({ navigation }: any){
             <ButtonTemplate
                 onPress={
                 () => {
-                    navigation.navigate('Admin');
+                    navigation.navigate('Admin',{});
                     clearLoginInfo();
                 }
             }

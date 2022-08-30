@@ -34,14 +34,14 @@ export function PasswordPage({ navigation }: any){
             ifSuccess = {(replyJson: TSMSPReply)=> {
                 alert("用户" + replyJson.message + "的密码已修改");
                 clearInfo()
-                navigation.navigate('Trace');
+                navigation.navigate('Trace',{});
             }}
             text = '提交修改'
         />
         <ButtonTemplate
             onPress = {() => {
                 clearInfo()
-                navigation.navigate('Trace')
+                navigation.navigate('Trace',{})
             }}
             text = '返回主页'
         />
