@@ -1,5 +1,6 @@
 package Process
 
+import Process.Serv.Request
 import Utils.DBUtils
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.Behaviors
@@ -10,7 +11,7 @@ object Server {
   val logger = Logger("MainServer")
   def main(args: Array[String]): Unit = try {
     DBUtils.initDatabase()
-    implicit val system : ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty[Nothing], "template-system")
+    implicit val system: ActorSystem[Request] = ActorSystem(Serv(), "main_server")
     TSMSPPortalHttpServer.startHttpServer(new Routes().routes, system)
   } catch {
     case exception: Exception =>

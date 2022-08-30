@@ -5,21 +5,33 @@ import Process.Server.logger
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
 import akka.actor.typed.ActorSystem
+import akka.actor.typed.scaladsl.AskPattern.Askable
 import akka.http.scaladsl.model.headers.HttpOriginRange
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import akka.util.Timeout
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
 import com.typesafe.scalalogging.Logger
 
+import scala.concurrent.Future
+import scala.concurrent.duration.DurationInt
 import scala.util.{Failure, Try}
+
 
 /** http不同的路径用于处理不同的通信 */
 import scala.util.Success
-class Routes()(implicit val system: ActorSystem[_]) {
+class Routes()(implicit val system: ActorSystem[Serv.Request]) {
   val settings: CorsSettings.Default = CorsSettings.defaultSettings.copy(
     allowedOrigins = HttpOriginRange.* // * refers to all
   )
+  implicit val timeout: Timeout = 3.seconds
+  implicit val scheduler = system.scheduler
+  val ans : Future[Serv.Response] = system.ask(ref => Serv.Request("new request", ref))
+  implicit val ec = system.executionContext
+  ans.onComplete {
+    case Success(Serv.Response(message)) => println(message)
+  }
   val routes: Route = {
       concat(
         (path("api") & cors(settings)) {

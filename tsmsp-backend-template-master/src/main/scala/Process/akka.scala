@@ -40,14 +40,14 @@ object Client {
   }
 }
 
-object St {
+object StartServer {
   def apply(): Behavior[NotUsed] = Behaviors.setup {ctx =>
     val server = ctx.spawn(Serv(), "server")
     val client = ctx.spawn(Client(server), "client")
     Behaviors.empty
   }
   def main(args: Array[String]): Unit = {
-    ActorSystem(St(), "system")
+    ActorSystem(StartServer(), "system")
   }
 }
 /*
