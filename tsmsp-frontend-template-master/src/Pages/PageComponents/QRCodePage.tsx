@@ -17,7 +17,7 @@ export function QRCodePage({navigation}:any) {
                 color="green"
             />
             <ButtonTemplate
-                onPress = {()=>navigation.navigate("Trace")}
+                onPress = {()=>navigation.navigate('Trace',{})}
                 text = '返回主页'/>
         </PageContainerTemplate>
     )

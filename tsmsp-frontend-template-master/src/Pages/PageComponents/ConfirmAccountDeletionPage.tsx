@@ -13,12 +13,12 @@ export function DeleteAccountPage({ navigation }: any){
             toSendMessage = {new UserDeleteAccountMessage(token)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
                 alert("用户\"" + replyJson.message + "\"注销成功！");
-                navigation.navigate('Root');
+                navigation.navigate('Root',{});
                 clearUserToken();
             }}
             text = '确认注销'/>
         <ButtonTemplate
-            onPress={() => navigation.navigate('Trace')}
+            onPress={() => navigation.navigate('Trace',{})}
             text = '返回主界面'/>
 
         <StatusBar style="auto" />
