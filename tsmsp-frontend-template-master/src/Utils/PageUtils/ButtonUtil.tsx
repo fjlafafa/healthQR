@@ -4,7 +4,21 @@ import {APIUrl} from "Globals/GlobalVariables";
 import {Text, View} from "react-native";
 import {styles} from "Utils/Styles";
 import {TSMSPReply} from "Impl/Replies/TSMSPReply";
+import {TextTemplate} from "./TextUtil";
 
+const setting = {
+    button:
+        {
+            width: 300,
+            height: 40
+        },
+    text:
+        {
+            //由于显示问题，暂时禁止使用大字体
+            fontSize: 15,
+            fontFamily: "Arial"
+        }
+}
 export class ButtonTemplate extends React.Component<any> {
     static defaultProps = {
         icon: null,
@@ -16,18 +30,12 @@ export class ButtonTemplate extends React.Component<any> {
 
     render() {
         let ViewStyle = {height: 60}
-        let LongButtonStyle = {width: 300}
-        let ShortButtonStyle = {width: 180}
         return (<View style={ViewStyle}>
-            <Button style={
-                this.props.text.length>6?
-                    LongButtonStyle:
-                    ShortButtonStyle
-            }
+            <Button style={setting.button}
             icon={this.props.icon}
             mode={this.props.mode}
             onPress={() => this.props.onPress()}>
-            <Text style={styles.text}>{this.props.text}</Text>
+            <Text style={setting.text}>{this.props.text}</Text>
             {this.props.children}
         </Button></View>)
     }
@@ -48,17 +56,12 @@ export class ButtonToSendMessage extends React.Component<any> {
         ifSuccess: (replyJson: TSMSPReply)=>{alert(replyJson.message)},
         ifFail: (replyJson: TSMSPReply)=>{alert(replyJson.message)},
         toSendMessage: null,
-        icon: null,
         onPress: ()=>{},//Usually we can use ifSuccess as inPress even if we are not sending message
-        mode: 'elevated',
-        text: null,
-        children: null,
     }
 
     render() {
         return <ButtonTemplate
             icon={this.props.icon}
-            mode={this.props.mode}
             text={this.props.text}
             onPress={() => {
                 this.props.onPress()
