@@ -18,7 +18,7 @@ import scala.util.{Failure, Success}
 
 object Master {
   import akka.pattern.{ask, pipe}
-  case class Request(query: String, replyTo: ActorRef[Response])
+  case class Request(query: TSMSPMessage, replyTo: ActorRef[Response])
   case class Response(result: TSMSPReply)
   def apply(): Behavior[Request] = {
     Behaviors.setup[Request] {ctx =>
@@ -40,16 +40,16 @@ object Master {
 }
 
 object Worker {
-  case class Task(query: String, replyTo: ActorRef[Answer])
+  import Impl.Messages.TSMSPMessage
+  case class Task(query: TSMSPMessage, replyTo: ActorRef[Answer])
   case class Answer(result: TSMSPReply)
   def apply(id: Int): Behavior[Task] = {
     Behaviors.setup[Task] {ctx =>
-      val id = id
       Behaviors.receiveMessage[Task] {
         case Task(query, replyTo) =>
-          ctx.log.info(s"Worker $id is working.")
-          val message = IOUtils.deserialize[TSMSPMessage](query).get
-          replyTo ! Answer(message.handle())
+          ctx.log.info(s"Worker $id begin working.")
+          replyTo ! Answer(query.handle())
+          ctx.log.info(s"Worker $id finished working.")
           Behaviors.same
       }
     }

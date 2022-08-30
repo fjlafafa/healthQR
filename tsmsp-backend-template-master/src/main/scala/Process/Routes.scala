@@ -1,7 +1,7 @@
 package Process
 
 import Impl.Messages.TSMSPMessage
-import Impl.TSMSPReply
+import Impl.{STATUS_ERROR, TSMSPReply}
 import Process.Server.logger
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
@@ -35,17 +35,18 @@ class Routes()(implicit val system: ActorSystem[Master.Request]) {
           post {
             entity(as[String]) { bytes =>
               Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
-              /*
-              val ans : Future[Master.Response] = system.ask(ref => Master.Request(bytes, ref))
-              ans.onComplete {
-                case Success(Master.Response(message)) =>
-                  logger.info("处理成功")
-                  complete(fromObject(success = true, message))
-              }
-               */
               Try {
                 val message = IOUtils.deserialize[TSMSPMessage](bytes).get
                 message.handle()
+                /*
+                val ans : Future[Master.Response] = system.ask(ref => Master.Request(message, ref))
+                var msg : TSMSPReply = TSMSPReply(STATUS_ERROR, "无法识别的消息")
+                ans.onComplete {
+                  case Success(Master.Response(message)) =>
+                    msg = message
+                }
+                msg
+                 */
               } match {
                 case Success(value) =>
                   logger.info("处理成功")
