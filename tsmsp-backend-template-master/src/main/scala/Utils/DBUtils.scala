@@ -1,6 +1,6 @@
 package Utils
 
-import Globals.GlobalVariables
+import Globals.{DataPaths, GlobalVariables}
 import Tables._
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
@@ -8,6 +8,7 @@ import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
+import scala.util.Try
 
 
 object DBUtils {
@@ -29,6 +30,7 @@ object DBUtils {
         PlaceTable.placeTable.schema.createIfNotExists,
       ).transactionally
     )
+    Try {exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)}
   }
   def dropDatabases():Unit={
     exec(

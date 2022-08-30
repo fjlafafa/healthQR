@@ -54,6 +54,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-persistence-typed" % akkaVersion,
   "com.lightbend.akka" %% "akka-persistence-jdbc" % "5.0.4",
   "com.github.takezoe" %% "runtime-scaladoc-reader" % "1.0.1", //读注释生成文档，注意到下面的addComplilerPlugin(com.github.takezoe)也需要加
+  "com.typesafe.play" %% "play-json" % "2.8.2",
+  "com.lihaoyi" %% "os-lib" % "0.8.0"
 )
 addCompilerPlugin("com.github.takezoe" %% "runtime-scaladoc-reader" % "1.0.1")
 scalacOptions += "-deprecation"
