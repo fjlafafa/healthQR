@@ -1,10 +1,10 @@
 import React from 'react'
-import {Button} from 'react-native-paper';
-import {APIUrl} from "Globals/GlobalVariables";
-import {Text, View} from "react-native";
-import {INNER_WIDTH, styles} from "Utils/Styles";
-import {TSMSPReply} from "Impl/Replies/TSMSPReply";
-import {TextTemplate} from "./TextUtil";
+import {Button} from 'react-native-paper'
+import {APIUrl} from 'Globals/GlobalVariables'
+import {Text, View} from 'react-native'
+import {INNER_WIDTH, styles} from 'Utils/Styles'
+import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
+import {TextTemplate} from './TextUtil'
 
 const setting = {
     button:
@@ -16,7 +16,7 @@ const setting = {
         {
             //由于显示问题，暂时禁止使用大字体
             fontSize: 15,
-            fontFamily: "Arial"
+            fontFamily: 'Arial'
         }
 }
 export class ButtonTemplate extends React.Component<any> {
@@ -70,8 +70,8 @@ export class ButtonToSendMessage extends React.Component<any> {
                         this.props.ifSuccess({message: null})
                     } else {
                         fetch(APIUrl, {
-                            method: "POST",
-                            headers: {"Content-Type": "text/plain"},
+                            method: 'POST',
+                            headers: {'Content-Type': 'text/plain'},
                             body: JSON.stringify(this.props.toSendMessage)
                         }).then((response) => response.json()).then((replyJson: TSMSPReply) => {
                             console.log(replyJson)

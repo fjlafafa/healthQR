@@ -1,10 +1,10 @@
-import {TSMSPMessage} from "./TSMSPMessage";
+import {TSMSPMessage} from './TSMSPMessage'
 
 export class UserUpdatePasswordMessage extends TSMSPMessage {
     userToken : string
     password : string
     constructor(userToken : string, password : string) {
-        super();
+        super()
         this.userToken = userToken
         this.password = password
     }

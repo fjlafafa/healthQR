@@ -1,11 +1,11 @@
-import {TSMSPReply} from "./TSMSPReply";
+import {TSMSPReply} from './TSMSPReply'
 
 export class AdminTestReply extends TSMSPReply {
     override getStatus(): number {
-        return super.getStatus();
+        return super.getStatus()
     }
 
     override getMessage(): string {
-        return super.getMessage();
+        return super.getMessage()
     }
 }

@@ -1,4 +1,4 @@
-import {TSMSPMessage} from "./TSMSPMessage";
+import {TSMSPMessage} from './TSMSPMessage'
 
 export class UserUpdateTraceMessage extends TSMSPMessage {
     userToken : string
@@ -6,7 +6,7 @@ export class UserUpdateTraceMessage extends TSMSPMessage {
     detailedPlaceDescription : string
     reportType: string
     constructor(userToken : string, trace : number, detailedPlaceDescription : string, reportType : string) {
-        super();
+        super()
         this.userToken = userToken
         this.trace = trace
         this.detailedPlaceDescription = detailedPlaceDescription

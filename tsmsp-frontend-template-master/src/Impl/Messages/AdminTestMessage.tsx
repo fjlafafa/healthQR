@@ -1,10 +1,10 @@
-import {TSMSPMessage} from "./TSMSPMessage";
+import {TSMSPMessage} from './TSMSPMessage'
 
 //We can test communication here
 export class AdminTestMessage extends TSMSPMessage {
     userToken : string
     constructor(userToken : string) {
-        super();
+        super()
         this.userToken = userToken
     }
 }

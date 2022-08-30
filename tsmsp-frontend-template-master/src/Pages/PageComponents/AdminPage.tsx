@@ -1,15 +1,15 @@
-import {StatusBar} from "expo-status-bar";
-import React from "react";
-import {setUserToken, TokenStore} from "Globals/TokenStore";
-import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
-import {AdminDropDataBasesMessage} from "Impl/Messages/AdminDropDataBasesMessage";
-import {AdminTestMessage} from "Impl/Messages/AdminTestMessage";
-import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
-import {UserRegisterMessage} from "../../Impl/Messages/UserRegisterMessage";
-import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
-import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
-import {myscreen} from "../../Utils/Styles";
-import {TextClock} from "../../Utils/PageUtils/ClockUtil";
+import {StatusBar} from 'expo-status-bar'
+import React from 'react'
+import {setUserToken, TokenStore} from 'Globals/TokenStore'
+import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
+import {AdminDropDataBasesMessage} from 'Impl/Messages/AdminDropDataBasesMessage'
+import {AdminTestMessage} from 'Impl/Messages/AdminTestMessage'
+import {PageContainerTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {UserRegisterMessage} from '../../Impl/Messages/UserRegisterMessage'
+import {TSMSPReply} from '../../Impl/Replies/TSMSPReply'
+import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
+import {myscreen} from '../../Utils/Styles'
+import {TextClock} from '../../Utils/PageUtils/ClockUtil'
 
 export function AdminPage({ navigation }: any){
     const {token} = TokenStore()
@@ -25,15 +25,15 @@ export function AdminPage({ navigation }: any){
             toSendMessage = {new AdminTestMessage(token)}
             text = '确认发送测试数据'/>
         <ButtonToSendMessage
-            toSendMessage ={new UserRegisterMessage("","","")}
+            toSendMessage ={new UserRegisterMessage('','','')}
             text = '注册空用户'
             ifSuccess = {(replyJson: TSMSPReply)=>{
-                setUserToken(replyJson.message);
-                navigation.navigate('Trace',{});}}/>
+                setUserToken(replyJson.message)
+                navigation.navigate('Trace',{})}}/>
         <ButtonTemplate
             onPress={() => navigation.navigate('Root')}
             text = '返回登录界面'/>
 
-        <StatusBar style="auto" />
+        <StatusBar style='auto' />
     </PageContainerTemplate>
 }

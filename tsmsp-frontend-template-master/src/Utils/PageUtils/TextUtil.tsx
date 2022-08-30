@@ -1,12 +1,12 @@
-import {Text} from "react-native-paper";
-import {styles} from "Utils/Styles";
-import React from "react";
-import {View} from "react-native";
+import {Text} from 'react-native-paper'
+import {styles} from 'Utils/Styles'
+import React from 'react'
+import {View} from 'react-native'
 
 const setting = {
     text:{
         fontSize: 20,
-        fontFamily: "Arial"
+        fontFamily: 'Arial'
     },
     view:{
         height: 50,

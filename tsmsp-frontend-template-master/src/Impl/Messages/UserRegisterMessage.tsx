@@ -1,4 +1,4 @@
-import {TSMSPMessage} from "./TSMSPMessage";
+import {TSMSPMessage} from './TSMSPMessage'
 
 export class UserRegisterMessage extends TSMSPMessage {
     realName : string
@@ -6,10 +6,10 @@ export class UserRegisterMessage extends TSMSPMessage {
     identityNumber : string
     permission : string
     constructor(realName : string, password : string, identityNumber : string) {
-        super();
+        super()
         this.realName = realName
         this.password = password
         this.identityNumber = identityNumber
-        this.permission = "Normal"
+        this.permission = 'Normal'
     }
 }

@@ -1,7 +1,7 @@
-import React from "react"
-import {styles} from "Utils/Styles";
-import {Text} from "react-native";
-import {TextTemplate} from "./TextUtil"
+import React from 'react'
+import {styles} from 'Utils/Styles'
+import {Text} from 'react-native'
+import {TextTemplate} from './TextUtil'
 
 export class TextClock extends React.Component<any> {
     clockID: any
@@ -18,7 +18,7 @@ export class TextClock extends React.Component<any> {
     }
     render(){
         return <TextTemplate>
-            {this.state.date.toLocaleDateString()+"\n"+this.state.date.toLocaleTimeString()}
+            {this.state.date.toLocaleDateString()+'\n'+this.state.date.toLocaleTimeString()}
         </TextTemplate>
     }
 }

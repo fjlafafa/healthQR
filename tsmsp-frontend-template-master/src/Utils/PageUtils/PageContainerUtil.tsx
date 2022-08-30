@@ -1,7 +1,7 @@
-import {SCREEN_HEIGHT, SCREEN_WIDTH, styles} from "Utils/Styles";
-import {ScrollView, View} from "react-native";
-import React from "react";
-import {Provider} from "react-native-paper";
+import {SCREEN_HEIGHT, SCREEN_WIDTH, styles} from 'Utils/Styles'
+import {ScrollView, View} from 'react-native'
+import React from 'react'
+import {Provider} from 'react-native-paper'
 
 const setting = {
     container: {

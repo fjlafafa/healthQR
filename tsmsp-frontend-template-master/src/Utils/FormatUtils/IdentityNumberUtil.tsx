@@ -9,10 +9,10 @@ export function checkIdentityNumber(identityNumber : string) : boolean {
 
 function isNumber(str: string): boolean {
     if (typeof str !== 'string')
-        return false;
+        return false
     if (str.trim() === '')
-        return false;
-    return !Number.isNaN(Number(str));
+        return false
+    return !Number.isNaN(Number(str))
 }
 
 function checkLength(identityNumber : string) : boolean {
@@ -20,7 +20,7 @@ function checkLength(identityNumber : string) : boolean {
 }
 
 function checkZipCode(zipCode : string) : boolean {
-    const zipCodeFormat = /^(([1][1-5])|([2][1-3])|([3][1-7])|([4][1-6])|([5][0-4])|([6][1-5])|([7][1])|([8][1-2]))\d{4}$/;
+    const zipCodeFormat = /^(([1][1-5])|([2][1-3])|([3][1-7])|([4][1-6])|([5][0-4])|([6][1-5])|([7][1])|([8][1-2]))\d{4}$/
     return zipCodeFormat.test(zipCode)
 }
 
@@ -43,16 +43,16 @@ function checkOrderCode(orderCode : string) : boolean {
 }
 
 function checkCheckCode(identityNumber : string) : boolean {
-    const numbers = identityNumber.split("")
+    const numbers = identityNumber.split('')
     const checkCode = numbers[17]
     const checkCodeFormat = /^[0-9xX]$/
     if(!checkCodeFormat.test(checkCode))
         return false
-    const weight = new Array(7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2);   //系数
-    const lookUpMap = new Array('1','0','X','9','8','7','6','5','4','3','2');  //校验码对照表
-    let sum = 0;
+    const weight = new Array(7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2)   //系数
+    const lookUpMap = new Array('1','0','X','9','8','7','6','5','4','3','2')  //校验码对照表
+    let sum = 0
     for(let k=0;k<17;k++){
-        sum += parseInt(numbers[k]) * weight[k];
+        sum += parseInt(numbers[k]) * weight[k]
     }
     if(checkCode.toUpperCase() != lookUpMap[sum%11].toUpperCase())
         return false
