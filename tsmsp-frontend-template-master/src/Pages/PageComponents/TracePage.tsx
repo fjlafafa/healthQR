@@ -9,19 +9,35 @@ import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
 import {PageContainerTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
-
+import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
+//To implement
 const registerStore= create(() => ({
     RemovedTrace: '',
-    traceHistory:[['暂无踪迹/尚未查询']]
+    traceHistory:[['暂无踪迹/尚未查询']],
+    NewTraceId: '',
+    NewTrace: ''
 }))
 
+const setNewTraceId= (NewTraceId:string) => registerStore.setState({ NewTraceId })
+const setNewTrace= (NewTrace:string) => registerStore.setState({ NewTrace })
 const setRemovedTrace= (RemovedTrace:string) => registerStore.setState({ RemovedTrace })
 const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: '', traceHistory: [['暂无踪迹/尚未查询']]}))
 
 export function TracePage({ navigation }: any){
     const {token} = TokenStore()
-    const {RemovedTrace, traceHistory}=registerStore()
+    const report_type = 'Self Upload'
+    const {RemovedTrace, traceHistory, NewTraceId, NewTrace}=registerStore()
     return <PageContainerTemplate>
+
+        <TextInputTemplate placeholder={'访问地点代码'} value={NewTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
+        <TextInputTemplate placeholder={'新轨迹地点名称'} value={NewTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
+
+        <ButtonToSendMessage
+            icon = 'upload'
+            toSendMessage = {new UserUpdateTraceMessage(token, +NewTraceId, NewTrace, report_type)}
+            text = '上传新轨迹'
+        />
+
         <TextInputTemplate placeholder={'删除轨迹编号'} value={RemovedTrace} onChangeText={(newText: string)=>setRemovedTrace(newText)}/>
 
         <ButtonToSendMessage

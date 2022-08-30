@@ -13,30 +13,30 @@ import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
 import {TextClock} from '../../Utils/PageUtils/ClockUtil'
 import {SCREEN_WIDTH} from '../../Utils/Styles'
-import {QRCodeSize} from '../../Globals/GlobalVariables'
 import QRCode from 'react-native-qrcode-svg'
 import {Card, Paragraph, Title} from 'react-native-paper'
 import {styles} from 'Utils/Styles'
+import {SendData} from "Utils/SendDataUtil";
+import {ONEDAY} from "../../Utils/Constants";
 
 const registerStore = create(() => ({
-    newTrace: '',
-    newTraceId: '',
     traceHistory: [['暂无踪迹']]
 }))
 
-const setNewTrace = (newTrace: string) => registerStore.setState({newTrace})
-const setNewTraceId = (newTraceId: string) => registerStore.setState({newTraceId})
 const setTraceHistory = (traceHistory: string[][]) => registerStore.setState({traceHistory})
 const clearTraceInfo = () => registerStore.setState({
-    newTrace: '',
-    newTraceId: '',
     traceHistory: [['暂无踪迹']]
 })
 
 export function OverviewPage({navigation}: any) {
-    const report_type: string = 'Self uploaded'
     const {token} = TokenStore()
-    const {newTrace, newTraceId, traceHistory} = registerStore()
+    const {traceHistory} = registerStore()
+
+    SendData(new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
+        (reply: TSMSPReply) => {
+            let TraceList: string[][] = JSON.parse(reply.message) as string[][]
+            setTraceHistory(TraceList)
+        })
 
     const cv = {
         alignItems: 'center',
@@ -125,35 +125,10 @@ export function OverviewPage({navigation}: any) {
             />
         </View>
 
+        <StatusBar style='auto'/>
     </PageContainerTemplate>
-    /*return <PageContainerTemplate>
-
-        <TextTemplate> 主界面</TextTemplate>
-        <TextClock/>
-        <TextTemplate>{new Date().toLocaleTimeString()}</TextTemplate>
-        <TextInputTemplate placeholder={'访问地点代码'} value={newTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
-        <TextInputTemplate placeholder={'新轨迹地点名称'} value={newTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
-
-        <ButtonTemplate
-            onPress={() => {
-                navigation.navigate('QRCode',{})
-                clearTraceInfo()
-            }}
-            text ='我的健康码'
-        />
-        <ButtonTemplate
-            onPress = {()=> {
-                navigation.navigate('ScanQRCode',{})
-                clearTraceInfo()
-            }}
-            text = '地点扫码'
-        />
-
-        <ButtonToSendMessage
-            icon = 'upload'
-            toSendMessage = {new UserUpdateTraceMessage(token, +newTraceId, newTrace, report_type)}
-            text = '上传新轨迹'
-        />
+}
+    /*
         <ButtonToSendMessage
             toSendMessage = {new UserGetTraceMessage(
                 token,
@@ -165,17 +140,4 @@ export function OverviewPage({navigation}: any) {
             }}
             text = '获取我的历史轨迹'
         />
-        <ButtonTemplate onPress={() => {
-            navigation.navigate('DeleteTrace',{})
-            clearTraceInfo()
-        }}
-            text ='删除记录'/>
-
-
-
-
-
-
-        <StatusBar style='auto' />
-    </PageContainerTemplate>*/
-}
+}*/
