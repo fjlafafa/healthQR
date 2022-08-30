@@ -18,27 +18,27 @@ import QRCode from "react-native-qrcode-svg";
 import {Card, Paragraph, Title} from "react-native-paper";
 import {styles} from 'Utils/Styles'
 
-const registerStore= create(() => ({
+const registerStore = create(() => ({
     newTrace: "",
     newTraceId: "",
-    traceHistory:[["暂无踪迹"]]
+    traceHistory: [["暂无踪迹"]]
 }))
 
-const setNewTrace= (newTrace:string) => registerStore.setState({ newTrace })
-const setNewTraceId= (newTraceId:string) => registerStore.setState({ newTraceId })
-const setTraceHistory = (traceHistory:string[][]) => registerStore.setState({traceHistory})
-const clearTraceInfo= () => registerStore.setState({
+const setNewTrace = (newTrace: string) => registerStore.setState({newTrace})
+const setNewTraceId = (newTraceId: string) => registerStore.setState({newTraceId})
+const setTraceHistory = (traceHistory: string[][]) => registerStore.setState({traceHistory})
+const clearTraceInfo = () => registerStore.setState({
     newTrace: "",
     newTraceId: "",
     traceHistory: [["暂无踪迹"]]
 })
 
-export function TracePage({ navigation }: any){
-    const report_type : string = "Self uploaded"
+export function OverviewPage({navigation}: any) {
+    const report_type: string = "Self uploaded"
     const {token} = TokenStore()
-    const {newTrace, newTraceId, traceHistory}=registerStore()
+    const {newTrace, newTraceId, traceHistory} = registerStore()
 
-    const cv={
+    const cv = {
         alignItems: 'center',
         justifyContent: "center"
     }
@@ -46,37 +46,56 @@ export function TracePage({ navigation }: any){
     const avatar = require('Assets/icon.png');
 
     return <PageContainerTemplate>
-        <View style={{width : SCREEN_WIDTH, height: SCREEN_WIDTH, alignItems: 'center', justifyContent: "center",/*backgroundColor: '#f0f'/**/}}>
+        <View style={{width: SCREEN_WIDTH, height: SCREEN_WIDTH, alignItems: 'center', justifyContent: "center",/*backgroundColor: '#f0f'/**/}}>
             <Card style={{width: '95%', height: '95%', alignItems: 'center'}}>
-                <View style={{height: SCREEN_WIDTH*0.025}}/>
+                <View style={{height: SCREEN_WIDTH * 0.025}}/>
                 {/*健康码*/}
 
+                {/*To implement*/}
                 <QRCode
                     value={token}
                     logo={avatar}
-                    size={SCREEN_WIDTH*0.9}
+                    size={SCREEN_WIDTH * 0.9}
                     color="green"
                 />
 
             </Card>
         </View>
-        <View style={{width : SCREEN_WIDTH, height: SCREEN_WIDTH*0.35, flexDirection:'row', /*backgroundColor: '#00f'/**/}}>
-            <View style={{flex:1, flexDirection:'row', justifyContent: "center", /*backgroundColor: '#008'/**/}}>
+        <View style={{
+            width: SCREEN_WIDTH,
+            height: SCREEN_WIDTH * 0.35,
+            flexDirection: 'row', /*backgroundColor: '#00f'/**/
+        }}>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: "center", /*backgroundColor: '#008'/**/}}>
                 <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
                     {/*核酸疫苗*/}
-                    <TextTemplate>empty</TextTemplate>
+                    <TextTemplate>核酸疫苗</TextTemplate>
                 </Card>
             </View>
-            <View style={{flex:1, flexDirection:'row', justifyContent: "center", /*backgroundColor: '#080'*/}}>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: "center", /*backgroundColor: '#080'*/}}>
                 <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
                     {/*行程数据*/}
-
+                    <TextTemplate>行程记录</TextTemplate>
+                    <BoundedTraceList
+                        data={traceHistory}
+                        renderItem={({item, index}: any) =>
+                            item[0] === "暂无踪迹" ?
+                                <Text>暂无踪迹或尚未查询</Text> :
+                                <Text>{index}. {item[2]}到访{item[0]}内{item[1]}</Text>
+                        } keyExtractor={(item : any, index : number) => index.toString()}/>
                 </Card>
             </View>
         </View>
-        <View style={{width : SCREEN_WIDTH,}}>
+        <View style={{width: SCREEN_WIDTH,alignItems: 'center', justifyContent: "center",/*backgroundColor: '#f0f'/**/}}>
             {/*其他微服务*/}
 
+            <ButtonTemplate
+                onPress={() => {
+                navigation.navigate('Root', {});
+                clearTraceInfo();
+                clearUserToken();}}
+                text='退出登录'
+            />
         </View>
 
     </PageContainerTemplate>
@@ -125,12 +144,6 @@ export function TracePage({ navigation }: any){
         }}
             text ='删除记录'/>
 
-        <ButtonTemplate onPress={() => {
-            navigation.navigate('Root',{});
-            clearTraceInfo();
-            clearUserToken();
-        }}
-            text ='退出登录'/>
 
         <ButtonTemplate onPress={() => {
             navigation.navigate('DeleteAccount',{})
@@ -143,13 +156,7 @@ export function TracePage({ navigation }: any){
         }}
             text ='修改密码'/>
 
-        <BoundedTraceList
-            data={traceHistory}
-            renderItem={({item, index}: any) =>
-                item[0] === "暂无踪迹" ?
-                <Text>暂无踪迹或尚未查询</Text> :
-                    <Text>{index}. {item[2]}到访{item[0]}内{item[1]}</Text>
-        } keyExtractor={(item : any, index : number) => index.toString()}/>
+
 
         <StatusBar style="auto" />
     </PageContainerTemplate>*/

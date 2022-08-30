@@ -47,7 +47,7 @@ export  function ScanQRCodePage({navigation}:any) {
             /></View>
 
             <ButtonTemplate
-                onPress = {()=>navigation.navigate('Trace',{})}
+                onPress = {()=>navigation.navigate('Overview',{})}
                 text = '返回主页'/>
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
         </PageContainerTemplate>

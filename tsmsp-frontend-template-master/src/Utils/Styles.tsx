@@ -6,6 +6,7 @@ export const mywindow = Dimensions.get("window")
 export const myscreen = Dimensions.get("screen")
 
 export const SCREEN_WIDTH = (myscreen.width>500?500:myscreen.width)
+export const SCREEN_HEIGHT = myscreen.height
 export const INNER_WIDTH  = SCREEN_WIDTH-60
 
 

@@ -51,7 +51,7 @@ export function LoginPage({ navigation }: any){
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
                 setUserToken(replyJson.message)
-                navigation.navigate('Trace',{});
+                navigation.navigate('Overview',{});
                 clearLoginInfo()
             }}
             text = '登录'

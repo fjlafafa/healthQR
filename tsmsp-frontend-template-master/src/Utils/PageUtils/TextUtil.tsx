@@ -9,10 +9,12 @@ const setting = {
         fontFamily: "Arial"
     },
     view:{
-        height: 50
+        height: 50,
+        alignItems: 'center'
     }
 }
 export function TextTemplate(props: any) {
+    //@ts-ignore
     return <View style ={setting.view}>
         <Text style={setting.text}>{props.children}</Text>
     </View>

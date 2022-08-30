@@ -39,7 +39,7 @@ export function RegisterPage({ navigation }: any){
             text = '注册'
             ifSuccess = {(replyJson: TSMSPReply)=>{
                 setUserToken(replyJson.message);
-                navigation.navigate('Trace',{});
+                navigation.navigate('Overview',{});
                 clearRegisterInfo();
             }}
         />
