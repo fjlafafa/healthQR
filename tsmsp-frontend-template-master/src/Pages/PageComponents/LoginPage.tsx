@@ -10,8 +10,9 @@ import {TSMSPReply} from "Impl/Replies/TSMSPReply";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
+import {Appbar, Button, Dialog, Paragraph, Portal, Provider} from 'react-native-paper';
 
-const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
+//const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
 // import LoginIcon from '@mui/icons-material/Login';
 
@@ -26,14 +27,26 @@ const clearLoginInfo= ()=> loginStore.setState(({userName: "", password: ""}))
 
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
-    return <PageContainerTemplate>
-        {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
+/*
+    const [visible, setVisible] = React.useState(true);
 
+    const hideDialog = () => setVisible(false);*/
+    return (
+        <PageContainerTemplate>
+        {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
+            {/*<Portal>
+                <Dialog visible={visible} onDismiss={hideDialog}>
+                    <Dialog.Title>This is a title</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph>This is simple dialog</Paragraph>
+                    </Dialog.Content>
+                </Dialog>
+            </Portal>*/}
         <TextClock/>
         <TextTemplate>{new Date().toLocaleTimeString()}</TextTemplate>
         <TextInputTemplate placeholder={"真实姓名"} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
         <TextInputTemplate placeholder={"密码"}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
-        <ButtonToSendMessage
+            <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
@@ -66,5 +79,5 @@ export function LoginPage({ navigation }: any){
         }
 
         <StatusBar style="auto" />
-    </PageContainerTemplate>
+    </PageContainerTemplate>)
 }
