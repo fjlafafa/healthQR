@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text} from 'react-native'
+import {Button, Text, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {clearUserToken, TokenStore} from "Globals/TokenStore";
@@ -12,6 +12,11 @@ import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
 import {BoundedTraceList} from "Utils/PageUtils/ListUtil";
 import {TextClock} from "../../Utils/PageUtils/ClockUtil";
+import {SCREEN_WIDTH} from "../../Utils/Styles";
+import {QRCodeSize} from "../../Globals/GlobalVariables";
+import QRCode from "react-native-qrcode-svg";
+import {Card, Paragraph, Title} from "react-native-paper";
+import {styles} from 'Utils/Styles'
 
 const registerStore= create(() => ({
     newTrace: "",
@@ -32,7 +37,50 @@ export function TracePage({ navigation }: any){
     const report_type : string = "Self uploaded"
     const {token} = TokenStore()
     const {newTrace, newTraceId, traceHistory}=registerStore()
+
+    const cv={
+        alignItems: 'center',
+        justifyContent: "center"
+    }
+    //Required data:
+    const avatar = require('Assets/icon.png');
+
     return <PageContainerTemplate>
+        <View style={{width : SCREEN_WIDTH, height: SCREEN_WIDTH, alignItems: 'center', justifyContent: "center",/*backgroundColor: '#f0f'/**/}}>
+            <Card style={{width: '95%', height: '95%', alignItems: 'center'}}>
+                <View style={{height: SCREEN_WIDTH*0.025}}/>
+                {/*健康码*/}
+
+                <QRCode
+                    value={token}
+                    logo={avatar}
+                    size={SCREEN_WIDTH*0.9}
+                    color="green"
+                />
+
+            </Card>
+        </View>
+        <View style={{width : SCREEN_WIDTH, height: SCREEN_WIDTH*0.35, flexDirection:'row', /*backgroundColor: '#00f'/**/}}>
+            <View style={{flex:1, flexDirection:'row', justifyContent: "center", /*backgroundColor: '#008'/**/}}>
+                <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
+                    {/*核酸疫苗*/}
+                    <TextTemplate>empty</TextTemplate>
+                </Card>
+            </View>
+            <View style={{flex:1, flexDirection:'row', justifyContent: "center", /*backgroundColor: '#080'*/}}>
+                <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
+                    {/*行程数据*/}
+
+                </Card>
+            </View>
+        </View>
+        <View style={{width : SCREEN_WIDTH,}}>
+            {/*其他微服务*/}
+
+        </View>
+
+    </PageContainerTemplate>
+    /*return <PageContainerTemplate>
 
         <TextTemplate> 主界面</TextTemplate>
         <TextClock/>
@@ -104,5 +152,5 @@ export function TracePage({ navigation }: any){
         } keyExtractor={(item : any, index : number) => index.toString()}/>
 
         <StatusBar style="auto" />
-    </PageContainerTemplate>
+    </PageContainerTemplate>*/
 }

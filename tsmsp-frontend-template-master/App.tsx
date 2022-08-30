@@ -1,12 +1,13 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
 import { loadAsync } from 'expo-font';
 import {PagesStack} from "Pages/PagesStack";
-import {AppLoading} from "Pages/AppLoading";
+import {AppLoading} from "Pages/AppLoading"
+import {mywindow, myscreen} from "Utils/Styles";
 
 export default class App extends React.Component<any,any> {
   state: {loading: boolean}

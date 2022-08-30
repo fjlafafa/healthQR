@@ -1,5 +1,5 @@
 import React from "react";
-import {styles} from "Utils/Styles";
+import {INNER_WIDTH, styles} from "Utils/Styles";
 import {TextInput, View} from "react-native"
 
 const setting ={
@@ -9,7 +9,7 @@ const setting ={
     },
     view: {
         height: 30,
-        width: 300
+        width: INNER_WIDTH
     }
 }
 export function TextInputTemplate(props: any) {

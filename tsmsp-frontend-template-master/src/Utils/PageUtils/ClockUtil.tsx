@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 import {styles} from "Utils/Styles";
 import {Text} from "react-native";
-import {TextTemplate} from "./TextUtil";
+import {TextTemplate} from "./TextUtil"
 
 export class TextClock extends React.Component<any> {
     clockID: any
     state: {date: any}
     constructor(props: any) {
-        super(props);
+        super(props)
         this.state = {date: new Date()}
     }
     componentDidMount() {

@@ -1,4 +1,5 @@
 import React from 'react'
+import Text from 'react-native-paper'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "Globals/TokenStore";
@@ -10,7 +11,9 @@ import {TSMSPReply} from "Impl/Replies/TSMSPReply";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
+import { Dimensions } from 'react-native'
 import {Appbar, Button, Dialog, Paragraph, Portal, Provider} from 'react-native-paper';
+import {myscreen} from "../../Utils/Styles";
 
 //const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
 
@@ -31,8 +34,7 @@ export function LoginPage({ navigation }: any){
     const [visible, setVisible] = React.useState(true);
 
     const hideDialog = () => setVisible(false);*/
-    return (
-        <PageContainerTemplate>
+    return (<PageContainerTemplate>
         {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
             {/*<Portal>
                 <Dialog visible={visible} onDismiss={hideDialog}>
@@ -42,8 +44,6 @@ export function LoginPage({ navigation }: any){
                     </Dialog.Content>
                 </Dialog>
             </Portal>*/}
-        <TextClock/>
-        <TextTemplate>{new Date().toLocaleTimeString()}</TextTemplate>
         <TextInputTemplate placeholder={"真实姓名"} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
         <TextInputTemplate placeholder={"密码"}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
             <ButtonToSendMessage

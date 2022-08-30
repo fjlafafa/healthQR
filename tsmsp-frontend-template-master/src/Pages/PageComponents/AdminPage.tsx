@@ -7,10 +7,17 @@ import {AdminTestMessage} from "Impl/Messages/AdminTestMessage";
 import {PageContainerTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {UserRegisterMessage} from "../../Impl/Messages/UserRegisterMessage";
 import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
+import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
+import {myscreen} from "../../Utils/Styles";
+import {TextClock} from "../../Utils/PageUtils/ClockUtil";
 
 export function AdminPage({ navigation }: any){
     const {token} = TokenStore()
     return <PageContainerTemplate>
+
+        <TextTemplate>{myscreen.width}</TextTemplate>
+        <TextClock/>
+        <TextTemplate>{new Date().toLocaleTimeString()}</TextTemplate>
         <ButtonToSendMessage
             toSendMessage = {new AdminDropDataBasesMessage(token)}
             text = '确认清空数据库'/>

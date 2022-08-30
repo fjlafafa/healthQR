@@ -2,14 +2,14 @@ import React from 'react'
 import {Button} from 'react-native-paper';
 import {APIUrl} from "Globals/GlobalVariables";
 import {Text, View} from "react-native";
-import {styles} from "Utils/Styles";
+import {INNER_WIDTH, styles} from "Utils/Styles";
 import {TSMSPReply} from "Impl/Replies/TSMSPReply";
 import {TextTemplate} from "./TextUtil";
 
 const setting = {
     button:
         {
-            width: 300,
+            width: INNER_WIDTH,
             height: 40
         },
     text:

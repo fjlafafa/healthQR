@@ -13,7 +13,6 @@ export function QRCodePage({navigation}:any) {
             <QRCode
                 value={token}
                 logo={avatar}
-                size={QRCodeSize}
                 color="green"
             />
             <ButtonTemplate
