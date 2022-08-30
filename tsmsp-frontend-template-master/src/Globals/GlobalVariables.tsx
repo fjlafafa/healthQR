@@ -1,7 +1,8 @@
 export const AllowAdmin : boolean = true
 //When set to false, will close all admin function
 
-export const APIUrl : string = 'http://183.172.241.144:6070/api'
+
+export const APIUrl : string = "http://localhost:6070/api"
 
 //For Web: 'http://localhost:6070/api'
 //For Android Emulator: 'http://10.0.2.2:6070/api'

@@ -1,6 +1,7 @@
 package Process
 
 import Impl.Messages.TSMSPMessage
+import Impl.{STATUS_ERROR, TSMSPReply}
 import Process.Server.logger
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
@@ -21,17 +22,13 @@ import scala.util.{Failure, Try}
 
 /** http不同的路径用于处理不同的通信 */
 import scala.util.Success
-class Routes()(implicit val system: ActorSystem[Serv.Request]) {
+class Routes()(implicit val system: ActorSystem[Master.Request]) {
   val settings: CorsSettings.Default = CorsSettings.defaultSettings.copy(
     allowedOrigins = HttpOriginRange.* // * refers to all
   )
   implicit val timeout: Timeout = 3.seconds
   implicit val scheduler = system.scheduler
-  val ans : Future[Serv.Response] = system.ask(ref => Serv.Request("new request", ref))
   implicit val ec = system.executionContext
-  ans.onComplete {
-    case Success(Serv.Response(message)) => println(message)
-  }
   val routes: Route = {
       concat(
         (path("api") & cors(settings)) {
@@ -41,6 +38,15 @@ class Routes()(implicit val system: ActorSystem[Serv.Request]) {
               Try {
                 val message = IOUtils.deserialize[TSMSPMessage](bytes).get
                 message.handle()
+                /*
+                val ans : Future[Master.Response] = system.ask(ref => Master.Request(message, ref))
+                var msg : TSMSPReply = TSMSPReply(STATUS_ERROR, "无法识别的消息")
+                ans.onComplete {
+                  case Success(Master.Response(message)) =>
+                    msg = message
+                }
+                msg
+                 */
               } match {
                 case Success(value) =>
                   logger.info("处理成功")
