@@ -23,3 +23,7 @@ case class NucleicTestExpiredException() extends Exception {
 case class NoTraceException() extends Exception {
   override def getMessage: String = "错误！未查询到该条轨迹"
 }
+
+case class PlaceNotExists() extends Exception {
+  override def getMessage: String = "错误！数据库中无该地点！"
+}

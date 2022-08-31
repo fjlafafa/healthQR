@@ -1,19 +1,17 @@
 package Tables
 
+import Exceptions.PlaceNotExists
 import Globals.GlobalVariables
-import Types.Place
+import Types.{Place, PlaceRiskLevels}
 import Types.PlaceMeta._
 import Utils.CustomColumnTypesUtils._
+import Utils.DBUtils
+import os.Path
+import play.api.libs.json.{JsArray, JsObject, Json}
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
-import play.api.libs.json.{JsArray, JsObject, JsString, JsValue, Json}
-import os.{pwd, read}
-import slick.jdbc
-import slick.jdbc.PostgresProfile
 
-import scala.+:
-import scala.collection.mutable.ListBuffer
-import scala.concurrent.Await
+import scala.util.Try
 
 
 class PlaceTable(tag : Tag) extends Table[Place](tag, GlobalVariables.mainSchema, "place") {
@@ -28,36 +26,37 @@ class PlaceTable(tag : Tag) extends Table[Place](tag, GlobalVariables.mainSchema
 
 object PlaceTable {
   val placeTable = TableQuery[PlaceTable]
-  val defaultRiskLevel = "Low Risk"
+  val defaultRiskLevel = PlaceRiskLevels.green
 
   def addPlace(id : PlaceId, province: Province, city : City, district : District, subDistrict: SubDistrict): DBIO[Int] =
     placeTable += Place(id, province, city, district, subDistrict, PlaceRiskLevel.getType(defaultRiskLevel))
 
-  def initPlace(source : String) : DBIO[List[Int]] = {
-    val rawJsonValue : String = os.read(pwd / "src" / "main" / "scala" / "AutoLoadedData" / "AdministrativeStructure.json")
-    val jsonValue : JsValue = Json.parse(rawJsonValue)
-    val operationListBuffer : ListBuffer[DBIO[Int]] = new ListBuffer[DBIO[Int]]()
-    for(provinceJsonValue <- jsonValue.as[List[JsObject]]) {
-      val province : Province = Province((provinceJsonValue \ "name").get.toString())
-      for(cityJsonValue <- (provinceJsonValue \ "children").get.as[List[JsObject]]) {
-        val city : City = City((cityJsonValue \ "name").get.toString())
-        for (districtJsonValue <- (cityJsonValue \ "children").get.as[List[JsObject]]) {
-          val district: District = District((districtJsonValue \ "name").get.toString())
-          for (subDistrictJsonValue <- (districtJsonValue \ "children").get.as[List[JsObject]]) {
-            val subDistrict: SubDistrict = SubDistrict((subDistrictJsonValue \ "name").get.toString())
-            val codeString : String = (subDistrictJsonValue \ "code").get.toString()
-            val placeId = PlaceId((codeString.substring(1, codeString.length() - 1)).toLong)
+  def initPlace(dataPath : Path) : DBIO[List[Int]] = {
+    DBIO.sequence(
+      Json.parse(os.read(dataPath)).as[JsArray].value
+        .flatMap(provinceJsonValue => (provinceJsonValue \ "children").get.as[List[JsObject]]
+          .flatMap(cityJsonValue => (cityJsonValue \ "children").get.as[List[JsObject]]
+            .flatMap(districtJsonValue => (districtJsonValue \ "children").get.as[List[JsObject]]
+              .map(
+                subDistrictJsonValue => addPlace(
+                  PlaceId((subDistrictJsonValue \ "code").get.toString().filterNot(_ == '\"').toLong),
+                  Province((provinceJsonValue \ "name").get.toString()),
+                  City((cityJsonValue \ "name").get.toString()),
+                  District((districtJsonValue \ "name").get.toString()),
+                  SubDistrict((subDistrictJsonValue \ "name").get.toString())
+                )
+              )
+            )
+          )
+      ).toList
+    )
+  }
 
-            operationListBuffer += addPlace(placeId, province, city, district, subDistrict)
-          }
-        }
-      }
-    }
-
-    val operationList: List[DBIO[Int]] = operationListBuffer.toList
-
-    DBIO.sequence(operationList)
-//    val operationList = jsonValue.as[JsArray].value
-//      .map(provinceJsonValue => )
+  def getDescription(placeId: PlaceId) : Try[String] = Try {
+    DBUtils.exec(
+      placeTable.filter(_.id === placeId).map(pl => (pl.province, pl.city, pl.district, pl.subDistrict)).result.headOption
+    ).getOrElse(
+      throw PlaceNotExists()
+    ).productIterator.toList.mkString(" ")
   }
 }

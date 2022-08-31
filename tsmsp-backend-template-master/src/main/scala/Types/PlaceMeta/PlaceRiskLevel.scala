@@ -1,6 +1,7 @@
 package Types.PlaceMeta
 
 import Impl.JacksonSerializable
+import Types.PlaceRiskLevels._
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.annotation.{JsonDeserialize, JsonSerialize}
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
@@ -10,9 +11,9 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 @JsonSerialize(using = classOf[PlaceRiskLevelTypeSerializer])
 @JsonDeserialize(using = classOf[PlaceRiskLevelTypeDeserializer])
 sealed abstract class PlaceRiskLevel(val v:String) extends JacksonSerializable
-case object Red extends PlaceRiskLevel("High Risk")
-case object Yellow extends PlaceRiskLevel("Middle Risk")
-case object Green extends PlaceRiskLevel("Low Risk")
+case object Red extends PlaceRiskLevel(red)
+case object Yellow extends PlaceRiskLevel(yellow)
+case object Green extends PlaceRiskLevel(green)
 
 
 object PlaceRiskLevel{

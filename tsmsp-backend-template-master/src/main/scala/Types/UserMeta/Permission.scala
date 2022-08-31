@@ -1,6 +1,7 @@
 package Types.UserMeta
 
 import Impl.JacksonSerializable
+import Types.Permissions._
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.annotation.{JsonDeserialize, JsonSerialize}
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
@@ -10,9 +11,9 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 @JsonSerialize(using = classOf[PermissionTypeSerializer])
 @JsonDeserialize(using = classOf[PermissionTypeDeserializer])
 sealed abstract class Permission(val v:String) extends JacksonSerializable
-case object Administrator extends Permission("Admin")
-case object NormalUser extends Permission("Normal")
-case object NucleicTestResultReporter extends Permission("Nucleic Test")
+case object Administrator extends Permission(admin)
+case object NormalUser extends Permission(normal)
+case object NucleicTestResultReporter extends Permission(nucleic)
 
 
 object Permission{

@@ -1,6 +1,7 @@
 package Types.TraceMeta
 
 import Impl.JacksonSerializable
+import Types.ReportTypes._
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.annotation.{JsonDeserialize, JsonSerialize}
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
@@ -10,8 +11,8 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 @JsonSerialize(using = classOf[ReportTypeTypeSerializer])
 @JsonDeserialize(using = classOf[ReportTypeTypeDeserializer])
 sealed abstract class ReportType(val v:String) extends JacksonSerializable
-case object ScanQRCodeReport extends ReportType("Auto recorded")
-case object SelfReport extends ReportType("Self uploaded")
+case object ScanQRCodeReport extends ReportType(auto)
+case object SelfReport extends ReportType(self)
 
 
 object ReportType{
