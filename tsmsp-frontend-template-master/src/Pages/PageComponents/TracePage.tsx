@@ -10,7 +10,7 @@ import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 import {checkRealName} from "../../Utils/FormatUtils/RealNameUtil";
 import {checkPassword} from "../../Utils/FormatUtils/PasswordUtil";
 import {checkIdentityNumber} from "../../Utils/FormatUtils/IdentityNumberUtil";

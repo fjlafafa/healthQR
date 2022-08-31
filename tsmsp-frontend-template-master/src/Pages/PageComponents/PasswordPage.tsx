@@ -7,7 +7,7 @@ import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from "../../Utils/PageUtils/PageContainerUtil";
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 
 const passwordStore= create(() => ({
     password:'',

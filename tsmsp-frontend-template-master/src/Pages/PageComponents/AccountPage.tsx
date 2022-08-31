@@ -11,7 +11,7 @@ import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 
 export function AccountPage({navigation}: any) {
     const {token} = TokenStore()

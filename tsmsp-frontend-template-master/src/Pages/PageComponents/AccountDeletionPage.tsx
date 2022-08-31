@@ -5,7 +5,7 @@ import {UserDeleteAccountMessage} from 'Impl/Messages/UserDeleteAccountMessage'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 
 export function AccountDeletionPage({ navigation }: any){
     const {token} = TokenStore()
