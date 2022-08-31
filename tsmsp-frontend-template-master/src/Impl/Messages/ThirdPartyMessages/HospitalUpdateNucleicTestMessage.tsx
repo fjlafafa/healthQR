@@ -1,6 +1,6 @@
-import {TSMSPMessage} from './TSMSPMessage'
+import {TSMSPMessage} from '../TSMSPMessage'
 
-export class HospitalUpdateVaccinationMessage extends TSMSPMessage {
+export class HospitalUpdateNucleicTestMessage extends TSMSPMessage {
     identityNumber : string
     constructor(identityNumber : string) {
         super()

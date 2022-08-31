@@ -1,5 +1,5 @@
-import {TSMSPMessage} from './TSMSPMessage'
-import {isNumber} from "../../Utils/FormatUtils/IdentityNumberUtil";
+import {TSMSPMessage} from '../TSMSPMessage'
+import {isNumber} from "../../../Utils/FormatUtils/IdentityNumberUtil";
 
 export class UserUpdateTraceMessage extends TSMSPMessage {
     userToken : string

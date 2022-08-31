@@ -4,10 +4,10 @@ import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
 import {myscreen} from "../../Utils/Styles";
 import {TextClock} from "../../Utils/PageUtils/ClockUtil";
 import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/ButtonUtil";
-import {AdminDropDataBasesMessage} from "../../Impl/Messages/AdminDropDataBasesMessage";
-import {AdminTestMessage} from "../../Impl/Messages/AdminTestMessage";
-import {UserRegisterMessage} from "../../Impl/Messages/UserRegisterMessage";
-import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
+import {AdminDropDataBasesMessage} from "../../Impl/Messages/AdminMessages/AdminDropDataBasesMessage";
+import {AdminTestMessage} from "../../Impl/Messages/AdminMessages/AdminTestMessage";
+import {UserRegisterMessage} from "../../Impl/Messages/UserMessages/UserRegisterMessage";
+import {TSMSPReply} from "../../Impl/TSMSPReply";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'

@@ -1,5 +1,5 @@
 import {JacksonSerializable} from '../JacksonSerializable'
-import {TSMSPReply} from "../Replies/TSMSPReply";
+import {TSMSPReply} from "../TSMSPReply";
 
 
 export abstract class TSMSPMessage extends JacksonSerializable {

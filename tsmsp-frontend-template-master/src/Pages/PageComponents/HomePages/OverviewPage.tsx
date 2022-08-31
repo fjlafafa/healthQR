@@ -11,9 +11,9 @@ import {StatusBar} from "expo-status-bar";
 import React from "react";
 import {TokenStore} from "../../../Globals/TokenStore";
 import {SendData} from "../../../Utils/SendDataUtil";
-import {UserGetTraceMessage} from "../../../Impl/Messages/UserGetTraceMessage";
+import {UserGetTraceMessage} from "../../../Impl/Messages/UserMessages/UserGetTraceMessage";
 import {ONEDAY} from "../../../Utils/Constants";
-import {TSMSPReply} from "../../../Impl/Replies/TSMSPReply";
+import {TSMSPReply} from "../../../Impl/TSMSPReply";
 import create from "zustand";
 import {ViewSwitcher} from "./HomePagesUtils/BarUtil";
 

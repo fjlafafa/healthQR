@@ -1,6 +1,6 @@
-import {TSMSPMessage} from './TSMSPMessage'
-import {TSMSPReply} from "../Replies/TSMSPReply";
-import {Place} from "../../Types/Place";
+import {TSMSPMessage} from '../TSMSPMessage'
+import {TSMSPReply} from "../../TSMSPReply";
+import {Place} from "../../../Types/Place";
 
 //We can test communication here
 export class AdminTestMessage extends TSMSPMessage {

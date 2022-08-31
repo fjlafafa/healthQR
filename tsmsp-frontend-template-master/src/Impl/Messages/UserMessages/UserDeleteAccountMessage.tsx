@@ -1,4 +1,4 @@
-import {TSMSPMessage} from './TSMSPMessage'
+import {TSMSPMessage} from '../TSMSPMessage'
 
 export class UserDeleteAccountMessage extends TSMSPMessage {
     userToken : string

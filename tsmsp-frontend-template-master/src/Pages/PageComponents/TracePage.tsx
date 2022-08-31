@@ -3,13 +3,13 @@ import {Text} from 'react-native'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
 import {TokenStore} from 'Globals/TokenStore'
-import {UserDeleteTraceMessage} from 'Impl/Messages/UserDeleteTraceMessage'
+import {UserDeleteTraceMessage} from '../../Impl/Messages/UserMessages/UserDeleteTraceMessage'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
+import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
-import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
+import {UserUpdateTraceMessage} from "../../Impl/Messages/UserMessages/UserUpdateTraceMessage";
 import {PagesID} from "../PagesID";
 import {checkRealName} from "../../Utils/FormatUtils/RealNameUtil";
 import {checkPassword} from "../../Utils/FormatUtils/PasswordUtil";

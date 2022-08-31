@@ -3,7 +3,7 @@ import {Button} from 'react-native-paper'
 import {APIUrl} from 'Globals/GlobalVariables'
 import {Text, View} from 'react-native'
 import {INNER_WIDTH, styles} from 'Utils/Styles'
-import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
+import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {TextTemplate} from './TextUtil'
 import {SendData} from 'Utils/SendDataUtil'
 import {TSMSPMessage} from "../../Impl/Messages/TSMSPMessage";
