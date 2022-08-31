@@ -14,7 +14,7 @@ import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {Dimensions, View} from 'react-native'
 import {Appbar, Button, Dialog, Paragraph, Portal, Provider} from 'react-native-paper'
 import {myscreen, SCREEN_WIDTH} from '../../Utils/Styles'
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 import {} from "../../Globals/PlaceIdStore";
 
 export function GeneratePlaceQRPage({ navigation }: any){
