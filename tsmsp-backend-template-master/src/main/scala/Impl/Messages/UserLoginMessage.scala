@@ -8,7 +8,7 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserLoginMessage(realName : String, password : String) extends TSMSPMessage {
+case class  UserLoginMessage(realName : String, password : String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     if (UserIdentityTable.checkPassword(RealName(realName), Password(password.hashCode().toString())).get) {
       val userId = UserIdentityTable.checkId(RealName(realName)).get
