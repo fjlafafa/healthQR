@@ -1,9 +1,11 @@
 package Tables
 
+import Exceptions.UserNotExistsException
 import Globals.GlobalVariables
 import Types.UserInformation
 import Types.UserMeta._
 import Utils.CustomColumnTypesUtils._
+import Utils.DBUtils
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
@@ -19,10 +21,19 @@ class UserInformationTable(tag : Tag) extends Table[UserInformation](tag, Global
 object UserInformationTable {
   val userInformationTable = TableQuery[UserInformationTable]
 
-//  def addNucleicTest(userName: String, password: String, realName: String): Try[DBIO[Int]] = Try(userInformationTable += UserInformation(userName, password, realName))
-//
-//  def updateVaccinationStatus(userName: String): Try[DBIO[Int]] = Try(userInformationTable.filter(u => u.id === userName).delete)
-//
-//  def updateRiskLevel(userName: String): Try[Boolean] = Try(DBUtils.exec(userInformationTable.filter(_.id === userName).size.result) > 0)
+  def updateNucleicTest(userId: UserId, time: DateTime): DBIO[Int] =
+    userInformationTable.filter(_.id === userId).map(_.recentNucleicTestTime).update(time)
+
+  def updateVaccinationStatus(userId: UserId): DBIO[Int] =
+    userInformationTable.filter(_.id === userId).map(_.vaccinationStatus).update(
+      VaccinationStatus.step(
+        DBUtils.exec(userInformationTable.filter(_.id === userId).map(_.vaccinationStatus).result.headOption).getOrElse(
+          throw UserNotExistsException()
+        )
+      )
+    )
+
+  def updateRiskLevel(userId: UserId, riskLevel: UserRiskLevel): DBIO[Int] =
+    userInformationTable.filter(_.id === userId).map(_.riskLevel).update(riskLevel)
 
   }

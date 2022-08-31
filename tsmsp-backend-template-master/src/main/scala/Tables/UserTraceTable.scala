@@ -15,7 +15,7 @@ import slick.lifted.Tag
 import scala.util.Try
 
 class UserTraceTable(tag : Tag) extends Table[Trace](tag, GlobalVariables.mainSchema, "user_trace") {
-  def id = column[TraceId]("trace_id")
+  def id = column[TraceId]("trace_id", O.PrimaryKey)
   def userId = column[UserId]("user_id")
   def time = column[DateTime]("time")
   def visitPlaceId = column[PlaceId]("visit_place_id")

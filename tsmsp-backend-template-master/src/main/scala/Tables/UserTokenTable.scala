@@ -15,7 +15,7 @@ import slick.lifted.Tag
 import scala.util.Try
 
 class UserTokenTable(tag : Tag) extends Table[UserToken](tag, GlobalVariables.mainSchema, "user_token") {
-  def userId = column[UserId]("user_name", O.PrimaryKey)
+  def userId = column[UserId]("user_id", O.PrimaryKey)
   def token = column[Token]("token")
   def refreshTime = column[DateTime]("refresh_time")
   def * = (userId, token, refreshTime).mapTo[UserToken]

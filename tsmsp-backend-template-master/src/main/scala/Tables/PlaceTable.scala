@@ -2,8 +2,8 @@ package Tables
 
 import Exceptions.PlaceNotExists
 import Globals.GlobalVariables
-import Types.{Place, PlaceRiskLevels}
 import Types.PlaceMeta._
+import Types.{Place, PlaceRiskLevels}
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
 import os.Path
@@ -37,8 +37,8 @@ object PlaceTable {
         .flatMap(provinceJsonValue => (provinceJsonValue \ "children").get.as[List[JsObject]]
           .flatMap(cityJsonValue => (cityJsonValue \ "children").get.as[List[JsObject]]
             .flatMap(districtJsonValue => (districtJsonValue \ "children").get.as[List[JsObject]]
-              .map(
-                subDistrictJsonValue => addPlace(
+              .map(subDistrictJsonValue =>
+                addPlace(
                   PlaceId((subDistrictJsonValue \ "code").get.toString().filterNot(_ == '\"').toLong),
                   Province((provinceJsonValue \ "name").get.toString()),
                   City((cityJsonValue \ "name").get.toString()),
@@ -60,7 +60,7 @@ object PlaceTable {
     ).productIterator.toList.mkString(" ")
   }
 
-  def isEmpty(): Try[Boolean] = Try{
+  def isEmpty: Try[Boolean] = Try{
     DBUtils.exec(placeTable.size.result)==0
   }
 }
