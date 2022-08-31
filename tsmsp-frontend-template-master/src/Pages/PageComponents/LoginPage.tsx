@@ -14,7 +14,7 @@ import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {Dimensions, View} from 'react-native'
 import {Appbar, Button, Dialog, Paragraph, Portal, Provider} from 'react-native-paper'
 import {myscreen, SCREEN_WIDTH} from '../../Utils/Styles'
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -31,21 +31,7 @@ const clearLoginInfo= ()=> loginStore.setState(({userName: '', password: ''}))
 
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
-/*
-    const [visible, setVisible] = React.useState(true)
-
-    const hideDialog = () => setVisible(false)*/
-    return (<ScreenTemplate>
-        {/*<ImageBackground source={image} style={styles.backgroundImage}></ImageBackground>*/}
-            {/*<Portal>
-                <Dialog visible={visible} onDismiss={hideDialog}>
-                    <Dialog.Title>This is a title</Dialog.Title>
-                    <Dialog.Content>
-                        <Paragraph>This is simple dialog</Paragraph>
-                    </Dialog.Content>
-                </Dialog>
-            </Portal>*/}
-
+    return (<ScreenTemplate atRoot={true}>
         <TextInputTemplate placeholder={'真实姓名'} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
         <TextInputTemplate placeholder={'密码'}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
             <ButtonToSendMessage
@@ -79,7 +65,6 @@ export function LoginPage({ navigation }: any){
                 text='管理员'
             /> :null
         }
-
         <StatusBar style='auto' />
     </ScreenTemplate>)
 }

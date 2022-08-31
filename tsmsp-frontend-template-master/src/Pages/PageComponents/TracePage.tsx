@@ -10,7 +10,7 @@ import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 //To implement
 const registerStore= create(() => ({
     RemovedTrace: '',

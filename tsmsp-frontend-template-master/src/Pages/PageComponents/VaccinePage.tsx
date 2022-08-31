@@ -2,7 +2,7 @@ import {} from "../../Utils/PageUtils/PageContainerUtil";
 import {ButtonTemplate} from "../../Utils/PageUtils/ButtonUtil";
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import React from "react";
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 
 export function VaccinePage ({navigation}:any) {
     return <ScreenTemplate>

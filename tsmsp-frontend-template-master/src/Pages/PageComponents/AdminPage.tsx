@@ -11,7 +11,8 @@ import {TSMSPReply} from '../../Impl/Replies/TSMSPReply'
 import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {myscreen, mywindow} from '../../Utils/Styles'
 import {TextClock} from '../../Utils/PageUtils/ClockUtil'
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
+import {AdminTestReply} from "../../Impl/Replies/AdminTestReply";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
@@ -28,6 +29,7 @@ export function AdminPage({navigation}: any) {
                 text='确认清空数据库'/>
             <ButtonToSendMessage
                 toSendMessage={new AdminTestMessage(token)}
+                ifSuccess={(reply:AdminTestReply)=>{alert(reply.getMessage())}}
                 text='确认发送测试数据'/>
             <ButtonToSendMessage
                 toSendMessage={new UserRegisterMessage('', '', '')}
