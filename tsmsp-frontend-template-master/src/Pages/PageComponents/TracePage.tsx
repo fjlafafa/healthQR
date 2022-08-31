@@ -10,6 +10,7 @@ import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
+import {PagesID} from "../PagesStack";
 //To implement
 const registerStore= create(() => ({
     RemovedTrace: '',
@@ -51,7 +52,7 @@ export function TracePage({ navigation }: any){
 
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('Overview',{})
+                navigation.navigate(PagesID.Overview,{})
                 clearRemovedTraceInfo()
             }}
             text = '返回主界面'/>

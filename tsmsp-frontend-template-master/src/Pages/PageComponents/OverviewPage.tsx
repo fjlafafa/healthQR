@@ -19,6 +19,7 @@ import {styles} from 'Utils/Styles'
 import {SendData} from "Utils/SendDataUtil";
 import {ONEDAY} from "../../Utils/Constants";
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {PagesID} from "../PagesStack";
 
 const registerStore = create(() => ({
     traceHistory: [['暂无踪迹']]
@@ -104,28 +105,28 @@ export function OverviewPage({navigation}: any) {
 
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate('ScanQRCode', {})
+                        navigation.navigate(PagesID.ScanQRCode, {})
                         clearTraceInfo()
                     }}
                     text='地点扫码'
                 />
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate('Account', {})
+                        navigation.navigate(PagesID.Account, {})
                         clearTraceInfo()
                     }}
                     text='个人账户'
                 />
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate('Trace', {})
+                        navigation.navigate(PagesID.Trace, {})
                         clearTraceInfo()
                     }}
                     text='踪迹管理'
                 />
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate('Vaccine', {})
+                        navigation.navigate(PagesID.Vaccine, {})
                         clearTraceInfo()
                     }}
                     text='核酸疫苗管理'

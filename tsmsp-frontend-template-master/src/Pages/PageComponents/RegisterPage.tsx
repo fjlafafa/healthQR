@@ -11,6 +11,7 @@ import {checkIdentityNumber} from 'Utils/FormatUtils/IdentityNumberUtil'
 import {checkPassword} from 'Utils/FormatUtils/PasswordUtil'
 import {checkRealName} from 'Utils/FormatUtils/RealNameUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {PagesID} from "../PagesStack";
 
 const registerStore= create(() => ({
     realName:'',
@@ -40,7 +41,7 @@ export function RegisterPage({ navigation }: any){
             text = '注册'
             ifSuccess = {(replyJson: TSMSPReply)=>{
                 setUserToken(replyJson.message)
-                navigation.navigate('Overview',{})
+                navigation.navigate(PagesID.Overview,{})
                 clearRegisterInfo()
             }}
         />

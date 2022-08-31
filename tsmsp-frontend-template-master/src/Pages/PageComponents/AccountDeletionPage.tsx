@@ -5,6 +5,7 @@ import {UserDeleteAccountMessage} from 'Impl/Messages/UserDeleteAccountMessage'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {PagesID} from "../PagesStack";
 
 export function AccountDeletionPage({ navigation }: any){
     const {token} = TokenStore()
@@ -18,7 +19,7 @@ export function AccountDeletionPage({ navigation }: any){
             }}
             text = '确认注销'/>
         <ButtonTemplate
-            onPress={() => navigation.navigate('Overview',{})}
+            onPress={() => navigation.navigate(PagesID.Overview,{})}
             text = '返回主界面'/>
 
         <StatusBar style='auto' />

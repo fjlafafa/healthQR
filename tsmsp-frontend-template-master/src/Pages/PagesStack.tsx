@@ -15,20 +15,33 @@ import {VaccinePage} from "./PageComponents/VaccinePage";
 
 const Stack = createNativeStackNavigator()
 
+export enum PagesID {
+    Login='Login',
+    Register='Register',
+    Overview='Overview',
+    Account='Account',
+    Password='Password',
+    ScanQRCode='ScanQRCode',
+    Trace='Trace',
+    Vaccine='Vaccine',
+    DeleteAccount='DeleteAccount',
+    Admin='Admin'
+}
+
 export function PagesStack ({navigation}:any) {
     return (
         <Stack.Navigator>
             <Stack.Group screenOptions={{headerShown: false}}>
-                <Stack.Screen name='Login' component={LoginPage}/>
-                <Stack.Screen name='Register' component={RegisterPage}/>
-                <Stack.Screen name='Overview' component={OverviewPage}/>
-                <Stack.Screen name='Account' component={AccountPage}/>
-                <Stack.Screen name='Password' component={PasswordPage}/>
-                <Stack.Screen name='ScanQRCode' component={ScanQRCodePage}/>
-                <Stack.Screen name='Trace' component={TracePage}/>
-                <Stack.Screen name='Vaccine' component={VaccinePage}/>
-                <Stack.Screen name='DeleteAccount' component={AccountDeletionPage}/>
-                {AllowAdmin ? <Stack.Screen name='Admin' component={AdminPage}/> : null}
+                <Stack.Screen name={PagesID.Login} component={LoginPage}/>
+                <Stack.Screen name={PagesID.Register} component={RegisterPage}/>
+                <Stack.Screen name={PagesID.Overview} component={OverviewPage}/>
+                <Stack.Screen name={PagesID.Account} component={AccountPage}/>
+                <Stack.Screen name={PagesID.Password} component={PasswordPage}/>
+                <Stack.Screen name={PagesID.ScanQRCode} component={ScanQRCodePage}/>
+                <Stack.Screen name={PagesID.Trace} component={TracePage}/>
+                <Stack.Screen name={PagesID.Vaccine} component={VaccinePage}/>
+                <Stack.Screen name={PagesID.DeleteAccount} component={AccountDeletionPage}/>
+                {AllowAdmin ? <Stack.Screen name={PagesID.Admin} component={AdminPage}/> : null}
             </Stack.Group>
         </Stack.Navigator>)
 }

@@ -6,6 +6,7 @@ import {SendData} from '../../Utils/SendDataUtil'
 import {UserUpdateTraceMessage} from 'Impl/Messages/UserUpdateTraceMessage'
 import {TokenStore} from 'Globals/TokenStore'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {PagesID} from "../PagesStack";
 
 export  function ScanQRCodePage({navigation}:any) {
     const [hasPermission, setHasPermission] = useState(null as (boolean |null))
@@ -46,7 +47,7 @@ export  function ScanQRCodePage({navigation}:any) {
             />
 
             <ButtonTemplate
-                onPress = {()=>navigation.navigate('Overview',{})}
+                onPress = {()=>navigation.navigate(PagesID.Overview,{})}
                 text = '返回主页'/>
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
         </ScreenTemplate>

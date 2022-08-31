@@ -14,6 +14,7 @@ import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {Dimensions, View} from 'react-native'
 import {Appbar, Button, Dialog, Paragraph, Portal, Provider} from 'react-native-paper'
 import {myscreen, SCREEN_WIDTH} from '../../Utils/Styles'
+import {PagesID} from "../PagesStack";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -52,7 +53,7 @@ export function LoginPage({ navigation }: any){
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
                 setUserToken(replyJson.message)
-                navigation.navigate('Overview',{})
+                navigation.navigate(PagesID.Overview,{})
                 clearLoginInfo()
             }}
             text = '登录'
@@ -60,7 +61,7 @@ export function LoginPage({ navigation }: any){
         {/*<LoginIcon fontSize='large' > </LoginIcon>*/}
         <ButtonTemplate
             onPress = {()=> {
-                navigation.navigate('Register',{})
+                navigation.navigate(PagesID.Register,{})
                 clearLoginInfo()
             }}
             text = '注册'
@@ -71,7 +72,7 @@ export function LoginPage({ navigation }: any){
             <ButtonTemplate
                 onPress={
                 () => {
-                    navigation.navigate('Admin',{})
+                    navigation.navigate(PagesID.Admin,{})
                     clearLoginInfo()
                 }
             }

@@ -11,7 +11,9 @@ import {TSMSPReply} from '../../Impl/Replies/TSMSPReply'
 import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {myscreen, mywindow} from '../../Utils/Styles'
 import {TextClock} from '../../Utils/PageUtils/ClockUtil'
+import {PagesID} from "../PagesStack";
 
+//This is just a page for test
 export function AdminPage({navigation}: any) {
     const {token} = TokenStore()
     return <ScreenTemplate>
@@ -32,10 +34,10 @@ export function AdminPage({navigation}: any) {
                 text='注册空用户'
                 ifSuccess={(replyJson: TSMSPReply) => {
                     setUserToken(replyJson.message)
-                    navigation.navigate('Overview', {})
+                    navigation.navigate(PagesID.Overview, {})
                 }}/>
             <ButtonTemplate
-                onPress={() => navigation.navigate('Login')}
+                onPress={() => navigation.navigate(PagesID.Login)}
                 text='返回登录界面'/>
 
             <StatusBar style='auto'/>

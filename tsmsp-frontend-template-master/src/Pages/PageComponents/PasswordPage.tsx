@@ -7,6 +7,7 @@ import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {PagesID} from "../PagesStack";
 
 const passwordStore= create(() => ({
     password:'',
@@ -34,14 +35,14 @@ export function PasswordPage({ navigation }: any){
             ifSuccess = {(replyJson: TSMSPReply)=> {
                 alert('用户' + replyJson.message + '的密码已修改')
                 clearInfo()
-                navigation.navigate('Overview',{})
+                navigation.navigate(PagesID.Overview,{})
             }}
             text = '提交修改'
         />
         <ButtonTemplate
             onPress = {() => {
                 clearInfo()
-                navigation.navigate('Overview',{})
+                navigation.navigate(PagesID.Overview,{})
             }}
             text = '返回主页'
         />

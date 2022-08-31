@@ -11,18 +11,19 @@ import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {PagesID} from "../PagesStack";
 
 export function AccountPage({navigation}: any) {
     const {token} = TokenStore()
     return <ScreenTemplate>
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('DeleteAccount', {})
+                navigation.navigate(PagesID.DeleteAccount, {})
             }}
             text='注销账户'/>
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('Password', {})
+                navigation.navigate(PagesID.Password, {})
             }}
             text='修改密码'/>
         <ButtonTemplate
