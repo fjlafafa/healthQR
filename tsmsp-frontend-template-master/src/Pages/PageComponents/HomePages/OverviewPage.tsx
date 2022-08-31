@@ -15,6 +15,7 @@ import {UserGetTraceMessage} from "../../../Impl/Messages/UserGetTraceMessage";
 import {ONEDAY} from "../../../Utils/Constants";
 import {TSMSPReply} from "../../../Impl/Replies/TSMSPReply";
 import create from "zustand";
+import {ViewSwitcher} from "./HomePagesUtils/BarUtil";
 
 
 const registerStore = create(() => ({
@@ -44,6 +45,7 @@ export function OverviewPage({navigation}: any) {
     //Required data:
     const avatar = require('Assets/icon.png')
     return <ScreenTemplate>
+        <ViewSwitcher/>
         <ScrollTemplate>
             <View style={{
                 width: SCREEN_WIDTH,
