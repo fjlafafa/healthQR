@@ -1,5 +1,7 @@
 package Globals
 
+import os.{Path, pwd}
+
 object DataPaths {
-  val PlaceData : String = "AutoLoadedData/AdministrativeStructure.json"
+  val PlaceData: Path = pwd / "src" / "main" / "scala" / "Data" / "AdministrativeStructure.json"
 }

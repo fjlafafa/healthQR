@@ -1,6 +1,7 @@
 package Types.UserMeta
 
 import Impl.JacksonSerializable
+import Types.VaccinationStatuses._
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.annotation.{JsonDeserialize, JsonSerialize}
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
@@ -10,10 +11,10 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 @JsonSerialize(using = classOf[VaccinationStatusTypeSerializer])
 @JsonDeserialize(using = classOf[VaccinationStatusTypeDeserializer])
 sealed abstract class VaccinationStatus(val v:String) extends JacksonSerializable
-case object Triple extends VaccinationStatus("Three")
-case object Dual extends VaccinationStatus("Two")
-case object Single extends VaccinationStatus("One")
-case object No extends VaccinationStatus("Zero")
+case object Triple extends VaccinationStatus(triple)
+case object Dual extends VaccinationStatus(dual)
+case object Single extends VaccinationStatus(single)
+case object No extends VaccinationStatus(none)
 
 
 object VaccinationStatus{

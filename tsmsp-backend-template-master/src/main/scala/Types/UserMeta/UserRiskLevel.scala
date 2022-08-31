@@ -1,6 +1,7 @@
 package Types.UserMeta
 
 import Impl.JacksonSerializable
+import Types.UserRiskLevels._
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.annotation.{JsonDeserialize, JsonSerialize}
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
@@ -10,10 +11,10 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 @JsonSerialize(using = classOf[UserRiskLevelTypeSerializer])
 @JsonDeserialize(using = classOf[UserRiskLevelTypeDeserializer])
 sealed abstract class UserRiskLevel(val v:String) extends JacksonSerializable
-case object Red extends UserRiskLevel("Dangerous")
-case object Yellow extends UserRiskLevel("Closely Related")
-case object PopUps extends UserRiskLevel("Vulnerable")
-case object Green extends UserRiskLevel("Safe")
+case object Red extends UserRiskLevel(red)
+case object Yellow extends UserRiskLevel(yellow)
+case object PopUps extends UserRiskLevel(popUps)
+case object Green extends UserRiskLevel(green)
 
 
 object UserRiskLevel{
