@@ -30,6 +30,7 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={PagesID.Trace} component={TracePage}/>
                     <Stack.Screen name={PagesID.Vaccine} component={VaccinePage}/>
                     <Stack.Screen name={PagesID.DeleteAccount} component={AccountDeletionPage}/>
+                    <Stack.Screen name={PagesID.PlaceQR} component={GeneratePlaceQRPage}/>
                     {AllowAdmin ? <Stack.Screen name={PagesID.Admin} component={AdminPage}/> : null}
                 </Stack.Group>
             </Stack.Navigator>

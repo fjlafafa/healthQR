@@ -65,6 +65,14 @@ export function LoginPage({ navigation }: any){
                 text='管理员'
             /> :null
         }
+        <ButtonTemplate
+            onPress = {()=> {
+                navigation.navigate(PagesID.PlaceQR,{})
+                clearLoginInfo()
+            }}
+            text = '生成地点二维码'
+        />
+
         <StatusBar style='auto' />
     </ScreenTemplate>)
 }

@@ -59,4 +59,8 @@ object PlaceTable {
       throw PlaceNotExists()
     ).productIterator.toList.mkString(" ")
   }
+
+  def isEmpty(): Try[Boolean] = Try{
+    DBUtils.exec(placeTable.size.result)==0
+  }
 }
