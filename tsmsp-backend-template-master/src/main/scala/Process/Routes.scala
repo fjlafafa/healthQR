@@ -15,14 +15,14 @@ import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
 import com.typesafe.scalalogging.Logger
 
-import scala.concurrent.Future
+import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.DurationInt
 import scala.util.{Failure, Try}
 
 
 /** http不同的路径用于处理不同的通信 */
 import scala.util.Success
-class Routes()(implicit val system: ActorSystem[Master.Request]) {
+class Routes()(implicit val system: ActorSystem[Master.RouterRequest]) {
   val settings: CorsSettings.Default = CorsSettings.defaultSettings.copy(
     allowedOrigins = HttpOriginRange.* // * refers to all
   )
@@ -37,16 +37,9 @@ class Routes()(implicit val system: ActorSystem[Master.Request]) {
               Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
               Try {
                 val message = IOUtils.deserialize[TSMSPMessage](bytes).get
-                message.handle()
-                /*
-                val ans : Future[Master.Response] = system.ask(ref => Master.Request(message, ref))
-                var msg : TSMSPReply = TSMSPReply(STATUS_ERROR, "无法识别的消息")
-                ans.onComplete {
-                  case Success(Master.Response(message)) =>
-                    msg = message
-                }
-                msg
-                 */
+                //message.handle()
+                val ans : Future[Master.RouterResponse] = system.ask(ref => Master.RouterRequest(message, ref))
+                Await.result(ans, timeout.duration).asInstanceOf[Master.RouterResponse].result
               } match {
                 case Success(value) =>
                   logger.info("处理成功")
