@@ -21,6 +21,13 @@ object VaccinationStatus{
   def objectList: List[VaccinationStatus] =
     List(Triple, Dual, Single, No)
   def getType(v:String): VaccinationStatus= objectList.filter(_.v==v).head
+
+  def step: Map[VaccinationStatus, VaccinationStatus] = Map(
+    No -> Single,
+    Single -> Dual,
+    Dual -> Triple,
+    Triple -> Triple
+  )
 }
 
 class VaccinationStatusTypeSerializer extends StdSerializer[VaccinationStatus](classOf[VaccinationStatus]) {

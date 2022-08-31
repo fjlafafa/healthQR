@@ -12,7 +12,7 @@ export class TSMSPReply extends JacksonSerializable {
         this.status = status
         this.message = message
     }
-    getStatus() {
+    getStatus(){
         return this.status
     }
     getMessage() {

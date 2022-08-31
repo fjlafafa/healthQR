@@ -8,5 +8,6 @@ export enum PagesID {
     Trace = 'Trace',
     Vaccine = 'Vaccine',
     DeleteAccount = 'DeleteAccount',
-    Admin = 'Admin'
+    Admin = 'Admin',
+    PlaceQR = 'PlaceQR'
 }

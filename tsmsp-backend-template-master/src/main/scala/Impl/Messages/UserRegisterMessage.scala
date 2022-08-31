@@ -17,11 +17,11 @@ case class UserRegisterMessage(realName : String, password : String, identityNum
         UserIdentityTable
           .addUser(
             RealName(realName),
-            Password(password.hashCode().toString()),
+            Password(password.hashCode().toString),
             IdentityNumber(identityNumber),
             Permission.getType(permission)
           ))
-      val userId = UserIdentityTable.checkId(RealName(realName)).get
+      val userId = UserIdentityTable.checkIdByRealName(RealName(realName)).get
       DBUtils.exec(
             UserTokenTable.addRow(userId)
       )
@@ -32,7 +32,7 @@ case class UserRegisterMessage(realName : String, password : String, identityNum
 
 //case class UserRegisterMessage(realName : RealName, password : Password, identityNumber: IdentityNumber, permission: Permission) extends TSMSPMessage {
 //  override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-//    val userId = UserIdentityTable.checkId(realName).get
+//    val userId = UserIdentityTable.checkIdByRealName(realName).get
 //    if (UserIdentityTable.checkUserExists(userId).get) throw UserNameAlreadyExistsException()
 //    else {
 //      DBUtils.exec(UserIdentityTable.addUser(realName, password, identityNumber, permission).andThen(UserTokenTable.addRow(userId)))

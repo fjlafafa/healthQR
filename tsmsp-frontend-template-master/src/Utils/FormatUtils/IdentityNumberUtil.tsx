@@ -1,5 +1,5 @@
 export function checkIdentityNumber(identityNumber : string) : boolean {
-    if(!checkLength(identityNumber))
+    if(!checkLength18(identityNumber))
         return false
     const zipCode = identityNumber.slice(0, 6)
     const birthday = identityNumber.slice(6, 14)
@@ -7,7 +7,7 @@ export function checkIdentityNumber(identityNumber : string) : boolean {
     return checkZipCode(zipCode) && checkBirthday(birthday) && checkOrderCode(orderCode) && checkCheckCode(identityNumber)
 }
 
-function isNumber(str: string): boolean {
+export function isNumber(str: string): boolean {
     if (typeof str !== 'string')
         return false
     if (str.trim() === '')
@@ -15,8 +15,13 @@ function isNumber(str: string): boolean {
     return !Number.isNaN(Number(str))
 }
 
-function checkLength(identityNumber : string) : boolean {
-    return identityNumber.length == 18
+export function checkLength(string: string, length: number): boolean{
+    return string.length == length
+}
+
+
+function checkLength18(identityNumber : string) : boolean {
+    return checkLength(identityNumber, 18)
 }
 
 function checkZipCode(zipCode : string) : boolean {
