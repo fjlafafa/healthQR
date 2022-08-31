@@ -18,7 +18,7 @@ import {PagesID} from "../PagesStack";
 import {} from "../../Globals/PlaceIdStore";
 
 export function GeneratePlaceQRPage({ navigation }: any){
-    <TextInputTemplate placeholder={'地点id'} value={placeId} onChangeText={(newText: string)=>setPlaceId(newText)}/>
+    z<TextInputTemplate placeholder={'地点id'} value={placeId} onChangeText={(newText: string)=>setPlaceId(newText)}/>
 
 
 

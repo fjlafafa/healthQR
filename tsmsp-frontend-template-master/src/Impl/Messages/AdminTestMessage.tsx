@@ -7,4 +7,5 @@ export class AdminTestMessage extends TSMSPMessage {
         super()
         this.userToken = userToken
     }
+    static getReply(replyJSON)
 }
