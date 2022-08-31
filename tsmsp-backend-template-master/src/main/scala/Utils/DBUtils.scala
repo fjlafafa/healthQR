@@ -3,18 +3,20 @@ package Utils
 import Globals.{DataPaths, GlobalVariables}
 import Tables._
 import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.scalalogging.Logger
 import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Await
+import scala.swing.Dialog
 import scala.concurrent.duration.Duration
-import scala.util.Try
+import scala.util.{Failure, Success, Try}
 
 
 object DBUtils {
 
   lazy val DBConfig: Config = ConfigFactory
-    .parseString(s"""""")withFallback(ConfigFactory.load())
+    .parseString(s"""""") withFallback ConfigFactory.load
 
   lazy val db=Database.forConfig("tsmsp", config=DBConfig)
 
@@ -30,8 +32,15 @@ object DBUtils {
         PlaceTable.placeTable.schema.createIfNotExists,
       ).transactionally
     )
-    Try {exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)}
-  }
+    if(PlaceTable.isEmpty.get){
+      Try {
+        exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)
+      } match {
+        case Failure(e) => Logger("DataInitialization").info(s"Place initialization failure, return value $e")
+        }
+     }
+    }
+
   def dropDatabases():Unit={
     exec(
       DBIO.seq(

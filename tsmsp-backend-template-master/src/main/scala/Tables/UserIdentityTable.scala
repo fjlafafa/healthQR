@@ -33,10 +33,16 @@ object UserIdentityTable {
 
   def checkPassword(realName: RealName, password: Password): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(u => u.realName === realName && u.password === password).size.result) > 0)
 
-  def checkId(realName: RealName): Try[UserId] = Try(
+  def checkIdByRealName(realName: RealName): Try[UserId] = Try(
       DBUtils.exec(userIdentityTable.filter(u => u.realName === realName).map(_.id).result.headOption).getOrElse(
         throw TokenNotExistsException()
       )
+  )
+
+  def checkIdByIdentityNumber(identityNumber: IdentityNumber): Try[UserId] = Try(
+    DBUtils.exec(userIdentityTable.filter(u => u.identityNumber === identityNumber).map(_.id).result.headOption).getOrElse(
+      throw TokenNotExistsException()
+    )
   )
 
   def checkRealName(userId: UserId): Try[RealName] = Try(

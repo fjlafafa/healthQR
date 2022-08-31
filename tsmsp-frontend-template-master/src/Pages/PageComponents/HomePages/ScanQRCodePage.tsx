@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {Button, StyleSheet, Text, View} from 'react-native'
 import {BarCodeScanner} from 'expo-barcode-scanner'
-import {ButtonTemplate} from 'Utils/PageUtils/ButtonUtil'
-import {SendData} from '../../Utils/SendDataUtil'
-import {UserUpdateTraceMessage} from 'Impl/Messages/UserUpdateTraceMessage'
-import {TokenStore} from 'Globals/TokenStore'
-import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../PagesStack";
+import {ButtonTemplate} from '../../../Utils/PageUtils/ButtonUtil'
+import {SendData} from '../../../Utils/SendDataUtil'
+import {UserUpdateTraceMessage} from '../../../Impl/Messages/UserMessages/UserUpdateTraceMessage'
+import {TokenStore} from '../../../Globals/TokenStore'
+import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
+import {PagesID} from "../../PagesID";
 
 export  function ScanQRCodePage({navigation}:any) {
     const [hasPermission, setHasPermission] = useState(null as (boolean |null))
@@ -31,7 +31,7 @@ export  function ScanQRCodePage({navigation}:any) {
         if(isNaN(placeId))
             alert(`地点码格式不正确，请重新扫码！`)
         else
-            SendData(new UserUpdateTraceMessage(token, placeId, detailed_desc, report_type))
+            SendData(new UserUpdateTraceMessage(token, data, detailed_desc, report_type))
     }
 
     if (hasPermission === null)

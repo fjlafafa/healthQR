@@ -1,20 +1,20 @@
 import QRCode from 'react-native-qrcode-svg'
 import React from 'react'
-import {ButtonTemplate} from 'Utils/PageUtils/ButtonUtil'
-import {TokenStore} from 'Globals/TokenStore'
-import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {} from 'Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../PagesStack";
+import {ButtonTemplate} from '../../../Utils/PageUtils/ButtonUtil'
+import {TokenStore} from '../../../Globals/TokenStore'
+import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
+import {} from '../../../Utils/PageUtils/PageContainerUtil'
+import {PagesID} from "../../PagesID";
 //Not Used
 export function QRCodePage({navigation}:any) {
     const {token} = TokenStore()
-    const avatar = require('Assets/icon.png')
+    const avatar = require('../../../Assets/icon.png')
     return (
         <ScreenTemplate>
             <QRCode
                 value={token}
                 logo={avatar}
-                color='green'
+                color='blue'
             />
             <ButtonTemplate
                 onPress = {()=>navigation.navigate(PagesID.Overview,{})}

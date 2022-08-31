@@ -3,15 +3,17 @@ import {ScrollView, View} from "react-native";
 import React from 'react'
 import {setUserToken, TokenStore} from 'Globals/TokenStore'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {AdminDropDataBasesMessage} from 'Impl/Messages/AdminDropDataBasesMessage'
-import {AdminTestMessage} from 'Impl/Messages/AdminTestMessage'
+import {AdminDropDataBasesMessage} from '../../Impl/Messages/AdminMessages/AdminDropDataBasesMessage'
+import {AdminTestMessage} from '../../Impl/Messages/AdminMessages/AdminTestMessage'
 import {ScreenTemplate, ScrollTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {UserRegisterMessage} from '../../Impl/Messages/UserRegisterMessage'
-import {TSMSPReply} from '../../Impl/Replies/TSMSPReply'
+import {UserRegisterMessage} from '../../Impl/Messages/UserMessages/UserRegisterMessage'
+import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {myscreen, mywindow} from '../../Utils/Styles'
 import {TextClock} from '../../Utils/PageUtils/ClockUtil'
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
+import {AdminTestReply} from "../../Impl/Replies/AdminTestReply";
+import {Place} from "../../Types/Place";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
@@ -28,6 +30,7 @@ export function AdminPage({navigation}: any) {
                 text='确认清空数据库'/>
             <ButtonToSendMessage
                 toSendMessage={new AdminTestMessage(token)}
+                ifSuccess={(replyMessage: Place)=>{alert(replyMessage.subDistrict.name)}}
                 text='确认发送测试数据'/>
             <ButtonToSendMessage
                 toSendMessage={new UserRegisterMessage('', '', '')}

@@ -1,25 +1,22 @@
-import React from 'react'
-import {Button, Text, View} from 'react-native'
-import {StatusBar} from 'expo-status-bar'
-import create from 'zustand'
-import {clearUserToken, TokenStore} from 'Globals/TokenStore'
-import {UserUpdateTraceMessage} from 'Impl/Messages/UserUpdateTraceMessage'
-import {UserGetTraceMessage} from 'Impl/Messages/UserGetTraceMessage'
-import {ButtonTemplate, ButtonToSendMessage} from '../../Utils/PageUtils/ButtonUtil'
-import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
-import {ScrollTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {TextTemplate} from 'Utils/PageUtils/TextUtil'
-import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
-import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
-import {TextClock} from '../../Utils/PageUtils/ClockUtil'
-import {SCREEN_WIDTH} from '../../Utils/Styles'
-import QRCode from 'react-native-qrcode-svg'
-import {Card, Paragraph, Title} from 'react-native-paper'
-import {styles} from 'Utils/Styles'
-import {SendData} from "Utils/SendDataUtil";
-import {ONEDAY} from "../../Utils/Constants";
-import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../PagesStack";
+import {ScreenTemplate, ScrollTemplate} from "../../../Utils/PageUtils/PageContainerUtil";
+import {Text, View} from "react-native";
+import {SCREEN_WIDTH} from "../../../Utils/Styles";
+import {Appbar, Card} from "react-native-paper";
+import QRCode from "react-native-qrcode-svg";
+import {TextTemplate} from "../../../Utils/PageUtils/TextUtil";
+import {BoundedTraceList} from "../../../Utils/PageUtils/ListUtil";
+import {ButtonTemplate} from "../../../Utils/PageUtils/ButtonUtil";
+import {PagesID} from "../../PagesID";
+import {StatusBar} from "expo-status-bar";
+import React from "react";
+import {TokenStore} from "../../../Globals/TokenStore";
+import {SendData} from "../../../Utils/SendDataUtil";
+import {UserGetTraceMessage} from "../../../Impl/Messages/UserMessages/UserGetTraceMessage";
+import {ONEDAY} from "../../../Utils/Constants";
+import {TSMSPReply} from "../../../Impl/TSMSPReply";
+import create from "zustand";
+import {ViewSwitcher} from "./HomePagesUtils/BarUtil";
+
 
 const registerStore = create(() => ({
     traceHistory: [['暂无踪迹']]
@@ -47,8 +44,8 @@ export function OverviewPage({navigation}: any) {
 
     //Required data:
     const avatar = require('Assets/icon.png')
-
     return <ScreenTemplate>
+        <ViewSwitcher/>
         <ScrollTemplate>
             <View style={{
                 width: SCREEN_WIDTH,
@@ -137,17 +134,3 @@ export function OverviewPage({navigation}: any) {
         </ScrollTemplate>
     </ScreenTemplate>
 }
-
-/*
-    <ButtonToSendMessage
-        toSendMessage = {new UserGetTraceMessage(
-            token,
-            (new Date().getTime() - 86400000),
-            new Date().getTime())}
-        ifSuccess = {(replyJson:TSMSPReply)=> {
-            let TraceList: string[][] = JSON.parse(replyJson.message) as string[][]
-            setTraceHistory(TraceList)
-        }}
-        text = '获取我的历史轨迹'
-    />
-}*/

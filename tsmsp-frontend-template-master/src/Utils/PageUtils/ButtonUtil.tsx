@@ -3,8 +3,10 @@ import {Button} from 'react-native-paper'
 import {APIUrl} from 'Globals/GlobalVariables'
 import {Text, View} from 'react-native'
 import {INNER_WIDTH, styles} from 'Utils/Styles'
-import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
+import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {TextTemplate} from './TextUtil'
+import {SendData} from 'Utils/SendDataUtil'
+import {TSMSPMessage} from "../../Impl/Messages/TSMSPMessage";
 
 const setting = {
     button:
@@ -69,18 +71,10 @@ export class ButtonToSendMessage extends React.Component<any> {
                     if (this.props.toSendMessage === null) {
                         this.props.ifSuccess({message: null})
                     } else {
-                        fetch(APIUrl, {
-                            method: 'POST',
-                            headers: {'Content-Type': 'text/plain'},
-                            body: JSON.stringify(this.props.toSendMessage)
-                        }).then((response) => response.json()).then((replyJson: TSMSPReply) => {
-                            console.log(replyJson)
-                            if (replyJson.status === 0) {
-                                this.props.ifSuccess(replyJson)
-                            } else {
-                                this.props.ifFail(replyJson)
-                            }
-                        }).catch((e) => console.log(e))
+                        SendData(
+                            this.props.toSendMessage,
+                            this.props.ifSuccess,
+                            this.props.ifFail)
                     }
                 } else {
                     this.props.checkElse()

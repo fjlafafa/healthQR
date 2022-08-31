@@ -2,16 +2,16 @@ import React from 'react'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
 import {setUserToken} from 'Globals/TokenStore'
-import {UserRegisterMessage} from 'Impl/Messages/UserRegisterMessage'
+import {UserRegisterMessage} from '../../Impl/Messages/UserMessages/UserRegisterMessage'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
+import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {checkIdentityNumber} from 'Utils/FormatUtils/IdentityNumberUtil'
 import {checkPassword} from 'Utils/FormatUtils/PasswordUtil'
 import {checkRealName} from 'Utils/FormatUtils/RealNameUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../PagesStack";
+import {PagesID} from "../PagesID";
 
 const registerStore= create(() => ({
     realName:'',

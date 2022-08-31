@@ -9,7 +9,6 @@ export const SCREEN_WIDTH = (myscreen.width>500?500:myscreen.width)
 export const SCREEN_HEIGHT = myscreen.height
 export const INNER_WIDTH  = SCREEN_WIDTH-60
 
-
 export const styles = {
     backgroundImage:{
         flex: 1,
@@ -26,5 +25,7 @@ export const styles = {
         height: '90%',
         alignItems: 'center',
         justifyContent: 'center'
-    }
+    },
+    bgColor: '#f0f0f0',
+    barColor:'#fff'
 }
