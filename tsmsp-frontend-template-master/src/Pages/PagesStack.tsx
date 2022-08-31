@@ -12,6 +12,7 @@ import {AdminPage} from './PageComponents/AdminPage'
 import {AllowAdmin} from 'Globals/GlobalVariables'
 import {AccountPage} from "./PageComponents/AccountPage";
 import {VaccinePage} from "./PageComponents/VaccinePage";
+import {GeneratePlaceQRPage} from "./PageComponents/GeneratePlaceQRPage";
 
 const Stack = createNativeStackNavigator()
 
@@ -25,7 +26,8 @@ export enum PagesID {
     Trace='Trace',
     Vaccine='Vaccine',
     DeleteAccount='DeleteAccount',
-    Admin='Admin'
+    Admin='Admin',
+    PlaceQR='PlaceQR',
 }
 
 export function PagesStack ({navigation}:any) {
@@ -41,6 +43,7 @@ export function PagesStack ({navigation}:any) {
                 <Stack.Screen name={PagesID.Trace} component={TracePage}/>
                 <Stack.Screen name={PagesID.Vaccine} component={VaccinePage}/>
                 <Stack.Screen name={PagesID.DeleteAccount} component={AccountDeletionPage}/>
+                <Stack.Screen name={PagesID.PlaceQR} component={GeneratePlaceQRPage}/>
                 {AllowAdmin ? <Stack.Screen name={PagesID.Admin} component={AdminPage}/> : null}
             </Stack.Group>
         </Stack.Navigator>)

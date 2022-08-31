@@ -7,6 +7,7 @@ import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Await
+import scala.swing.Dialog
 import scala.concurrent.duration.Duration
 import scala.util.Try
 
@@ -30,8 +31,18 @@ object DBUtils {
         PlaceTable.placeTable.schema.createIfNotExists,
       ).transactionally
     )
-    Try {exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)}
-  }
+    if(PlaceTable.isEmpty().get){
+      try {
+        exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)
+      }
+        catch{
+          case e: Exception =>
+            Dialog.showMessage(null, "错误：" + e.printStackTrace())
+        }
+
+     }
+    }
+
   def dropDatabases():Unit={
     exec(
       DBIO.seq(

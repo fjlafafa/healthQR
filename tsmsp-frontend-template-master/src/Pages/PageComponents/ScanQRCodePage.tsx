@@ -31,7 +31,7 @@ export  function ScanQRCodePage({navigation}:any) {
         if(isNaN(placeId))
             alert(`地点码格式不正确，请重新扫码！`)
         else
-            SendData(new UserUpdateTraceMessage(token, placeId, detailed_desc, report_type))
+            SendData(new UserUpdateTraceMessage(token, data, detailed_desc, report_type))
     }
 
     if (hasPermission === null)

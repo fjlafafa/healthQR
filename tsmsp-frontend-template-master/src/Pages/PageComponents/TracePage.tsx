@@ -11,6 +11,10 @@ import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
 import {PagesID} from "../PagesStack";
+import {checkRealName} from "../../Utils/FormatUtils/RealNameUtil";
+import {checkPassword} from "../../Utils/FormatUtils/PasswordUtil";
+import {checkIdentityNumber} from "../../Utils/FormatUtils/IdentityNumberUtil";
+import {isNumber, checkLength} from "../../Utils/FormatUtils/IdentityNumberUtil";
 //To implement
 const registerStore= create(() => ({
     RemovedTrace: '',
@@ -26,7 +30,7 @@ const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: '', tra
 
 export function TracePage({ navigation }: any){
     const {token} = TokenStore()
-    const report_type = 'Self Upload'
+    const report_type = 'Self uploaded'
     const {RemovedTrace, traceHistory, NewTraceId, NewTrace}=registerStore()
     return <ScreenTemplate>
 
@@ -34,8 +38,12 @@ export function TracePage({ navigation }: any){
         <TextInputTemplate placeholder={'新轨迹地点名称'} value={NewTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
 
         <ButtonToSendMessage
+            checkBeforeSendMessage = {()=>(isNumber(NewTraceId) && checkLength(NewTraceId, 12))}
+            checkElse = {()=>{
+                alert('地点号码不符合要求(长度应为12)！')
+            }}
             icon = 'upload'
-            toSendMessage = {new UserUpdateTraceMessage(token, +NewTraceId, NewTrace, report_type)}
+            toSendMessage = {new UserUpdateTraceMessage(token, NewTraceId, NewTrace, report_type)}
             text = '上传新轨迹'
         />
 

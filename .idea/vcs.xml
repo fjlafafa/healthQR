@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tsmsp-backend-template-master/src/microservice/place-information-microservice" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/tsmsp-backend-template-master/src/microservice/user-information-microservice" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/tsmsp-backend-template-master/src/microservice/vaccine-and-nucleic-acid-microservice" vcs="Git" />
   </component>
