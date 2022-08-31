@@ -47,6 +47,11 @@ export function AdminPage({navigation}: any) {
                 toSendMessage={new AdminTestMessage('5')}
                 ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
                 text='确认发送测试数据5'/>
+            <ButtonTemplate
+            onPress={() => {
+                navigation.navigate(PagesID.UpdateVaccine,{})
+            }}
+            text = '核酸疫苗服务'/>
             <ButtonToSendMessage
                 toSendMessage={new UserRegisterMessage('', '', '')}
                 text='注册空用户'
