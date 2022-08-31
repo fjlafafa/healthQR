@@ -5,8 +5,8 @@ import {TokenStore} from 'Globals/TokenStore'
 import {UserUpdatePasswordMessage} from 'Impl/Messages/UserUpdatePasswordMessage'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
-import {PageContainerTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
+import {ScreenTemplate} from "../../Utils/PageUtils/PageContainerUtil";
 
 const passwordStore= create(() => ({
     password:'',
@@ -21,7 +21,7 @@ export const clearInfo= ()=> passwordStore.setState(({password: '', confirmed_pa
 export function PasswordPage({ navigation }: any){
     const {token} = TokenStore()
     const {password, confirmed_password}=passwordStore()
-    return <PageContainerTemplate>
+    return <ScreenTemplate>
         <TextInputTemplate placeholder={'密码'}  value={password} onChangeText={(newText:string)=>setPassword(newText)} secureTextEntry={true}/>
         <TextInputTemplate placeholder={'确认密码'}  value={confirmed_password} onChangeText={(newText:string)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
@@ -46,5 +46,5 @@ export function PasswordPage({ navigation }: any){
             text = '返回主页'
         />
         <StatusBar style='auto' />
-    </PageContainerTemplate>
+    </ScreenTemplate>
 }

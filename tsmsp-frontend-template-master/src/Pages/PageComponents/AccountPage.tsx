@@ -1,5 +1,5 @@
 import {clearUserToken, setUserToken, TokenStore} from "../../Globals/TokenStore";
-import {PageContainerTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {} from "../../Utils/PageUtils/PageContainerUtil";
 import {TextTemplate} from "../../Utils/PageUtils/TextUtil";
 import {myscreen} from "../../Utils/Styles";
 import {TextClock} from "../../Utils/PageUtils/ClockUtil";
@@ -10,10 +10,11 @@ import {UserRegisterMessage} from "../../Impl/Messages/UserRegisterMessage";
 import {TSMSPReply} from "../../Impl/Replies/TSMSPReply";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
+import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 
 export function AccountPage({navigation}: any) {
     const {token} = TokenStore()
-    return <PageContainerTemplate>
+    return <ScreenTemplate>
         <ButtonTemplate
             onPress={() => {
                 navigation.navigate('DeleteAccount', {})
@@ -32,5 +33,5 @@ export function AccountPage({navigation}: any) {
             text='退出登录'/>
 
         <StatusBar style='auto'/>
-    </PageContainerTemplate>
+    </ScreenTemplate>
 }

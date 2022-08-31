@@ -5,7 +5,7 @@ import {ButtonTemplate} from 'Utils/PageUtils/ButtonUtil'
 import {SendData} from '../../Utils/SendDataUtil'
 import {UserUpdateTraceMessage} from 'Impl/Messages/UserUpdateTraceMessage'
 import {TokenStore} from 'Globals/TokenStore'
-import {PageContainerTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 
 export  function ScanQRCodePage({navigation}:any) {
     const [hasPermission, setHasPermission] = useState(null as (boolean |null))
@@ -39,7 +39,7 @@ export  function ScanQRCodePage({navigation}:any) {
         return <Text>No access to camera</Text>
 
     return (
-        <PageContainerTemplate>
+        <ScreenTemplate>
             <BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
@@ -49,7 +49,7 @@ export  function ScanQRCodePage({navigation}:any) {
                 onPress = {()=>navigation.navigate('Overview',{})}
                 text = '返回主页'/>
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-        </PageContainerTemplate>
+        </ScreenTemplate>
     )
 }
 

@@ -6,7 +6,7 @@ import {TokenStore} from 'Globals/TokenStore'
 import {UserDeleteTraceMessage} from 'Impl/Messages/UserDeleteTraceMessage'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from 'Impl/Replies/TSMSPReply'
-import {PageContainerTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserUpdateTraceMessage";
@@ -27,7 +27,7 @@ export function TracePage({ navigation }: any){
     const {token} = TokenStore()
     const report_type = 'Self Upload'
     const {RemovedTrace, traceHistory, NewTraceId, NewTrace}=registerStore()
-    return <PageContainerTemplate>
+    return <ScreenTemplate>
 
         <TextInputTemplate placeholder={'访问地点代码'} value={NewTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
         <TextInputTemplate placeholder={'新轨迹地点名称'} value={NewTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
@@ -65,5 +65,5 @@ export function TracePage({ navigation }: any){
             } keyExtractor={(item : any, index : number) => index.toString()}/>
 
         <StatusBar style='auto' />
-    </PageContainerTemplate>
+    </ScreenTemplate>
 }
