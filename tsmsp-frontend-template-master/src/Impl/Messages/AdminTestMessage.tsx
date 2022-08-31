@@ -1,4 +1,6 @@
 import {TSMSPMessage} from './TSMSPMessage'
+import {TSMSPReply} from "../Replies/TSMSPReply";
+import {Place} from "../../Types/Place";
 
 //We can test communication here
 export class AdminTestMessage extends TSMSPMessage {
@@ -7,5 +9,8 @@ export class AdminTestMessage extends TSMSPMessage {
         super()
         this.userToken = userToken
     }
-    static getReply(replyJSON)
+    getReplyMessage(replyJson: TSMSPReply) {
+        const message = JSON.parse(replyJson.message) as Place
+        return message
+    }
 }
