@@ -1,38 +1,28 @@
 package Process
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
-import Utils.IOUtils
-import akka.NotUsed
-import akka.actor.TypedActor.dispatcher
-import akka.actor.{Actor, ActorContext}
 import akka.actor.typed.ActorRef
-import akka.actor.typed.ActorSystem
 import akka.actor.typed.Behavior
-import akka.actor.typed.scaladsl.AskPattern.Askable
 import akka.actor.typed.scaladsl.Behaviors
-import akka.util.Timeout
-
-import scala.concurrent.ExecutionContext
-import scala.concurrent.duration.DurationInt
-import scala.util.{Failure, Success}
 
 object Master {
-  import akka.pattern.{ask, pipe}
-  case class Request(query: TSMSPMessage, replyTo: ActorRef[Response])
-  case class Response(result: TSMSPReply)
-  def apply(): Behavior[Request] = {
-    Behaviors.setup[Request] {ctx =>
-      implicit val timeout: Timeout = 3.seconds
-      implicit val scheduler = ctx.system.scheduler
+  sealed trait Message
+  final case class RouterRequest(query: TSMSPMessage, router: ActorRef[RouterResponse]) extends Message
+  final case class WorkerResponse(result: TSMSPReply, router: ActorRef[RouterResponse]) extends Message
+  case class WorkerTask(query: TSMSPMessage, router: ActorRef[RouterResponse], master: ActorRef[Master.Message])
+  case class RouterResponse(result: TSMSPReply)
+  def apply(): Behavior[Message] = {
+    Behaviors.setup[Message] {ctx =>
       val workers = for (i <- 0 to 4)
         yield ctx.spawn(Worker(i), "worker"+i)
-      Behaviors.receiveMessage[Request] {
-        case Request(query, replyTo) =>
+      Behaviors.receiveMessage[Message] {
+        case RouterRequest(query, router) =>
           val r = scala.util.Random
-          val ans = workers(r.nextInt(4)).ask(ref => Worker.Task(query, ref))
-          ans.onComplete {
-            case Success(Worker.Answer(ans)) => replyTo ! Response(ans)
-          }
+          workers(r.nextInt(4)) ! WorkerTask(query, router, ctx.self)
+          Behaviors.same
+        case WorkerResponse(answer, router) =>
+          println("worker return msg received")
+          router ! RouterResponse(answer)
           Behaviors.same
       }
     }
@@ -40,15 +30,13 @@ object Master {
 }
 
 object Worker {
-  import Impl.Messages.TSMSPMessage
-  case class Task(query: TSMSPMessage, replyTo: ActorRef[Answer])
   case class Answer(result: TSMSPReply)
-  def apply(id: Int): Behavior[Task] = {
-    Behaviors.setup[Task] {ctx =>
-      Behaviors.receiveMessage[Task] {
-        case Task(query, replyTo) =>
+  def apply(id: Int): Behavior[Master.WorkerTask] = {
+    Behaviors.setup[Master.WorkerTask] {ctx =>
+      Behaviors.receiveMessage[Master.WorkerTask] {
+        case Master.WorkerTask(query, router, master) =>
           ctx.log.info(s"Worker $id begin working.")
-          replyTo ! Answer(query.handle())
+          master ! Master.WorkerResponse(query.handle(), router)
           ctx.log.info(s"Worker $id finished working.")
           Behaviors.same
       }
