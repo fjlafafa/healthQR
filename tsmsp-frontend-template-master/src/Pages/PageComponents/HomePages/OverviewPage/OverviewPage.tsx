@@ -16,6 +16,7 @@ import {TSMSPReply} from "../../../../Impl/TSMSPReply";
 import create from "zustand";
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
 import {Trace} from "../../../../Types/Trace";
+import {useFocusEffect} from "@react-navigation/native";
 
 
 const registerStore = create(() => ({
@@ -32,14 +33,15 @@ export function OverviewPage({navigation}: any) {
     const {token} = TokenStore()
     const {traceHistory} = registerStore()
     //refreshing
-    React.useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () =>
-            SendData(new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
-                (reply: Trace[]) => {
-                    setTraceHistory(reply)
-                }))
-        return ()=>unsubscribe.remove()
-    })
+    const refresh=() =>
+    {
+        SendData(
+            new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
+            (reply: Trace[]) => {
+                setTraceHistory(reply)
+            })
+    }
+    useFocusEffect(React.useCallback(refresh, []))
     const avatar = require('../../../../Assets/icon.png')
     return <ScreenTemplate>
         <ViewSwitcher state={'Overview'} navigation={navigation}/>

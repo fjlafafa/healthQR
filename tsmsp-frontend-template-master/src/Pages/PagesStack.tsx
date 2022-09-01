@@ -15,6 +15,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {OverviewPage} from "./PageComponents/HomePages/OverviewPage/OverviewPage";
 import {GeneratePlaceQRPage} from "./PageComponents/GeneratePlaceQRPage";
 import {ModifyVaccinePage} from "./PageComponents/ModifyVaccinePage";
+import {RegisterQRCodePage} from "./PageComponents/HomePages/RegisterQRCodePage";
 
 const Stack = createNativeStackNavigator()
 
@@ -34,6 +35,7 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'UpdateVaccine'} component={ModifyVaccinePage}/>
                     <Stack.Screen name={'DeleteAccount'} component={AccountDeletionPage}/>
                     <Stack.Screen name={'PlaceQR'} component={GeneratePlaceQRPage}/>
+                    <Stack.Screen name={'RegisterQRCode'} component={RegisterQRCodePage}/>
                     {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
                 </Stack.Group>
             </Stack.Navigator>

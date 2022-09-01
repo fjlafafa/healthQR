@@ -31,7 +31,7 @@ export function ScanQRCodePage({navigation}: any) {
         const placeId = parseInt(data)
         if (isNaN(placeId)) {
             alert(`地点码格式不正确，请重新扫码！`)
-            setScanned(false)
+            setTimeout(()=>setScanned(false),1000)
         } else {
             SendData(new UserUpdateTraceMessage(token, data, detailed_desc, report_type))
             navigation.navigate('Overview', {})
