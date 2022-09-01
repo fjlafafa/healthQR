@@ -22,8 +22,8 @@ function Barbutton({chosen,text,onPress}:any){
 }
 export function ViewSwitcher({state, navigation}:any) {
     return <View style={{width: SCREEN_WIDTH, height: barHeight, flexDirection:'row'}}>
-        <Barbutton chosen={state=='Overview'} text='健康码主页' onPress={navigation.navigate('Overview')}/>
-        <Barbutton chosen={state=='ScanQRCode'} text='地点扫码' onPress={navigation.navigate('ScanQRCode')}/>
-        <Barbutton chosen={state=='Overview'} text='核酸等级码' onPress={navigation.navigate('Overview')}/>
+        <Barbutton chosen={state=='Overview'} text='健康码主页' onPress={()=>navigation.navigate('Overview')}/>
+        <Barbutton chosen={state=='ScanQRCode'} text='地点扫码' onPress={()=>navigation.navigate('ScanQRCode')}/>
+        <Barbutton chosen={state=='Overview'} text='核酸等级码' onPress={()=>navigation.navigate('Overview')}/>
     </View>
 }
