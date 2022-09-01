@@ -1,4 +1,6 @@
 import {TSMSPMessage} from '../TSMSPMessage'
+import {TSMSPReply} from "../../TSMSPReply";
+import {Trace} from "Types/Trace";
 
 export class UserGetTraceMessage extends TSMSPMessage {
     userToken : string
@@ -9,5 +11,8 @@ export class UserGetTraceMessage extends TSMSPMessage {
         this.userToken = userToken
         this.startTime = startTime
         this.endTime = endTime
+    }
+    override getReplyMessage(replyJson: TSMSPReply): Trace[] {
+        return JSON.parse(replyJson.message) as Trace[]
     }
 }

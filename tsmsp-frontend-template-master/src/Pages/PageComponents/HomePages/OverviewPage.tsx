@@ -16,15 +16,16 @@ import {ONEDAY} from "../../../Utils/Constants";
 import {TSMSPReply} from "../../../Impl/TSMSPReply";
 import create from "zustand";
 import {ViewSwitcher} from "./HomePagesUtils/BarUtil";
+import {Trace} from "../../../Types/Trace";
 
 
 const registerStore = create(() => ({
-    traceHistory: [['暂无踪迹']]
+    traceHistory: new Array<Trace>()
 }))
 
-const setTraceHistory = (traceHistory: string[][]) => registerStore.setState({traceHistory})
+const setTraceHistory = (traceHistory: Trace[]) => registerStore.setState({traceHistory})
 const clearTraceInfo = () => registerStore.setState({
-    traceHistory: [['暂无踪迹']]
+    traceHistory: new Array<Trace>()
 })
 
 
@@ -35,9 +36,8 @@ export function OverviewPage({navigation}: any) {
     React.useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () =>
             SendData(new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
-                (reply: TSMSPReply) => {
-                    let TraceList: string[][] = JSON.parse(reply.message) as string[][]
-                    setTraceHistory(TraceList)
+                (reply: Trace[]) => {
+                    setTraceHistory(reply)
                 }))})
     const avatar = require('Assets/icon.png')
     return <ScreenTemplate>
@@ -80,11 +80,11 @@ export function OverviewPage({navigation}: any) {
                         <TextTemplate>行程记录</TextTemplate>
                         <BoundedTraceList
                             data={traceHistory}
-                            renderItem={({item, index}: any) =>
-                                item[0] === '暂无踪迹' ?
-                                    <Text>暂无踪迹或尚未查询</Text> :
-                                    <Text>{index}. {item[2]}到访{item[0]}内{item[1]}</Text>
-                            } keyExtractor={(item: any, index: number) => index.toString()}/>
+                            renderItem={({traceItem, index}:any) => {
+                                //. {traceItem.time.millis}到访{traceItem.visitPlaceId.id}
+                                return <Text>{index}</Text>
+                            }}
+                            keyExtractor={(item: any, index: number) => index.toString()}/>
                     </Card>
                 </View>
             </View>

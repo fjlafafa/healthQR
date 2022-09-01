@@ -37,8 +37,8 @@ export function LoginPage({ navigation }: any){
         <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
-            ifSuccess = {(replyMessage:string)=>{
-                setUserToken(replyMessage)
+            ifSuccess = {(reply:string)=>{
+                setUserToken(reply)
                 navigation.navigate(PagesID.Overview,{})
                 clearLoginInfo()
             }}

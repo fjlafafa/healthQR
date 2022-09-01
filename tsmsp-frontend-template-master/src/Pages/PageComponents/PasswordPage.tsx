@@ -32,8 +32,8 @@ export function PasswordPage({ navigation }: any){
                 clearConfirmedPassword()
             }}
             toSendMessage ={new UserUpdatePasswordMessage(token, password)}
-            ifSuccess = {(replyMessage:string)=> {
-                alert('用户' + replyMessage + '的密码已修改')
+            ifSuccess = {(reply:string)=> {
+                alert('用户' + reply + '的密码已修改')
                 clearInfo()
                 navigation.navigate(PagesID.Overview,{})
             }}
