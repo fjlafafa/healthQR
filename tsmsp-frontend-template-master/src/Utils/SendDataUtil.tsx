@@ -15,7 +15,7 @@ export function SendData(
     }).then((response) => response.json()).then((replyJson: TSMSPReply) => {
         console.log(replyJson)
         if (replyJson.status === Impl.STATUS_OK)
-            ifSuccess(toSendMessage.getReplyMessage(replyJson))
+            ifSuccess(replyJson)
         else
             ifFail(replyJson)
     }).catch((e) => console.log(e))
