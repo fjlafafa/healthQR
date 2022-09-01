@@ -14,7 +14,7 @@ import QRCode from "react-native-qrcode-svg";
 import {Card} from "react-native-paper";
 import {LargeTextTemplate} from "../../Utils/PageUtils/TextUtil";
 import {SmallSpace} from "../../Utils/PageUtils/SpaceUtil";
-
+import Select from 'react-select'
 
 
 export function GeneratePlaceQRPage({ navigation }: any){
@@ -22,6 +22,11 @@ export function GeneratePlaceQRPage({ navigation }: any){
     //const values
     const {id} = PlaceIdStore()
     const avatar = require('Assets/icon.png')
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
 
     return <ScreenTemplate>
         <View style={{
@@ -38,6 +43,8 @@ export function GeneratePlaceQRPage({ navigation }: any){
                 <LargeTextTemplate>  请输入地点代码以查询二维码 </LargeTextTemplate>
             </Card>
 
+
+
             <View style={{ height: SCREEN_WIDTH * 0.03}}/>
 
             <Card style={{width: '95%', height: '12%', alignItems: 'center'}}>
@@ -45,6 +52,10 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
                 <TextInputTemplate placeholder={'地点代码'} value={id} onChangeText={(newText: string)=>setPlaceId(newText)}/>
             </Card>
+
+            <SmallSpace/>
+
+            <Select options={options} />
 
             <SmallSpace/>
 
