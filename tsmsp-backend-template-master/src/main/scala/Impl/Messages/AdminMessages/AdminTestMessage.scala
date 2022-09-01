@@ -21,7 +21,7 @@ case class AdminTestMessage(userToken: String) extends TSMSPMessage {
       case "3" => TSMSPReply(STATUS_OK, "3")
       case "4" => TSMSPReply(STATUS_OK, "4")
       */
-      case "1" => TSMSPReply(STATUS_OK, IOUtils.serialize(Place(PlaceId(1L), Province("Beijing"), City("Beijing"), District("Haidian"), SubDistrict("Hello world?!"), Red)).get)
+      case "1" => TSMSPReply(STATUS_OK, IOUtils.serialize(Place(PlaceId(1L), Province("Beijing"), City("Beijing"), District("Haidian"), SubDistrict("Hello world?!"), Types.PlaceMeta.Red)).get)
       case "2" => TSMSPReply(STATUS_OK, IOUtils.serialize(Trace(TraceId(1), UserId(2), now, PlaceId(13), DetailedPlaceDescription("rnm"), SelfReport)).get)
       case "3" => TSMSPReply(STATUS_OK, IOUtils.serialize(UserIdentity(UserId(1), RealName("df"), Password("fdsa"), IdentityNumber("132"), NucleicTestResultReporter)).get)
       case "4" => TSMSPReply(STATUS_OK, IOUtils.serialize(UserInformation(UserId(123), now, Types.UserMeta.Triple, PopUps)).get)
