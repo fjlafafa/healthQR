@@ -3,7 +3,7 @@ import {TSMSPReply} from "../TSMSPReply";
 
 
 export abstract class TSMSPMessage extends JacksonSerializable {
-    getReplyMessage(replyJson: TSMSPReply):any {
+    getReplyMessage(replyJson: TSMSPReply): string {
         return replyJson.message
     }
 }
