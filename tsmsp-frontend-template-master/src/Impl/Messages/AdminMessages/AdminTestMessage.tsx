@@ -10,7 +10,8 @@ export class AdminTestMessage extends TSMSPMessage {
         this.userToken = userToken
     }
     getReplyMessage(replyJson: TSMSPReply) {
-        const message = JSON.parse(replyJson.message) as Place
-        return message
+        //const message = JSON.parse(replyJson.message) as Place
+        //return message
+        return replyJson.message
     }
 }

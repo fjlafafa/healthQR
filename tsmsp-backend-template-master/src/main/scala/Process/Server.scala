@@ -4,6 +4,8 @@ import Utils.DBUtils
 import akka.actor.typed.ActorSystem
 import com.typesafe.scalalogging.Logger
 
+import scala.util.{Failure, Success, Try}
+
 
 object Server {
   val logger = Logger("MainServer")
@@ -18,7 +20,10 @@ object Server {
 }
 
 object Dropper {
-  def main(args: Array[String]): Unit = try {
+  def main(args: Array[String]): Unit = Try {
     DBUtils.dropDatabases()
+  } match {
+    case Success(value) => println(value)
+    case Failure(exception) => println(exception)
   }
 }

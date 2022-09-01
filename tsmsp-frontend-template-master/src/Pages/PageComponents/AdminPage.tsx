@@ -12,7 +12,6 @@ import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {myscreen, mywindow} from '../../Utils/Styles'
 import {TextClock} from '../../Utils/PageUtils/ClockUtil'
 import {PagesID} from "../PagesID";
-import {AdminTestReply} from "../../Impl/Replies/AdminTestReply";
 import {Place} from "../../Types/Place";
 
 //This is just a page for test
@@ -29,9 +28,30 @@ export function AdminPage({navigation}: any) {
                 toSendMessage={new AdminDropDataBasesMessage(token)}
                 text='确认清空数据库'/>
             <ButtonToSendMessage
-                toSendMessage={new AdminTestMessage(token)}
-                ifSuccess={(replyMessage: Place)=>{alert(replyMessage.subDistrict.name)}}
-                text='确认发送测试数据'/>
+                toSendMessage={new AdminTestMessage('1')}
+                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                text='确认发送测试数据1'/>
+            <ButtonToSendMessage
+                toSendMessage={new AdminTestMessage('2')}
+                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                text='确认发送测试数据2'/>
+            <ButtonToSendMessage
+                toSendMessage={new AdminTestMessage('3')}
+                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                text='确认发送测试数据3'/>
+            <ButtonToSendMessage
+                toSendMessage={new AdminTestMessage('4')}
+                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                text='确认发送测试数据4'/>
+            <ButtonToSendMessage
+                toSendMessage={new AdminTestMessage('5')}
+                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                text='确认发送测试数据5'/>
+            <ButtonTemplate
+            onPress={() => {
+                navigation.navigate(PagesID.UpdateVaccine,{})
+            }}
+            text = '核酸疫苗服务'/>
             <ButtonToSendMessage
                 toSendMessage={new UserRegisterMessage('', '', '')}
                 text='注册空用户'

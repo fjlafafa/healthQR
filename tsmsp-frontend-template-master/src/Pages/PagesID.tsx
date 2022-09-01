@@ -7,6 +7,7 @@ export enum PagesID {
     ScanQRCode = 'ScanQRCode',
     Trace = 'Trace',
     Vaccine = 'Vaccine',
+    UpdateVaccine = 'UpdateVaccine',
     DeleteAccount = 'DeleteAccount',
     Admin = 'Admin',
     PlaceQR = 'PlaceQR'

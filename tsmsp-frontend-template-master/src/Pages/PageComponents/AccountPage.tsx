@@ -14,7 +14,6 @@ import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {PagesID} from "../PagesID";
 
 export function AccountPage({navigation}: any) {
-    const {token} = TokenStore()
     return <ScreenTemplate>
         <ButtonTemplate
             onPress={() => {
@@ -28,10 +27,15 @@ export function AccountPage({navigation}: any) {
             text='修改密码'/>
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('Login')
+                navigation.navigate(PagesID.Login)
                 clearUserToken()
             }}
             text='退出登录'/>
+        <ButtonTemplate
+            onPress={() => {
+                navigation.navigate(PagesID.Overview)
+            }}
+            text='返回'/>
 
         <StatusBar style='auto'/>
     </ScreenTemplate>
