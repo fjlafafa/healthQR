@@ -21,7 +21,6 @@ object Master {
           workers(r.nextInt(4)) ! WorkerTask(query, router, ctx.self)
           Behaviors.same
         case WorkerResponse(answer, router) =>
-          println("worker return msg received")
           router ! RouterResponse(answer)
           Behaviors.same
       }

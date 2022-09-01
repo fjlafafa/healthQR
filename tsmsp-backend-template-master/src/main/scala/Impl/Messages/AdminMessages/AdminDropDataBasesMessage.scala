@@ -1,10 +1,12 @@
-package Impl.Messages
+package Impl.Messages.AdminMessages
+
+import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class AdminDropDataBasesMessage(userToken : String) extends TSMSPMessage {
+case class AdminDropDataBasesMessage(userToken: String) extends TSMSPMessage {
   //Not implemented: check user token
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     //Not implemented
