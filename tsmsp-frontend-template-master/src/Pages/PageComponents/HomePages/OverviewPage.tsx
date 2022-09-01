@@ -41,7 +41,7 @@ export function OverviewPage({navigation}: any) {
                 }))})
     const avatar = require('Assets/icon.png')
     return <ScreenTemplate>
-        <ViewSwitcher/>
+        <ViewSwitcher state={}/>
         <ScrollTemplate>
             <View style={{
                 width: SCREEN_WIDTH,
