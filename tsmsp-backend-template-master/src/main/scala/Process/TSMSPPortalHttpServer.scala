@@ -23,10 +23,7 @@ object TSMSPPortalHttpServer {
       Http().newServerAt(GlobalVariables.listenAddress,GlobalVariables.listenPortal).connectionSource().to(Sink.foreach { connection => {
         val remoteIP = connection.remoteAddress.getAddress.toString.replaceAll("/", "")
         Logger("HttpServer").info("Accepted connection from " + remoteIP)
-        connection handleWith concat(routes,
-          (path("health") & cors(CorsSettings.defaultSettings.copy(
-          allowedOrigins = HttpOriginRange.* // * refers to all
-        ))) {complete("OK!")})
+        connection handleWith routes
       }
       }).run()
     futureBinding.onComplete {
