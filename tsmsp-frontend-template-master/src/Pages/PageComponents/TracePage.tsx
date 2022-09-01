@@ -51,8 +51,8 @@ export function TracePage({ navigation }: any){
 
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteTraceMessage(token, +RemovedTrace)}
-            ifSuccess = {(reply:string)=>{
-                alert('轨迹\'' + reply + '\'删除成功！')
+            ifSuccess = {(replyMessage:string)=>{
+                alert('轨迹\'' + replyMessage + '\'删除成功！')
                 setRemovedTrace('')
             }}
             text = '删除记录'

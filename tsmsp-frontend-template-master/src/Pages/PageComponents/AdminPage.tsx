@@ -41,10 +41,10 @@ export function AdminPage({navigation}: any) {
                 //ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.date.toLocaleTimeString())}}
                 text='确认发送测试数据2'/>
             <ButtonToSendMessage
-                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.millis)}}
-                toSendMessage={new AdminTestMessage('2')}
+                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace[])[0].visitPlaceId.id)}}
+                toSendMessage={new AdminTestMessage('hcJEaRxNNSWREBDkIQsJhjpnMLsPgy')}
                 //ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.date.toLocaleTimeString())}}
-                text='确认发送测试数据2'/>
+                text='确认发送测试数据token'/>
             <ButtonToSendMessage
                 toSendMessage={new AdminTestMessage('3')}
                 ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as UserIdentity).password.token)}}

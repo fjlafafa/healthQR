@@ -80,9 +80,8 @@ export function OverviewPage({navigation}: any) {
                         <TextTemplate>行程记录</TextTemplate>
                         <BoundedTraceList
                             data={traceHistory}
-                            renderItem={({traceItem, index}:any) => {
-                                //. {traceItem.time.millis}到访{traceItem.visitPlaceId.id}
-                                return <Text>{index}</Text>
+                            renderItem={({item, index}:any) => {
+                                return <Text>{index}. {item.time.millis.toString()}到访{item.visitPlaceId.id.toString()}</Text>
                             }}
                             keyExtractor={(item: any, index: number) => index.toString()}/>
                     </Card>
