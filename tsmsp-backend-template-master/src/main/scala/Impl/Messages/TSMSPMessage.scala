@@ -2,7 +2,7 @@ package Impl.Messages
 
 import Impl.Messages.AdminMessages.{AdminDropDataBasesMessage, AdminTestMessage}
 import Impl.Messages.ThirdPartyMessages.{HospitalUpdateNucleicTestMessage, HospitalUpdateRiskLevelMessage, HospitalUpdateVaccinationMessage}
-import Impl.Messages.UserMessages.{UserDeleteAccountMessage, UserDeleteTraceMessage, UserGetTraceMessage, UserLoginMessage, UserRegisterMessage, UserUpdatePasswordMessage, UserUpdateTraceMessage}
+import Impl.Messages.UserMessages._
 import Impl.{JacksonSerializable, STATUS_ERROR, TSMSPReply}
 import com.fasterxml.jackson.annotation.{JsonSubTypes, JsonTypeInfo}
 import org.joda.time.DateTime

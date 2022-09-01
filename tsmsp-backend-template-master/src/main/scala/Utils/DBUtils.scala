@@ -8,7 +8,6 @@ import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Await
-import scala.swing.Dialog
 import scala.concurrent.duration.Duration
 import scala.util.{Failure, Success, Try}
 
@@ -36,7 +35,8 @@ object DBUtils {
       Try {
         exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)
       } match {
-        case Failure(e) => Logger("DataInitialization").info(s"Place initialization failure, return value $e")
+        case Success(value) => Logger("DataInitialization").info(s"Successfully initialize place table, return value $value")
+        case Failure(exception) => Logger("DataInitialization").info(s"Place initialization failure, return value $exception")
         }
      }
     }

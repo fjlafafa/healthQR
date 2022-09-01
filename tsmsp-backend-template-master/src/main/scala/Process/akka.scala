@@ -1,8 +1,7 @@
 package Process
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
-import akka.actor.typed.ActorRef
-import akka.actor.typed.Behavior
+import akka.actor.typed.{ActorRef, Behavior}
 import akka.actor.typed.scaladsl.Behaviors
 
 object Master {

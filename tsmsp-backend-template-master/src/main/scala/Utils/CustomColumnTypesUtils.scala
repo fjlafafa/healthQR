@@ -35,14 +35,6 @@ object CustomColumnTypesUtils {
     )
   }
 
-//  implicit def longType[T <: IDClass](implicit c: ClassTag[T]): JdbcType[T] with BaseTypedType[T] =
-//    MappedColumnType.base[T, Long](
-//      _.v,
-//      a => {
-//        c.runtimeClass.getConstructors.head.newInstance(a.asInstanceOf[Object]).asInstanceOf[T]
-//      }
-//    )
-
   implicit def longType[T <: IDClass](implicit c: ClassTag[T]): JdbcType[T] with BaseTypedType[T] =
     MappedColumnType.base[T, Long](
       _.id,

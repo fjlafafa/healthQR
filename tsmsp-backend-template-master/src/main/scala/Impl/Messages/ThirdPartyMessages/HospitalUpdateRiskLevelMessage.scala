@@ -13,7 +13,6 @@ case class HospitalUpdateRiskLevelMessage(identityNumber: String, riskLevel: Str
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val userId = UserIdentityTable.checkIdByIdentityNumber(IdentityNumber(identityNumber)).get
     DBUtils.exec(UserInformationTable.updateRiskLevel(userId, UserRiskLevel.getType(riskLevel)))
-    // TODO: 动态更新全体用户风险等级？
     TSMSPReply(STATUS_OK, "风险等级更新成功！")
   }
 }

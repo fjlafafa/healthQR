@@ -6,7 +6,7 @@ import Types.UserIdentity
 import Types.UserMeta._
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
-import Utils.StringUtils.randomNumber
+import Utils.TokenUtils.randomUserId
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
 
@@ -25,7 +25,7 @@ object UserIdentityTable {
   val userIdentityTable = TableQuery[UserIdentityTable]
 
   def addUser(realName: RealName, password: Password, identityNumber: IdentityNumber, permission : Permission): DBIO[Int] =
-    userIdentityTable += UserIdentity(UserId(randomNumber(IdLengths.user)), realName, password, identityNumber, permission)
+    userIdentityTable += UserIdentity(randomUserId(IdLengths.user), realName, password, identityNumber, permission)
 
   def dropUser(userId: UserId): DBIO[Int] = userIdentityTable.filter(_.id === userId).delete
 
@@ -45,7 +45,7 @@ object UserIdentityTable {
     )
   )
 
-  def checkRealName(userId: UserId): Try[RealName] = Try(
+  def checkRealNameById(userId: UserId): Try[RealName] = Try(
       DBUtils.exec(userIdentityTable.filter(u => u.id === userId).map(_.realName).result.headOption).getOrElse(
         throw TokenNotExistsException()
     )

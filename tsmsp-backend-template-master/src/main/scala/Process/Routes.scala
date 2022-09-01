@@ -1,7 +1,6 @@
 package Process
 
 import Impl.Messages.TSMSPMessage
-import Impl.{STATUS_ERROR, TSMSPReply}
 import Process.Server.logger
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
@@ -15,8 +14,8 @@ import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
 import com.typesafe.scalalogging.Logger
 
-import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.DurationInt
+import scala.concurrent.{Await, Future}
 import scala.util.{Failure, Try}
 
 
