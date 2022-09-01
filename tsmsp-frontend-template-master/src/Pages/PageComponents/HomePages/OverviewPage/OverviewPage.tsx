@@ -37,7 +37,9 @@ export function OverviewPage({navigation}: any) {
             SendData(new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
                 (reply: Trace[]) => {
                     setTraceHistory(reply)
-                }))})
+                }))
+        return ()=>unsubscribe.remove()
+    })
     const avatar = require('../../../../Assets/icon.png')
     return <ScreenTemplate>
         <ViewSwitcher state={'Overview'} navigation={navigation}/>

@@ -8,54 +8,53 @@ import {TokenStore} from '../../../Globals/TokenStore'
 import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {ViewSwitcher} from "./HomePagesUtils/BarUtil";
 
-export function ScanQRCodePage({navigation}:any) {
-    const [hasPermission, setHasPermission] = useState(null as (boolean |null))
+export function ScanQRCodePage({navigation}: any) {
+    const [hasPermission, setHasPermission] = useState(null as (boolean | null))
     const [scanned, setScanned] = useState(false)
     const {token} = TokenStore()
-    const report_type : string = 'Auto recorded'
-    const detailed_desc : string = ''
+    const report_type: string = 'Auto recorded'
+    const detailed_desc: string = ''
 
 
     useEffect(() => {
         const getBarCodeScannerPermissions = async () => {
-            const { status } = await BarCodeScanner.requestPermissionsAsync()
+            const {status} = await BarCodeScanner.requestPermissionsAsync()
             setHasPermission(status === 'granted')
         }
 
         getBarCodeScannerPermissions()
     }, [])
 
-    const handleBarCodeScanned = ({type, data} : any) => {
+    const handleBarCodeScanned = ({type, data}: any) => {
         setScanned(true)
         // alert(`Bar code with type ${type} and data ${data} has been scanned!`)
         const placeId = parseInt(data)
-        if(isNaN(placeId)) {
+        if (isNaN(placeId)) {
             alert(`地点码格式不正确，请重新扫码！`)
             setScanned(false)
         } else {
             SendData(new UserUpdateTraceMessage(token, data, detailed_desc, report_type))
-            navigation.navigate('Overview',{})
+            navigation.navigate('Overview', {})
         }
     }
     return (
         <ScreenTemplate>
             <ViewSwitcher state={'ScanQRCode'} navigation={navigation}/>
             {
-                (hasPermission === null)?(
+                (hasPermission === null) ? (
                     <Text>Requesting for camera permission</Text>
-                ):(
-                    (!hasPermission)?(
+                ) : (
+                    (!hasPermission) ? (
                         <ButtonTemplate
-                            onPress = {()=>navigation.navigate('Overview',{})}
-                            text = '返回主页'
+                            onPress={() => navigation.navigate('Overview', {})}
+                            text='返回主页'
                         />
-                    ):(
-                        <View>
+                    ) : (
+                        <View style={{flex: 1, width: 1000, backgroundColor: '#ff0'}}>
                             <BarCodeScanner
-                                onBarCodeScanned={(scanned ? undefined : handleBarCodeScanned)}/>
-                            <ButtonTemplate
-                                onPress={() => navigation.navigate('Overview', {})}
-                                text='返回主页'/></View>))
+                                onBarCodeScanned={(scanned ? undefined : handleBarCodeScanned)}
+                                style={StyleSheet.absoluteFillObject}/>
+                        </View>))
             }
         </ScreenTemplate>
     )
