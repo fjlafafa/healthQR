@@ -37,8 +37,8 @@ export function LoginPage({ navigation }: any){
         <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
-            ifSuccess = {(replyJson:TSMSPReply)=>{
-                setUserToken(replyJson.message)
+            ifSuccess = {(replyMessage:string)=>{
+                setUserToken(replyMessage)
                 navigation.navigate(PagesID.Overview,{})
                 clearLoginInfo()
             }}

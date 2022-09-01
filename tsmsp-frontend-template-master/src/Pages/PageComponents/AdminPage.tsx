@@ -65,8 +65,8 @@ export function AdminPage({navigation}: any) {
             <ButtonToSendMessage
                 toSendMessage={new UserRegisterMessage('', '', '')}
                 text='注册空用户'
-                ifSuccess={(replyJson: TSMSPReply) => {
-                    setUserToken(replyJson.message)
+                ifSuccess={(replyMessage:string) => {
+                    setUserToken(replyMessage)
                     navigation.navigate(PagesID.Overview, {})
                 }}/>
             <ButtonTemplate

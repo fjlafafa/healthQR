@@ -39,8 +39,8 @@ export function RegisterPage({ navigation }: any){
             }}
             toSendMessage ={new UserRegisterMessage(realName, password, identityNumber)}
             text = '注册'
-            ifSuccess = {(replyJson: TSMSPReply)=>{
-                setUserToken(replyJson.message)
+            ifSuccess = {(replyMessage:string)=>{
+                setUserToken(replyMessage)
                 navigation.navigate(PagesID.Overview,{})
                 clearRegisterInfo()
             }}

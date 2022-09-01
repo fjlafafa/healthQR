@@ -12,8 +12,8 @@ export function AccountDeletionPage({ navigation }: any){
     return <ScreenTemplate>
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteAccountMessage(token)}
-            ifSuccess = {(replyJson:TSMSPReply)=>{
-                alert('用户\'' + replyJson.message + '\'注销成功！')
+            ifSuccess = {(replyMessage:string)=>{
+                alert('用户\'' + replyMessage + '\'注销成功！')
                 navigation.navigate('Login',{})
                 clearUserToken()
             }}

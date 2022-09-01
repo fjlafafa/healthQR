@@ -55,8 +55,6 @@ export class ButtonToSendMessage extends React.Component<any> {
     static defaultProps = {
         checkBeforeSendMessage: ()=>{return true},
         checkElse: ()=>{},
-        ifSuccess: (replyJson: TSMSPReply)=>{alert(replyJson.message)},
-        ifFail: (replyJson: TSMSPReply)=>{alert(replyJson.message)},
         toSendMessage: null,
         onPress: ()=>{},//Usually we can use ifSuccess as inPress even if we are not sending message
     }
