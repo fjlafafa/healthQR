@@ -34,7 +34,7 @@ export function LoginPage({ navigation }: any){
     return (<ScreenTemplate atRoot={true}>
         <TextInputTemplate placeholder={'真实姓名'} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
         <TextInputTemplate placeholder={'密码'}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
-            <ButtonToSendMessage
+        <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(replyJson:TSMSPReply)=>{
@@ -52,6 +52,15 @@ export function LoginPage({ navigation }: any){
             }}
             text = '注册'
         />
+
+        <ButtonTemplate
+            onPress = {()=> {
+                navigation.navigate(PagesID.PlaceQR,{})
+                clearLoginInfo()
+            }}
+            text = '生成地点二维码'
+        />
+
         {
             //管理员界面唯一入口
             AllowAdmin?
@@ -65,13 +74,6 @@ export function LoginPage({ navigation }: any){
                 text='管理员'
             /> :null
         }
-        <ButtonTemplate
-            onPress = {()=> {
-                navigation.navigate(PagesID.PlaceQR,{})
-                clearLoginInfo()
-            }}
-            text = '生成地点二维码'
-        />
 
         <StatusBar style='auto' />
     </ScreenTemplate>)

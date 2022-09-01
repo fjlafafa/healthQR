@@ -14,7 +14,7 @@ export function QRCodePage({navigation}:any) {
             <QRCode
                 value={token}
                 logo={avatar}
-                color='blue'
+                color='orange'
             />
             <ButtonTemplate
                 onPress = {()=>navigation.navigate(PagesID.Overview,{})}
