@@ -13,6 +13,10 @@ import {myscreen, mywindow} from '../../Utils/Styles'
 import {TextClock} from '../../Utils/PageUtils/ClockUtil'
 import {PagesID} from "../PagesID";
 import {Place} from "../../Types/Place";
+import {Trace} from "../../Types/Trace";
+import {UserIdentity} from "../../Types/UserIdentity";
+import {UserInformation} from "../../Types/UserInformation";
+import {UserToken} from "../../Types/UserToken";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
@@ -29,23 +33,29 @@ export function AdminPage({navigation}: any) {
                 text='确认清空数据库'/>
             <ButtonToSendMessage
                 toSendMessage={new AdminTestMessage('1')}
-                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Place).riskLevel)}}
                 text='确认发送测试数据1'/>
             <ButtonToSendMessage
+                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.millis)}}
                 toSendMessage={new AdminTestMessage('2')}
-                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                //ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.date.toLocaleTimeString())}}
+                text='确认发送测试数据2'/>
+            <ButtonToSendMessage
+                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.millis)}}
+                toSendMessage={new AdminTestMessage('2')}
+                //ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.date.toLocaleTimeString())}}
                 text='确认发送测试数据2'/>
             <ButtonToSendMessage
                 toSendMessage={new AdminTestMessage('3')}
-                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as UserIdentity).password.token)}}
                 text='确认发送测试数据3'/>
             <ButtonToSendMessage
                 toSendMessage={new AdminTestMessage('4')}
-                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as UserInformation).recentNucleicTestTime.millis)}}
                 text='确认发送测试数据4'/>
             <ButtonToSendMessage
                 toSendMessage={new AdminTestMessage('5')}
-                ifSuccess={(replyMessage: Place)=>{alert(replyMessage)}}
+                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as UserToken).token.token)}}
                 text='确认发送测试数据5'/>
             <ButtonToSendMessage
                 toSendMessage={new UserRegisterMessage('', '', '')}

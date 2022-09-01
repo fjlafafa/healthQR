@@ -1,26 +1,17 @@
-import {UserId} from "./UserMeta/UserId";
-import {IdentityNumber} from "./UserMeta/IdentityNumber";
-import {RealName} from "./UserMeta/RealName";
-import {Permission} from "./UserMeta/Permission";
-import {Password} from "./UserMeta/Password";
+import {UserId} from "./UserMeta/UserId"
+import {Token} from "./UserMeta/Token"
+import {DateClass} from "./Templates/DateClass";
 
-export class UserIdentity {
-    id: UserId
-    realName: RealName
-    password: Password
-    identityNumber: IdentityNumber
-    permission: Permission
-
+export class UserToken {
+        userId : UserId
+        token : Token
+        refreshTime : DateClass
     constructor(
-        id: UserId,
-        realName: RealName,
-        password: Password,
-        identityNumber: IdentityNumber,
-        permission: Permission) {
-            this.id=id
-            this.realName=realName
-            this.password=password
-            this.identityNumber=identityNumber
-            this.permission=permission
+        userId : UserId,
+        token : Token,
+        refreshTime : DateClass) {
+        this.userId = userId
+        this.token = token
+        this.refreshTime = refreshTime
     }
 }
