@@ -37,9 +37,9 @@ class Routes()(implicit val system: ActorSystem[Master.RouterRequest]) {
               Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
               Try {
                 val message = IOUtils.deserialize[TSMSPMessage](bytes).get
-                //message.handle()
-                val ans : Future[Master.RouterResponse] = system.ask(ref => Master.RouterRequest(message, ref))
-                Await.result(ans, timeout.duration).asInstanceOf[Master.RouterResponse].result
+                message.handle()
+                //val ans : Future[Master.RouterResponse] = system.ask(ref => Master.RouterRequest(message, ref))
+                //Await.result(ans, timeout.duration).asInstanceOf[Master.RouterResponse].result
               } match {
                 case Success(value) =>
                   logger.info("处理成功")
