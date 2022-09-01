@@ -1,17 +1,16 @@
-import {View} from "react-native";
+import {View, Text} from "react-native";
 import {SCREEN_WIDTH, styles} from "../../../../Utils/Styles";
-import {Button, Text} from "react-native-paper";
-import {PagesID} from "../../../PagesID";
+import {Button} from "react-native-paper";
 
 const barHeight = 40
 
 function Barbutton({chosen,text,onPress}:any){
     if (chosen) {
         return <View style={{flex: 1, backgroundColor: styles.pressColor}}>
-            <Button mode='text'>
-                <Text style={{flex: 5}}>{text}</Text>
-                <View style={{flex: 1, backgroundColor: styles.themeColor}}/>
+            <Button mode='text' compact={true} style={{flex: 5}}>
+                <Text>{text}</Text>
             </Button>
+            <View style={{flex: 1, backgroundColor: styles.themeColor}}/>
         </View>
     } else {
         return <View style={{flex: 1, backgroundColor: styles.barColor}}>
@@ -23,8 +22,8 @@ function Barbutton({chosen,text,onPress}:any){
 }
 export function ViewSwitcher({state, navigation}:any) {
     return <View style={{width: SCREEN_WIDTH, height: barHeight, flexDirection:'row'}}>
-        <Barbutton chosen={state==PagesID.Overview} text='健康码主页' onPress={navigation.navigate(PagesID.Overview)}/>
-        <Barbutton chosen={state==PagesID.Overview} text='地点扫码' onPress={navigation.navigate(PagesID.Overview)}/>
-        <Barbutton chosen={state==PagesID.Overview} text='核酸等级码' onPress={navigation.navigate(PagesID.Overview)}/>
+        <Barbutton chosen={state=='Overview'} text='健康码主页' onPress={navigation.navigate('Overview')}/>
+        <Barbutton chosen={state=='ScanQRCode'} text='地点扫码' onPress={navigation.navigate('ScanQRCode')}/>
+        <Barbutton chosen={state=='Overview'} text='核酸等级码' onPress={navigation.navigate('Overview')}/>
     </View>
 }

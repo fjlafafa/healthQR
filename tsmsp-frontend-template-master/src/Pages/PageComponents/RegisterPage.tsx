@@ -11,7 +11,6 @@ import {checkIdentityNumber} from 'Utils/FormatUtils/IdentityNumberUtil'
 import {checkPassword} from 'Utils/FormatUtils/PasswordUtil'
 import {checkRealName} from 'Utils/FormatUtils/RealNameUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../PagesID";
 
 const registerStore= create(() => ({
     realName:'',
@@ -41,7 +40,7 @@ export function RegisterPage({ navigation }: any){
             text = '注册'
             ifSuccess = {(reply:string)=>{
                 setUserToken(reply)
-                navigation.navigate(PagesID.Overview,{})
+                navigation.navigate('Overview',{})
                 clearRegisterInfo()
             }}
         />

@@ -28,6 +28,6 @@ export const styles = {
     },
     bgColor: '#f0f0f0',
     barColor:'#fff',
-    pressColor:'#ddd',
-    themeColor:'#d9e',
+    pressColor:'#eee',
+    themeColor:'#a9e',
 }

@@ -11,7 +11,6 @@ import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
 import {myscreen, mywindow} from '../../Utils/Styles'
 import {TextClock} from '../../Utils/PageUtils/ClockUtil'
-import {PagesID} from "../PagesID";
 import {Place} from "../../Types/Place";
 import {Trace} from "../../Types/Trace";
 import {UserIdentity} from "../../Types/UserIdentity";
@@ -59,7 +58,7 @@ export function AdminPage({navigation}: any) {
                 text='确认发送测试数据5'/>
             <ButtonTemplate
             onPress={() => {
-                navigation.navigate(PagesID.UpdateVaccine,{})
+                navigation.navigate('UpdateVaccine',{})
             }}
             text = '核酸疫苗服务'/>
             <ButtonToSendMessage
@@ -67,10 +66,10 @@ export function AdminPage({navigation}: any) {
                 text='注册空用户'
                 ifSuccess={(reply:string) => {
                     setUserToken(reply)
-                    navigation.navigate(PagesID.Overview, {})
+                    navigation.navigate('Overview', {})
                 }}/>
             <ButtonTemplate
-                onPress={() => navigation.navigate(PagesID.Login)}
+                onPress={() => navigation.navigate('Login')}
                 text='返回登录界面'/>
 
             <StatusBar style='auto'/>

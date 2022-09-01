@@ -6,8 +6,6 @@ import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {setPlaceId, PlaceIdStore} from "../../Globals/PlaceIdStore";
-import {PagesID} from "../PagesID";
-import {} from "../../Globals/PlaceIdStore";
 import {View} from "react-native";
 import {SCREEN_WIDTH} from "../../Utils/Styles";
 import QRCode from "react-native-qrcode-svg";
@@ -20,7 +18,7 @@ import Select from 'react-select'
 export function GeneratePlaceQRPage({ navigation }: any){
 
     //const values
-    const {id} = PlaceIdStore()
+    const {PlaceId} = PlaceIdStore()
     const avatar = require('Assets/icon.png')
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -50,7 +48,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
             <Card style={{width: '95%', height: '12%', alignItems: 'center'}}>
                 <SmallSpace/>
 
-                <TextInputTemplate placeholder={'地点代码'} value={id} onChangeText={(newText: string)=>setPlaceId(newText)}/>
+                <TextInputTemplate placeholder={'地点代码'} value={PlaceId} onChangeText={(newText: string)=>setPlaceId(newText)}/>
             </Card>
 
             <SmallSpace/>
@@ -61,7 +59,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
             <ButtonTemplate
                 onPress={() => {
-                    navigation.navigate(PagesID.PlaceQR,{})
+                    navigation.navigate('PlaceQR',{})
                 }}
                 text = '刷新二维码'/>
 
@@ -69,7 +67,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
                 <View style={{height: SCREEN_WIDTH * 0.075}}/>
 
                 <QRCode
-                    value={id}
+                    value={PlaceId}
                     logo={avatar}
                     backgroundColor={"#ffffff"}
                     size={SCREEN_WIDTH * 0.8}
@@ -80,7 +78,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
             <ButtonTemplate
                 onPress={() => {
-                    navigation.navigate(PagesID.Overview,{})
+                    navigation.navigate('Overview',{})
                 }}
                 text = '返回主界面'/>
 

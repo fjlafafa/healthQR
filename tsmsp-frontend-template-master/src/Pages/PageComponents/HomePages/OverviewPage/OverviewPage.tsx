@@ -1,22 +1,21 @@
-import {ScreenTemplate, ScrollTemplate} from "../../../Utils/PageUtils/PageContainerUtil";
+import {ScreenTemplate, ScrollTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
 import {Text, View} from "react-native";
-import {SCREEN_WIDTH} from "../../../Utils/Styles";
+import {SCREEN_WIDTH} from "../../../../Utils/Styles";
 import {Appbar, Card} from "react-native-paper";
 import QRCode from "react-native-qrcode-svg";
-import {TextTemplate} from "../../../Utils/PageUtils/TextUtil";
-import {BoundedTraceList} from "../../../Utils/PageUtils/ListUtil";
-import {ButtonTemplate} from "../../../Utils/PageUtils/ButtonUtil";
-import {PagesID} from "../../PagesID";
+import {TextTemplate} from "../../../../Utils/PageUtils/TextUtil";
+import {BoundedTraceList} from "../../../../Utils/PageUtils/ListUtil";
+import {ButtonTemplate} from "../../../../Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
-import {TokenStore} from "../../../Globals/TokenStore";
-import {SendData} from "../../../Utils/SendDataUtil";
-import {UserGetTraceMessage} from "../../../Impl/Messages/UserMessages/UserGetTraceMessage";
-import {ONEDAY} from "../../../Utils/Constants";
-import {TSMSPReply} from "../../../Impl/TSMSPReply";
+import {TokenStore} from "../../../../Globals/TokenStore";
+import {SendData} from "../../../../Utils/SendDataUtil";
+import {UserGetTraceMessage} from "../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
+import {ONEDAY} from "../../../../Utils/Constants";
+import {TSMSPReply} from "../../../../Impl/TSMSPReply";
 import create from "zustand";
-import {ViewSwitcher} from "./HomePagesUtils/BarUtil";
-import {Trace} from "../../../Types/Trace";
+import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
+import {Trace} from "../../../../Types/Trace";
 
 
 const registerStore = create(() => ({
@@ -39,9 +38,9 @@ export function OverviewPage({navigation}: any) {
                 (reply: Trace[]) => {
                     setTraceHistory(reply)
                 }))})
-    const avatar = require('Assets/icon.png')
+    const avatar = require('../../../../Assets/icon.png')
     return <ScreenTemplate>
-        <ViewSwitcher state={}/>
+        <ViewSwitcher state={'Overview'} navigation={navigation}/>
         <ScrollTemplate>
             <View style={{
                 width: SCREEN_WIDTH,
@@ -97,28 +96,28 @@ export function OverviewPage({navigation}: any) {
 
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate(PagesID.ScanQRCode, {})
+                        navigation.navigate('ScanQRCode', {})
                         clearTraceInfo()
                     }}
                     text='地点扫码'
                 />
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate(PagesID.Account, {})
+                        navigation.navigate('Account', {})
                         clearTraceInfo()
                     }}
                     text='个人账户'
                 />
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate(PagesID.Trace, {})
+                        navigation.navigate('Trace', {})
                         clearTraceInfo()
                     }}
                     text='踪迹管理'
                 />
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate(PagesID.Vaccine, {})
+                        navigation.navigate('Vaccine', {})
                         clearTraceInfo()
                     }}
                     text='核酸疫苗管理'

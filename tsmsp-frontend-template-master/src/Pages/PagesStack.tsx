@@ -11,8 +11,8 @@ import {AllowAdmin} from 'Globals/GlobalVariables'
 import {AccountPage} from "./PageComponents/AccountPage";
 import {VaccinePage} from "./PageComponents/VaccinePage";
 import {NavigationContainer} from "@react-navigation/native";
-import {PagesID} from "./PagesID";
-import {OverviewPage} from "./PageComponents/HomePages/OverviewPage";
+
+import {OverviewPage} from "./PageComponents/HomePages/OverviewPage/OverviewPage";
 import {GeneratePlaceQRPage} from "./PageComponents/GeneratePlaceQRPage";
 import {ModifyVaccinePage} from "./PageComponents/ModifyVaccinePage";
 
@@ -23,18 +23,18 @@ export function PagesStack({navigation}: any) {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Group screenOptions={{headerShown: false}}>
-                    <Stack.Screen name={PagesID.Login} component={LoginPage}/>
-                    <Stack.Screen name={PagesID.Register} component={RegisterPage}/>
-                    <Stack.Screen name={PagesID.Overview} component={OverviewPage}/>
-                    <Stack.Screen name={PagesID.Account} component={AccountPage}/>
-                    <Stack.Screen name={PagesID.Password} component={PasswordPage}/>
-                    <Stack.Screen name={PagesID.ScanQRCode} component={ScanQRCodePage}/>
-                    <Stack.Screen name={PagesID.Trace} component={TracePage}/>
-                    <Stack.Screen name={PagesID.Vaccine} component={VaccinePage}/>
-                    <Stack.Screen name={PagesID.UpdateVaccine} component={ModifyVaccinePage}/>
-                    <Stack.Screen name={PagesID.DeleteAccount} component={AccountDeletionPage}/>
-                    <Stack.Screen name={PagesID.PlaceQR} component={GeneratePlaceQRPage}/>
-                    {AllowAdmin ? <Stack.Screen name={PagesID.Admin} component={AdminPage}/> : null}
+                    <Stack.Screen name={'Login'} component={LoginPage}/>
+                    <Stack.Screen name={'Register'} component={RegisterPage}/>
+                    <Stack.Screen name={'Overview'} component={OverviewPage}/>
+                    <Stack.Screen name={'Account'} component={AccountPage}/>
+                    <Stack.Screen name={'Password'} component={PasswordPage}/>
+                    <Stack.Screen name={'ScanQRCode'} component={ScanQRCodePage}/>
+                    <Stack.Screen name={'Trace'} component={TracePage}/>
+                    <Stack.Screen name={'Vaccine'} component={VaccinePage}/>
+                    <Stack.Screen name={'UpdateVaccine'} component={ModifyVaccinePage}/>
+                    <Stack.Screen name={'DeleteAccount'} component={AccountDeletionPage}/>
+                    <Stack.Screen name={'PlaceQR'} component={GeneratePlaceQRPage}/>
+                    {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
                 </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>)

@@ -10,7 +10,6 @@ import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
 import {UserUpdateTraceMessage} from "../../Impl/Messages/UserMessages/UserUpdateTraceMessage";
-import {PagesID} from "../PagesID";
 import {checkRealName} from "../../Utils/FormatUtils/RealNameUtil";
 import {checkPassword} from "../../Utils/FormatUtils/PasswordUtil";
 import {checkIdentityNumber} from "../../Utils/FormatUtils/IdentityNumberUtil";
@@ -60,7 +59,7 @@ export function TracePage({ navigation }: any){
 
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate(PagesID.Overview,{})
+                navigation.navigate('Overview',{})
                 clearRemovedTraceInfo()
             }}
             text = '返回主界面'/>

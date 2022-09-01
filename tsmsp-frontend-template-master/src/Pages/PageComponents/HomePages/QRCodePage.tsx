@@ -4,7 +4,6 @@ import {ButtonTemplate} from '../../../Utils/PageUtils/ButtonUtil'
 import {TokenStore} from '../../../Globals/TokenStore'
 import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {} from '../../../Utils/PageUtils/PageContainerUtil'
-import {PagesID} from "../../PagesID";
 //Not Used
 export function QRCodePage({navigation}:any) {
     const {token} = TokenStore()
@@ -17,7 +16,7 @@ export function QRCodePage({navigation}:any) {
                 color='orange'
             />
             <ButtonTemplate
-                onPress = {()=>navigation.navigate(PagesID.Overview,{})}
+                onPress = {()=>navigation.navigate('Overview',{})}
                 text = '返回主页'/>
         </ScreenTemplate>
     )
