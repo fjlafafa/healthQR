@@ -8,5 +8,7 @@ object GlobalVariables {
   val listenAddress : String = "0.0.0.0"
   val listenPortal : Int = 6070
   lazy val clientSystem : ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty[Nothing], "client-system")
+  val MSPortal1 : Int = 6071
+  val MSIP1 : String = "http://localhost:" + MSPortal1.toString + "/api"
 }
  

@@ -1,7 +1,9 @@
 package Process
 
+import Globals.GlobalVariables
 import Utils.DBUtils
 import akka.actor.typed.ActorSystem
+import akka.actor.typed.scaladsl.Behaviors
 import com.typesafe.scalalogging.Logger
 
 import scala.util.{Failure, Success, Try}
@@ -11,8 +13,10 @@ object Server {
   val logger = Logger("MainServer")
   def main(args: Array[String]): Unit = try {
     DBUtils.initDatabase()
-    implicit val system: ActorSystem[Master.RouterRequest] = ActorSystem(Master(), "main_server")
-    TSMSPPortalHttpServer.startHttpServer(new Routes().routes, system)
+    implicit val system : ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty[Nothing], "main_server")
+    TSMSPPortalHttpServer.startHttpServer(new Routes().routes, system, GlobalVariables.listenPortal)
+    implicit val MSSystem1: ActorSystem[Master.Message] = ActorSystem(Master(), "main_server")
+    TSMSPPortalHttpServer.startHttpServer(new MSRoutes().routes, MSSystem1, GlobalVariables.MSPortal1)
   } catch {
     case exception: Exception =>
       logger.error(exception.getMessage)
