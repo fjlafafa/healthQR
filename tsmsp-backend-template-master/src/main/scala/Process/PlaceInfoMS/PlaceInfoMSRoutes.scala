@@ -1,29 +1,32 @@
-package Process
-
-import Globals.GlobalVariables
 import Impl.Messages.TSMSPMessage
-import Impl.Messages.UserMessages._
-import Process.Server.logger
-import Utils.HTTPUtils.sender
+import PlaceInfoMSServer.logger
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
 import akka.actor.typed.ActorSystem
+import akka.actor.typed.scaladsl.AskPattern.Askable
 import akka.http.scaladsl.model.headers.HttpOriginRange
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import akka.util.Timeout
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
 import com.typesafe.scalalogging.Logger
 
+import scala.concurrent.{Await, Future}
+import scala.concurrent.duration.DurationInt
 import scala.util.{Failure, Try}
 
 
 /** http不同的路径用于处理不同的通信 */
 import scala.util.Success
-class Routes()(implicit val system: ActorSystem[_]) {
+
+class PlaceInfoMSRoutes()(implicit val system: ActorSystem[PlaceInfoMSMaster.Message]) {
   val settings: CorsSettings.Default = CorsSettings.defaultSettings.copy(
     allowedOrigins = HttpOriginRange.* // * refers to all
   )
+  implicit val timeout: Timeout = 3.seconds
+  implicit val scheduler = system.scheduler
+  implicit val ec = system.executionContext
   val routes: Route = {
       concat(
         (path("api") & cors(settings)) {
@@ -31,13 +34,10 @@ class Routes()(implicit val system: ActorSystem[_]) {
             entity(as[String]) { bytes =>
               Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
               Try {
-                IOUtils.deserialize[TSMSPMessage](bytes).get.send(GlobalVariables.PlaceInfoMSIP).get
-                /*
-                IOUtils.deserialize[TSMSPMessage](bytes).get match { // This is gonna be long...
-                  case msg: UserLoginMessage => msg.send(GlobalVariables.PlaceInfoMSIP).get
-                }
-                 */
-                //message.handle()
+                val message = IOUtils.deserialize[TSMSPMessage](bytes).get
+                message.handle()
+                //val ans : Future[PlaceInfoMSMaster.RouterResponse] = system.ask(ref => PlaceInfoMSMaster.RouterRequest(message, ref))
+                //Await.result(ans, timeout.duration).result
               } match {
                 case Success(value) =>
                   logger.info("处理成功")
