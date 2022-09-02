@@ -1,7 +1,6 @@
 import React from 'react'
-import {styles} from 'Utils/Styles'
-import {Text} from 'react-native'
-import {TextTemplate} from './TextUtil'
+import {SCREEN_WIDTH, styles} from 'Utils/Styles'
+import {Text} from 'react-native-paper'
 
 export class TextClock extends React.Component<any> {
     clockID: any
@@ -17,8 +16,8 @@ export class TextClock extends React.Component<any> {
         clearInterval(this.clockID)
     }
     render(){
-        return <TextTemplate>
-            {this.state.date.toLocaleDateString()+'\n'+this.state.date.toLocaleTimeString()}
-        </TextTemplate>
+        return <Text style={{fontSize:SCREEN_WIDTH*0.1}}>
+            {this.state.date.toLocaleDateString()+' '+this.state.date.toLocaleTimeString()}
+        </Text>
     }
 }

@@ -33,7 +33,7 @@ const setting = {
 
 export class ScreenTemplate extends React.Component<any, any> {
     static defaultProps = {
-        title: '健康宝',
+        title: '类型安全健康宝',
         goBack: ()=>{},
         atRoot: false,
     }

@@ -15,6 +15,7 @@ import {ONEDAY} from "../../../../../Utils/Constants";
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
 import {Trace} from "../../../../../Types/Trace";
 import {useFocusEffect} from "@react-navigation/native";
+import {TextClock} from "../../../../../Utils/PageUtils/ClockUtil";
 
 
 export function OverviewPage({navigation}: any) {
@@ -35,6 +36,16 @@ export function OverviewPage({navigation}: any) {
         <ViewSwitcher state={'Overview'} navigation={navigation}/>
         <ScrollTemplate>
             <View style={{
+                width: SCREEN_WIDTH,
+                height: SCREEN_WIDTH*0.2,
+                alignItems: 'center',
+                justifyContent: 'center',/*backgroundColor: '#f0f'/**/
+            }}>
+                <Card style={{width: '95%', height: '90%', alignItems: 'center'}}>
+                    <TextClock/>
+                </Card>
+            </View>
+                <View style={{
                 width: SCREEN_WIDTH,
                 height: SCREEN_WIDTH,
                 alignItems: 'center',
