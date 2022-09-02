@@ -1,13 +1,13 @@
-import {ButtonTemplate, ButtonToSendMessage} from "../../Utils/PageUtils/ButtonUtil";
-import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {ButtonTemplate, ButtonToSendMessage} from "../../../../Utils/PageUtils/ButtonUtil";
+import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
 import React from "react";
-import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
-import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {checkIdentityNumber} from "../../../../Utils/FormatUtils/IdentityNumberUtil";
+import {TextInputTemplate} from "../../../../Utils/PageUtils/TextInputUtil";
 import create from "zustand";
-import {HospitalUpdateNucleicTestMessage} from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
-import {HospitalUpdateVaccinationMessage} from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
-import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
-import {HospitalUpdateRiskLevelMessage} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
+import {HospitalUpdateNucleicTestMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
+import {HospitalUpdateVaccinationMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
+import {UserRiskLevel} from "../../../../Types/UserMeta/UserRiskLevel";
+import {HospitalUpdateRiskLevelMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
 
 const patientInfoStore= create(() => ({
     identityNumber: "",

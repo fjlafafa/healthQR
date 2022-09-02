@@ -1,19 +1,19 @@
-import {ScreenTemplate, ScrollTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
+import {ScreenTemplate, ScrollTemplate} from "../../../../../Utils/PageUtils/PageContainerUtil";
 import {Text, View} from "react-native";
-import {SCREEN_WIDTH} from "../../../../Utils/Styles";
+import {SCREEN_WIDTH} from "../../../../../Utils/Styles";
 import {Appbar, Card} from "react-native-paper";
 import QRCode from "react-native-qrcode-svg";
-import {TextTemplate} from "../../../../Utils/PageUtils/TextUtil";
-import {BoundedTraceList} from "../../../../Utils/PageUtils/ListUtil";
-import {ButtonTemplate} from "../../../../Utils/PageUtils/ButtonUtil";
+import {TextTemplate} from "../../../../../Utils/PageUtils/TextUtil";
+import {BoundedTraceList} from "../../../../../Utils/PageUtils/ListUtil";
+import {ButtonTemplate} from "../../../../../Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React, {useState} from "react";
-import {TokenStore} from "../../../../Globals/TokenStore";
-import {SendData} from "../../../../Utils/SendDataUtil";
-import {UserGetTraceMessage} from "../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
-import {ONEDAY} from "../../../../Utils/Constants";
+import {TokenStore} from "../../../../../Globals/TokenStore";
+import {SendData} from "../../../../../Utils/SendDataUtil";
+import {UserGetTraceMessage} from "../../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
+import {ONEDAY} from "../../../../../Utils/Constants";
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
-import {Trace} from "../../../../Types/Trace";
+import {Trace} from "../../../../../Types/Trace";
 import {useFocusEffect} from "@react-navigation/native";
 
 
@@ -30,7 +30,7 @@ export function OverviewPage({navigation}: any) {
             })
     }
     useFocusEffect(React.useCallback(refresh, []))
-    const avatar = require('../../../../Assets/icon.png')
+    const avatar = require('../../../../../Assets/icon.png')
     return <ScreenTemplate>
         <ViewSwitcher state={'Overview'} navigation={navigation}/>
         <ScrollTemplate>

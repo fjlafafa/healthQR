@@ -2,21 +2,21 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import React from 'react'
 import {LoginPage} from './PageComponents/LoginPage'
 import {RegisterPage} from './PageComponents/RegisterPage'
-import {PasswordPage} from './PageComponents/PasswordPage'
-import {ScanQRCodePage} from './PageComponents/HomePages/ScanQRCodePage'
-import {TracePage} from './PageComponents/TracePage'
-import {AccountDeletionPage} from './PageComponents/AccountDeletionPage'
-import {AdminPage} from './PageComponents/AdminPages/AdminPage'
+import {PasswordPage} from './PageComponents/UserPages/AccountRelativePages/PasswordPage'
+import {ScanQRCodePage} from './PageComponents/UserPages/HomePages/ScanQRCodePage'
+import {TracePage} from './PageComponents/UserPages/TraceRelativePages/TracePage'
+import {AccountDeletionPage} from './PageComponents/UserPages/AccountRelativePages/AccountDeletionPage'
+import {AdminPage} from './PageComponents/TestPages/AdminPage'
 import {AllowAdmin} from 'Globals/GlobalVariables'
-import {AccountPage} from "./PageComponents/AccountPage";
-import {VaccinePage} from "./PageComponents/VaccinePage";
+import {AccountPage} from "./PageComponents/UserPages/AccountRelativePages/AccountPage";
+import {VaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/VaccinePage";
 import {NavigationContainer} from "@react-navigation/native";
 
-import {OverviewPage} from "./PageComponents/HomePages/OverviewPage/OverviewPage";
-import {GeneratePlaceQRPage} from "./PageComponents/GeneratePlaceQRPage";
-import {ModifyVaccinePage} from "./PageComponents/ModifyVaccinePage";
-import {RegisterQRCodePage} from "./PageComponents/HomePages/RegisterQRCodePage";
-import {AdminBrotherPage} from "./PageComponents/AdminPages/AdminBrotherPage";
+import {OverviewPage} from "./PageComponents/UserPages/HomePages/OverviewPage/OverviewPage";
+import {GeneratePlaceQRPage} from "./PageComponents/ThirdPartyPages/GeneratePlaceQRPage";
+import {ModifyVaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/ModifyVaccinePage";
+import {RegisterQRCodePage} from "./PageComponents/UserPages/HomePages/RegisterQRCodePage";
+import {AdminBrotherPage} from "./PageComponents/TestPages/AdminBrotherPage";
 
 const Stack = createNativeStackNavigator()
 

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Button, StyleSheet, Text, View} from 'react-native'
 import {BarCodeScanner} from 'expo-barcode-scanner'
-import {ButtonTemplate} from '../../../Utils/PageUtils/ButtonUtil'
-import {SendData} from '../../../Utils/SendDataUtil'
-import {UserUpdateTraceMessage} from '../../../Impl/Messages/UserMessages/UserUpdateTraceMessage'
-import {TokenStore} from '../../../Globals/TokenStore'
-import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
+import {ButtonTemplate} from '../../../../Utils/PageUtils/ButtonUtil'
+import {SendData} from '../../../../Utils/SendDataUtil'
+import {UserUpdateTraceMessage} from '../../../../Impl/Messages/UserMessages/UserUpdateTraceMessage'
+import {TokenStore} from '../../../../Globals/TokenStore'
+import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
 import {ViewSwitcher} from "./HomePagesUtils/BarUtil";
 
 export function ScanQRCodePage({navigation}: any) {

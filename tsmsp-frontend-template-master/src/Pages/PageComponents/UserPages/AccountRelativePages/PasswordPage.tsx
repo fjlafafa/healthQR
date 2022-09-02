@@ -1,12 +1,12 @@
 import React from 'react'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
-import {TokenStore} from 'Globals/TokenStore'
-import {UserUpdatePasswordMessage} from '../../Impl/Messages/UserMessages/UserUpdatePasswordMessage'
-import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {TSMSPReply} from '../../Impl/TSMSPReply'
-import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
-import {ScreenTemplate} from "../../Utils/PageUtils/PageContainerUtil";
+import {TokenStore} from '../../../../Globals/TokenStore'
+import {UserUpdatePasswordMessage} from '../../../../Impl/Messages/UserMessages/UserUpdatePasswordMessage'
+import {ButtonTemplate, ButtonToSendMessage} from '../../../../Utils/PageUtils/ButtonUtil'
+import {TSMSPReply} from '../../../../Impl/TSMSPReply'
+import {TextInputTemplate} from '../../../../Utils/PageUtils/TextInputUtil'
+import {ScreenTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
 
 const passwordStore= create(() => ({
     password:'',

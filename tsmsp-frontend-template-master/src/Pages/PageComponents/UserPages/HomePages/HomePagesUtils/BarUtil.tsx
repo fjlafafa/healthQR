@@ -1,5 +1,5 @@
 import {View, Text} from "react-native";
-import {SCREEN_WIDTH, styles} from "../../../../Utils/Styles";
+import {SCREEN_WIDTH, styles} from "../../../../../Utils/Styles";
 import {Button} from "react-native-paper";
 
 const barHeight = 45
