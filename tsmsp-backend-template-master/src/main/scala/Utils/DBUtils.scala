@@ -8,7 +8,6 @@ import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Await
-import scala.swing.Dialog
 import scala.concurrent.duration.Duration
 import scala.util.{Failure, Success, Try}
 
