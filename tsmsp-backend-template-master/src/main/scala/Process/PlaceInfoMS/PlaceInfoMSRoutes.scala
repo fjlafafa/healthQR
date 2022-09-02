@@ -35,9 +35,9 @@ class PlaceInfoMSRoutes()(implicit val system: ActorSystem[PlaceInfoMSMaster.Mes
               Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
               Try {
                 val message = IOUtils.deserialize[TSMSPMessage](bytes).get
-                message.handle()
-                //val ans : Future[PlaceInfoMSMaster.RouterResponse] = system.ask(ref => PlaceInfoMSMaster.RouterRequest(message, ref))
-                //Await.result(ans, timeout.duration).result
+                //message.handle()
+                val ans : Future[PlaceInfoMSMaster.RouterResponse] = system.ask(ref => PlaceInfoMSMaster.RouterRequest(message, ref))
+                Await.result(ans, timeout.duration).result
               } match {
                 case Success(value) =>
                   logger.info("处理成功")
