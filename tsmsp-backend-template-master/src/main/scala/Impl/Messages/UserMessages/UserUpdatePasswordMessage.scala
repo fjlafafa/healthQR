@@ -12,8 +12,8 @@ import scala.util.Try
 case class UserUpdatePasswordMessage(userToken: String, password: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val userId = UserTokenTable.checkUserId(Token(userToken)).get
-    DBUtils.exec(UserIdentityTable.updatePassword(userId, Password(password.hashCode().toString())))
-    val userRealName = UserIdentityTable.checkRealName(userId).get
+    val userRealName = UserIdentityTable.checkRealNameById(userId).get
+    DBUtils.exec(UserIdentityTable.updatePassword(userId, Password(password.hashCode().toString)))
     TSMSPReply(STATUS_OK, userRealName.name)
   }
 }

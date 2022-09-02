@@ -1,13 +1,12 @@
 import React from 'react'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
-import {TokenStore} from 'Globals/TokenStore'
-import {UserUpdatePasswordMessage} from '../../Impl/Messages/UserMessages/UserUpdatePasswordMessage'
-import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {TSMSPReply} from '../../Impl/TSMSPReply'
-import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
-import {ScreenTemplate} from "../../Utils/PageUtils/PageContainerUtil";
-import {PagesID} from "../PagesID";
+import {TokenStore} from '../../../../Globals/TokenStore'
+import {UserUpdatePasswordMessage} from '../../../../Impl/Messages/UserMessages/UserUpdatePasswordMessage'
+import {ButtonTemplate, ButtonToSendMessage} from '../../../../Utils/PageUtils/ButtonUtil'
+import {TSMSPReply} from '../../../../Impl/TSMSPReply'
+import {TextInputTemplate} from '../../../../Utils/PageUtils/TextInputUtil'
+import {ScreenTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
 
 const passwordStore= create(() => ({
     password:'',
@@ -32,17 +31,17 @@ export function PasswordPage({ navigation }: any){
                 clearConfirmedPassword()
             }}
             toSendMessage ={new UserUpdatePasswordMessage(token, password)}
-            ifSuccess = {(replyJson: TSMSPReply)=> {
-                alert('用户' + replyJson.message + '的密码已修改')
+            ifSuccess = {(reply:string)=> {
+                alert('用户' + reply + '的密码已修改')
                 clearInfo()
-                navigation.navigate(PagesID.Overview,{})
+                navigation.navigate('Overview',{})
             }}
             text = '提交修改'
         />
         <ButtonTemplate
             onPress = {() => {
                 clearInfo()
-                navigation.navigate(PagesID.Overview,{})
+                navigation.navigate('Overview',{})
             }}
             text = '返回主页'
         />

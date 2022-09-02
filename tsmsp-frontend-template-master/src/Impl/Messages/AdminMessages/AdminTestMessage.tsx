@@ -9,7 +9,7 @@ export class AdminTestMessage extends TSMSPMessage {
         super()
         this.userToken = userToken
     }
-    getReplyMessage(replyJson: TSMSPReply) {
+    override getReplyMessage(replyJson: TSMSPReply) {
         //const message = JSON.parse(replyJson.message) as Place
         //return message
         return replyJson.message

@@ -27,5 +27,7 @@ export const styles = {
         justifyContent: 'center'
     },
     bgColor: '#f0f0f0',
-    barColor:'#fff'
+    barColor:'#fff',
+    pressColor:'#eee',
+    themeColor:'#a9e',
 }

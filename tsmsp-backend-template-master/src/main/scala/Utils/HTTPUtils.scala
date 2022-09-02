@@ -1,7 +1,7 @@
 package Utils
 
-import Impl.{JacksonSerializable, TSMSPReply}
 import Globals.GlobalVariables
+import Impl.{JacksonSerializable, TSMSPReply}
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.HttpMethods.POST
@@ -10,8 +10,8 @@ import akka.http.scaladsl.unmarshalling.Unmarshal
 import akka.util.Timeout
 
 import java.util.concurrent.TimeUnit
-import scala.concurrent.{Await, ExecutionContextExecutor, Future}
 import scala.concurrent.duration.{Duration, DurationInt}
+import scala.concurrent.{Await, ExecutionContextExecutor, Future}
 import scala.util.Try
 
 object HTTPUtils {

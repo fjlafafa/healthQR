@@ -10,11 +10,6 @@ import {AllowAdmin} from 'Globals/GlobalVariables'
 import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {TextTemplate} from '../../Utils/PageUtils/TextUtil'
-import {Dimensions, View} from 'react-native'
-import {Appbar, Button, Dialog, Paragraph, Portal, Provider} from 'react-native-paper'
-import {myscreen, SCREEN_WIDTH} from '../../Utils/Styles'
-import {PagesID} from "../PagesID";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -32,14 +27,14 @@ const clearLoginInfo= ()=> loginStore.setState(({userName: '', password: ''}))
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
     return (<ScreenTemplate atRoot={true}>
-        <TextInputTemplate placeholder={'真实姓名'} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
-        <TextInputTemplate placeholder={'密码'}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInputTemplate label='真实姓名' value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
+        <TextInputTemplate label='密码'  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
-            ifSuccess = {(replyJson:TSMSPReply)=>{
-                setUserToken(replyJson.message)
-                navigation.navigate(PagesID.Overview,{})
+            ifSuccess = {(reply:string)=>{
+                setUserToken(reply)
+                navigation.navigate('Overview',{})
                 clearLoginInfo()
             }}
             text = '登录'
@@ -47,7 +42,7 @@ export function LoginPage({ navigation }: any){
         {/*<LoginIcon fontSize='large' > </LoginIcon>*/}
         <ButtonTemplate
             onPress = {()=> {
-                navigation.navigate(PagesID.Register,{})
+                navigation.navigate('Register',{})
                 clearLoginInfo()
             }}
             text = '注册'
@@ -55,7 +50,7 @@ export function LoginPage({ navigation }: any){
 
         <ButtonTemplate
             onPress = {()=> {
-                navigation.navigate(PagesID.PlaceQR,{})
+                navigation.navigate('PlaceQR',{})
                 clearLoginInfo()
             }}
             text = '生成地点二维码'
@@ -67,7 +62,7 @@ export function LoginPage({ navigation }: any){
             <ButtonTemplate
                 onPress={
                 () => {
-                    navigation.navigate(PagesID.Admin,{})
+                    navigation.navigate('Admin')
                     clearLoginInfo()
                 }
             }

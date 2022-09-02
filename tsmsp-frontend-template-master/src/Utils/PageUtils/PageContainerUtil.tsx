@@ -15,6 +15,7 @@ const setting = {
     },
     bar: {
         width: SCREEN_WIDTH,
+        height: SCREEN_WIDTH*0.12,
         backgroundColor: styles.barColor
     },
     safeArea: {

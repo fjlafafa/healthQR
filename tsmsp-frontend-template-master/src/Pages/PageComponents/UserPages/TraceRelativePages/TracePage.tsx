@@ -2,19 +2,18 @@ import React from 'react'
 import {Text} from 'react-native'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
-import {TokenStore} from 'Globals/TokenStore'
-import {UserDeleteTraceMessage} from '../../Impl/Messages/UserMessages/UserDeleteTraceMessage'
-import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {TSMSPReply} from '../../Impl/TSMSPReply'
-import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
-import {BoundedTraceList} from 'Utils/PageUtils/ListUtil'
-import {UserUpdateTraceMessage} from "../../Impl/Messages/UserMessages/UserUpdateTraceMessage";
-import {PagesID} from "../PagesID";
-import {checkRealName} from "../../Utils/FormatUtils/RealNameUtil";
-import {checkPassword} from "../../Utils/FormatUtils/PasswordUtil";
-import {checkIdentityNumber} from "../../Utils/FormatUtils/IdentityNumberUtil";
-import {isNumber, checkLength} from "../../Utils/FormatUtils/IdentityNumberUtil";
+import {TokenStore} from '../../../../Globals/TokenStore'
+import {UserDeleteTraceMessage} from '../../../../Impl/Messages/UserMessages/UserDeleteTraceMessage'
+import {ButtonTemplate, ButtonToSendMessage} from '../../../../Utils/PageUtils/ButtonUtil'
+import {TSMSPReply} from '../../../../Impl/TSMSPReply'
+import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
+import {TextInputTemplate} from '../../../../Utils/PageUtils/TextInputUtil'
+import {BoundedTraceList} from '../../../../Utils/PageUtils/ListUtil'
+import {UserUpdateTraceMessage} from "../../../../Impl/Messages/UserMessages/UserUpdateTraceMessage";
+import {checkRealName} from "../../../../Utils/FormatUtils/RealNameUtil";
+import {checkPassword} from "../../../../Utils/FormatUtils/PasswordUtil";
+import {checkIdentityNumber} from "../../../../Utils/FormatUtils/IdentityNumberUtil";
+import {isNumber, checkLength} from "../../../../Utils/FormatUtils/IdentityNumberUtil";
 //To implement
 const registerStore= create(() => ({
     RemovedTrace: '',
@@ -51,8 +50,8 @@ export function TracePage({ navigation }: any){
 
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteTraceMessage(token, +RemovedTrace)}
-            ifSuccess = {(replyJson:TSMSPReply)=>{
-                alert('轨迹\'' + replyJson.message + '\'删除成功！')
+            ifSuccess = {(replyMessage:string)=>{
+                alert('轨迹\'' + replyMessage + '\'删除成功！')
                 setRemovedTrace('')
             }}
             text = '删除记录'
@@ -60,7 +59,7 @@ export function TracePage({ navigation }: any){
 
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate(PagesID.Overview,{})
+                navigation.navigate('Overview',{})
                 clearRemovedTraceInfo()
             }}
             text = '返回主界面'/>

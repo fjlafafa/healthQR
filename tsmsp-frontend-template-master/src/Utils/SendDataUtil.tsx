@@ -6,8 +6,8 @@ import {Impl} from 'Types/Enums'
 
 export function SendData(
     toSendMessage: TSMSPMessage,
-    ifSuccess: (reply: TSMSPReply) => void = (replyJson: TSMSPReply)=>{alert(toSendMessage.getReplyMessage(replyJson))},
-    ifFail: (reply: TSMSPReply) => void = (replyJson: TSMSPReply)=>{alert(toSendMessage.getReplyMessage(replyJson))}) {
+    ifSuccess: (replyMessage: any) => void = (replyMessage: any)=>{alert(replyMessage)},
+    ifFail: (replyMessage: any) => void = (replyMessage: any)=>{alert(replyMessage)}) {
     fetch(APIUrl, {
         method: 'POST',
         headers: {'Content-Type': 'text/plain'},
@@ -15,8 +15,8 @@ export function SendData(
     }).then((response) => response.json()).then((replyJson: TSMSPReply) => {
         console.log(replyJson)
         if (replyJson.status === Impl.STATUS_OK)
-            ifSuccess(replyJson)
+            ifSuccess(toSendMessage.getReplyMessage(replyJson))
         else
-            ifFail(replyJson)
+            ifFail(toSendMessage.getReplyMessage(replyJson))
     }).catch((e) => console.log(e))
 }

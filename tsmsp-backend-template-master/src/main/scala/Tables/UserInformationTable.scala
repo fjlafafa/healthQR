@@ -2,8 +2,8 @@ package Tables
 
 import Exceptions.UserNotExistsException
 import Globals.GlobalVariables
-import Types.{UserInformation, UserRiskLevels, VaccinationStatuses}
 import Types.UserMeta._
+import Types.{UserInformation, UserRiskLevels, VaccinationStatuses}
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
 import org.joda.time.DateTime
