@@ -26,9 +26,9 @@ const clearRegisterInfo= ()=> registerStore.setState(({realName: '', password: '
 export function RegisterPage({ navigation }: any){
     const {realName, password, identityNumber}=registerStore()
     return <ScreenTemplate>
-        <TextInputTemplate placeholder={'真实姓名'} value={realName} onChangeText={(newText: string)=>setUserName(newText)}/>
-        <TextInputTemplate placeholder={'密码'}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
-        <TextInputTemplate placeholder={'身份证号'} value={identityNumber} onChangeText={(newText: string)=>setRealName(newText)}/>
+        <TextInputTemplate label={'真实姓名'} value={realName} onChangeText={(newText: string)=>setUserName(newText)}/>
+        <TextInputTemplate label={'密码'}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInputTemplate label={'身份证号'} value={identityNumber} onChangeText={(newText: string)=>setRealName(newText)}/>
 
         {/*console.log('试图使用用户名'+userName+',密码'+password + ',真实姓名'+realName + '注册！')*/}
         <ButtonToSendMessage

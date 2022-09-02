@@ -1,16 +1,20 @@
 import React from 'react'
 import {INNER_WIDTH, styles} from 'Utils/Styles'
-import {TextInput, View} from 'react-native'
-import {Text} from "react-native-paper";
+import { View} from 'react-native'
+import {Text, TextInput} from "react-native-paper";
 
 const setting ={
-    text: {
+    textBox: {
         fontSize: 20,
-        fontFamily: 'Arial'
+        height: 30,
+        width: INNER_WIDTH,
+        fontFamily: 'Arial',
+        backgroundColor:styles.bgColor,
     },
     view: {
-        height: 30,
-        width: INNER_WIDTH
+        height: 50,
+        width: INNER_WIDTH,
+        //backgroundColor:'#ff0',
     },
     large:{
         fontSize: 30,
@@ -21,9 +25,11 @@ export function TextInputTemplate(props: any) {
     //const styles_size = {width: 180}
     //const style = Object.assign({}, styles_size, styles.text)
     //const styledProps: any = Object.assign({}, props, {style: style})
-    return (<View style={setting.view}>
-        {React.createElement(TextInput, {...props, style: setting.text}, null)}
-    </View>)
+    return <View style={setting.view}>
+        {React.createElement(TextInput, {...props,
+            mode:'outlined',
+            style: setting.textBox}, null)}
+    </View>
 }
 
 export function LargeTextInputTemplate(props: any) {

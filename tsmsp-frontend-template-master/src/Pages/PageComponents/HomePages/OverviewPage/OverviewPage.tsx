@@ -7,31 +7,19 @@ import {TextTemplate} from "../../../../Utils/PageUtils/TextUtil";
 import {BoundedTraceList} from "../../../../Utils/PageUtils/ListUtil";
 import {ButtonTemplate} from "../../../../Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
-import React from "react";
+import React, {useState} from "react";
 import {TokenStore} from "../../../../Globals/TokenStore";
 import {SendData} from "../../../../Utils/SendDataUtil";
 import {UserGetTraceMessage} from "../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
 import {ONEDAY} from "../../../../Utils/Constants";
-import {TSMSPReply} from "../../../../Impl/TSMSPReply";
-import create from "zustand";
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
 import {Trace} from "../../../../Types/Trace";
 import {useFocusEffect} from "@react-navigation/native";
 
 
-const registerStore = create(() => ({
-    traceHistory: new Array<Trace>()
-}))
-
-const setTraceHistory = (traceHistory: Trace[]) => registerStore.setState({traceHistory})
-const clearTraceInfo = () => registerStore.setState({
-    traceHistory: new Array<Trace>()
-})
-
-
 export function OverviewPage({navigation}: any) {
     const {token} = TokenStore()
-    const {traceHistory} = registerStore()
+    const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     //refreshing
     const refresh=() =>
     {
@@ -74,7 +62,10 @@ export function OverviewPage({navigation}: any) {
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', /*backgroundColor: '#008'/**/}}>
                     <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
                         {/*核酸疫苗*/}
-                        <TextTemplate>核酸疫苗</TextTemplate>
+                        <View style={{flex:1, backgroundColor:'#ff0'}}>
+                            <TextTemplate>核酸疫苗</TextTemplate>
+                        </View>
+                        <View style={{flex:1, backgroundColor:'#f00'}}/>
                     </Card>
                 </View>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', /*backgroundColor: '#080'*/}}>
@@ -101,28 +92,24 @@ export function OverviewPage({navigation}: any) {
                 <ButtonTemplate
                     onPress={() => {
                         navigation.navigate('ScanQRCode', {})
-                        clearTraceInfo()
                     }}
                     text='地点扫码'
                 />
                 <ButtonTemplate
                     onPress={() => {
                         navigation.navigate('Account', {})
-                        clearTraceInfo()
                     }}
                     text='个人账户'
                 />
                 <ButtonTemplate
                     onPress={() => {
                         navigation.navigate('Trace', {})
-                        clearTraceInfo()
                     }}
                     text='踪迹管理'
                 />
                 <ButtonTemplate
                     onPress={() => {
                         navigation.navigate('Vaccine', {})
-                        clearTraceInfo()
                     }}
                     text='核酸疫苗管理'
                 />

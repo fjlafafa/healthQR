@@ -27,8 +27,8 @@ const clearLoginInfo= ()=> loginStore.setState(({userName: '', password: ''}))
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
     return (<ScreenTemplate atRoot={true}>
-        <TextInputTemplate placeholder={'真实姓名'} value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
-        <TextInputTemplate placeholder={'密码'}  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInputTemplate label='真实姓名' value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
+        <TextInputTemplate label='密码'  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             icon = 'login'
             toSendMessage ={new UserLoginMessage(userName, password)}
