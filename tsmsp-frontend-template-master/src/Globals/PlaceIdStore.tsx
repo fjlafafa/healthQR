@@ -1,7 +1,7 @@
 import create from 'zustand'
 
 export const PlaceIdStore = create(() => ({
-    PlaceId : ''
+    PlaceId : '1'
 }))
 
 export const setPlaceId= (placeId: string) => PlaceIdStore.setState({ PlaceId: placeId })
