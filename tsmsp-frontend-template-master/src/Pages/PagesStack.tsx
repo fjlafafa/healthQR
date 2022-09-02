@@ -6,7 +6,7 @@ import {PasswordPage} from './PageComponents/PasswordPage'
 import {ScanQRCodePage} from './PageComponents/HomePages/ScanQRCodePage'
 import {TracePage} from './PageComponents/TracePage'
 import {AccountDeletionPage} from './PageComponents/AccountDeletionPage'
-import {AdminPage} from './PageComponents/AdminPage'
+import {AdminPage} from './PageComponents/AdminPages/AdminPage'
 import {AllowAdmin} from 'Globals/GlobalVariables'
 import {AccountPage} from "./PageComponents/AccountPage";
 import {VaccinePage} from "./PageComponents/VaccinePage";
@@ -16,6 +16,7 @@ import {OverviewPage} from "./PageComponents/HomePages/OverviewPage/OverviewPage
 import {GeneratePlaceQRPage} from "./PageComponents/GeneratePlaceQRPage";
 import {ModifyVaccinePage} from "./PageComponents/ModifyVaccinePage";
 import {RegisterQRCodePage} from "./PageComponents/HomePages/RegisterQRCodePage";
+import {AdminBrotherPage} from "./PageComponents/AdminPages/AdminBrotherPage";
 
 const Stack = createNativeStackNavigator()
 
@@ -37,6 +38,7 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'PlaceQR'} component={GeneratePlaceQRPage}/>
                     <Stack.Screen name={'RegisterQRCode'} component={RegisterQRCodePage}/>
                     {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
+                    {AllowAdmin ? <Stack.Screen name={'AdminBrother'} component={AdminBrotherPage}/> : null}
                 </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>)

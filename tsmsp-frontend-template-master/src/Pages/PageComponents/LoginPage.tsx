@@ -62,7 +62,7 @@ export function LoginPage({ navigation }: any){
             <ButtonTemplate
                 onPress={
                 () => {
-                    navigation.navigate('Admin',{})
+                    navigation.navigate('Admin')
                     clearLoginInfo()
                 }
             }
