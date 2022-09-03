@@ -9,11 +9,12 @@ import {TokenStore} from '../../../../../Globals/TokenStore'
 import {ScreenTemplate, ScrollTemplate} from '../../../../../Utils/PageUtils/PageContainerUtil'
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
 import {SCREEN_WIDTH} from "../../../../../Utils/SettingsAndConstants";
-import {ScanView} from "./ScanPlaceQRCodeUtils/ScanViewUtil";
+import {PlaceScanView} from "./ScanPlaceQRCodeUtils/ScanViewUtil";
 import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
 
 export function ScanPlaceQRCodePage({navigation}: any) {
     const [cameraOn, setCamera]=useState(false)
+    const {token} = TokenStore()
 
     return (
         <ScreenTemplate>
@@ -25,7 +26,7 @@ export function ScanPlaceQRCodePage({navigation}: any) {
                     alignItems: 'center',
                     justifyContent: 'center',/*backgroundColor: '#f0f'/**/
                 }}>
-                    {cameraOn?<ScanView/>:<Button mode='text' onPress={()=>{setCamera(true)}}>点击开启地点扫码</Button>}
+                    {cameraOn?<PlaceScanView token={token}/>:<Button mode='text' onPress={()=>{setCamera(true)}}>点击开启地点扫码</Button>}
                 </View>
                 <ButtonTemplate onPress={()=>{
                     if(cameraOn)
