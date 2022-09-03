@@ -1,7 +1,7 @@
 import {ScreenTemplate, ScrollTemplate} from "../../../../../Utils/PageUtils/PageContainerUtil";
 import {Text, View} from "react-native";
 import {SCREEN_WIDTH} from "../../../../../Utils/Styles";
-import {Appbar, Card} from "react-native-paper";
+import {Card} from "react-native-paper";
 import QRCode from "react-native-qrcode-svg";
 import {TextTemplate} from "../../../../../Utils/PageUtils/TextUtil";
 import {BoundedTraceList} from "../../../../../Utils/PageUtils/ListUtil";
@@ -16,6 +16,10 @@ import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
 import {Trace} from "../../../../../Types/Trace";
 import {useFocusEffect} from "@react-navigation/native";
 import {TextClock} from "../../../../../Utils/PageUtils/ClockUtil";
+import {DateClass} from "../../../../../Types/Templates/DateClass";
+import {VaccinationStatus} from "../../../../../Types/UserMeta/VaccinationStatus";
+import {VaccineView} from "./OverviewPageUtils/VaccineUtil";
+import {NucleicAcidView} from "./OverviewPageUtils/NucleicAcidUtil";
 
 
 export function OverviewPage({navigation}: any) {
@@ -37,11 +41,11 @@ export function OverviewPage({navigation}: any) {
         <ScrollTemplate>
             <View style={{
                 width: SCREEN_WIDTH,
-                height: SCREEN_WIDTH*0.2,
+                height: SCREEN_WIDTH*0.18,
                 alignItems: 'center',
                 justifyContent: 'center',/*backgroundColor: '#f0f'/**/
             }}>
-                <Card style={{width: '95%', height: '90%', alignItems: 'center'}}>
+                <Card style={{width: '95%', height: '90%', alignItems: 'center',}}>
                     <TextClock/>
                 </Card>
             </View>
@@ -70,16 +74,17 @@ export function OverviewPage({navigation}: any) {
                 height: SCREEN_WIDTH * 0.35,
                 flexDirection: 'row', /*backgroundColor: '#00f'/**/
             }}>
-                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', /*backgroundColor: '#008'/**/}}>
-                    <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
+                <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#008'/**/}}>
+
                         {/*核酸疫苗*/}
-                        <View style={{flex:1, backgroundColor:'#ff0'}}>
-                            <TextTemplate>核酸疫苗</TextTemplate>
-                        </View>
-                        <View style={{flex:1, backgroundColor:'#f00'}}/>
-                    </Card>
+                    <View style={{flex: 1, justifyContent: 'center',alignItems: 'center' }}>
+                        <VaccineView vaccinationStatus={VaccinationStatus.none}/>
+                    </View>
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <NucleicAcidView recentNucleicTestTime={new DateClass(new Date().getTime()-321211138)}/>
+                    </View>
                 </View>
-                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', /*backgroundColor: '#080'*/}}>
+                <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#080'*/}}>
                     <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
                         {/*行程数据*/}
                         <TextTemplate>行程记录</TextTemplate>
