@@ -52,12 +52,20 @@ object PlaceTable {
     )
   }
 
-  def getDescription(placeId: PlaceId) : Try[String] = Try {
+  def getDescription(placeId: PlaceId): Try[String] = Try {
     DBUtils.exec(
       placeTable.filter(_.id === placeId).map(pl => (pl.province, pl.city, pl.district, pl.subDistrict)).result.headOption
     ).getOrElse(
       throw PlaceNotExists()
     ).productIterator.toList.mkString(" ")
+  }
+
+  def getPlace(placeId: PlaceId): Try[Place] = Try {
+    DBUtils.exec(
+      placeTable.filter(_.id === placeId).result.headOption
+    ).getOrElse(
+      throw PlaceNotExists()
+    )
   }
 
   def isEmpty: Try[Boolean] = Try{

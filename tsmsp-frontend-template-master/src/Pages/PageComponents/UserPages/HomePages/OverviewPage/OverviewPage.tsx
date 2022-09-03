@@ -140,6 +140,7 @@ export function OverviewPage({navigation}: any) {
                 />
             </View>
             <HeaderTemplate text='测试行程表'/>
+            <TraceTable token={token} traceList={traceHistory}/>
 
             <StatusBar style='auto'/>
         </ScrollTemplate>
