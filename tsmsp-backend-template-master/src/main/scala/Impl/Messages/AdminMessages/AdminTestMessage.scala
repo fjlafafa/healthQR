@@ -1,5 +1,7 @@
 package Impl.Messages.AdminMessages
 
+import Exceptions.TokenNotExistsException
+import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserTokenTable, UserTraceTable}
@@ -7,7 +9,7 @@ import Types.PlaceMeta._
 import Types.TraceMeta.{SelfReport, TraceId}
 import Types.UserMeta._
 import Types._
-import Utils.IOUtils
+import Utils.{DBUtils, IOUtils}
 import org.joda.time.DateTime
 
 import scala.util.Try
@@ -23,8 +25,11 @@ case class AdminTestMessage(userToken: String) extends TSMSPMessage {
       case "4" => TSMSPReply(STATUS_OK, IOUtils.serialize(UserInformation(UserId(123), now, Types.UserMeta.Triple, PopUps)).get)
       case "5" => TSMSPReply(STATUS_OK, IOUtils.serialize(UserToken(UserId(233), Token("sbsbsbs"), now)).get)
       case _ =>
-        val userName = UserTokenTable.checkUserId(Token(userToken)).get
-        val trace = UserTraceTable.checkAllTrace(userName).get
+        val trace = DBUtils.exec(
+          UserTokenTable.checkUserIdByToken(Token(userToken)).flatMap(
+            userId => UserTraceTable.checkAllTrace(userId.getOrElse(throw TokenNotExistsException()))
+          )
+        ).toList
         TSMSPReply(STATUS_OK, IOUtils.serialize(trace).get)
     }
   }

@@ -1,5 +1,7 @@
 package Impl.Messages.UserMessages
 
+import Exceptions.TokenNotExistsException
+import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserTokenTable, UserTraceTable}
@@ -13,13 +15,15 @@ import scala.util.Try
 
 case class UserUpdateTraceMessage(userToken: String, traceId: Long, detailedPlaceDescription: String, reportType: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val userId = UserTokenTable.checkUserId(Token(userToken)).get
     DBUtils.exec(
-      UserTraceTable.addTrace(
-        userId,
-        PlaceId(traceId.toInt),
-        DetailedPlaceDescription(detailedPlaceDescription),
-        ReportType.getType(reportType)))
+      UserTokenTable.checkUserIdByToken(Token(userToken)).flatMap(
+          userId => UserTraceTable.addTrace(
+            userId.getOrElse(throw TokenNotExistsException()),
+            PlaceId(traceId.toInt),
+            DetailedPlaceDescription(detailedPlaceDescription),
+            ReportType.getType(reportType))
+        )
+      )
     TSMSPReply(STATUS_OK, "上传成功！")
   }
 }

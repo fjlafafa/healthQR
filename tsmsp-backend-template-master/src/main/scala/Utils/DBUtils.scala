@@ -35,8 +35,8 @@ object DBUtils {
       Try {
         exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)
       } match {
-        case Success(value) => Logger("DataInitialization").info(s"Successfully initialize place table, return value $value")
-        case Failure(exception) => Logger("DataInitialization").info(s"Place initialization failure, return value $exception")
+        case Success(value) => Logger("DataInitialization").info(s"Successfully initialize place table!")
+        case Failure(exception) => Logger("DataInitialization").info(s"Place initialization failure, return $exception")
         }
      }
     }

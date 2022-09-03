@@ -12,7 +12,6 @@ import scala.util.Try
 
 case class UserGetPlaceMessage(userToken: String, visitedPlaceId: Long) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val userId = UserTokenTable.checkUserId(Token(userToken)).get
     val trace = PlaceTable.getPlace(PlaceId(visitedPlaceId)).get
     TSMSPReply(STATUS_OK, IOUtils.serialize(trace).get)
   }
