@@ -14,17 +14,18 @@ case class UserRegisterMessage(realName: String, password: String, identityNumbe
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     if (UserIdentityTable.checkUserExists(RealName(realName)).get) throw UserNameAlreadyExistsException()
     else {
+      DBUtils.exec(UserIdentityTable
+        .addUser(
+          RealName(realName),
+          Password(password.hashCode().toString),
+          IdentityNumber(identityNumber),
+          Permission.getType(permission)))
       val userId = UserIdentityTable.checkIdByRealName(RealName(realName)).get
-      DBUtils.exec(
-        UserIdentityTable
-          .addUser(
-            RealName(realName),
-            Password(password.hashCode().toString),
-            IdentityNumber(identityNumber),
-            Permission.getType(permission))
-          >> UserTokenTable.addRow(userId)
+
+      DBUtils.exec(UserTokenTable.addRow(userId)
           >> UserInformationTable.addUser(userId)
       )
+
       TSMSPReply(STATUS_OK, UserTokenTable.checkToken(userId).get.token)
     }
   }
