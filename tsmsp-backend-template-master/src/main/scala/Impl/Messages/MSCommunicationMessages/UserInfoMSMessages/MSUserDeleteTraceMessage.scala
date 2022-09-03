@@ -1,11 +1,11 @@
-package Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages
+package Impl.Messages.MSCommunicationMessages.UserInfoMSMessages
 
 import Exceptions.NoTraceException
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
-import Tables.{UserIdentityTable, UserTraceTable}
+import Tables.UserTraceTable
 import Types.TraceMeta.TraceId
-import Types.UserMeta.{Token, UserId}
+import Types.UserMeta.UserId
 import Utils.DBUtils
 import org.joda.time.DateTime
 

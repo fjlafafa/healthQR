@@ -10,5 +10,9 @@ object GlobalVariables {
   lazy val clientSystem : ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty[Nothing], "client-system")
   val PlaceInfoMSPortal : Int = 6071
   val PlaceInfoMSIP : String = "http://localhost:" + PlaceInfoMSPortal.toString + "/api"
+  val UserInfoMSPortal : Int = 6072
+  val UserInfoMSIP : String = "http://localhost:" + UserInfoMSPortal.toString + "/api"
+  val VaccineAndNucleicMSPortal : Int = 6073
+  val VaccineAndNucleicMSIP : String = "http://localhost:" + VaccineAndNucleicMSPortal.toString + "/api"
 }
  

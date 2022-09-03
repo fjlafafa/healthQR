@@ -1,7 +1,7 @@
 package Impl.Messages
 
 import Impl.Messages.AdminMessages._
-import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages._
+import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.ThirdPartyMessages._
 import Impl.Messages.UserMessages._
 import Impl.{JacksonSerializable, STATUS_ERROR, TSMSPReply}
@@ -26,6 +26,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[HospitalUpdateVaccinationMessage], name = "HospitalUpdateVaccinationMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelMessage], name = "HospitalUpdateRiskLevelMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserDeleteTraceMessage], name = "MSUserDeleteTraceMessage"),
+    new JsonSubTypes.Type(value = classOf[MSUserGetTraceMessage], name = "MSUserGetTraceMessage"),
   ))
 abstract class TSMSPMessage extends JacksonSerializable {
   def handle() : TSMSPReply = reaction(DateTime.now()) match {
