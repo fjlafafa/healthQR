@@ -11,7 +11,7 @@ export const INNER_WIDTH  = SCREEN_WIDTH-60
 
 export const DAY_MILLIS=24*60*60*1000
 
-export const styles = {
+export const settingsAndConstants = {
     backgroundImage:{
         flex: 1,
         resizeMode: 'cover',

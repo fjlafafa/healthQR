@@ -1,5 +1,5 @@
 import React from 'react'
-import {SCREEN_WIDTH, styles} from 'Utils/Styles'
+import {SCREEN_WIDTH, settingsAndConstants} from '../SettingsAndConstants'
 import {Text} from 'react-native-paper'
 
 export class TextClock extends React.Component<any> {

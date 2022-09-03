@@ -1,12 +1,8 @@
 import {Place} from "../../../../../../Types/Place";
 import {evaluateRisk, mapRiskToColor} from "../../../../../../Types/PlaceMeta/PlaceRiskLevel";
-import {View, Text} from "react-native";
+import {View, Text, ScrollView} from "react-native";
 
-interface TraceInfo {
-    tracePlace:Array<Place>
-}
-
-export function PlanTraceList(props:TraceInfo) {
+export function PlanTraceList(props: { tracePlace:Array<Place> }) {
     const sortedTrace=props.tracePlace.sort((a:Place,b:Place)=>{
         const an=evaluateRisk(a.riskLevel)
         const bn=evaluateRisk(b.riskLevel)
@@ -18,9 +14,9 @@ export function PlanTraceList(props:TraceInfo) {
             return 1
     })
     const items=sortedTrace.map((a:Place)=>{
-            return <Text style={{color:mapRiskToColor(a.riskLevel)}}>{a.province.name} {a.city.name} {a.district.name}</Text>
-        })
-    return <View style={{flex:1}}>
+            return <View key={a.id.id}><Text style={{color:mapRiskToColor(a.riskLevel)}}>{a.province.name} {a.city.name} {a.district.name}</Text></View>
+    })
+    return <ScrollView style={{flex:1}}>
         {items}
-    </View>
+    </ScrollView>
 }

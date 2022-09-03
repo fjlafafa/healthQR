@@ -1,6 +1,6 @@
 import React from 'react'
 import {FlatList, View} from 'react-native'
-import {INNER_WIDTH} from '../Styles'
+import {INNER_WIDTH} from '../SettingsAndConstants'
 
 //To Implement
 const setting = {

@@ -2,12 +2,9 @@ import {VaccinationStatus} from "Types/UserMeta/VaccinationStatus";
 import {View} from "react-native";
 import React from "react";
 import {DateClass} from "../../../../../../Types/Templates/DateClass";
-import {DAY_MILLIS, SCREEN_WIDTH} from 'Utils/Styles'
+import {DAY_MILLIS, SCREEN_WIDTH} from '../../../../../../Utils/SettingsAndConstants'
 import { Card, Text } from "react-native-paper";
 
-interface VaccineInfo {
-    vaccinationStatus: VaccinationStatus
-}
 const setting={
     text:{
         fontSize:SCREEN_WIDTH*0.03,
@@ -15,7 +12,7 @@ const setting={
     }
 }
 
-export function VaccineView (props: VaccineInfo) {
+export function VaccineView (props: { vaccinationStatus: VaccinationStatus }) {
     const vaccineColor=(
         props.vaccinationStatus===VaccinationStatus.triple?'goldenrod':(
             props.vaccinationStatus===VaccinationStatus.none?'grey':'forestgreen'

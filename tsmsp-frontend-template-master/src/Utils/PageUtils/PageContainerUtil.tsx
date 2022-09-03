@@ -1,4 +1,4 @@
-import {SCREEN_HEIGHT, SCREEN_WIDTH, styles} from 'Utils/Styles'
+import {SCREEN_HEIGHT, SCREEN_WIDTH, settingsAndConstants} from '../SettingsAndConstants'
 import {ScrollView, View} from 'react-native'
 import React from 'react'
 import {Appbar, Provider} from 'react-native-paper'
@@ -11,17 +11,17 @@ const setting = {
         alignItems: 'center',
         width: SCREEN_WIDTH,
         height: SCREEN_HEIGHT,
-        backgroundColor: styles.bgColor/*This color may be necessary*/
+        backgroundColor: settingsAndConstants.bgColor/*This color may be necessary*/
     },
     bar: {
         width: SCREEN_WIDTH,
         height: SCREEN_WIDTH*0.12,
-        backgroundColor: styles.barColor
+        backgroundColor: settingsAndConstants.barColor
     },
     safeArea: {
         height: safeAreaHeight,
         width: SCREEN_WIDTH,
-        backgroundColor: styles.barColor
+        backgroundColor: settingsAndConstants.barColor
     },
     container: {
         flex: 1,
