@@ -27,7 +27,8 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelMessage], name = "HospitalUpdateRiskLevelMessage")
   ))
 abstract class TSMSPMessage extends JacksonSerializable {
-  def handle(): TSMSPReply = reaction(DateTime.now()) match {
+  def handle(): TSMSPReply = reaction(
+    DateTime.now()) match {
     case Success(value) => value
     case Failure(exception) => TSMSPReply(STATUS_ERROR, exception.getMessage)
   }
