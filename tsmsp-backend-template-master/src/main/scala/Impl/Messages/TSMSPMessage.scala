@@ -1,7 +1,8 @@
 package Impl.Messages
 
-import Impl.Messages.AdminMessages.{AdminDropDataBasesMessage, AdminTestMessage}
-import Impl.Messages.ThirdPartyMessages.{HospitalUpdateNucleicTestMessage, HospitalUpdateRiskLevelMessage, HospitalUpdateVaccinationMessage}
+import Impl.Messages.AdminMessages._
+import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages._
+import Impl.Messages.ThirdPartyMessages._
 import Impl.Messages.UserMessages._
 import Impl.{JacksonSerializable, STATUS_ERROR, TSMSPReply}
 import com.fasterxml.jackson.annotation.{JsonSubTypes, JsonTypeInfo}
@@ -23,7 +24,8 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[AdminTestMessage], name = "AdminTestMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateNucleicTestMessage], name = "HospitalUpdateNucleicTestMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateVaccinationMessage], name = "HospitalUpdateVaccinationMessage"),
-    new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelMessage], name = "HospitalUpdateRiskLevelMessage")
+    new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelMessage], name = "HospitalUpdateRiskLevelMessage"),
+    new JsonSubTypes.Type(value = classOf[MSUserDeleteTraceMessage], name = "MSUserDeleteTraceMessage"),
   ))
 abstract class TSMSPMessage extends JacksonSerializable {
   def handle() : TSMSPReply = reaction(DateTime.now()) match {
