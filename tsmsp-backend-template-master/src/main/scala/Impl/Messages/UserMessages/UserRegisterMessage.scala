@@ -4,13 +4,14 @@ import Exceptions.UserNameAlreadyExistsException
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
-import Types.UserMeta.{IdentityNumber, Password, Permission, RealName}
+import Types.UserMeta.Password
 import Utils.DBUtils
+import Utils.ImplicitTypeConverter._
 import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserRegisterMessage(realName: RealName, password: String, identityNumber: IdentityNumber, permission: Permission) extends TSMSPMessage {
+case class UserRegisterMessage(realName: String, password: String, identityNumber: String, permission: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     if (UserIdentityTable.checkUserExists(realName).get) throw UserNameAlreadyExistsException()
     else {
