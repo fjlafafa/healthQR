@@ -1,5 +1,7 @@
 package Impl.Messages.UserMessages
 
+import Exceptions.TokenNotExistsException
+import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserTokenTable}
@@ -11,9 +13,14 @@ import scala.util.Try
 
 case class UserUpdatePasswordMessage(userToken: String, password: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val userId = UserTokenTable.checkUserId(Token(userToken)).get
-    val userRealName = UserIdentityTable.checkRealNameById(userId).get
-    DBUtils.exec(UserIdentityTable.updatePassword(userId, Password(password.hashCode().toString)))
+    val userRealName = DBUtils.exec(
+      UserTokenTable.checkUserIdByToken(Token(userToken)).flatMap(
+        userId =>
+          UserIdentityTable.updatePassword(userId.getOrElse(throw TokenNotExistsException()), Password(password.hashCode().toString)) >>
+            UserIdentityTable.checkRealNameById(userId.getOrElse(throw TokenNotExistsException())
+        )
+      )
+    ).getOrElse(throw TokenNotExistsException())
     TSMSPReply(STATUS_OK, userRealName.name)
   }
 }

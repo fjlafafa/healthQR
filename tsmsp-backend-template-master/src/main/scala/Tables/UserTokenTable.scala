@@ -39,11 +39,8 @@ object UserTokenTable {
       newToken
     }
   }
-  def checkUserId(token : Token) : Try[UserId] = Try {
-      DBUtils.exec(userTokenTable.filter(ut => ut.token === token && ut.refreshTime >= DateTime.now().minusHours(2)).map(_.userId).result.headOption).getOrElse(
-        throw TokenNotExistsException()
-      )
-  }
+  def checkUserIdByToken(token : Token) : DBIO[Option[UserId]] =
+      userTokenTable.filter(ut => ut.token === token && ut.refreshTime >= DateTime.now().minusHours(2)).map(_.userId).result.headOption
 
   def dropUserName(token: Token): DBIO[Int] =
     userTokenTable.filter(ut => ut.token === token).delete
