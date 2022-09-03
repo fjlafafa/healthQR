@@ -88,7 +88,7 @@ export function AdminPage({navigation}: any) {
             }}
                 text = '核酸疫苗服务'/>
                 <ButtonToSendMessage
-                toSendMessage={new UserRegisterMessage('1', '1', '1')}
+                toSendMessage={new UserRegisterMessage('', '', '')}
                 text='注册空用户'
                 ifSuccess={(reply:string) => {
                 setUserToken(reply)
