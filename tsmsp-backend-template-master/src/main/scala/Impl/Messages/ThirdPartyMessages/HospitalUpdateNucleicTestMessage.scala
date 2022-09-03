@@ -8,6 +8,7 @@ import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
 import Types.UserMeta.{IdentityNumber, NucleicTestResultReporter, Token}
 import Utils.DBUtils
+import Utils.ImplicitTypeConverter._
 import Utils.HTTPUtils.sender
 import org.joda.time.DateTime
 

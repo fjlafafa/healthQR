@@ -8,6 +8,9 @@ import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
 import Types.UserMeta.{IdentityNumber, NucleicTestResultReporter, Token, UserRiskLevel}
 import Utils.HTTPUtils.sender
+import Types.UserMeta.UserRiskLevel
+import Utils.DBUtils
+import Utils.ImplicitTypeConverter._
 import org.joda.time.DateTime
 
 import scala.util.Try

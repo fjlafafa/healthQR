@@ -6,6 +6,7 @@ import Types.UserMeta._
 import Types.{UserInformation, UserRiskLevels, VaccinationStatuses}
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
+import Utils.ImplicitTypeConverter._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
@@ -22,7 +23,7 @@ object UserInformationTable {
   val userInformationTable = TableQuery[UserInformationTable]
 
   def addUser(userId: UserId): DBIO[Int] =
-    userInformationTable += UserInformation(userId, DateTime.now(), VaccinationStatus.getType(VaccinationStatuses.none), UserRiskLevel.getType(UserRiskLevels.green))
+    userInformationTable += UserInformation(userId, DateTime.now(), VaccinationStatuses.none, UserRiskLevels.green)
 
   def updateNucleicTest(userId: UserId, time: DateTime): DBIO[Int] =
     userInformationTable.filter(_.id === userId).map(_.recentNucleicTestTime).update(time)
