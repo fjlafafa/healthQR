@@ -20,6 +20,14 @@ import {DateClass} from "../../../../../Types/Templates/DateClass";
 import {VaccinationStatus} from "../../../../../Types/UserMeta/VaccinationStatus";
 import {VaccineView} from "./OverviewPageUtils/VaccineUtil";
 import {NucleicAcidView} from "./OverviewPageUtils/NucleicAcidUtil";
+import {PlanTraceList} from "./OverviewPageUtils/PlanTraceListUtil";
+import {Place} from "../../../../../Types/Place";
+import {PlaceId} from "../../../../../Types/PlaceMeta/PlaceId";
+import { Province } from "Types/PlaceMeta/Province";
+import { City } from "Types/PlaceMeta/City";
+import { District } from "Types/PlaceMeta/District";
+import {SubDistrict} from "../../../../../Types/PlaceMeta/SubDistrict";
+import {PlaceRiskLevel} from 'Types/PlaceMeta/PlaceRiskLevel'
 
 
 export function OverviewPage({navigation}: any) {
@@ -87,13 +95,12 @@ export function OverviewPage({navigation}: any) {
                 <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#080'*/}}>
                     <Card style={{width: '90%', height: '90%', alignItems: 'center'}}>
                         {/*行程数据*/}
-                        <TextTemplate>行程记录</TextTemplate>
-                        <BoundedTraceList
-                            data={traceHistory}
-                            renderItem={({item, index}:any) => {
-                                return <Text>{index}. {item.time.millis.toString()}到访{item.visitPlaceId.id.toString()}</Text>
-                            }}
-                            keyExtractor={(item: any, index: number) => index.toString()}/>
+                        <TextTemplate>14天内行程记录</TextTemplate>
+                        <PlanTraceList tracePlace={[
+                            new Place(new PlaceId(1), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"),PlaceRiskLevel.red),
+                            new Place(new PlaceId(1), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"),PlaceRiskLevel.green),
+                            new Place(new PlaceId(1), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"),PlaceRiskLevel.yellow),
+                        ]}/>
                     </Card>
                 </View>
             </View>
