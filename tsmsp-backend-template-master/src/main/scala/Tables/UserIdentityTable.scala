@@ -13,7 +13,7 @@ import slick.lifted.Tag
 import scala.util.Try
 
 class UserIdentityTable(tag : Tag) extends Table[UserIdentity](tag, GlobalVariables.mainSchema, "user_identity") {
-  def id = column[UserId]("id", O.PrimaryKey)
+  def id = column[UserId]("user_id", O.PrimaryKey)
   def identityNumber = column[IdentityNumber]("identity_number")
   def password = column[Password]("password")
   def realName = column[RealName]("real_name")
