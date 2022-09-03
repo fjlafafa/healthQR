@@ -39,11 +39,11 @@ object PlaceTable {
             .flatMap(districtJsonValue => (districtJsonValue \ "children").get.as[List[JsObject]]
               .map(subDistrictJsonValue =>
                 addPlace(
-                  PlaceId((subDistrictJsonValue \ "code").get.toString().filterNot(_ == '\"').toLong),
-                  Province((provinceJsonValue \ "name").get.toString()),
-                  City((cityJsonValue \ "name").get.toString()),
-                  District((districtJsonValue \ "name").get.toString()),
-                  SubDistrict((subDistrictJsonValue \ "name").get.toString())
+                  PlaceId((subDistrictJsonValue \ "code").get.toString.filterNot(_ == '\"').toLong),
+                  Province((provinceJsonValue \ "name").get.toString.filterNot(_ == '\"')),
+                  City((cityJsonValue \ "name").get.toString.filterNot(_ == '\"')),
+                  District((districtJsonValue \ "name").get.toString.filterNot(_ == '\"')),
+                  SubDistrict((subDistrictJsonValue \ "name").get.toString.filterNot(_ == '\"'))
                 )
               )
             )
