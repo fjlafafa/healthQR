@@ -1,10 +1,7 @@
 package Process
 
-import Globals.GlobalVariables
 import Impl.Messages.TSMSPMessage
-import Impl.Messages.UserMessages._
 import Process.Server.logger
-import Utils.HTTPUtils.sender
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
 import akka.actor.typed.ActorSystem
@@ -32,10 +29,8 @@ class Routes()(implicit val system: ActorSystem[_]) {
               Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
               Try {
                 //IOUtils.deserialize[TSMSPMessage](bytes).get.send(GlobalVariables.PlaceInfoMSIP).get// Forward all msg to one ms
-                IOUtils.deserialize[TSMSPMessage](bytes).get match { // This is gonna be long...
-                  case msg: UserLoginMessage => msg.send(GlobalVariables.PlaceInfoMSIP).get
-                }
-                //message.handle()//Handle the msg here
+                val message = IOUtils.deserialize[TSMSPMessage](bytes).get
+                message.handle()//Handle the msg here
               } match {
                 case Success(value) =>
                   logger.info("处理成功")
