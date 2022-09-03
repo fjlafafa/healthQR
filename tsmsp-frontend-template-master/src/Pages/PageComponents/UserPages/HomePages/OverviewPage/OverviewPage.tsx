@@ -33,6 +33,7 @@ import {UserInformation} from "../../../../../Types/UserInformation";
 import {UserId} from "../../../../../Types/UserMeta/UserId";
 import {UserRiskLevel} from "../../../../../Types/UserMeta/UserRiskLevel";
 import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
+import {TraceTable} from "../../../../../Utils/PageUtils/TraceTableUtil";
 
 
 export function OverviewPage({navigation}: any) {
@@ -138,6 +139,7 @@ export function OverviewPage({navigation}: any) {
                     text='核酸疫苗管理'
                 />
             </View>
+            <HeaderTemplate text='测试行程表'/>
 
             <StatusBar style='auto'/>
         </ScrollTemplate>

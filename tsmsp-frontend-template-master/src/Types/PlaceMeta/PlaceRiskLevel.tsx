@@ -16,3 +16,8 @@ export function mapRiskToColor(riskLevel:PlaceRiskLevel){
     if (riskLevel===PlaceRiskLevel.yellow) return 'gold'
     return '#d00'
 }
+export function mapRiskToCharacter(riskLevel:PlaceRiskLevel){
+    if (riskLevel===PlaceRiskLevel.green) return '低'
+    if (riskLevel===PlaceRiskLevel.yellow) return '中'
+    return '高'
+}

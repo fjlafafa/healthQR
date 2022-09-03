@@ -36,8 +36,12 @@ export function RegisterQRCodePage({navigation}:any) {
                     <Card style={{width: '95%', height: '95%', alignItems: 'center',justifyContent:'center'}}>
                         <View style={{height: SCREEN_WIDTH * 0.025}}/>
                         {/*核酸登记码*/}
-                        <RegisterCode
-                            userInfo={new UserIdentity(new UserId(1),new RealName('shabra'),new Password('0'),new IdentityNumber('114514121211138'),Permission.normal)}/>
+                        <View style={{height:SCREEN_WIDTH * 0.9,width:SCREEN_WIDTH * 0.95, alignItems: 'center',justifyContent:'center'}}>
+
+                            <RegisterCode
+                                userInfo={new UserIdentity(new UserId(1),new RealName('shabra'),new Password('0'),new IdentityNumber('114514121211138'),Permission.normal)}
+                            />
+                        </View>
                         <View style={{height: '2%'}}/>
                         <TextTemplate>出示此码登记核酸检测/疫苗注射信息</TextTemplate>
                     </Card>

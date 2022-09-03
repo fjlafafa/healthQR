@@ -10,6 +10,6 @@ export function RegisterCode(props:{userInfo:UserIdentity}){
     return <QRCode
         value={JSON.stringify(props.userInfo.identityNumber)}
         logo={avatar}
-        size={SCREEN_WIDTH * 0.9}
+        size={SCREEN_WIDTH * 0.8}
     />
 }
