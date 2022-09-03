@@ -9,9 +9,9 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserUpdatePasswordMessage(userToken: String, password: String) extends TSMSPMessage {
+case class UserUpdatePasswordMessage(userToken: Token, password: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val userId = UserIdentityTable.checkUserId(Token(userToken)).get
+    val userId = UserIdentityTable.checkUserId(userToken).get
     val userRealName = UserIdentityTable.checkRealNameById(userId).get
     DBUtils.exec(UserIdentityTable.updatePassword(userId, Password(password.hashCode().toString)))
     TSMSPReply(STATUS_OK, userRealName.name)

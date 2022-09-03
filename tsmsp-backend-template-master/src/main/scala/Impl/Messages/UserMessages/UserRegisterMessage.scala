@@ -10,18 +10,18 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserRegisterMessage(realName: String, password: String, identityNumber: String, permission: String) extends TSMSPMessage {
+case class UserRegisterMessage(realName: RealName, password: String, identityNumber: IdentityNumber, permission: Permission) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    if (UserIdentityTable.checkUserExists(RealName(realName)).get) throw UserNameAlreadyExistsException()
+    if (UserIdentityTable.checkUserExists(realName).get) throw UserNameAlreadyExistsException()
     else {
-      val userId = UserIdentityTable.checkIdByRealName(RealName(realName)).get
+      val userId = UserIdentityTable.checkIdByRealName(realName).get
       DBUtils.exec(
         UserIdentityTable
           .addUser(
-            RealName(realName),
+            realName,
             Password(password.hashCode().toString),
-            IdentityNumber(identityNumber),
-            Permission.getType(permission))
+            identityNumber,
+            permission)
           >> UserInformationTable.addUser(userId)
       )
       TSMSPReply(STATUS_OK, UserIdentityTable.checkToken(userId).get.token)

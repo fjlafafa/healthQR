@@ -9,9 +9,9 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserDeleteAccountMessage(userToken: String) extends TSMSPMessage {
+case class UserDeleteAccountMessage(userToken: Token) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val userId = UserIdentityTable.checkUserId(Token(userToken)).get
+    val userId = UserIdentityTable.checkUserId(userToken).get
     DBUtils.exec(
         UserIdentityTable.dropUser(userId)
     )
