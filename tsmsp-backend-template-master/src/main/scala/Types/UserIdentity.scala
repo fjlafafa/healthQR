@@ -1,11 +1,14 @@
 package Types
 
 import Types.UserMeta._
+import org.joda.time.DateTime
 
 case class UserIdentity(
-                 id : UserId,
-                 realName: RealName,
-                 password: Password,
+                 userId : UserId,
                  identityNumber: IdentityNumber,
+                 password: Password,
+                 realName: RealName,
+                 token: Token,
+                 refreshTime: DateTime,
                  permission: Permission
                 )

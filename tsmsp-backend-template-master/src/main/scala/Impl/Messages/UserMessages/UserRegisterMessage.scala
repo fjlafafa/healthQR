@@ -3,7 +3,7 @@ package Impl.Messages.UserMessages
 import Exceptions.UserNameAlreadyExistsException
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
-import Tables.{UserIdentityTable, UserInformationTable, UserTokenTable}
+import Tables.{UserIdentityTable, UserInformationTable}
 import Types.UserMeta.{IdentityNumber, Password, Permission, RealName}
 import Utils.DBUtils
 import org.joda.time.DateTime
@@ -22,10 +22,9 @@ case class UserRegisterMessage(realName: String, password: String, identityNumbe
             Password(password.hashCode().toString),
             IdentityNumber(identityNumber),
             Permission.getType(permission))
-          >> UserTokenTable.addRow(userId)
           >> UserInformationTable.addUser(userId)
       )
-      TSMSPReply(STATUS_OK, UserTokenTable.checkToken(userId).get.token)
+      TSMSPReply(STATUS_OK, UserIdentityTable.checkToken(userId).get.token)
     }
   }
 }

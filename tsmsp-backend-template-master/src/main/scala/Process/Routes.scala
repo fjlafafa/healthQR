@@ -31,13 +31,11 @@ class Routes()(implicit val system: ActorSystem[_]) {
             entity(as[String]) { bytes =>
               Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
               Try {
-                IOUtils.deserialize[TSMSPMessage](bytes).get.send(GlobalVariables.PlaceInfoMSIP).get
-                /*
+                //IOUtils.deserialize[TSMSPMessage](bytes).get.send(GlobalVariables.PlaceInfoMSIP).get// Forward all msg to one ms
                 IOUtils.deserialize[TSMSPMessage](bytes).get match { // This is gonna be long...
                   case msg: UserLoginMessage => msg.send(GlobalVariables.PlaceInfoMSIP).get
                 }
-                 */
-                //message.handle()
+                //message.handle()//Handle the msg here
               } match {
                 case Success(value) =>
                   logger.info("处理成功")

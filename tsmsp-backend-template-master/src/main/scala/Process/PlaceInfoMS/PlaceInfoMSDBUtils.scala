@@ -24,7 +24,6 @@ object PlaceInfoMSDBUtils {
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         PlaceTable.placeTable.schema.createIfNotExists,
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
-        UserTokenTable.userTokenTable.schema.createIfNotExists,
         UserTraceTable.userTraceTable.schema.createIfNotExists,
         UserInformationTable.userInformationTable.schema.createIfNotExists,
         PlaceTable.placeTable.schema.createIfNotExists,

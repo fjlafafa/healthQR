@@ -25,7 +25,6 @@ object DBUtils {
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
-        UserTokenTable.userTokenTable.schema.createIfNotExists,
         UserTraceTable.userTraceTable.schema.createIfNotExists,
         UserInformationTable.userInformationTable.schema.createIfNotExists,
         PlaceTable.placeTable.schema.createIfNotExists,
@@ -45,7 +44,6 @@ object DBUtils {
     exec(
       DBIO.seq(
         UserIdentityTable.userIdentityTable.schema.dropIfExists,
-        UserTokenTable.userTokenTable.schema.dropIfExists,
         UserTraceTable.userTraceTable.schema.dropIfExists,
         UserInformationTable.userInformationTable.schema.dropIfExists,
         PlaceTable.placeTable.schema.dropIfExists,
