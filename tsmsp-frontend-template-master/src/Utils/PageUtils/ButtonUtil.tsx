@@ -2,7 +2,7 @@ import React from 'react'
 import {Button} from 'react-native-paper'
 import {APIUrl} from 'Globals/GlobalVariables'
 import {Text, View} from 'react-native'
-import {INNER_WIDTH, styles} from 'Utils/Styles'
+import {INNER_WIDTH, settingsAndConstants} from '../SettingsAndConstants'
 import {TSMSPReply} from '../../Impl/TSMSPReply'
 import {TextTemplate} from './TextUtil'
 import {SendData} from 'Utils/SendDataUtil'
@@ -19,7 +19,12 @@ const setting = {
             //由于显示问题，暂时禁止使用大字体
             fontSize: 15,
             fontFamily: 'Arial'
-        }
+        },
+    view:{
+        height: 60,
+        justifyContent:'center',
+        alignItems:'center',
+    }
 }
 export class ButtonTemplate extends React.Component<any> {
     static defaultProps = {
@@ -31,8 +36,8 @@ export class ButtonTemplate extends React.Component<any> {
     }
 
     render() {
-        let ViewStyle = {height: 60}
-        return (<View style={ViewStyle}>
+        //@ts-ignore
+        return (<View style={setting.view}>
             <Button style={setting.button}
             icon={this.props.icon}
             mode={this.props.mode}

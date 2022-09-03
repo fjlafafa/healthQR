@@ -1,5 +1,5 @@
 import React from 'react'
-import {INNER_WIDTH, styles} from 'Utils/Styles'
+import {INNER_WIDTH, settingsAndConstants} from '../SettingsAndConstants'
 import { View} from 'react-native'
 import {Text, TextInput} from "react-native-paper";
 
@@ -9,7 +9,7 @@ const setting ={
         height: 30,
         width: INNER_WIDTH,
         fontFamily: 'Arial',
-        backgroundColor:styles.bgColor,
+        backgroundColor:settingsAndConstants.bgColor,
     },
     view: {
         height: 50,
@@ -23,7 +23,7 @@ const setting ={
 }
 export function TextInputTemplate(props: any) {
     //const styles_size = {width: 180}
-    //const style = Object.assign({}, styles_size, styles.text)
+    //const style = Object.assign({}, styles_size, settingsAndConstants.text)
     //const styledProps: any = Object.assign({}, props, {style: style})
     return <View style={setting.view}>
         {React.createElement(TextInput, {...props,

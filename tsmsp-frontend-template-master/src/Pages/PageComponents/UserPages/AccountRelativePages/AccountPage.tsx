@@ -1,7 +1,7 @@
 import {clearUserToken, setUserToken, TokenStore} from "../../../../Globals/TokenStore";
 import {} from "../../../../Utils/PageUtils/PageContainerUtil";
 import {TextTemplate} from "../../../../Utils/PageUtils/TextUtil";
-import {myscreen} from "../../../../Utils/Styles";
+import {myscreen} from "../../../../Utils/SettingsAndConstants";
 import {TextClock} from "../../../../Utils/PageUtils/ClockUtil";
 import {ButtonTemplate, ButtonToSendMessage} from "../../../../Utils/PageUtils/ButtonUtil";
 import {AdminDropDataBasesMessage} from "../../../../Impl/Messages/AdminMessages/AdminDropDataBasesMessage";

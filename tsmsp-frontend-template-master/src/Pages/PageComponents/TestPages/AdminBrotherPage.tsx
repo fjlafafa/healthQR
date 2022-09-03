@@ -9,7 +9,7 @@ import {ScreenTemplate, ScrollTemplate} from '../../../Utils/PageUtils/PageConta
 import {UserRegisterMessage} from '../../../Impl/Messages/UserMessages/UserRegisterMessage'
 import {TSMSPReply} from '../../../Impl/TSMSPReply'
 import {TextTemplate} from '../../../Utils/PageUtils/TextUtil'
-import {myscreen, mywindow} from '../../../Utils/Styles'
+import {myscreen, mywindow} from '../../../Utils/SettingsAndConstants'
 import {TextClock} from '../../../Utils/PageUtils/ClockUtil'
 import {Place} from "../../../Types/Place";
 import {Trace} from "../../../Types/Trace";

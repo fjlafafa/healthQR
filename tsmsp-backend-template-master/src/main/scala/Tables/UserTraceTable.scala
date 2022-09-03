@@ -33,13 +33,11 @@ object UserTraceTable {
   def addTrace(userId : UserId, trace : PlaceId, detailedPlaceDescription : DetailedPlaceDescription, reportType: ReportType) : DBIO[Int] =
     userTraceTable +=Trace(RandomTraceId(IdLengths.trace), userId, time = DateTime.now(), trace, detailedPlaceDescription, reportType)
 
-  def checkTrace(userId : UserId, startTime : DateTime, endTime : DateTime) : Try[List[Trace]] = Try {
-    DBUtils.exec(userTraceTable.filter(ut => ut.userId === userId && ut.time <= endTime && ut.time >= startTime).sortBy(_.time).result).toList
-  }
+  def checkTrace(userId : UserId, startTime : DateTime, endTime : DateTime) : DBIO[Seq[Trace]] =
+    userTraceTable.filter(ut => ut.userId === userId && ut.time <= endTime && ut.time >= startTime).sortBy(_.time).result
 
-  def checkAllTrace(userId: UserId): Try[List[Trace]] = Try {
-    DBUtils.exec(userTraceTable.filter(ut => ut.userId === userId).sortBy(_.time).result).toList
-  }
+  def checkAllTrace(userId: UserId): DBIO[Seq[Trace]] =
+    userTraceTable.filter(ut => ut.userId === userId).sortBy(_.time).result
 
   def checkTraceExists(userId: UserId, trace: TraceId): Try[Boolean] = Try(
     DBUtils.exec(userTraceTable.filter(ut => ut.userId === userId && ut.id === trace).size.result) > 0

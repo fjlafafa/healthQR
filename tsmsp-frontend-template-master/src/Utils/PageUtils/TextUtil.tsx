@@ -1,5 +1,5 @@
 import {Text} from 'react-native-paper'
-import {styles} from 'Utils/Styles'
+import {settingsAndConstants} from '../SettingsAndConstants'
 import React from 'react'
 import {View} from 'react-native'
 
@@ -13,7 +13,7 @@ const setting = {
         fontFamily: 'Arial'
     },
     view:{
-        height: 50,
+        height: 30,
         alignItems: 'center'
     }
 

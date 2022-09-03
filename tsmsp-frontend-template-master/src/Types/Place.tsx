@@ -4,6 +4,7 @@ import {City} from "./PlaceMeta/City";
 import {District} from "./PlaceMeta/District";
 import {SubDistrict} from "./PlaceMeta/SubDistrict";
 import {PlaceRiskLevel} from "./PlaceMeta/PlaceRiskLevel";
+import {Trace} from "./Trace";
 
 export class Place {
     id: PlaceId

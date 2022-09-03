@@ -7,7 +7,7 @@ import {TextInputTemplate} from '../../../Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {setPlaceId, PlaceIdStore} from "../../../Globals/PlaceIdStore";
 import {View} from "react-native";
-import {SCREEN_WIDTH} from "../../../Utils/Styles";
+import {SCREEN_WIDTH} from "../../../Utils/SettingsAndConstants";
 import QRCode from "react-native-qrcode-svg";
 import {Card} from "react-native-paper";
 import {LargeTextTemplate} from "../../../Utils/PageUtils/TextUtil";
@@ -78,7 +78,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
             <ButtonTemplate
                 onPress={() => {
-                    navigation.navigate('Overview',{})
+                    navigation.navigate('Login',{})
                 }}
                 text = '返回主界面'/>
 

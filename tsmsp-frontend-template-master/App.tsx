@@ -7,7 +7,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {loadAsync} from 'expo-font';
 import {PagesStack} from "Pages/PagesStack";
 import {AppLoading} from "Pages/AppLoading"
-import {mywindow, myscreen} from "Utils/Styles";
+import {mywindow, myscreen} from "./src/Utils/SettingsAndConstants";
 
 export default class App extends React.Component<any, any> {
     state: { loading: boolean }

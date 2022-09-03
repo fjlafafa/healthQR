@@ -3,7 +3,7 @@ import React from 'react'
 import {LoginPage} from './PageComponents/LoginPage'
 import {RegisterPage} from './PageComponents/RegisterPage'
 import {PasswordPage} from './PageComponents/UserPages/AccountRelativePages/PasswordPage'
-import {ScanQRCodePage} from './PageComponents/UserPages/HomePages/ScanQRCodePage'
+import {ScanQRCodePage} from './PageComponents/UserPages/HomePages/ScanPlaceQRCodePage/ScanQRCodePage'
 import {TracePage} from './PageComponents/UserPages/TraceRelativePages/TracePage'
 import {AccountDeletionPage} from './PageComponents/UserPages/AccountRelativePages/AccountDeletionPage'
 import {AdminPage} from './PageComponents/TestPages/AdminPage'
@@ -15,7 +15,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {OverviewPage} from "./PageComponents/UserPages/HomePages/OverviewPage/OverviewPage";
 import {GeneratePlaceQRPage} from "./PageComponents/ThirdPartyPages/GeneratePlaceQRPage";
 import {ModifyVaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/ModifyVaccinePage";
-import {RegisterQRCodePage} from "./PageComponents/UserPages/HomePages/RegisterQRCodePage";
+import {RegisterQRCodePage} from "./PageComponents/UserPages/HomePages/RegisterQRCodePage/RegisterQRCodePage";
 import {AdminBrotherPage} from "./PageComponents/TestPages/AdminBrotherPage";
 
 const Stack = createNativeStackNavigator()

@@ -9,7 +9,7 @@ import {ScreenTemplate, ScrollTemplate} from '../../../Utils/PageUtils/PageConta
 import {UserRegisterMessage} from '../../../Impl/Messages/UserMessages/UserRegisterMessage'
 import {TSMSPReply} from '../../../Impl/TSMSPReply'
 import {TextTemplate} from '../../../Utils/PageUtils/TextUtil'
-import {myscreen, mywindow} from '../../../Utils/Styles'
+import {myscreen, mywindow} from '../../../Utils/SettingsAndConstants'
 import {TextClock} from '../../../Utils/PageUtils/ClockUtil'
 import {Place} from "../../../Types/Place";
 import {Trace} from "../../../Types/Trace";
@@ -17,6 +17,7 @@ import {UserIdentity} from "../../../Types/UserIdentity";
 import {UserInformation} from "../../../Types/UserInformation";
 import {UserToken} from "../../../Types/UserToken";
 import {useFocusEffect} from "@react-navigation/native";
+import {Select} from "@mui/material";
 
 //This is just a page for test
 var counter = 0
@@ -87,7 +88,7 @@ export function AdminPage({navigation}: any) {
             }}
                 text = '核酸疫苗服务'/>
                 <ButtonToSendMessage
-                toSendMessage={new UserRegisterMessage('', '', '')}
+                toSendMessage={new UserRegisterMessage('1', '1', '1')}
                 text='注册空用户'
                 ifSuccess={(reply:string) => {
                 setUserToken(reply)
@@ -96,6 +97,7 @@ export function AdminPage({navigation}: any) {
             <ButtonTemplate
                 onPress={() => navigation.navigate('Login')}
                 text='返回登录界面'/>
+
 
             <StatusBar style='auto'/>
         </ScrollTemplate>

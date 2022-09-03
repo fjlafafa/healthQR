@@ -1,21 +1,21 @@
 import {View, Text} from "react-native";
-import {SCREEN_WIDTH, styles} from "../../../../../Utils/Styles";
+import {SCREEN_WIDTH, settingsAndConstants} from "../../../../../Utils/SettingsAndConstants";
 import {Button} from "react-native-paper";
 
 const barHeight = 45
 
 function Barbutton({chosen,text,onPress}:any){
     if (chosen) {
-        return <View style={{flex: 1, backgroundColor: styles.pressColor}}>
+        return <View style={{flex: 1, backgroundColor: settingsAndConstants.pressColor}}>
             <View style={{flex: 5}}>
             <Button mode='text' compact={true}>
                 <Text>{text}</Text>
             </Button>
             </View>
-            <View style={{flex: 1, backgroundColor: styles.themeColor}}/>
+            <View style={{flex: 1, backgroundColor: settingsAndConstants.themeColor}}/>
         </View>
     } else {
-        return <View style={{flex: 1, backgroundColor: styles.barColor}}>
+        return <View style={{flex: 1, backgroundColor: settingsAndConstants.barColor}}>
             <Button mode='text' onPress={()=>onPress()}>
                 <Text>{text}</Text>
             </Button>

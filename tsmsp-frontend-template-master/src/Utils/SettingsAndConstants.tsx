@@ -9,7 +9,9 @@ export const SCREEN_WIDTH = (myscreen.width>500?500:myscreen.width)
 export const SCREEN_HEIGHT = myscreen.height
 export const INNER_WIDTH  = SCREEN_WIDTH-60
 
-export const styles = {
+export const DAY_MILLIS=24*60*60*1000
+
+export const settingsAndConstants = {
     backgroundImage:{
         flex: 1,
         resizeMode: 'cover',
@@ -30,4 +32,6 @@ export const styles = {
     barColor:'#fff',
     pressColor:'#eee',
     themeColor:'#a9e',
+    Colors:['goldenrod','forestgreen','grey']
+
 }

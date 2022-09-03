@@ -25,8 +25,18 @@ object DBUtils {
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
+        UserInformationTable.userInformationTable.schema.createIfNotExists,
+        UserTraceTable.userTraceTable.schema.createIfNotExists,
       ).transactionally
     )
+    if(PlaceTable.isEmpty.get){
+      Try {
+        exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)
+      } match {
+        case Success(value) => Logger("DataInitialization").info(s"Successfully initialize place table!")
+        case Failure(exception) => Logger("DataInitialization").info(s"Place initialization failure, return $exception")
+        }
+     }
     }
 
   def dropDatabases():Unit={

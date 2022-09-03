@@ -37,9 +37,9 @@ export function TracePage({ navigation }: any){
         <TextInputTemplate placeholder={'新轨迹地点名称'} value={NewTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>
 
         <ButtonToSendMessage
-            checkBeforeSendMessage = {()=>(isNumber(NewTraceId) && checkLength(NewTraceId, 12))}
+            checkBeforeSendMessage = {()=>(isNumber(NewTraceId) && checkLength(NewTraceId, 9))}
             checkElse = {()=>{
-                alert('地点号码不符合要求(长度应为12)！')
+                alert('地点号码不符合要求(长度应为9)！')
             }}
             icon = 'upload'
             toSendMessage = {new UserUpdateTraceMessage(token, NewTraceId, NewTrace, report_type)}

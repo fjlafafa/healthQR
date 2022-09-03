@@ -46,33 +46,21 @@ object UserIdentityTable {
     }
   }
 
-  def checkUserId(token : Token) : Try[UserId] = Try {
-    DBUtils.exec(userIdentityTable.filter(ut => ut.token === token && ut.refreshTime >= DateTime.now().minusHours(2)).map(_.userId).result.headOption).getOrElse(
-      throw TokenNotExistsException()
-    )
-  }
+  def checkUserIdByToken(token : Token) : DBIO[Option[UserId]] =
+    userIdentityTable.filter(ut => ut.token === token && ut.refreshTime >= DateTime.now().minusHours(2)).map(_.userId).result.headOption
 
   def checkUserExists(realName: RealName): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(_.realName === realName).size.result) > 0)
 
   def checkPassword(realName: RealName, password: Password): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(u => u.realName === realName && u.password === password).size.result) > 0)
 
-  def checkIdByRealName(realName: RealName): Try[UserId] = Try(
-      DBUtils.exec(userIdentityTable.filter(u => u.realName === realName).map(_.userId).result.headOption).getOrElse(
-        throw TokenNotExistsException()
-      )
-  )
+  def checkIdByRealName(realName: RealName): DBIO[Option[UserId]] =
+    userIdentityTable.filter(u => u.realName === realName).map(_.userId).result.headOption
 
-  def checkIdByIdentityNumber(identityNumber: IdentityNumber): Try[UserId] = Try(
-    DBUtils.exec(userIdentityTable.filter(u => u.identityNumber === identityNumber).map(_.userId).result.headOption).getOrElse(
-      throw TokenNotExistsException()
-    )
-  )
+  def checkIdByIdentityNumber(identityNumber: IdentityNumber): DBIO[Option[UserId]] =
+    userIdentityTable.filter(u => u.identityNumber === identityNumber).map(_.userId).result.headOption
 
-  def checkRealNameById(userId: UserId): Try[RealName] = Try(
-      DBUtils.exec(userIdentityTable.filter(u => u.userId === userId).map(_.realName).result.headOption).getOrElse(
-        throw TokenNotExistsException()
-    )
-  )
+  def checkRealNameById(userId: UserId): DBIO[Option[RealName]] =
+      userIdentityTable.filter(u => u.userId === userId).map(_.realName).result.headOption
 
   def updatePassword(userId: UserId, newPassword: Password): DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.password).update(newPassword)
 

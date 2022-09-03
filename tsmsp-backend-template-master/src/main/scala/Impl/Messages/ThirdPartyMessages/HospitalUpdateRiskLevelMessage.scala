@@ -1,16 +1,14 @@
 package Impl.Messages.ThirdPartyMessages
 
-import Exceptions.PermissionDeniedException
+import Exceptions.{PermissionDeniedException, TokenNotExistsException}
 import Globals.GlobalVariables
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSHospitalUpdateRiskLevelMessage
 import Impl.Messages.TSMSPMessage
-import Impl.{STATUS_OK, TSMSPReply}
-import Tables.{UserIdentityTable, UserInformationTable}
+import Impl.TSMSPReply
+import Tables.UserIdentityTable
 import Types.UserMeta.{IdentityNumber, NucleicTestResultReporter, Token, UserRiskLevel}
-import Utils.HTTPUtils.sender
-import Types.UserMeta.UserRiskLevel
 import Utils.DBUtils
-import Utils.ImplicitTypeConverter._
+import Utils.HTTPUtils.sender
 import org.joda.time.DateTime
 
 import scala.util.Try
@@ -21,7 +19,7 @@ case class HospitalUpdateRiskLevelMessage(userToken: Token, identityNumber: Iden
     if (permission != NucleicTestResultReporter) {
       throw PermissionDeniedException()
     }
-    val clientId = UserIdentityTable.checkIdByIdentityNumber(identityNumber).get
+    val clientId = DBUtils.exec(UserIdentityTable.checkIdByIdentityNumber(identityNumber)).getOrElse(throw TokenNotExistsException())
     MSHospitalUpdateRiskLevelMessage(clientId, riskLevel).send(GlobalVariables.VaccineAndNucleicMSIP).get
   }
 }
