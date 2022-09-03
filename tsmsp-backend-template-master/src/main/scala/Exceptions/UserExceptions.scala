@@ -24,6 +24,10 @@ case class NoTraceException() extends Exception {
   override def getMessage: String = "错误！未查询到该条轨迹"
 }
 
-case class PlaceNotExists() extends Exception {
+case class PlaceNotExistsException() extends Exception {
   override def getMessage: String = "错误！数据库中无该地点！"
+}
+
+case class PermissionDeniedException() extends Exception {
+  override def getMessage: String = "错误！权限不足"
 }

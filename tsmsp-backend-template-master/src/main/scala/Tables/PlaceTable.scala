@@ -1,6 +1,6 @@
 package Tables
 
-import Exceptions.PlaceNotExists
+import Exceptions.PlaceNotExistsException
 import Globals.GlobalVariables
 import Types.PlaceMeta._
 import Types.{Place, PlaceRiskLevels}
@@ -56,7 +56,7 @@ object PlaceTable {
     DBUtils.exec(
       placeTable.filter(_.id === placeId).map(pl => (pl.province, pl.city, pl.district, pl.subDistrict)).result.headOption
     ).getOrElse(
-      throw PlaceNotExists()
+      throw PlaceNotExistsException()
     ).productIterator.toList.mkString(" ")
   }
 

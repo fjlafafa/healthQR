@@ -75,4 +75,10 @@ object UserIdentityTable {
   )
 
   def updatePassword(userId: UserId, newPassword: Password): DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.password).update(newPassword)
+
+  def getPermissionFromToken(token: Token): Try[Permission] = Try(
+    DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.permission).result.headOption).getOrElse(
+      throw TokenNotExistsException()
+    )
+  )
 }
