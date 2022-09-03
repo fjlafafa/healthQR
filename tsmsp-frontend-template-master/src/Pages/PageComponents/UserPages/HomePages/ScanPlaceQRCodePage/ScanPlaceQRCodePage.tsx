@@ -16,8 +16,10 @@ export function ScanPlaceQRCodePage({navigation}: any) {
     const [cameraOn, setCamera]=useState(false)
     const {token} = TokenStore()
 
+    const goBack=()=>navigation.navigate('User.Overview')
+
     return (
-        <ScreenTemplate>
+        <ScreenTemplate goBack={goBack}>
             <ViewSwitcher state={'User.ScanPlaceQRCode'} navigation={navigation}/>
             <ScrollTemplate>
                 <View style={{
@@ -37,6 +39,10 @@ export function ScanPlaceQRCodePage({navigation}: any) {
                     {cameraOn?<Text>点击关闭地点扫码</Text>:<Text>点击开启地点扫码</Text>}
                 </ButtonTemplate>
                 <HeaderTemplate text='行程相关微服务'/>
+                <ButtonTemplate
+                    onPress={()=>navigation.navigate('User.Trace')}
+                    text='我的行程'
+                />
             </ScrollTemplate>
         </ScreenTemplate>
     )

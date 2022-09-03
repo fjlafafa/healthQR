@@ -31,7 +31,9 @@ export function ModifyTracePage({ navigation }: any){
     const {token} = TokenStore()
     const report_type = 'Self uploaded'
     const {RemovedTrace, traceHistory, NewTraceId, NewTrace}=registerStore()
-    return <ScreenTemplate>
+
+    const goBack=()=>navigation.navigate('User.Trace')
+    return <ScreenTemplate goBack={goBack}>
 
         <TextInputTemplate placeholder={'访问地点代码'} value={NewTraceId} onChangeText={(newText: string)=>setNewTraceId(newText)}/>
         <TextInputTemplate placeholder={'新轨迹地点名称'} value={NewTrace} onChangeText={(newText: string)=>setNewTrace(newText)}/>

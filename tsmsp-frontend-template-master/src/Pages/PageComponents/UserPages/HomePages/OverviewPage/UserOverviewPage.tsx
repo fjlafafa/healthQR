@@ -8,7 +8,7 @@ import {BoundedTraceList} from "../../../../../Utils/PageUtils/ListUtil";
 import {ButtonTemplate} from "../../../../../Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React, {useState} from "react";
-import {TokenStore} from "../../../../../Globals/TokenStore";
+import {TokenStore, clearUserToken} from "../../../../../Globals/TokenStore";
 import {SendData} from "../../../../../Utils/SendDataUtil";
 import {UserGetTraceMessage} from "../../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
 import {ONEDAY} from "../../../../../Utils/Constants";
@@ -39,6 +39,7 @@ import {TraceTable} from "../../../../../Utils/PageUtils/TraceTableUtil";
 export function UserOverviewPage({navigation}: any) {
     const {token} = TokenStore()
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
+
     //refreshing
     const refresh = () => {
         SendData(
@@ -48,7 +49,14 @@ export function UserOverviewPage({navigation}: any) {
             })
     }
     useFocusEffect(React.useCallback(refresh, []))
-    return <ScreenTemplate>
+
+    //go back
+    const goBack=()=>{
+        navigation.navigate('Login')
+        clearUserToken()
+    }
+
+    return <ScreenTemplate goBack={goBack}>
         <ViewSwitcher state={'User.Overview'} navigation={navigation}/>
         <ScrollTemplate>
             <View style={{
@@ -116,27 +124,13 @@ export function UserOverviewPage({navigation}: any) {
 
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate('User.ScanPlaceQRCode', {})
-                    }}
-                    text='地点扫码'
-                />
-                <ButtonTemplate
-                    onPress={() => {
                         navigation.navigate('User.Account', {})
                     }}
                     text='个人账户'
                 />
                 <ButtonTemplate
-                    onPress={() => {
-                        navigation.navigate('User.ModifyTrace', {})
-                    }}
-                    text='踪迹管理'
-                />
-                <ButtonTemplate
-                    onPress={() => {
-                        navigation.navigate('User.Vaccine', {})
-                    }}
-                    text='核酸疫苗管理'
+                    onPress={() => goBack()}
+                    text='退出登录'
                 />
             </View>
             <HeaderTemplate text='测试行程表'/>

@@ -20,11 +20,14 @@ import {Password} from "../../../../../Types/UserMeta/Password";
 import {IdentityNumber} from "../../../../../Types/UserMeta/IdentityNumber";
 import {Permission} from "../../../../../Types/UserMeta/Permission";
 import {Token} from "../../../../../Types/UserMeta/Token";
+import {ButtonTemplate} from "../../../../../Utils/PageUtils/ButtonUtil";
 
 export function RegisterQRCodePage({navigation}:any) {
     const {token} = TokenStore()
     const avatar = require('../../../../../Assets/icon.png')
-    return (<ScreenTemplate>
+
+    const goBack=()=>navigation.navigate('User.Overview')
+    return (<ScreenTemplate goBack={goBack}>
         <ViewSwitcher state={'User.RegisterQRCode'} navigation={navigation}/>
             <ScrollTemplate>
                 <View style={{
@@ -58,6 +61,11 @@ export function RegisterQRCodePage({navigation}:any) {
                     </Card>
                 </View>
                 <HeaderTemplate text='核酸疫苗相关微服务'/>
+                {/*一些微服务*/}
+                <ButtonTemplate
+                    onPress={()=>navigation.navigate('User.Vaccine')}
+                    text='我的核酸疫苗'
+                />
             </ScrollTemplate>
         </ScreenTemplate>
     )
