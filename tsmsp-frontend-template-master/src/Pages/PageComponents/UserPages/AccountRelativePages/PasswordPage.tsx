@@ -34,14 +34,14 @@ export function PasswordPage({ navigation }: any){
             ifSuccess = {(reply:string)=> {
                 alert('用户' + reply + '的密码已修改')
                 clearInfo()
-                navigation.navigate('Overview',{})
+                navigation.navigate('User.Overview',{})
             }}
             text = '提交修改'
         />
         <ButtonTemplate
             onPress = {() => {
                 clearInfo()
-                navigation.navigate('Overview',{})
+                navigation.navigate('User.Overview',{})
             }}
             text = '返回主页'
         />

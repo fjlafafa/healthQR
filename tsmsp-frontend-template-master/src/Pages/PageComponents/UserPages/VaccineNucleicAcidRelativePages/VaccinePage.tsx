@@ -7,7 +7,7 @@ export function VaccinePage ({navigation}:any) {
     return <ScreenTemplate>
         <ButtonTemplate
         onPress={() => {
-            navigation.navigate('Overview',{})
+            navigation.navigate('User.Overview',{})
         }}
         text = '返回主界面'/>
 

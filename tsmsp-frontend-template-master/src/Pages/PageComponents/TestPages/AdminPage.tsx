@@ -84,7 +84,7 @@ export function AdminPage({navigation}: any) {
                 text='确认发送测试数据5'/>
                 <ButtonTemplate
                 onPress={() => {
-                navigation.navigate('UpdateVaccine',{})
+                navigation.navigate('User.ModifyVaccine',{})
             }}
                 text = '核酸疫苗服务'/>
                 <ButtonToSendMessage
@@ -92,7 +92,7 @@ export function AdminPage({navigation}: any) {
                 text='注册空用户'
                 ifSuccess={(reply:string) => {
                 setUserToken(reply)
-                navigation.navigate('Overview', {})
+                navigation.navigate('User.Overview', {})
             }}/>
             <ButtonTemplate
                 onPress={() => navigation.navigate('Login')}

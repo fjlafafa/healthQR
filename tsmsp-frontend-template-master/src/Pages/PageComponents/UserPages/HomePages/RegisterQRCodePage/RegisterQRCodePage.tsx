@@ -6,7 +6,7 @@ import {View, Text} from "react-native";
 import {SCREEN_WIDTH} from "../../../../../Utils/SettingsAndConstants";
 import {Card} from "react-native-paper";
 import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
-import {HealthCode} from "../OverviewPage/OverviewPageUtils/HealthCodeUtil";
+import {HealthCode} from "../OverviewPage/UserOverviewPageUtils/HealthCodeUtil";
 import {UserInformation} from "../../../../../Types/UserInformation";
 import {UserId} from "../../../../../Types/UserMeta/UserId";
 import {DateClass} from "../../../../../Types/Templates/DateClass";
@@ -25,7 +25,7 @@ export function RegisterQRCodePage({navigation}:any) {
     const {token} = TokenStore()
     const avatar = require('../../../../../Assets/icon.png')
     return (<ScreenTemplate>
-        <ViewSwitcher state={'RegisterQRCode'} navigation={navigation}/>
+        <ViewSwitcher state={'User.RegisterQRCode'} navigation={navigation}/>
             <ScrollTemplate>
                 <View style={{
                     width: SCREEN_WIDTH,

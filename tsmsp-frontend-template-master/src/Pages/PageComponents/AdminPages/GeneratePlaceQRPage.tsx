@@ -59,7 +59,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
             <ButtonTemplate
                 onPress={() => {
-                    navigation.navigate('PlaceQR',{})
+                    navigation.navigate('Admin.GeneratePlaceQR',{})
                 }}
                 text = '刷新二维码'/>
 
@@ -78,7 +78,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
             <ButtonTemplate
                 onPress={() => {
-                    navigation.navigate('Overview',{})
+                    navigation.navigate('User.Overview',{})
                 }}
                 text = '返回主界面'/>
 

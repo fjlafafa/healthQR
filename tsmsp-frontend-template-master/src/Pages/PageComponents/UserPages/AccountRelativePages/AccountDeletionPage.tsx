@@ -18,7 +18,7 @@ export function AccountDeletionPage({ navigation }: any){
             }}
             text = '确认注销'/>
         <ButtonTemplate
-            onPress={() => navigation.navigate('Overview',{})}
+            onPress={() => navigation.navigate('User.Overview',{})}
             text = '返回主界面'/>
 
         <StatusBar style='auto' />

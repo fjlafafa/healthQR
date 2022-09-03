@@ -2,14 +2,14 @@ import React from 'react'
 import Text from 'react-native-paper'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
-import {setUserToken} from 'Globals/TokenStore'
-import {UserLoginMessage} from '../../Impl/Messages/UserMessages/UserLoginMessage'
-import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {TextClock} from 'Utils/PageUtils/ClockUtil'
-import {AllowAdmin} from 'Globals/GlobalVariables'
-import {TSMSPReply} from '../../Impl/TSMSPReply'
-import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
-import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {setUserToken} from '../../../Globals/TokenStore'
+import {UserLoginMessage} from '../../../Impl/Messages/UserMessages/UserLoginMessage'
+import {ButtonTemplate, ButtonToSendMessage} from '../../../Utils/PageUtils/ButtonUtil'
+import {TextClock} from '../../../Utils/PageUtils/ClockUtil'
+import {AllowAdmin} from '../../../Globals/GlobalVariables'
+import {TSMSPReply} from '../../../Impl/TSMSPReply'
+import {TextInputTemplate} from '../../../Utils/PageUtils/TextInputUtil'
+import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -34,7 +34,7 @@ export function LoginPage({ navigation }: any){
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(reply:string)=>{
                 setUserToken(reply)
-                navigation.navigate('Overview',{})
+                navigation.navigate('User.Overview',{})
                 clearLoginInfo()
             }}
             text = '登录'
@@ -50,7 +50,7 @@ export function LoginPage({ navigation }: any){
 
         <ButtonTemplate
             onPress = {()=> {
-                navigation.navigate('PlaceQR',{})
+                navigation.navigate('Admin.GeneratePlaceQR',{})
                 clearLoginInfo()
             }}
             text = '生成地点二维码'

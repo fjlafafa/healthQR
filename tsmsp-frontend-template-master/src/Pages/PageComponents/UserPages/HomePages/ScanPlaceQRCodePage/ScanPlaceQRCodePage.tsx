@@ -9,15 +9,15 @@ import {TokenStore} from '../../../../../Globals/TokenStore'
 import {ScreenTemplate, ScrollTemplate} from '../../../../../Utils/PageUtils/PageContainerUtil'
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
 import {SCREEN_WIDTH} from "../../../../../Utils/SettingsAndConstants";
-import {ScanView} from "./ScanQRCodeUtils/ScanViewUtil";
+import {ScanView} from "./ScanPlaceQRCodeUtils/ScanViewUtil";
 import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
 
-export function ScanQRCodePage({navigation}: any) {
+export function ScanPlaceQRCodePage({navigation}: any) {
     const [cameraOn, setCamera]=useState(false)
 
     return (
         <ScreenTemplate>
-            <ViewSwitcher state={'ScanQRCode'} navigation={navigation}/>
+            <ViewSwitcher state={'User.ScanPlaceQRCode'} navigation={navigation}/>
             <ScrollTemplate>
                 <View style={{
                     width: SCREEN_WIDTH,
