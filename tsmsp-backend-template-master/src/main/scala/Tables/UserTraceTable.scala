@@ -7,7 +7,7 @@ import Types.TraceMeta.{ReportType, TraceId}
 import Types.UserMeta.UserId
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
-import Utils.TokenUtils.randomTraceId
+import Utils.TokenUtils.RandomTraceId
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
@@ -31,7 +31,7 @@ object UserTraceTable {
   val userTraceTable = TableQuery[UserTraceTable]
 
   def addTrace(userId : UserId, trace : PlaceId, detailedPlaceDescription : DetailedPlaceDescription, reportType: ReportType) : DBIO[Int] =
-    userTraceTable +=Trace(randomTraceId(IdLengths.trace), userId, time = DateTime.now(), trace, detailedPlaceDescription, reportType)
+    userTraceTable +=Trace(RandomTraceId(IdLengths.trace), userId, time = DateTime.now(), trace, detailedPlaceDescription, reportType)
 
   def checkTrace(userId : UserId, startTime : DateTime, endTime : DateTime) : Try[List[Trace]] = Try {
     DBUtils.exec(userTraceTable.filter(ut => ut.userId === userId && ut.time <= endTime && ut.time >= startTime).sortBy(_.time).result).toList

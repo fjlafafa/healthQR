@@ -6,8 +6,8 @@ import Globals.{GlobalVariables, IdLengths}
 import Types.UserIdentity
 import Types.UserMeta._
 import Utils.CustomColumnTypesUtils._
+import Utils.TokenUtils.{RandomUserId, RandomUserToken}
 import Utils.{DBUtils, StringUtils}
-import Utils.TokenUtils.{randomUserId, randomUserToken}
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
@@ -29,7 +29,7 @@ object UserIdentityTable {
   val userIdentityTable = TableQuery[UserIdentityTable]
 
   def addUser(realName: RealName, password: Password, identityNumber: IdentityNumber, permission : Permission): DBIO[Int] =
-    userIdentityTable += UserIdentity(randomUserId(IdLengths.user), identityNumber, password, realName, Token(""), DateTime.now().minusYears(2), permission)
+    userIdentityTable += UserIdentity(RandomUserId(IdLengths.user), identityNumber, password, realName, Token(""), DateTime.now().minusYears(2), permission)
 
   def dropUser(userId: UserId): DBIO[Int] = userIdentityTable.filter(_.userId === userId).delete
 
@@ -40,7 +40,7 @@ object UserIdentityTable {
       nowTokenPair._1
     } else {
       var newToken = Token(StringUtils.randomString(userToken))
-      while (DBUtils.exec(userIdentityTable.filter(_.token === newToken).size.result) > 0) newToken = randomUserToken(userToken)
+      while (DBUtils.exec(userIdentityTable.filter(_.token === newToken).size.result) > 0) newToken = RandomUserToken(userToken)
       DBUtils.exec(userIdentityTable.filter(_.userId === userId).map(ut => (ut.token, ut.refreshTime)).update((newToken, DateTime.now())))
       newToken
     }

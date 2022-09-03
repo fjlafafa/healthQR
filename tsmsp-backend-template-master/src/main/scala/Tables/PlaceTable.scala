@@ -6,6 +6,7 @@ import Types.PlaceMeta._
 import Types.{Place, PlaceRiskLevels}
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
+import Utils.ImplicitTypeConverter._
 import os.Path
 import play.api.libs.json.{JsArray, JsObject, Json}
 import slick.jdbc.PostgresProfile.api._
@@ -26,7 +27,7 @@ class PlaceTable(tag : Tag) extends Table[Place](tag, GlobalVariables.mainSchema
 
 object PlaceTable {
   val placeTable = TableQuery[PlaceTable]
-  val defaultRiskLevel = PlaceRiskLevels.green
+  val defaultRiskLevel: String = PlaceRiskLevels.green
 
   def addPlace(id : PlaceId, province: Province, city : City, district : District, subDistrict: SubDistrict): DBIO[Int] =
     placeTable += Place(id, province, city, district, subDistrict, PlaceRiskLevel.getType(defaultRiskLevel))
@@ -39,11 +40,11 @@ object PlaceTable {
             .flatMap(districtJsonValue => (districtJsonValue \ "children").get.as[List[JsObject]]
               .map(subDistrictJsonValue =>
                 addPlace(
-                  PlaceId((subDistrictJsonValue \ "code").get.toString().filterNot(_ == '\"').toLong),
-                  Province((provinceJsonValue \ "name").get.toString()),
-                  City((cityJsonValue \ "name").get.toString()),
-                  District((districtJsonValue \ "name").get.toString()),
-                  SubDistrict((subDistrictJsonValue \ "name").get.toString())
+                  (subDistrictJsonValue \ "code").get.toString().filterNot(_ == '\"').toLong,
+                  (provinceJsonValue \ "name").get.toString(),
+                  (cityJsonValue \ "name").get.toString(),
+                  (districtJsonValue \ "name").get.toString(),
+                  (subDistrictJsonValue \ "name").get.toString()
                 )
               )
             )
