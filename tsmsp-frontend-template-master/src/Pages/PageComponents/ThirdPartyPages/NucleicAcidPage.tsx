@@ -17,7 +17,7 @@ const {identity} = IDStore()
 //@ts-ignore
 return <ScreenTemplate goBack={goBack}>
 
-    <TextInputTemplate label='受检人身份证号' value={identity} onChangeText={(newText: string)=>setIdentity(newText)}/>
+    <TextInputTemplate label='受检人身份证号' value={identity} onChangeText={(identity: string) => setIdentity(identity)}/>
 
     <ButtonToSendMessage
         checkBeforeSendMessage = {()=>(checkIdentityNumber(identity))}
@@ -26,5 +26,5 @@ return <ScreenTemplate goBack={goBack}>
         text = '上传'
         ifSuccess = {IDStore.setState({identity:""})}
     />
-</ScreenTemplate>
-}
+
+</ScreenTemplate>}

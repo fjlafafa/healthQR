@@ -6,5 +6,7 @@ export function VaccineRegisterPage({navigation}:any){
     const goBack=()=>navigation.navigate('ThirdParty.Overview')
 
     return <ScreenTemplate goBack={goBack}>
+
+
     </ScreenTemplate>
 }
