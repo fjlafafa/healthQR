@@ -16,6 +16,6 @@ import scala.util.Try
 case class UserGetTraceMessage(userToken: String, startTime: Long, endTime: Long) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val userId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(userToken)).getOrElse(throw TokenNotExistsException())
-    UserInfoMSMessages.MSUserGetTraceMessage(userId, new DateTime(startTime), new DateTime(endTime)).send(GlobalVariables.UserInfoMSIP).get
+    UserInfoMSMessages.MSUserGetTraceMessage(userId, startTime, endTime).send(GlobalVariables.UserInfoMSIP).get
   }
 }
