@@ -14,13 +14,12 @@ import scala.util.Try
 
 case class UserDeleteAccountMessage(userToken: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val userId = DBUtils.exec(
+    DBUtils.exec(
       UserIdentityTable.checkUserIdByToken(userToken).flatMap(
         userId =>
           UserIdentityTable.dropUser(userId.getOrElse(throw TokenNotExistsException()))
-      ).transactionally >>
-        UserIdentityTable.checkUserIdByToken(userToken)
-    ).get
-    TSMSPReply(STATUS_OK, userId.id.toString)
+      ).transactionally
+    )
+    TSMSPReply(STATUS_OK, "")
   }
 }
