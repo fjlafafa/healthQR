@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import {Trace} from "../../../../Types/Trace";
 import {SendData} from "../../../../Utils/SendDataUtil";
 import {UserGetTraceMessage} from "../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
-import {ONEDAY} from "../../../../Utils/Constants";
+import {DAY_MILLIS} from "Utils/SettingsAndConstants";
 import {useFocusEffect} from "@react-navigation/native";
 import {HeaderTemplate} from "../../../../Utils/PageUtils/HeaderUtil";
 import {TraceTable} from "../../../../Utils/PageUtils/TraceTableUtil";
@@ -18,7 +18,7 @@ export function TracePage({navigation}:any){
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
-            new UserGetTraceMessage(new Token(token), (new Date().getTime() - ONEDAY), new Date().getTime()),
+            new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
             })
