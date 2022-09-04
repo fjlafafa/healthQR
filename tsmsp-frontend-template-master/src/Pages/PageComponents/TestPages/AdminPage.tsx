@@ -31,7 +31,7 @@ export function AdminPage({navigation}: any) {
                 text='返回副测试'/>
 
             <ButtonToSendMessage
-                toSendMessage={new UserRegisterMessage('', '', '')}
+                toSendMessage={new UserRegisterMessage(new RealName(''), new Password(''), new IdentityNumber(''))}
                 text='注册空用户'
                 ifSuccess={(reply: string) => {
                     setUserToken(reply)
