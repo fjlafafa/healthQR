@@ -5,14 +5,15 @@ import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
-import Types.UserMeta.{PasswordHash, Token}
+import Types.UserMeta.{Password, Token}
 import Utils.DBUtils
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
+import Utils.PasswordAutoEncoder._
 
 import scala.util.Try
 
-case class UserUpdatePasswordMessage(userToken: Token, password: PasswordHash) extends TSMSPMessage {
+case class UserUpdatePasswordMessage(userToken: Token, password: Password) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val userRealName = DBUtils.exec(
       UserIdentityTable.checkUserIdByToken(userToken).flatMap(
