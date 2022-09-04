@@ -9,12 +9,11 @@ import Tables.UserIdentityTable
 import Types.UserMeta.{IdentityNumber, NucleicTestResultReporter, Token, UserRiskLevel}
 import Utils.DBUtils
 import Utils.HTTPUtils.sender
-import Utils.ImplicitTypeConverter._
 import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class HospitalUpdateRiskLevelMessage(userToken: Token, identityNumber: String, riskLevel: UserRiskLevel) extends TSMSPMessage {
+case class HospitalUpdateRiskLevelMessage(userToken: Token, identityNumber: IdentityNumber, riskLevel: UserRiskLevel) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val permission = UserIdentityTable.getPermissionFromToken(userToken).get
     if (permission != NucleicTestResultReporter) {

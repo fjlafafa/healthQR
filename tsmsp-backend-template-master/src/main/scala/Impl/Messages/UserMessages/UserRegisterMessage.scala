@@ -5,15 +5,14 @@ import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
-import Types.UserMeta.Password
+import Types.UserMeta.{IdentityNumber, Password, Permission, RealName}
 import Utils.DBUtils
-import Utils.ImplicitTypeConverter._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 
 import scala.util.Try
 
-case class UserRegisterMessage(realName: String, password: String, identityNumber: String, permission: String) extends TSMSPMessage {
+case class UserRegisterMessage(realName: RealName, password: Password, identityNumber: IdentityNumber, permission: Permission) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     if (UserIdentityTable.checkUserExists(realName).get) throw UserNameAlreadyExistsException()
     else {
