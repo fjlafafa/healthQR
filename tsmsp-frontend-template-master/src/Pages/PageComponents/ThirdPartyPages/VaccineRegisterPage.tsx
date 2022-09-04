@@ -1,6 +1,5 @@
 import {ScreenTemplate} from "../../../Utils/PageUtils/PageContainerUtil";
-import {ButtonTemplate, ButtonToSendMessage} from "../../../Utils/PageUtils/ButtonUtil";
-import React, {useState} from "react";
+import {ButtonToSendMessage} from "../../../Utils/PageUtils/ButtonUtil";
 import {Permission} from "Types/UserMeta/Permission";
 import {UserIdentity} from "Types/UserIdentity";
 import {View} from "react-native";
@@ -8,11 +7,10 @@ import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
 import {VaccinationStatus} from "Types/UserMeta/VaccinationStatus";
-import {ButtonToSendMessage} from "../../../Utils/PageUtils/ButtonUtil";
 import create from "zustand"
 import {TokenStore} from "Globals/TokenStore";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
-import React from "react";
+import React, {useState} from "react";
 import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
 import {HospitalUpdateVaccinationMessage} from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
 
