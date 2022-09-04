@@ -6,17 +6,6 @@ import {ButtonTemplate, ButtonToSendMessage} from '../../../Utils/PageUtils/Butt
 import {AdminDropDataBasesMessage} from '../../../Impl/Messages/AdminMessages/AdminDropDataBasesMessage'
 import {AdminTestMessage} from '../../../Impl/Messages/AdminMessages/AdminTestMessage'
 import {ScreenTemplate, ScrollTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
-import {UserRegisterMessage} from '../../../Impl/Messages/UserMessages/UserRegisterMessage'
-import {TSMSPReply} from '../../../Impl/TSMSPReply'
-import {TextTemplate} from '../../../Utils/PageUtils/TextUtil'
-import {myscreen, mywindow} from '../../../Utils/SettingsAndConstants'
-import {TextClock} from '../../../Utils/PageUtils/ClockUtil'
-import {Place} from "../../../Types/Place";
-import {Trace} from "../../../Types/Trace";
-import {UserIdentity} from "../../../Types/UserIdentity";
-import {UserInformation} from "../../../Types/UserInformation";
-import {UserToken} from "../../../Types/UserToken";
-import {useFocusEffect} from "@react-navigation/native";
 import {TextInputTemplate} from "../../../Utils/PageUtils/TextInputUtil";
 
 export function AdminBrotherPage({navigation}: any) {
