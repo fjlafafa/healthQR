@@ -6,7 +6,6 @@ import Types.PlaceMeta._
 import Types.{Place, PlaceRiskLevels}
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
-import Utils.ImplicitTypeConverter._
 import os.Path
 import play.api.libs.json.{JsArray, JsObject, Json}
 import slick.jdbc.PostgresProfile.api._
@@ -40,11 +39,11 @@ object PlaceTable {
             .flatMap(districtJsonValue => (districtJsonValue \ "children").get.as[List[JsObject]]
               .map(subDistrictJsonValue =>
                 addPlace(
-                  (subDistrictJsonValue \ "code").get.toString().filterNot(_ == '\"').toLong,
-                  (provinceJsonValue \ "name").get.toString(),
-                  (cityJsonValue \ "name").get.toString(),
-                  (districtJsonValue \ "name").get.toString(),
-                  (subDistrictJsonValue \ "name").get.toString()
+                  PlaceId((subDistrictJsonValue \ "code").get.toString().filterNot(_ == '\"').toLong),
+                  Province((provinceJsonValue \ "name").get.toString().filterNot(_ == '\"')),
+                  City((cityJsonValue \ "name").get.toString().filterNot(_ == '\"')),
+                  District((districtJsonValue \ "name").get.toString().filterNot(_ == '\"')),
+                  SubDistrict((subDistrictJsonValue \ "name").get.toString().filterNot(_ == '\"'))
                 )
               )
             )
