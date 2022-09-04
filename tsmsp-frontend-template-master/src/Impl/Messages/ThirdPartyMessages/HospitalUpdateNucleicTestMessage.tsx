@@ -5,7 +5,7 @@ export class HospitalUpdateNucleicTestMessage extends TSMSPMessage {
     token : string
 
 
-    constructor(identityNumber: string, token: string) {
+    constructor(token: string, identityNumber: string) {
         super()
         this.identityNumber = identityNumber
         this.token = token

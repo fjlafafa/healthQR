@@ -19,11 +19,10 @@ const setIdentity = (identity: string) => IDStore.setState({identity})
 const UploadState = create( ()=>({state: '请上传核酸检测信息'}))
 
 
-
 export function NucleicAcidPage({navigation}:any){
 
     const {identity} = IDStore()
-    const {state} = UploadState.getState()
+    const {state} = UploadState()
     const {token} = TokenStore.getState()
     const goBack = ()=>navigation.navigate('ThirdParty.Overview')
 
@@ -64,7 +63,7 @@ export function NucleicAcidPage({navigation}:any){
     <ButtonToSendMessage
         checkBeforeSendMessage = {()=>(checkIdentityNumber(identity))}
         checkElse = {()=>{alert('请重新检查身份证号是否填写正确')}}
-        toSendMessage ={new HospitalUpdateNucleicTestMessage(identity, token)}
+        toSendMessage ={new HospitalUpdateNucleicTestMessage(token, identity)}
         text = '上传'
         ifSuccess = {()=>{IDStore.setState({identity:" "})}}
     />
