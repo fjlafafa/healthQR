@@ -4,6 +4,7 @@ import Impl.Messages.AdminMessages._
 import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.MSUserGetPlaceMessage
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages._
+import Impl.Messages.TestMessages.{AdminDropDataBasesMessage, AdminTestMessage}
 import Impl.Messages.ThirdPartyMessages._
 import Impl.Messages.UserMessages._
 import Impl.{JacksonSerializable, STATUS_ERROR, TSMSPReply}

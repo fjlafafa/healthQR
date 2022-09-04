@@ -1,4 +1,4 @@
-package Impl.Messages.AdminMessages
+package Impl.Messages.TestMessages
 
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}

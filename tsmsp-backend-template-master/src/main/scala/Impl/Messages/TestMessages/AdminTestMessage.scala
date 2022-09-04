@@ -1,14 +1,13 @@
-package Impl.Messages.AdminMessages
+package Impl.Messages.TestMessages
 
 import Exceptions.TokenNotExistsException
-import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserTraceTable}
 import Types.PlaceMeta._
 import Types.TraceMeta.{SelfReport, TraceId}
 import Types.UserMeta._
-import Types._
+import Types.{Place, Trace, UserIdentity, UserInformation}
 import Utils.{DBUtils, IOUtils}
 import org.joda.time.DateTime
 

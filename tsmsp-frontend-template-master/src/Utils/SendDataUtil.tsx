@@ -2,7 +2,7 @@ import React from 'react'
 import {APIUrl} from '../Globals/GlobalVariables'
 import {TSMSPReply} from '../Impl/TSMSPReply'
 import {TSMSPMessage} from '../Impl/Messages/TSMSPMessage'
-import {Impl} from 'Types/Enums'
+import {Impl} from 'Globals/GlobalEnums'
 
 export function SendData(
     toSendMessage: TSMSPMessage,

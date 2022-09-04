@@ -3,24 +3,34 @@ import {Password} from "./UserMeta/Password";
 import {RealName} from "./UserMeta/RealName";
 import {IdentityNumber} from "./UserMeta/IdentityNumber";
 import {Permission} from "./UserMeta/Permission";
+import {Token} from "Types/UserMeta/Token";
+import {DateClass} from "Types/Templates/DateClass";
 
 export class UserIdentity {
-    id : UserId
-    realName: RealName
-    password: Password
+    userId: UserId
     identityNumber: IdentityNumber
+    password: Password
+    realName: RealName
+    token: Token
+    refreshTime: DateClass
     permission: Permission
-    constructor(
-        id : UserId,
-        realName: RealName,
-        password: Password,
-        identityNumber: IdentityNumber,
-        permission: Permission) {
 
-            this.id=id
-            this.realName=realName
-            this.password=password
-            this.identityNumber=identityNumber
-            this.permission=permission
+    constructor(
+        userId: UserId,
+        identityNumber: IdentityNumber,
+        password: Password,
+        realName: RealName,
+        token: Token,
+        refreshTime: DateClass,
+        permission: Permission
+    ) {
+
+        this.userId = userId
+        this.realName = realName
+        this.password = password
+        this.token = token
+        this.refreshTime = refreshTime
+        this.identityNumber = identityNumber
+        this.permission = permission
     }
 }
