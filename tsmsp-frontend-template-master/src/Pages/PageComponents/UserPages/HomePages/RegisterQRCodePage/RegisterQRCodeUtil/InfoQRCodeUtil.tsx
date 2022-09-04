@@ -8,8 +8,7 @@ import {UserIdentity} from "../../../../../../Types/UserIdentity";
 export function RegisterCode(props:{userInfo:UserIdentity}){
     const avatar = require('Assets/icon.png')
     return <QRCode
-        value={JSON.stringify(props.userInfo.identityNumber)}
-        logo={avatar}
+        value={JSON.stringify(props.userInfo)}
         size={SCREEN_WIDTH * 0.8}
     />
 }

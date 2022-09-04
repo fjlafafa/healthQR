@@ -5,7 +5,8 @@ This is the code repository for project of the course *Type-safe Modern System P
 ### How to add a new page
 
 #### Frontend
-1. Create a new page under ```src/Pages/``` which provides the function you want to implement to client. (Implementation delayed)
+1. Copy a new page under ```src/Pages/``` which provides the function you want to implement to client. (Implementation delayed)
+2. Add goBack logic by chosing father page(rewrite goBack).
 2. Register the page in ```src/Pages/PageStack.tsx``` and add navigation to it in some existing page. 
 
 ### New Type
