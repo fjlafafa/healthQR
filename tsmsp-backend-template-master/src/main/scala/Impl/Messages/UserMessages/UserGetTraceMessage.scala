@@ -10,7 +10,6 @@ import Types.UserMeta.Token
 import Utils.DBUtils
 import Utils.HTTPUtils.sender
 import org.joda.time.DateTime
-import Utils.DateTimeAutoBuilder._
 
 import scala.util.Try
 
