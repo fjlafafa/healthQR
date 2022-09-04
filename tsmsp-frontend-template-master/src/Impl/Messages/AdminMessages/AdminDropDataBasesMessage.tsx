@@ -1,8 +1,9 @@
 import {TSMSPMessage} from '../TSMSPMessage'
+import {Token} from "Types/UserMeta/Token";
 
 export class AdminDropDataBasesMessage extends TSMSPMessage {
-    userToken : string
-    constructor(userToken : string) {
+    userToken : Token
+    constructor(userToken : Token) {
         super()
         this.userToken = userToken
     }

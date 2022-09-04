@@ -8,6 +8,9 @@ import {HospitalUpdateNucleicTestMessage} from "../../../../Impl/Messages/ThirdP
 import {HospitalUpdateVaccinationMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
 import {UserRiskLevel} from "../../../../Types/UserMeta/UserRiskLevel";
 import {HospitalUpdateRiskLevelMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
+import {TokenStore} from "Globals/TokenStore";
+import {Token} from "Types/UserMeta/Token";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 
 const patientInfoStore= create(() => ({
     identityNumber: "",
@@ -17,6 +20,7 @@ const setIdentityNumber= (identityNumber:string) => patientInfoStore.setState({ 
 const setRiskLevel= (riskLevel:string) => patientInfoStore.setState({ riskLevel })
 
 export function ModifyVaccinePage ({navigation}:any) {
+    const {token} = TokenStore()
     const {identityNumber, riskLevel}=patientInfoStore()
 
     const goBack=()=>navigation.navigate('User.Vaccine')
@@ -30,7 +34,7 @@ export function ModifyVaccinePage ({navigation}:any) {
                 alert('身份证号不正确！')
             }}
             icon = 'upload'
-            toSendMessage = {new HospitalUpdateNucleicTestMessage(identityNumber)}
+            toSendMessage = {new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identityNumber))}
             text = '刷新核酸日期'
         />
 
@@ -40,7 +44,7 @@ export function ModifyVaccinePage ({navigation}:any) {
                 alert('身份证号不正确！')
             }}
             icon = 'upload'
-            toSendMessage = {new HospitalUpdateVaccinationMessage(identityNumber)}
+            toSendMessage = {new HospitalUpdateVaccinationMessage(new Token(token), new IdentityNumber(identityNumber))}
             text = '刷新疫苗接种情况'
         />
 
@@ -52,7 +56,7 @@ export function ModifyVaccinePage ({navigation}:any) {
                 alert('风险等级错误')
             }}
             icon = 'upload'
-            toSendMessage = {new HospitalUpdateRiskLevelMessage(identityNumber, riskLevel)}
+            toSendMessage = {new HospitalUpdateRiskLevelMessage(new Token(token), new IdentityNumber(identityNumber), riskLevel as UserRiskLevel)}
             text = '更新风险等级'
         />
 

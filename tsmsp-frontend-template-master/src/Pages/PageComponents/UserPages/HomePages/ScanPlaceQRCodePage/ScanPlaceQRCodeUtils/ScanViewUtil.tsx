@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {TokenStore} from "../../../../../../Globals/TokenStore";
-import {BarCodeScanner} from "expo-barcode-scanner";
 import {SendData} from "../../../../../../Utils/SendDataUtil";
 import {UserUpdateTraceMessage} from "../../../../../../Impl/Messages/UserMessages/UserUpdateTraceMessage";
-import {StyleSheet, Text, View} from "react-native";
 import {ScanView} from "../../../../../../Utils/PageUtils/ScanQRCodeUtil";
+import {DetailedPlaceDescription} from "Types/PlaceMeta/DetailedPlaceDescription";
+import {ReportType} from "Types/TraceMeta/ReportType";
 
 export function PlaceScanView(props: any) {
     const report_type: string = 'Auto recorded'
@@ -12,7 +11,7 @@ export function PlaceScanView(props: any) {
     return <ScanView
         checkData={(data: any) => !isNaN(parseInt(data))}
         handleData={(data: any) => {
-            SendData(new UserUpdateTraceMessage(props.token, data, detailed_desc, report_type))
+            SendData(new UserUpdateTraceMessage(props.token, data, new DetailedPlaceDescription(detailed_desc), report_type as ReportType))
         }
         }/>
 }

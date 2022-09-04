@@ -1,15 +1,19 @@
 import {TSMSPMessage} from '../TSMSPMessage'
 import {isNumber} from "../../../Utils/FormatUtils/IdentityNumberUtil";
+import {PlaceId} from "Types/PlaceMeta/PlaceId";
+import {DetailedPlaceDescription} from "Types/PlaceMeta/DetailedPlaceDescription";
+import {ReportType} from "Types/TraceMeta/ReportType";
+import {Token} from "Types/UserMeta/Token";
 
 export class UserUpdateTraceMessage extends TSMSPMessage {
-    userToken : string
-    placeId : number
-    detailedPlaceDescription : string
-    reportType: string
-    constructor(userToken : string, trace : string, detailedPlaceDescription : string, reportType : string) {
+    userToken : Token
+    placeId : PlaceId
+    detailedPlaceDescription : DetailedPlaceDescription
+    reportType: ReportType
+    constructor(userToken : Token, trace : PlaceId, detailedPlaceDescription : DetailedPlaceDescription, reportType : ReportType) {
         super()
         this.userToken = userToken
-        this.placeId = parseInt(trace)
+        this.placeId = trace
         this.detailedPlaceDescription = detailedPlaceDescription
         this.reportType = reportType
     }

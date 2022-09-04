@@ -20,6 +20,11 @@ import {UserGetTraceMessage} from "../../../../Impl/Messages/UserMessages/UserGe
 import {ONEDAY} from "../../../../Utils/Constants";
 import {useFocusEffect} from "@react-navigation/native";
 import {TraceTable} from "../../../../Utils/PageUtils/TraceTableUtil";
+import {Token} from "Types/UserMeta/Token";
+import {TraceId} from "Types/TraceMeta/TraceId";
+import {DetailedPlaceDescription} from "Types/PlaceMeta/DetailedPlaceDescription";
+import {PlaceId} from "Types/PlaceMeta/PlaceId";
+import {ReportType} from "Types/TraceMeta/ReportType";
 //To implement
 const registerStore= create(() => ({
     RemovedTrace: '',
@@ -42,7 +47,7 @@ export function ModifyTracePage({ navigation }: any){
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
-            new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
+            new UserGetTraceMessage(new Token(token), (new Date().getTime() - ONEDAY), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
             })
@@ -61,7 +66,7 @@ export function ModifyTracePage({ navigation }: any){
                 alert('地点号码不符合要求(长度应为9)！')
             }}
             icon = 'upload'
-            toSendMessage = {new UserUpdateTraceMessage(token, NewTraceId, NewTrace, report_type)}
+            toSendMessage = {new UserUpdateTraceMessage(new Token(token), new PlaceId(parseInt(NewTraceId)), new DetailedPlaceDescription(NewTrace), report_type as ReportType)}
             text = '上传新轨迹'
             ifSuccess={(_:any)=> refresh()}
         />
@@ -69,7 +74,7 @@ export function ModifyTracePage({ navigation }: any){
         <TextInputTemplate placeholder={'删除轨迹编号'} value={RemovedTrace} onChangeText={(newText: string)=>setRemovedTrace(newText)}/>
 
         <ButtonToSendMessage
-            toSendMessage = {new UserDeleteTraceMessage(token, +RemovedTrace)}
+            toSendMessage = {new UserDeleteTraceMessage(new Token(token), new TraceId(parseInt(RemovedTrace)))}
             ifSuccess = {(replyMessage:string)=>{
                 alert('轨迹\'' + replyMessage + '\'删除成功！')
                 setRemovedTrace('')

@@ -15,9 +15,11 @@ import {Place} from "../../../Types/Place";
 import {Trace} from "../../../Types/Trace";
 import {UserIdentity} from "../../../Types/UserIdentity";
 import {UserInformation} from "../../../Types/UserInformation";
-import {UserToken} from "../../../Types/UserToken";
 import {useFocusEffect} from "@react-navigation/native";
-import {Select} from "@mui/material";
+import {Token} from "Types/UserMeta/Token";
+import {RealName} from "Types/UserMeta/RealName";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
+import {Password} from "Types/UserMeta/Password";
 
 //This is just a page for test
 var counter = 0
@@ -54,41 +56,37 @@ export function AdminPage({navigation}: any) {
                 <TextClock/>
                 <TextTemplate>{new Date().toLocaleTimeString()}</TextTemplate>
                 <ButtonToSendMessage
-                toSendMessage={new AdminDropDataBasesMessage(token)}
+                toSendMessage={new AdminDropDataBasesMessage(new Token(token))}
                 text='确认清空数据库'/>
                 <ButtonToSendMessage
-                toSendMessage={new AdminTestMessage('1')}
+                toSendMessage={new AdminTestMessage(new Token('1'))}
                 ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Place).riskLevel)}}
                 text='确认发送测试数据1'/>
                 <ButtonToSendMessage
                 ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.millis)}}
-                toSendMessage={new AdminTestMessage('2')}
+                toSendMessage={new AdminTestMessage(new Token('2'))}
                 //ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.date.toLocaleTimeString())}}
                 text='确认发送测试数据2'/>
                 <ButtonToSendMessage
                 ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace[])[0].visitPlaceId.id)}}
-                toSendMessage={new AdminTestMessage('hcJEaRxNNSWREBDkIQsJhjpnMLsPgy')}
+                toSendMessage={new AdminTestMessage(new Token('hcJEaRxNNSWREBDkIQsJhjpnMLsPgy'))}
                 //ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as Trace).time.date.toLocaleTimeString())}}
                 text='确认发送测试数据token'/>
                 <ButtonToSendMessage
-                toSendMessage={new AdminTestMessage('3')}
+                toSendMessage={new AdminTestMessage(new Token('3'))}
                 ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as UserIdentity).password.token)}}
                 text='确认发送测试数据3'/>
                 <ButtonToSendMessage
-                toSendMessage={new AdminTestMessage('4')}
+                toSendMessage={new AdminTestMessage(new Token('4'))}
                 ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as UserInformation).recentNucleicTestTime.millis)}}
                 text='确认发送测试数据4'/>
-                <ButtonToSendMessage
-                toSendMessage={new AdminTestMessage('5')}
-                ifSuccess={(replyMessage:string)=>{alert((JSON.parse(replyMessage) as UserToken).token.token)}}
-                text='确认发送测试数据5'/>
                 <ButtonTemplate
                 onPress={() => {
                 navigation.navigate('User.ModifyVaccine',{})
             }}
                 text = '核酸疫苗服务'/>
                 <ButtonToSendMessage
-                toSendMessage={new UserRegisterMessage('', '', '')}
+                toSendMessage={new UserRegisterMessage(new RealName(''), new Password(''),new IdentityNumber(''))}
                 text='注册空用户'
                 ifSuccess={(reply:string) => {
                 setUserToken(reply)

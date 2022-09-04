@@ -7,6 +7,8 @@ import {ButtonTemplate, ButtonToSendMessage} from '../../../../Utils/PageUtils/B
 import {TSMSPReply} from '../../../../Impl/TSMSPReply'
 import {TextInputTemplate} from '../../../../Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
+import {Token} from "Types/UserMeta/Token";
+import {Password} from "Types/UserMeta/Password";
 
 const passwordStore= create(() => ({
     password:'',
@@ -31,7 +33,7 @@ export function PasswordPage({ navigation }: any){
                 alert('两次输入密码不一致！请重新输入！')
                 clearConfirmedPassword()
             }}
-            toSendMessage ={new UserUpdatePasswordMessage(token, password)}
+            toSendMessage ={new UserUpdatePasswordMessage(new Token(token), new Password(password))}
             ifSuccess = {(reply:string)=> {
                 alert('用户' + reply + '的密码已修改')
                 clearInfo()
