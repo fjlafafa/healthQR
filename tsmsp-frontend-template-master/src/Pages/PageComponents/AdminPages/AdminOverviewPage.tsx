@@ -15,5 +15,9 @@ export function AdminOverviewPage({navigation}:any){
             onPress={()=>navigation.navigate('Admin.Permission')}
             text='设置用户权限'
         />
+        <ButtonTemplate
+            onPress={()=>navigation.navigate('Admin.InfoQRCodePage')}
+            text='展示信息'
+        />
     </ScreenTemplate>
 }

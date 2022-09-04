@@ -59,10 +59,15 @@ object UserIdentityTable {
   def checkIdByIdentityNumber(identityNumber: IdentityNumber): DBIO[Option[UserId]] =
     userIdentityTable.filter(u => u.identityNumber === identityNumber).map(_.userId).result.headOption
 
+  def checkPermissionById(userId: UserId): DBIO[Option[Permission]] =
+    userIdentityTable.filter(u => u.userId === userId).map(_.permission).result.headOption
+
   def checkRealNameById(userId: UserId): DBIO[Option[RealName]] =
-      userIdentityTable.filter(u => u.userId === userId).map(_.realName).result.headOption
+    userIdentityTable.filter(u => u.userId === userId).map(_.realName).result.headOption
 
   def updatePassword(userId: UserId, newPassword: PasswordHash): DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.password).update(newPassword)
+
+  def updatePermissionById(userId: UserId, newPermission: Permission):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.permission).update(newPermission)
 
   def getPermissionFromToken(token: Token): Try[Permission] = Try(
     DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.permission).result.headOption).getOrElse(

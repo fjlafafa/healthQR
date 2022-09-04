@@ -15,7 +15,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {UserOverviewPage} from "./PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPage";
 import {GeneratePlaceQRPage} from "./PageComponents/AdminPages/GeneratePlaceQRPage";
 import {ModifyVaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/ModifyVaccinePage";
-import {RegisterQRCodePage} from "./PageComponents/UserPages/HomePages/RegisterQRCodePage/RegisterQRCodePage";
+import {InfoQRCodePage} from "./PageComponents/UserPages/HomePages/InfoQRCodePage/InfoQRCodePage";
 import {AdminBrotherPage} from "./PageComponents/TestPages/AdminBrotherPage";
 import {AdminOverviewPage} from "./PageComponents/AdminPages/AdminOverviewPage";
 import {PermissionPage} from "./PageComponents/AdminPages/PermissionPage";
@@ -23,6 +23,8 @@ import {NucleicAcidPage} from "./PageComponents/ThirdPartyPages/NucleicAcidPage"
 import {ThirdPartyOverviewPage} from "./PageComponents/ThirdPartyPages/ThirdPartyOverviewPage";
 import {VaccineRegisterPage} from "./PageComponents/ThirdPartyPages/VaccineRegisterPage";
 import {TracePage} from "./PageComponents/UserPages/TraceRelativePages/TracePage";
+import {AdminInfoQRCodePage} from "Pages/PageComponents/AdminPages/AdminInfoQRPage";
+import {ThirdPartyInfoPage} from "Pages/PageComponents/ThirdPartyPages/ThirdPartyInfoPage";
 
 const Stack = createNativeStackNavigator()
 
@@ -42,13 +44,15 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'User.ModifyTrace'} component={ModifyTracePage}/>
                     <Stack.Screen name={'User.Vaccine'} component={VaccinePage}/>
                     <Stack.Screen name={'User.ModifyVaccine'} component={ModifyVaccinePage}/>
-                    <Stack.Screen name={'User.RegisterQRCode'} component={RegisterQRCodePage}/>
+                    <Stack.Screen name={'User.InfoQRCodePage'} component={InfoQRCodePage}/>
                     <Stack.Screen name={'Admin.GeneratePlaceQR'} component={GeneratePlaceQRPage}/>
                     <Stack.Screen name={'Admin.Overview'} component={AdminOverviewPage}/>
                     <Stack.Screen name={'Admin.Permission'} component={PermissionPage}/>
+                    <Stack.Screen name={'Admin.InfoQRCodePage'} component={AdminInfoQRCodePage}/>
                     <Stack.Screen name={'ThirdParty.NucleicAcid'} component={NucleicAcidPage}/>
                     <Stack.Screen name={'ThirdParty.Overview'} component={ThirdPartyOverviewPage}/>
                     <Stack.Screen name={'ThirdParty.VaccineRegister'} component={VaccineRegisterPage}/>
+                    <Stack.Screen name={'ThirdParty.InfoQRCodePage'} component={ThirdPartyInfoPage}/>
                     {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
                     {AllowAdmin ? <Stack.Screen name={'AdminBrother'} component={AdminBrotherPage}/> : null}
                 </Stack.Group>

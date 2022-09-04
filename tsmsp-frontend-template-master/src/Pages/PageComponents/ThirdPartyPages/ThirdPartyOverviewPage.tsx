@@ -14,5 +14,9 @@ export function ThirdPartyOverviewPage({navigation}:any){
             onPress={()=>navigation.navigate('ThirdParty.VaccineRegister')}
             text='疫苗'
         />
+        <ButtonTemplate
+            onPress={()=>navigation.navigate('ThirdParty.InfoQRCodePage')}
+            text='展示信息'
+        />
     </ScreenTemplate>
 }

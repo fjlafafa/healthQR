@@ -9,6 +9,7 @@ import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
+import Utils.PasswordAutoEncoder._
 
 
 object DBUtils {

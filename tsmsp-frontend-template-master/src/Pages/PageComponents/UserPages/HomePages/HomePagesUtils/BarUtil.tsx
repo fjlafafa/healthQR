@@ -26,6 +26,6 @@ export function ViewSwitcher({state, navigation}:any) {
     return <View style={{width: SCREEN_WIDTH, height: barHeight, flexDirection:'row'}}>
         <Barbutton chosen={state=='User.Overview'} text='健康码主页' onPress={()=>navigation.navigate('User.Overview')}/>
         <Barbutton chosen={state=='User.ScanPlaceQRCode'} text='地点扫码' onPress={()=>navigation.navigate('User.ScanPlaceQRCode')}/>
-        <Barbutton chosen={state=='User.RegisterQRCode'} text='核酸疫苗码' onPress={()=>navigation.navigate('User.RegisterQRCode')}/>
+        <Barbutton chosen={state=='User.InfoQRCodePage'} text='核酸疫苗码' onPress={()=>navigation.navigate('User.InfoQRCodePage')}/>
     </View>
 }

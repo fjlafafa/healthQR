@@ -1,5 +1,6 @@
 package Impl.Messages
 
+import Impl.Messages.AdminMessages.AdminChangePermissionMessage
 import Impl.Messages.TestMessages._
 import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.MSUserGetPlaceMessage
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
@@ -24,7 +25,9 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserUpdatePasswordMessage], name = "UserUpdatePasswordMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdateTraceMessage], name = "UserUpdateTraceMessage"),
     new JsonSubTypes.Type(value = classOf[UserDeleteTraceMessage], name = "UserDeleteTraceMessage"),
+    new JsonSubTypes.Type(value = classOf[UserGetRealNameMessage], name = "UserGetRealNameMessage"),
     new JsonSubTypes.Type(value = classOf[UserDeleteAccountMessage], name = "UserDeleteAccountMessage"),
+    new JsonSubTypes.Type(value = classOf[AdminChangePermissionMessage], name = "AdminChangePermissionMessage"),
     new JsonSubTypes.Type(value = classOf[AdminDropDataBasesMessage], name = "AdminDropDataBasesMessage"),
     new JsonSubTypes.Type(value = classOf[AdminTestMessage], name = "AdminTestMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateNucleicTestMessage], name = "HospitalUpdateNucleicTestMessage"),

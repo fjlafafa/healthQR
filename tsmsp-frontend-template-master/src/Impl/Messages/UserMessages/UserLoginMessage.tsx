@@ -2,6 +2,7 @@ import {TSMSPMessage} from '../TSMSPMessage'
 import {TSMSPReply} from "../../TSMSPReply";
 import {RealName} from "Types/UserMeta/RealName";
 import {Password} from "Types/UserMeta/Password";
+import {Token} from "Types/UserMeta/Token";
 
 export class UserLoginMessage extends TSMSPMessage {
     realName : RealName
@@ -10,10 +11,5 @@ export class UserLoginMessage extends TSMSPMessage {
         super()
         this.realName = userName
         this.password = password
-    }
-    getReplyMessage(replyJson: TSMSPReply) {
-        //const message = JSON.parse(replyJson.message) as Place
-        //return message
-        return replyJson.message
     }
 }

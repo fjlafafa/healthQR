@@ -12,6 +12,7 @@ import {SendData} from "Utils/SendDataUtil";
 import {UserCheckPermissionMessage} from "Messages/UserMessages/UserCheckPermissionMessage";
 import {RealName} from "Types/UserMeta/RealName";
 import {Password} from "Types/UserMeta/Password";
+import {Token} from "Types/UserMeta/Token";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -37,7 +38,7 @@ export function LoginPage({navigation}: any) {
             toSendMessage ={new UserLoginMessage(new RealName(userName), new Password(password))}
             ifSuccess = {(reply:string)=>{
                 setUserToken(reply)
-                SendData(new UserCheckPermissionMessage(reply), (reply: Permission) => {
+                SendData(new UserCheckPermissionMessage(new Token(reply)), (reply: Permission) => {
 
                     if (reply === Permission.normal) {
                         navigation.navigate('User.Overview')

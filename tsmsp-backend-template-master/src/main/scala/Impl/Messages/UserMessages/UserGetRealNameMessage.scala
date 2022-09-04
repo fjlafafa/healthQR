@@ -1,6 +1,5 @@
 package Impl.Messages.UserMessages
 
-import Exceptions.{TokenNotExistsException, WrongPasswordException}
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
@@ -10,9 +9,10 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserCheckPermissionMessage(userToken: Token) extends TSMSPMessage {
+case class UserGetRealNameMessage(userToken: Token) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val permission = UserIdentityTable.getPermissionFromToken(userToken).get
-    TSMSPReply(STATUS_OK,IOUtils.serialize(permission).get)
+    val userId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(userToken)).get
+    val realName = DBUtils.exec(UserIdentityTable.checkRealNameById(userId)).get
+    TSMSPReply(STATUS_OK,IOUtils.serialize(realName).get)
   }
 }
