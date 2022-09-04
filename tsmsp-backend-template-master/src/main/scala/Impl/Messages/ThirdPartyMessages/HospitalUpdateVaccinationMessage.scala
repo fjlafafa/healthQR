@@ -9,6 +9,7 @@ import Tables.UserIdentityTable
 import Types.UserMeta.{IdentityNumber, NucleicTestResultReporter, Token}
 import Utils.DBUtils
 import Utils.HTTPUtils.sender
+import Utils.ImplicitTypeConverter._
 import org.joda.time.DateTime
 
 import scala.util.Try
@@ -19,7 +20,7 @@ case class HospitalUpdateVaccinationMessage(userToken: Token, identityNumber: St
     if (permission != NucleicTestResultReporter) {
       throw PermissionDeniedException()
     }
-    val clientId = DBUtils.exec(UserIdentityTable.checkIdByIdentityNumber(IdentityNumber(identityNumber))).getOrElse(throw TokenNotExistsException())
+    val clientId = DBUtils.exec(UserIdentityTable.checkIdByIdentityNumber(identityNumber)).getOrElse(throw TokenNotExistsException())
     MSHospitalUpdateVaccinationMessage(clientId).send(GlobalVariables.VaccineAndNucleicMSIP).get
   }
 }
