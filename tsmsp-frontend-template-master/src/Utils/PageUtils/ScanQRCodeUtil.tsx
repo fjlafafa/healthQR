@@ -8,10 +8,8 @@ export class ScanView extends React.Component<any, any> {
             try {
                 JSON.parse(data)
             } catch (e) {
-                alert('false=>' + data)
                 return false
             }
-            alert('true=>' + data)
             return true
         },
         handleData: (dataJson: string) => {
