@@ -1,3 +1,5 @@
+package PlaceInfoMS
+
 import Globals.{DataPaths, GlobalVariables}
 import Tables._
 import com.typesafe.config.{Config, ConfigFactory}

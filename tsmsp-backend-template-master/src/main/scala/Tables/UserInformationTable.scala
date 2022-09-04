@@ -7,6 +7,7 @@ import Types.{UserInformation, UserRiskLevels, VaccinationStatuses}
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
 import Utils.EnumAutoConverter._
+import VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
@@ -31,7 +32,7 @@ object UserInformationTable {
   def updateVaccinationStatus(userId: UserId): DBIO[Int] = {
     userInformationTable.filter(_.id === userId).map(_.vaccinationStatus).update(
       VaccinationStatus.step(
-        DBUtils.exec(userInformationTable.filter(_.id === userId).map(_.vaccinationStatus).result.headOption).getOrElse(
+        VaccineAndNucleicMSDBUtils.exec(userInformationTable.filter(_.id === userId).map(_.vaccinationStatus).result.headOption).getOrElse(
           throw UserNotExistsException()
         )
       )

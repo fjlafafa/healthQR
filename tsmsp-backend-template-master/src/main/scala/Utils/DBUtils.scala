@@ -23,8 +23,6 @@ object DBUtils {
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
-        UserInformationTable.userInformationTable.schema.createIfNotExists,
-        UserTraceTable.userTraceTable.schema.createIfNotExists,
       ).transactionally
     )
     }

@@ -5,6 +5,7 @@ import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId}
 import Types.Trace
 import Types.TraceMeta.{ReportType, TraceId}
 import Types.UserMeta.UserId
+import UserInfoMS.UserInfoMSDBUtils
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
 import Utils.TokenUtils.RandomTraceId
@@ -40,7 +41,7 @@ object UserTraceTable {
     userTraceTable.filter(ut => ut.userId === userId).sortBy(_.time).result
 
   def checkTraceExists(userId: UserId, trace: TraceId): Try[Boolean] = Try(
-    DBUtils.exec(userTraceTable.filter(ut => ut.userId === userId && ut.id === trace).size.result) > 0
+    UserInfoMSDBUtils.exec(userTraceTable.filter(ut => ut.userId === userId && ut.id === trace).size.result) > 0
   )
 
   def dropTrace(userId: UserId, trace : TraceId): DBIO[Int] =
