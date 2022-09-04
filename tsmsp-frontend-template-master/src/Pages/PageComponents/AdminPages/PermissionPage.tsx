@@ -21,7 +21,7 @@ export function PermissionPage({navigation}: any) {
 
     return <ScreenTemplate goBack={goBack}>
         <View style={{height:30}}/>
-        <TextTemplate>当前设置权限目标用户为：{(client === null ? '未定' : client.userId)}</TextTemplate>
+        <TextTemplate>当前设置权限目标用户为：{(client === null ? '未定' : client.realName.name)}</TextTemplate>
         <TextTemplate>设置权限为：{tosetPremission.toString()}</TextTemplate>
         <ScanView
             handleData={(data: string) => {

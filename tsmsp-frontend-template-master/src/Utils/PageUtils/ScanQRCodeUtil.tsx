@@ -40,7 +40,7 @@ export class ScanView extends React.Component<any, any> {
             // alert(`Bar code with type ${type} and data ${data} has been scanned!`)
             if (this.props.checkData(data)) {
                 this.props.handleData(data)
-                setTimeout(() => this.setState({scanned: false}), 2000)
+                setTimeout(() => this.setState({scanned: false}), 5000)
             } else {
                 alert(`格式不正确，请重新扫码！`)
                 setTimeout(() => this.setState({scanned: false}), 2000)
