@@ -1,5 +1,6 @@
 import Globals.GlobalVariables
 import Process.TSMSPPortalHttpServer
+import UserInfoMS.UserInfoMSDBUtils
 import akka.actor.typed.ActorSystem
 import com.typesafe.scalalogging.Logger
 
