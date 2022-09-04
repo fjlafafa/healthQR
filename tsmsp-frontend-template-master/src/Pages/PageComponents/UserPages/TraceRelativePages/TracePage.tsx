@@ -9,6 +9,7 @@ import {DAY_MILLIS} from "Utils/SettingsAndConstants";
 import {useFocusEffect} from "@react-navigation/native";
 import {HeaderTemplate} from "../../../../Utils/PageUtils/HeaderUtil";
 import {TraceTable} from "../../../../Utils/PageUtils/TraceTableUtil";
+import {Token} from "Types/UserMeta/Token";
 
 export function TracePage({navigation}:any){
     const {token} = TokenStore()
@@ -17,7 +18,7 @@ export function TracePage({navigation}:any){
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
-            new UserGetTraceMessage(token, (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
+            new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
             })

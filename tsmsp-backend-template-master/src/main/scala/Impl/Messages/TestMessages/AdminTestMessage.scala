@@ -15,17 +15,17 @@ import org.joda.time.DateTime
 import scala.util.Try
 
 //We can test communication here
-case class AdminTestMessage(userToken: String) extends TSMSPMessage {
+case class AdminTestMessage(userToken: Token) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     println("this is a message")
-    userToken match {
+    userToken.token match {
       case "1" => TSMSPReply(STATUS_OK, IOUtils.serialize(Place(PlaceId(1L), Province("Beijing"), City("Beijing"), District("Haidian"), SubDistrict("Hello world?!"), Types.PlaceMeta.Red)).get)
       case "2" => TSMSPReply(STATUS_OK, IOUtils.serialize(Trace(TraceId(1), UserId(2), now, PlaceId(13), DetailedPlaceDescription("rnm"), SelfReport)).get)
-      case "3" => TSMSPReply(STATUS_OK, IOUtils.serialize(UserIdentity(UserId(1), IdentityNumber("132"), Password("fdsa"), RealName("df"), Token("sbsbsbs"), DateTime.now(), NucleicTestResultReporter)).get)
+      case "3" => TSMSPReply(STATUS_OK, IOUtils.serialize(UserIdentity(UserId(1), IdentityNumber("132"), PasswordHash("fdsa"), RealName("df"), Token("sbsbsbs"), DateTime.now(), NucleicTestResultReporter)).get)
       case "4" => TSMSPReply(STATUS_OK, IOUtils.serialize(UserInformation(UserId(123), now, Types.UserMeta.Triple, PopUps)).get)
       case _ =>
         val trace = DBUtils.exec(
-          UserIdentityTable.checkUserIdByToken(Token(userToken)).flatMap(
+          UserIdentityTable.checkUserIdByToken(userToken).flatMap(
             userId => UserTraceTable.checkAllTrace(userId.getOrElse(throw TokenNotExistsException()))
           )
         ).toList

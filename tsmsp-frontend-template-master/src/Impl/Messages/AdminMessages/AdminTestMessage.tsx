@@ -1,11 +1,12 @@
 import {TSMSPMessage} from '../TSMSPMessage'
 import {TSMSPReply} from "../../TSMSPReply";
 import {Place} from "../../../Types/Place";
+import {Token} from "Types/UserMeta/Token";
 
 //We can test communication here
 export class AdminTestMessage extends TSMSPMessage {
-    userToken : string
-    constructor(userToken : string) {
+    userToken : Token
+    constructor(userToken : Token) {
         super()
         this.userToken = userToken
     }

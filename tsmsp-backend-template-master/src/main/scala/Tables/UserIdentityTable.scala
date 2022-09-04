@@ -17,7 +17,7 @@ import scala.util.Try
 class UserIdentityTable(tag : Tag) extends Table[UserIdentity](tag, GlobalVariables.mainSchema, "user_identity") {
   def userId = column[UserId]("user_id", O.PrimaryKey)
   def identityNumber = column[IdentityNumber]("identity_number")
-  def password = column[Password]("password")
+  def password = column[PasswordHash]("password")
   def realName = column[RealName]("real_name")
   def token = column[Token]("token")
   def refreshTime = column[DateTime]("refresh_time")
@@ -28,7 +28,7 @@ class UserIdentityTable(tag : Tag) extends Table[UserIdentity](tag, GlobalVariab
 object UserIdentityTable {
   val userIdentityTable = TableQuery[UserIdentityTable]
 
-  def addUser(realName: RealName, password: Password, identityNumber: IdentityNumber, permission : Permission): DBIO[Int] =
+  def addUser(realName: RealName, password: PasswordHash, identityNumber: IdentityNumber, permission : Permission): DBIO[Int] =
     userIdentityTable += UserIdentity(RandomUserId(IdLengths.user), identityNumber, password, realName, Token(""), DateTime.now().minusYears(2), permission)
 
   def dropUser(userId: UserId): DBIO[Int] = userIdentityTable.filter(_.userId === userId).delete
@@ -51,7 +51,7 @@ object UserIdentityTable {
 
   def checkUserExists(realName: RealName): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(_.realName === realName).size.result) > 0)
 
-  def checkPassword(realName: RealName, password: Password): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(u => u.realName === realName && u.password === password).size.result) > 0)
+  def checkPassword(realName: RealName, password: PasswordHash): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(u => u.realName === realName && u.password === password).size.result) > 0)
 
   def checkIdByRealName(realName: RealName): DBIO[Option[UserId]] =
     userIdentityTable.filter(u => u.realName === realName).map(_.userId).result.headOption
@@ -62,7 +62,7 @@ object UserIdentityTable {
   def checkRealNameById(userId: UserId): DBIO[Option[RealName]] =
       userIdentityTable.filter(u => u.userId === userId).map(_.realName).result.headOption
 
-  def updatePassword(userId: UserId, newPassword: Password): DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.password).update(newPassword)
+  def updatePassword(userId: UserId, newPassword: PasswordHash): DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.password).update(newPassword)
 
   def getPermissionFromToken(token: Token): Try[Permission] = Try(
     DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.permission).result.headOption).getOrElse(

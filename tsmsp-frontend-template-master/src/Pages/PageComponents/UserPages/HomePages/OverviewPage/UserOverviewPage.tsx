@@ -34,6 +34,7 @@ import {UserId} from "../../../../../Types/UserMeta/UserId";
 import {UserRiskLevel} from "../../../../../Types/UserMeta/UserRiskLevel";
 import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
 import {TraceTable} from "../../../../../Utils/PageUtils/TraceTableUtil";
+import {Token} from "Types/UserMeta/Token";
 
 
 export function UserOverviewPage({navigation}: any) {
@@ -43,7 +44,7 @@ export function UserOverviewPage({navigation}: any) {
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
-            new UserGetTraceMessage(token, (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
+            new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
             })

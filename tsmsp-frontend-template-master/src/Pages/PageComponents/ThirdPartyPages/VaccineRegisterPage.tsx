@@ -1,20 +1,22 @@
 import {ScreenTemplate} from "../../../Utils/PageUtils/PageContainerUtil";
-import {ButtonToSendMessage} from "../../../Utils/PageUtils/ButtonUtil";
-import {Permission} from "Types/UserMeta/Permission";
+import {ButtonTemplate, ButtonToSendMessage} from "../../../Utils/PageUtils/ButtonUtil";
+import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
+import {HospitalUpdateNucleicTestMessage} from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
+import {Token} from "Types/UserMeta/Token";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
+import React, {useState} from "react";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import create from "zustand";
+import {TokenStore} from "Globals/TokenStore";
 import {UserIdentity} from "Types/UserIdentity";
 import {View} from "react-native";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
-import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
 import {VaccinationStatus} from "Types/UserMeta/VaccinationStatus";
-import create from "zustand"
-import {TokenStore} from "Globals/TokenStore";
-import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
-import React, {useState} from "react";
-import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
-import {HospitalUpdateVaccinationMessage} from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
 
-const IDStore = create(()=> ({identity: ''}))
+const IDStore = create(()=> ({identity: ' '}))
+const setIdentity = (identity: string) => IDStore.setState({identity})
+const UploadState = create( ()=>({state: '请上传疫苗接种信息'}))
 const VaccineNum = create(()=>({vaccine: ''}))
 const TestVaccine = (vaccine:string) => {return vaccine === '1' || vaccine  === '2'|| vaccine === '3'}
 
@@ -22,6 +24,7 @@ export function VaccineRegisterPage({navigation}:any){
 
 
     const {token} = TokenStore()
+    const {state} = UploadState.getState()
     const goBack=()=>navigation.navigate('ThirdParty.Overview')
     const {identity}=IDStore()
     const {vaccine} = VaccineNum()
@@ -47,15 +50,12 @@ export function VaccineRegisterPage({navigation}:any){
             text={'打一针'}/>
         {/**/}
         <ButtonToSendMessage
-            checkBeforeSendMessage = {()=>(checkIdentityNumber(identity)&& TestVaccine(vaccine))}
-            checkElse = {()=>{alert('请重新检查身份证号与接种针数是否填写正确')}}
-            toSendMessage ={new HospitalUpdateVaccinationMessage(token, identity, vaccine)}
+            checkBeforeSendMessage = {()=>(checkIdentityNumber(identity))}
+            checkElse = {()=>{alert('请重新检查身份证号是否填写正确')}}
+            toSendMessage ={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identity))}
             text = '上传'
-            ifSuccess = {()=>{IDStore.setState({identity:' '}); VaccineNum.setState({vaccine: ' '}) }}
-            />
+        />
 
 
-
-        <View style={{height:30}}/>
     </ScreenTemplate>
 }

@@ -12,6 +12,9 @@ import {checkPassword} from '../../../Utils/FormatUtils/PasswordUtil'
 import {checkRealName} from '../../../Utils/FormatUtils/RealNameUtil'
 import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {Permission} from "../../../Types/UserMeta/Permission";
+import {RealName} from "Types/UserMeta/RealName";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
+import {Password} from "Types/UserMeta/Password";
 
 const registerStore= create(() => ({
     realName:'',
@@ -40,7 +43,7 @@ export function RegisterPage({ navigation }: any){
             checkElse = {()=>{
                 alert('姓名、密码（至少六位）或身份证号不符要求！')
             }}
-            toSendMessage ={new UserRegisterMessage(realName, password, identityNumber)}
+            toSendMessage ={new UserRegisterMessage(new RealName(realName), new Password(password), new IdentityNumber(identityNumber))}
             text = '注册'
             ifSuccess = {(reply:string)=>{
                 setUserToken(reply)

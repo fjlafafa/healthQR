@@ -1,13 +1,15 @@
 import {TSMSPMessage} from '../TSMSPMessage'
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
+import {Token} from "Types/UserMeta/Token";
 
 export class HospitalUpdateNucleicTestMessage extends TSMSPMessage {
-    identityNumber : string
-    token : string
+    userToken : Token
+    identityNumber : IdentityNumber
 
 
-    constructor(token: string, identityNumber: string) {
+    constructor(userToken : Token, identityNumber: IdentityNumber) {
         super()
+        this.userToken = userToken
         this.identityNumber = identityNumber
-        this.token = token
     }
 }

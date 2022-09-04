@@ -5,13 +5,14 @@ import {UserDeleteAccountMessage} from '../../../../Impl/Messages/UserMessages/U
 import {ButtonTemplate, ButtonToSendMessage} from '../../../../Utils/PageUtils/ButtonUtil'
 import {TSMSPReply} from '../../../../Impl/TSMSPReply'
 import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
+import {Token} from "Types/UserMeta/Token";
 
 export function AccountDeletionPage({ navigation }: any){
     const {token} = TokenStore()
     const goBack=()=>navigation.navigate('User.Account')
     return <ScreenTemplate goBack={goBack}>
         <ButtonToSendMessage
-            toSendMessage = {new UserDeleteAccountMessage(token)}
+            toSendMessage = {new UserDeleteAccountMessage(new Token(token))}
             ifSuccess = {(reply:string)=>{
                 alert('用户注销成功！')
                 navigation.navigate('Login')

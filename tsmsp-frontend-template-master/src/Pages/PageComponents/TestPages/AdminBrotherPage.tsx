@@ -1,10 +1,7 @@
 import {StatusBar} from 'expo-status-bar'
-import {ScrollView, View} from "react-native";
 import React, {useEffect, useState} from 'react'
 import {setUserToken, TokenStore} from '../../../Globals/TokenStore'
 import {ButtonTemplate, ButtonToSendMessage} from '../../../Utils/PageUtils/ButtonUtil'
-import {AdminDropDataBasesMessage} from '../../../Impl/Messages/AdminMessages/AdminDropDataBasesMessage'
-import {AdminTestMessage} from '../../../Impl/Messages/AdminMessages/AdminTestMessage'
 import {ScreenTemplate, ScrollTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {TextInputTemplate} from "../../../Utils/PageUtils/TextInputUtil";
 

@@ -8,6 +8,9 @@ import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
 import {TokenStore} from "Globals/TokenStore";
 import {useNavigation} from "@react-navigation/native";
+import {RealName} from "Types/UserMeta/RealName";
+import {Token} from "Types/UserMeta/Token";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Permission} from "Types/UserMeta/Permission";
 import {UserIdentity} from "Types/UserIdentity";
 import {View} from "react-native";
@@ -63,7 +66,7 @@ export function NucleicAcidPage({navigation}:any){
     <ButtonToSendMessage
         checkBeforeSendMessage = {()=>(checkIdentityNumber(identity))}
         checkElse = {()=>{alert('请重新检查身份证号是否填写正确')}}
-        toSendMessage ={new HospitalUpdateNucleicTestMessage(token, identity)}
+        toSendMessage ={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identity))}
         text = '上传'
         ifSuccess = {()=>{IDStore.setState({identity:" "})}}
     />

@@ -10,19 +10,21 @@ import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {Permission} from "../../../Types/UserMeta/Permission";
 import {SendData} from "Utils/SendDataUtil";
 import {UserCheckPermissionMessage} from "Messages/UserMessages/UserCheckPermissionMessage";
+import {RealName} from "Types/UserMeta/RealName";
+import {Password} from "Types/UserMeta/Password";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
 // import LoginIcon from '@mui/icons-material/Login'
 
-const loginStore = create(() => ({
-    userName: '',
-    password: ''
+const loginStore= create(() => ({
+    userName:'',
+    password:''
 }))
 
-const setUserName = (userName: string) => loginStore.setState({userName})
-const setPassword = (password: string) => loginStore.setState({password})
-const clearLoginInfo = () => loginStore.setState(({userName: '', password: ''}))
+const setUserName= (userName:string) => loginStore.setState({ userName })
+const setPassword= (password:string) => loginStore.setState({ password })
+const clearLoginInfo= ()=> loginStore.setState(({userName: '', password: ''}))
 
 export function LoginPage({navigation}: any) {
     const {userName, password} = loginStore()
@@ -31,9 +33,9 @@ export function LoginPage({navigation}: any) {
         <TextInputTemplate label='密码' value={password} onChangeText={(newText: string) => setPassword(newText)}
                            secureTextEntry={true}/>
         <ButtonToSendMessage
-            icon='login'
-            toSendMessage={new UserLoginMessage(userName, password)}
-            ifSuccess={(reply: string) => {
+            icon = 'login'
+            toSendMessage ={new UserLoginMessage(new RealName(userName), new Password(password))}
+            ifSuccess = {(reply:string)=>{
                 setUserToken(reply)
                 SendData(new UserCheckPermissionMessage(reply), (reply: Permission) => {
 

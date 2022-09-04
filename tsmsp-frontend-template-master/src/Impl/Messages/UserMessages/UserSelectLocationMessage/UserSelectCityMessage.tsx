@@ -1,9 +1,11 @@
 import {TSMSPMessage} from "../../TSMSPMessage";
+import {Province} from "Types/PlaceMeta/Province";
+import {Token} from "Types/UserMeta/Token";
 
 export class UserSelectCityMessage extends TSMSPMessage {
-    userToken : string
-    province : string
-    constructor(userToken : string, province : string) {
+    userToken : Token
+    province : Province
+    constructor(userToken : Token, province : Province) {
         super()
         this.userToken = userToken
         this.province = province

@@ -6,7 +6,7 @@ import Types.UserMeta._
 import Types.{UserInformation, UserRiskLevels, VaccinationStatuses}
 import Utils.CustomColumnTypesUtils._
 import Utils.DBUtils
-import Utils.ImplicitTypeConverter._
+import Utils.EnumAutoConverter._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
