@@ -12,7 +12,7 @@ import scala.util.Try
 
 case class UserLoginMessage(realName: RealName, password: Password) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    if (UserIdentityTable.checkPassword(realName, Password(password.token.hashCode.toString)).get) {
+    if (UserIdentityTable.checkPassword(realName, Password(password.hashCode.toString)).get) {
       val userId = DBUtils.exec(UserIdentityTable.checkIdByRealName(realName)).getOrElse(throw TokenNotExistsException())
       TSMSPReply(STATUS_OK, UserIdentityTable.checkToken(userId).get.token)
     }
