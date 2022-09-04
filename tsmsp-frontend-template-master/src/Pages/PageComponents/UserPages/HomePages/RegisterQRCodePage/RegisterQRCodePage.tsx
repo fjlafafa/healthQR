@@ -42,7 +42,7 @@ export function RegisterQRCodePage({navigation}:any) {
                         <View style={{height:SCREEN_WIDTH * 0.9,width:SCREEN_WIDTH * 0.95, alignItems: 'center',justifyContent:'center'}}>
 
                             <RegisterCode
-                                userInfo={new UserIdentity(new UserId(1),new RealName('shabra'),new Password('0'),new IdentityNumber('114514121211138'),Permission.normal)}
+                                userInfo={new UserIdentity(new UserId(1),new IdentityNumber('231'),new Password('123'),new RealName('shabra'),new Token('123'),new DateClass(new Date().getTime()),Permission.normal)}
                             />
                         </View>
                         <View style={{height: '2%'}}/>
