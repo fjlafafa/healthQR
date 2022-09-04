@@ -1,6 +1,6 @@
 package Impl.Messages
 
-import Impl.Messages.AdminMessages._
+import Impl.Messages.TestMessages._
 import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.MSUserGetPlaceMessage
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages._
