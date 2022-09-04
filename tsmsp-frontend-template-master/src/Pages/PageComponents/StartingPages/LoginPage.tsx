@@ -8,6 +8,8 @@ import {AllowAdmin} from '../../../Globals/GlobalVariables'
 import {TextInputTemplate} from '../../../Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {Permission} from "../../../Types/UserMeta/Permission";
+import {RealName} from "Types/UserMeta/RealName";
+import {Password} from "Types/UserMeta/Password";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -31,7 +33,7 @@ export function LoginPage({ navigation }: any){
         <TextInputTemplate label='密码'  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
             icon = 'login'
-            toSendMessage ={new UserLoginMessage(userName, password)}
+            toSendMessage ={new UserLoginMessage(new RealName(userName), new Password(password))}
             ifSuccess = {(reply:string)=>{
                 setUserToken(reply)
                 if (permission===Permission.normal) {
