@@ -10,6 +10,7 @@ import {District} from "../../Types/PlaceMeta/District";
 import {PlaceId} from "../../Types/PlaceMeta/PlaceId";
 import {SendData} from "../SendDataUtil";
 import {UserGetPlaceMessage} from "../../Impl/Messages/UserMessages/UserGetPlaceMessage";
+import {View} from "react-native";
 
 function DataRow(props:{token: string,trace:Trace}){
     const [data,setPlaceData]=useState<Place>(new Place(new PlaceId(0),new Province(''),new City(''),new District(''),new SubDistrict(''), PlaceRiskLevel.red))

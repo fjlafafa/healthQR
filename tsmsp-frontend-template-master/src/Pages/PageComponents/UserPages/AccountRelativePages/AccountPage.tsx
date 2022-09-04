@@ -13,15 +13,16 @@ import React from "react";
 import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
 
 export function AccountPage({navigation}: any) {
-    return <ScreenTemplate>
+    const goBack=()=>navigation.navigate('User.Overview')
+    return <ScreenTemplate goBack={goBack}>
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('DeleteAccount', {})
+                navigation.navigate('User.AccountDeletion')
             }}
             text='注销账户'/>
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('Password', {})
+                navigation.navigate('User.Password')
             }}
             text='修改密码'/>
         <ButtonTemplate
@@ -30,11 +31,6 @@ export function AccountPage({navigation}: any) {
                 clearUserToken()
             }}
             text='退出登录'/>
-        <ButtonTemplate
-            onPress={() => {
-                navigation.navigate('Overview')
-            }}
-            text='返回'/>
 
         <StatusBar style='auto'/>
     </ScreenTemplate>

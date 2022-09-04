@@ -21,7 +21,8 @@ export const clearInfo= ()=> passwordStore.setState(({password: '', confirmed_pa
 export function PasswordPage({ navigation }: any){
     const {token} = TokenStore()
     const {password, confirmed_password}=passwordStore()
-    return <ScreenTemplate>
+    const goBack=()=>navigation.navigate('User.Account')
+    return <ScreenTemplate goBack={goBack}>
         <TextInputTemplate placeholder={'密码'}  value={password} onChangeText={(newText:string)=>setPassword(newText)} secureTextEntry={true}/>
         <TextInputTemplate placeholder={'确认密码'}  value={confirmed_password} onChangeText={(newText:string)=>setConfirmedPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
@@ -34,16 +35,9 @@ export function PasswordPage({ navigation }: any){
             ifSuccess = {(reply:string)=> {
                 alert('用户' + reply + '的密码已修改')
                 clearInfo()
-                navigation.navigate('Overview',{})
+                navigation.navigate('User.Overview')
             }}
             text = '提交修改'
-        />
-        <ButtonTemplate
-            onPress = {() => {
-                clearInfo()
-                navigation.navigate('Overview',{})
-            }}
-            text = '返回主页'
         />
         <StatusBar style='auto' />
     </ScreenTemplate>

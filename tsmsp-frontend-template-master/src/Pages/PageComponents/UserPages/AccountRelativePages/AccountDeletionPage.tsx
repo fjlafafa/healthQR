@@ -8,18 +8,16 @@ import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
 
 export function AccountDeletionPage({ navigation }: any){
     const {token} = TokenStore()
-    return <ScreenTemplate>
+    const goBack=()=>navigation.navigate('User.Account')
+    return <ScreenTemplate goBack={goBack}>
         <ButtonToSendMessage
             toSendMessage = {new UserDeleteAccountMessage(token)}
             ifSuccess = {(reply:string)=>{
-                alert('用户\'' + reply + '\'注销成功！')
-                navigation.navigate('Login',{})
+                alert('用户注销成功！')
+                navigation.navigate('Login')
                 clearUserToken()
             }}
             text = '确认注销'/>
-        <ButtonTemplate
-            onPress={() => navigation.navigate('Overview',{})}
-            text = '返回主界面'/>
 
         <StatusBar style='auto' />
     </ScreenTemplate>

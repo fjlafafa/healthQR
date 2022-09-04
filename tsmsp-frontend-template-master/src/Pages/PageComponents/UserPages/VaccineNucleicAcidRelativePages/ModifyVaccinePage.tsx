@@ -18,7 +18,9 @@ const setRiskLevel= (riskLevel:string) => patientInfoStore.setState({ riskLevel 
 
 export function ModifyVaccinePage ({navigation}:any) {
     const {identityNumber, riskLevel}=patientInfoStore()
-    return <ScreenTemplate>
+
+    const goBack=()=>navigation.navigate('User.Vaccine')
+    return <ScreenTemplate goBack={goBack}>
 
         <TextInputTemplate placeholder={'检测人身份证号'} value={identityNumber} onChangeText={(newText: string)=>setIdentityNumber(newText)}/>
 

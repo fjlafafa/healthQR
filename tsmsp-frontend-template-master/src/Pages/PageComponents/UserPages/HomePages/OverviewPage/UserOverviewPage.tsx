@@ -8,7 +8,7 @@ import {BoundedTraceList} from "../../../../../Utils/PageUtils/ListUtil";
 import {ButtonTemplate} from "../../../../../Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React, {useState} from "react";
-import {TokenStore} from "../../../../../Globals/TokenStore";
+import {TokenStore, clearUserToken} from "../../../../../Globals/TokenStore";
 import {SendData} from "../../../../../Utils/SendDataUtil";
 import {UserGetTraceMessage} from "../../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
 import {ONEDAY} from "../../../../../Utils/Constants";
@@ -18,9 +18,9 @@ import {useFocusEffect} from "@react-navigation/native";
 import {TextClock} from "../../../../../Utils/PageUtils/ClockUtil";
 import {DateClass} from "../../../../../Types/Templates/DateClass";
 import {VaccinationStatus} from "../../../../../Types/UserMeta/VaccinationStatus";
-import {VaccineView} from "./OverviewPageUtils/VaccineUtil";
-import {NucleicAcidView} from "./OverviewPageUtils/NucleicAcidUtil";
-import {PlanTraceList} from "./OverviewPageUtils/PlanTraceListUtil";
+import {VaccineView} from "./UserOverviewPageUtils/VaccineUtil";
+import {NucleicAcidView} from "./UserOverviewPageUtils/NucleicAcidUtil";
+import {PlanTraceList} from "./UserOverviewPageUtils/PlanTraceListUtil";
 import {Place} from "../../../../../Types/Place";
 import {PlaceId} from "../../../../../Types/PlaceMeta/PlaceId";
 import {Province} from "Types/PlaceMeta/Province";
@@ -28,7 +28,7 @@ import {City} from "Types/PlaceMeta/City";
 import {District} from "Types/PlaceMeta/District";
 import {SubDistrict} from "../../../../../Types/PlaceMeta/SubDistrict";
 import {PlaceRiskLevel} from 'Types/PlaceMeta/PlaceRiskLevel'
-import {HealthCode} from "./OverviewPageUtils/HealthCodeUtil";
+import {HealthCode} from "./UserOverviewPageUtils/HealthCodeUtil";
 import {UserInformation} from "../../../../../Types/UserInformation";
 import {UserId} from "../../../../../Types/UserMeta/UserId";
 import {UserRiskLevel} from "../../../../../Types/UserMeta/UserRiskLevel";
@@ -36,10 +36,11 @@ import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
 import {TraceTable} from "../../../../../Utils/PageUtils/TraceTableUtil";
 
 
-export function OverviewPage({navigation}: any) {
+export function UserOverviewPage({navigation}: any) {
     const {token} = TokenStore()
-    const [traceHistory, setTraceHistory] = useState(Array<Trace>())
+
     //refreshing
+    const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
             new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
@@ -48,8 +49,15 @@ export function OverviewPage({navigation}: any) {
             })
     }
     useFocusEffect(React.useCallback(refresh, []))
-    return <ScreenTemplate>
-        <ViewSwitcher state={'Overview'} navigation={navigation}/>
+
+    //go back
+    const goBack=()=>{
+        navigation.navigate('Login')
+        clearUserToken()
+    }
+
+    return <ScreenTemplate goBack={goBack}>
+        <ViewSwitcher state={'User.Overview'} navigation={navigation}/>
         <ScrollTemplate>
             <View style={{
                 width: SCREEN_WIDTH,
@@ -116,31 +124,15 @@ export function OverviewPage({navigation}: any) {
 
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate('ScanQRCode', {})
-                    }}
-                    text='地点扫码'
-                />
-                <ButtonTemplate
-                    onPress={() => {
-                        navigation.navigate('Account', {})
+                        navigation.navigate('User.Account')
                     }}
                     text='个人账户'
                 />
                 <ButtonTemplate
-                    onPress={() => {
-                        navigation.navigate('Trace', {})
-                    }}
-                    text='踪迹管理'
-                />
-                <ButtonTemplate
-                    onPress={() => {
-                        navigation.navigate('Vaccine', {})
-                    }}
-                    text='核酸疫苗管理'
+                    onPress={() => goBack()}
+                    text='退出登录'
                 />
             </View>
-            <HeaderTemplate text='测试行程表'/>
-            <TraceTable token={token} traceList={traceHistory}/>
 
             <StatusBar style='auto'/>
         </ScrollTemplate>

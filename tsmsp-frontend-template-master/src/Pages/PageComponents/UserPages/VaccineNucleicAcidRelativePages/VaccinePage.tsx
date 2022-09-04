@@ -4,12 +4,11 @@ import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
 import React from "react";
 
 export function VaccinePage ({navigation}:any) {
-    return <ScreenTemplate>
+    const goBack=()=>navigation.navigate('User.RegisterQRCode')
+    return <ScreenTemplate goBack={goBack}>
         <ButtonTemplate
-        onPress={() => {
-            navigation.navigate('Overview',{})
-        }}
-        text = '返回主界面'/>
+        onPress={() => navigation.navigate('User.ModifyVaccine')}
+        text = '修改我的疫苗核酸信息'/>
 
     </ScreenTemplate>
 }

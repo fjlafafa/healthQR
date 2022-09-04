@@ -1,15 +1,13 @@
-import React from 'react'
-import Text from 'react-native-paper'
+import React, {useState} from 'react'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
-import {setUserToken} from 'Globals/TokenStore'
-import {UserLoginMessage} from '../../Impl/Messages/UserMessages/UserLoginMessage'
-import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {TextClock} from 'Utils/PageUtils/ClockUtil'
-import {AllowAdmin} from 'Globals/GlobalVariables'
-import {TSMSPReply} from '../../Impl/TSMSPReply'
-import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
-import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
+import {setUserToken} from '../../../Globals/TokenStore'
+import {UserLoginMessage} from '../../../Impl/Messages/UserMessages/UserLoginMessage'
+import {ButtonTemplate, ButtonToSendMessage} from '../../../Utils/PageUtils/ButtonUtil'
+import {AllowAdmin} from '../../../Globals/GlobalVariables'
+import {TextInputTemplate} from '../../../Utils/PageUtils/TextInputUtil'
+import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
+import {Permission} from "../../../Types/UserMeta/Permission";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -26,7 +24,9 @@ const clearLoginInfo= ()=> loginStore.setState(({userName: '', password: ''}))
 
 export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
+    const [permission,setPermission]=useState(Permission.normal)
     return (<ScreenTemplate atRoot={true}>
+        <TextInputTemplate label={'Permission'} value={permission.toString()} onChangeText={(newText: string)=>setPermission(newText as Permission)}/>
         <TextInputTemplate label='真实姓名' value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
         <TextInputTemplate label='密码'  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
@@ -34,26 +34,25 @@ export function LoginPage({ navigation }: any){
             toSendMessage ={new UserLoginMessage(userName, password)}
             ifSuccess = {(reply:string)=>{
                 setUserToken(reply)
-                navigation.navigate('Overview',{})
-                clearLoginInfo()
-            }}
+                if (permission===Permission.normal) {
+                    navigation.navigate('User.Overview')
+                    clearLoginInfo()
+                } else if (permission===Permission.admin) {
+                    navigation.navigate('Admin.Overview')
+                    clearLoginInfo()
+                } else if (permission===Permission.nucleic) {
+                    navigation.navigate('ThirdParty.Overview')
+                    clearLoginInfo()
+            }}}
             text = '登录'
         />
         {/*<LoginIcon fontSize='large' > </LoginIcon>*/}
         <ButtonTemplate
             onPress = {()=> {
-                navigation.navigate('Register',{})
+                navigation.navigate('Register')
                 clearLoginInfo()
             }}
             text = '注册'
-        />
-
-        <ButtonTemplate
-            onPress = {()=> {
-                navigation.navigate('PlaceQR',{})
-                clearLoginInfo()
-            }}
-            text = '生成地点二维码'
         />
 
         {
@@ -66,7 +65,7 @@ export function LoginPage({ navigation }: any){
                     clearLoginInfo()
                 }
             }
-                text='管理员'
+                text='测试员入口'
             /> :null
         }
 
