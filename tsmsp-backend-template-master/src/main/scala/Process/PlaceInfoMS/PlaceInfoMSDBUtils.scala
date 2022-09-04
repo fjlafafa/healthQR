@@ -1,3 +1,5 @@
+package PlaceInfoMS
+
 import Globals.{DataPaths, GlobalVariables}
 import Tables._
 import com.typesafe.config.{Config, ConfigFactory}
@@ -29,7 +31,8 @@ object PlaceInfoMSDBUtils {
       Try {
         exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)
       } match {
-        case Failure(e) => Logger("DataInitialization").info(s"Place initialization failure, return value $e")
+        case Success(_) => Logger("PlaceInfoMSServer").info("Places successfully initialized")
+        case Failure(e) => Logger("PlaceInfoMSServer").info(s"Place initialization failure, return value $e")
         }
      }
     }

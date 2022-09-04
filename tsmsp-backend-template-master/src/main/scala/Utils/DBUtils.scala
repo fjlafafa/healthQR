@@ -2,14 +2,12 @@ package Utils
 
 import Globals.GlobalVariables
 import Tables._
-import Types.UserMeta.{Administrator, IdentityNumber, Password, RealName}
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import Utils.PasswordAutoEncoder._
 
 
 object DBUtils {
@@ -25,8 +23,6 @@ object DBUtils {
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
-        UserInformationTable.userInformationTable.schema.createIfNotExists,
-        UserTraceTable.userTraceTable.schema.createIfNotExists,
         UserIdentityTable.addUser(RealName("root"),Password("root"),IdentityNumber("root"),Administrator),
       ).transactionally
     )

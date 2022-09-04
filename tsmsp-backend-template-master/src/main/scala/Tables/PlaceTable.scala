@@ -2,6 +2,7 @@ package Tables
 
 import Exceptions.PlaceNotExistsException
 import Globals.GlobalVariables
+import PlaceInfoMS.PlaceInfoMSDBUtils
 import Types.PlaceMeta._
 import Types.{Place, PlaceRiskLevels}
 import Utils.CustomColumnTypesUtils._
@@ -53,7 +54,7 @@ object PlaceTable {
   }
 
   def getDescription(placeId: PlaceId): Try[String] = Try {
-    DBUtils.exec(
+    PlaceInfoMSDBUtils.exec(
       placeTable.filter(_.id === placeId).map(pl => (pl.province, pl.city, pl.district, pl.subDistrict)).result.headOption
     ).getOrElse(
       throw PlaceNotExistsException()
@@ -61,7 +62,7 @@ object PlaceTable {
   }
 
   def getPlace(placeId: PlaceId): Try[Place] = Try {
-    DBUtils.exec(
+    PlaceInfoMSDBUtils.exec(
       placeTable.filter(_.id === placeId).result.headOption
     ).getOrElse(
       throw PlaceNotExistsException()
@@ -69,6 +70,6 @@ object PlaceTable {
   }
 
   def isEmpty: Try[Boolean] = Try{
-    DBUtils.exec(placeTable.size.result)==0
+    PlaceInfoMSDBUtils.exec(placeTable.size.result)==0
   }
 }

@@ -6,6 +6,7 @@ import Tables.{UserIdentityTable, UserTraceTable}
 import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId}
 import Types.TraceMeta.ReportType
 import Types.UserMeta.{Token, UserId}
+import UserInfoMS.UserInfoMSDBUtils
 import Utils.DBUtils
 import org.joda.time.DateTime
 
@@ -13,7 +14,7 @@ import scala.util.Try
 
 case class MSUserUpdateTraceMessage(userId: UserId, placeId: PlaceId, detailedPlaceDescription: DetailedPlaceDescription, reportType: ReportType) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    DBUtils.exec(
+    UserInfoMSDBUtils.exec(
       UserTraceTable.addTrace(
         userId,
         placeId,
