@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Text} from 'react-native'
 import {StatusBar} from 'expo-status-bar'
 import create from 'zustand'
@@ -14,10 +14,15 @@ import {checkRealName} from "../../../../Utils/FormatUtils/RealNameUtil";
 import {checkPassword} from "../../../../Utils/FormatUtils/PasswordUtil";
 import {checkIdentityNumber} from "../../../../Utils/FormatUtils/IdentityNumberUtil";
 import {isNumber, checkLength} from "../../../../Utils/FormatUtils/IdentityNumberUtil";
+import {Trace} from "../../../../Types/Trace";
+import {SendData} from "../../../../Utils/SendDataUtil";
+import {UserGetTraceMessage} from "../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
+import {ONEDAY} from "../../../../Utils/Constants";
+import {useFocusEffect} from "@react-navigation/native";
+import {TraceTable} from "../../../../Utils/PageUtils/TraceTableUtil";
 //To implement
 const registerStore= create(() => ({
     RemovedTrace: '',
-    traceHistory:[['暂无踪迹/尚未查询']],
     NewTraceId: '',
     NewTrace: ''
 }))
@@ -25,12 +30,24 @@ const registerStore= create(() => ({
 const setNewTraceId= (NewTraceId:string) => registerStore.setState({ NewTraceId })
 const setNewTrace= (NewTrace:string) => registerStore.setState({ NewTrace })
 const setRemovedTrace= (RemovedTrace:string) => registerStore.setState({ RemovedTrace })
-const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: '', traceHistory: [['暂无踪迹/尚未查询']]}))
+const clearRemovedTraceInfo= ()=> registerStore.setState(({RemovedTrace: ''}))
 
 export function ModifyTracePage({ navigation }: any){
     const {token} = TokenStore()
     const report_type = 'Self uploaded'
-    const {RemovedTrace, traceHistory, NewTraceId, NewTrace}=registerStore()
+    const {RemovedTrace, NewTraceId, NewTrace}=registerStore()
+
+
+    //refreshing
+    const [traceHistory, setTraceHistory] = useState(Array<Trace>())
+    const refresh = () => {
+        SendData(
+            new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
+            (reply: Trace[]) => {
+                setTraceHistory(reply)
+            })
+    }
+    useFocusEffect(React.useCallback(refresh, []))
 
     const goBack=()=>navigation.navigate('User.Trace')
     return <ScreenTemplate goBack={goBack}>
@@ -46,6 +63,7 @@ export function ModifyTracePage({ navigation }: any){
             icon = 'upload'
             toSendMessage = {new UserUpdateTraceMessage(token, NewTraceId, NewTrace, report_type)}
             text = '上传新轨迹'
+            ifSuccess={(_:any)=> refresh()}
         />
 
         <TextInputTemplate placeholder={'删除轨迹编号'} value={RemovedTrace} onChangeText={(newText: string)=>setRemovedTrace(newText)}/>
@@ -55,24 +73,20 @@ export function ModifyTracePage({ navigation }: any){
             ifSuccess = {(replyMessage:string)=>{
                 alert('轨迹\'' + replyMessage + '\'删除成功！')
                 setRemovedTrace('')
+                refresh()
             }}
             text = '删除记录'
         />
 
         <ButtonTemplate
             onPress={() => {
-                navigation.navigate('User.Overview',{})
+                navigation.navigate('User.Overview')
                 clearRemovedTraceInfo()
             }}
             text = '返回主界面'/>
 
-        <BoundedTraceList
-            data={traceHistory}
-            renderItem={({item, index}:any) =>
-                item[0] === '暂无踪迹/尚未查询' ?
-                    <Text>暂无踪迹或尚未查询</Text> :
-                    <Text>{index}. {item[2]}到访{item[0]}内{item[1]}</Text>
-            } keyExtractor={(item : any, index : number) => index.toString()}/>
+
+        <TraceTable token={token} traceList={traceHistory}/>
 
         <StatusBar style='auto' />
     </ScreenTemplate>

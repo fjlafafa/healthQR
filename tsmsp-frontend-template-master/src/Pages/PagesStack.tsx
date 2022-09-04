@@ -44,10 +44,10 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'User.ModifyVaccine'} component={ModifyVaccinePage}/>
                     <Stack.Screen name={'User.RegisterQRCode'} component={RegisterQRCodePage}/>
                     <Stack.Screen name={'Admin.GeneratePlaceQR'} component={GeneratePlaceQRPage}/>
-                    <Stack.Screen name={'Admin.AdminOverview'} component={AdminOverviewPage}/>
+                    <Stack.Screen name={'Admin.Overview'} component={AdminOverviewPage}/>
                     <Stack.Screen name={'Admin.Permission'} component={PermissionPage}/>
                     <Stack.Screen name={'ThirdParty.NucleicAcid'} component={NucleicAcidPage}/>
-                    <Stack.Screen name={'ThirdParty.ThirdPartyOverview'} component={ThirdPartyOverviewPage}/>
+                    <Stack.Screen name={'ThirdParty.Overview'} component={ThirdPartyOverviewPage}/>
                     <Stack.Screen name={'ThirdParty.VaccineRegister'} component={VaccineRegisterPage}/>
                     {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
                     {AllowAdmin ? <Stack.Screen name={'AdminBrother'} component={AdminBrotherPage}/> : null}

@@ -38,9 +38,9 @@ import {TraceTable} from "../../../../../Utils/PageUtils/TraceTableUtil";
 
 export function UserOverviewPage({navigation}: any) {
     const {token} = TokenStore()
-    const [traceHistory, setTraceHistory] = useState(Array<Trace>())
 
     //refreshing
+    const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
             new UserGetTraceMessage(token, (new Date().getTime() - ONEDAY), new Date().getTime()),
@@ -124,7 +124,7 @@ export function UserOverviewPage({navigation}: any) {
 
                 <ButtonTemplate
                     onPress={() => {
-                        navigation.navigate('User.Account', {})
+                        navigation.navigate('User.Account')
                     }}
                     text='个人账户'
                 />
@@ -133,8 +133,6 @@ export function UserOverviewPage({navigation}: any) {
                     text='退出登录'
                 />
             </View>
-            <HeaderTemplate text='测试行程表'/>
-            <TraceTable token={token} traceList={traceHistory}/>
 
             <StatusBar style='auto'/>
         </ScrollTemplate>

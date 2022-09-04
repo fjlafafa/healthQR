@@ -12,7 +12,7 @@ import QRCode from "react-native-qrcode-svg";
 import {Card} from "react-native-paper";
 import {LargeTextTemplate} from "../../../Utils/PageUtils/TextUtil";
 import {SmallSpace} from "../../../Utils/PageUtils/SpaceUtil";
-import Select from 'react-select'
+//import Select from 'react-select'
 
 
 export function GeneratePlaceQRPage({ navigation }: any){
@@ -26,7 +26,9 @@ export function GeneratePlaceQRPage({ navigation }: any){
         { value: 'vanilla', label: 'Vanilla' }
     ]
 
-    return <ScreenTemplate>
+    const goBack=()=>navigation.navigate('Admin.Overview')
+
+    return <ScreenTemplate goBack={goBack}>
         <View style={{
             width: SCREEN_WIDTH,
             height: SCREEN_WIDTH,
@@ -53,15 +55,9 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
             <SmallSpace/>
 
-            <Select options={options} />
+            {/*<Select options={options}/>*/}
 
             <SmallSpace/>
-
-            <ButtonTemplate
-                onPress={() => {
-                    navigation.navigate('Admin.GeneratePlaceQR',{})
-                }}
-                text = '刷新二维码'/>
 
             <Card style={{width: '95%', height: '95%', alignItems: 'center'}}>
                 <View style={{height: SCREEN_WIDTH * 0.075}}/>
@@ -78,7 +74,7 @@ export function GeneratePlaceQRPage({ navigation }: any){
 
             <ButtonTemplate
                 onPress={() => {
-                    navigation.navigate('User.Overview',{})
+                    navigation.navigate('User.Overview')
                 }}
                 text = '返回主界面'/>
 
