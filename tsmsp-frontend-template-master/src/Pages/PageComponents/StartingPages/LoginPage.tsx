@@ -8,67 +8,70 @@ import {AllowAdmin} from '../../../Globals/GlobalVariables'
 import {TextInputTemplate} from '../../../Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from '../../../Utils/PageUtils/PageContainerUtil'
 import {Permission} from "../../../Types/UserMeta/Permission";
+import {SendData} from "Utils/SendDataUtil";
+import {UserCheckPermissionMessage} from "Messages/UserMessages/UserCheckPermissionMessage";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
 // import LoginIcon from '@mui/icons-material/Login'
 
-const loginStore= create(() => ({
-    userName:'',
-    password:''
+const loginStore = create(() => ({
+    userName: '',
+    password: ''
 }))
 
-const setUserName= (userName:string) => loginStore.setState({ userName })
-const setPassword= (password:string) => loginStore.setState({ password })
-const clearLoginInfo= ()=> loginStore.setState(({userName: '', password: ''}))
+const setUserName = (userName: string) => loginStore.setState({userName})
+const setPassword = (password: string) => loginStore.setState({password})
+const clearLoginInfo = () => loginStore.setState(({userName: '', password: ''}))
 
-export function LoginPage({ navigation }: any){
-    const {userName,password}=loginStore()
-    const [permission,setPermission]=useState(Permission.normal)
+export function LoginPage({navigation}: any) {
+    const {userName, password} = loginStore()
     return (<ScreenTemplate atRoot={true}>
-        <TextInputTemplate label={'Permission'} value={permission.toString()} onChangeText={(newText: string)=>setPermission(newText as Permission)}/>
-        <TextInputTemplate label='真实姓名' value={userName} onChangeText={(newText: string)=>setUserName(newText)}/>
-        <TextInputTemplate label='密码'  value={password} onChangeText={(newText: string)=>setPassword(newText)} secureTextEntry={true}/>
+        <TextInputTemplate label='真实姓名' value={userName} onChangeText={(newText: string) => setUserName(newText)}/>
+        <TextInputTemplate label='密码' value={password} onChangeText={(newText: string) => setPassword(newText)}
+                           secureTextEntry={true}/>
         <ButtonToSendMessage
-            icon = 'login'
-            toSendMessage ={new UserLoginMessage(userName, password)}
-            ifSuccess = {(reply:string)=>{
+            icon='login'
+            toSendMessage={new UserLoginMessage(userName, password)}
+            ifSuccess={(reply: string) => {
                 setUserToken(reply)
-                if (permission===Permission.normal) {
-                    navigation.navigate('User.Overview')
+                SendData(new UserCheckPermissionMessage(reply), (reply: Permission) => {
+
+                    if (reply === Permission.normal) {
+                        navigation.navigate('User.Overview')
+                    } else if (reply === Permission.admin) {
+                        navigation.navigate('Admin.Overview')
+                    } else if (reply === Permission.nucleic) {
+                        navigation.navigate('ThirdParty.Overview')
+                    }
                     clearLoginInfo()
-                } else if (permission===Permission.admin) {
-                    navigation.navigate('Admin.Overview')
-                    clearLoginInfo()
-                } else if (permission===Permission.nucleic) {
-                    navigation.navigate('ThirdParty.Overview')
-                    clearLoginInfo()
-            }}}
-            text = '登录'
+                })
+            }}
+            text='登录'
         />
         {/*<LoginIcon fontSize='large' > </LoginIcon>*/}
         <ButtonTemplate
-            onPress = {()=> {
+            onPress={() => {
                 navigation.navigate('Register')
                 clearLoginInfo()
             }}
-            text = '注册'
+            text='注册'
         />
 
         {
             //管理员界面唯一入口
-            AllowAdmin?
-            <ButtonTemplate
-                onPress={
-                () => {
-                    navigation.navigate('Admin')
-                    clearLoginInfo()
-                }
-            }
-                text='测试员入口'
-            /> :null
+            AllowAdmin ?
+                <ButtonTemplate
+                    onPress={
+                        () => {
+                            navigation.navigate('Admin')
+                            clearLoginInfo()
+                        }
+                    }
+                    text='测试员入口'
+                /> : null
         }
 
-        <StatusBar style='auto' />
+        <StatusBar style='auto'/>
     </ScreenTemplate>)
 }

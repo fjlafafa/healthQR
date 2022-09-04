@@ -2,6 +2,7 @@ package Utils
 
 import Globals.{DataPaths, GlobalVariables}
 import Tables._
+import Types.UserMeta.{Administrator, IdentityNumber, Password, RealName}
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.Logger
 import slick.dbio.DBIO
@@ -25,6 +26,7 @@ object DBUtils {
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
+        UserIdentityTable.addUser(RealName("root"),Password("root"),IdentityNumber("root"),Administrator),
       ).transactionally
     )
     }

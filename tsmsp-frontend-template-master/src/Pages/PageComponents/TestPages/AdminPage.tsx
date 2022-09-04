@@ -9,7 +9,8 @@ import {Permission} from "Types/UserMeta/Permission";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
-    return <ScreenTemplate>
+    const goBack=()=>navigation.navigate('Login')
+    return <ScreenTemplate goBack={goBack}>
         <ScrollTemplate>
 
 
