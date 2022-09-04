@@ -8,6 +8,7 @@ import Tables.{UserIdentityTable, UserInformationTable}
 import Types.UserMeta.{IdentityNumber, Password, RealName}
 import Utils.DBUtils
 import Utils.EnumAutoConverter._
+import Utils.PasswordAutoEncoder._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 
@@ -21,7 +22,7 @@ case class UserRegisterMessage(realName: RealName, password: Password, identityN
         (UserIdentityTable
           .addUser(
             realName,
-            Password(password.token.hashCode().toString),
+            password,
             identityNumber,
             permission)
            >>
