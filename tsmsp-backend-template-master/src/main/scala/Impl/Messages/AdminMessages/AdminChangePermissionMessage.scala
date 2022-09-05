@@ -1,14 +1,12 @@
 package Impl.Messages.AdminMessages
 
 import Exceptions.{PermissionDeniedException, TokenNotExistsException}
-import Globals.IdLengths.userToken
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
-import Types.UserMeta.{Administrator, NormalUser, Permission, Token}
+import Types.UserMeta.{Administrator, Permission, Token}
 import Utils.DBUtils
 import org.joda.time.DateTime
-import Utils.DateTimeAutoBuilder._
 
 import scala.util.Try
 

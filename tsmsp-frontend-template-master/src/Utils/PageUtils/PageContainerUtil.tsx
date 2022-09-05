@@ -1,9 +1,7 @@
 import {SCREEN_HEIGHT, SCREEN_WIDTH, settingsAndConstants} from '../SettingsAndConstants'
 import {ScrollView, View} from 'react-native'
 import React from 'react'
-import {Appbar, Provider} from 'react-native-paper'
-import {TextTemplate} from "./TextUtil";
-import {backdropClasses} from "@mui/material";
+import {Appbar} from 'react-native-paper'
 
 const safeAreaHeight: number = 25
 const setting = {
@@ -15,7 +13,7 @@ const setting = {
     },
     bar: {
         width: SCREEN_WIDTH,
-        height: SCREEN_WIDTH*0.12,
+        height: SCREEN_WIDTH * 0.12,
         backgroundColor: settingsAndConstants.barColor
     },
     safeArea: {
@@ -34,7 +32,8 @@ const setting = {
 export class ScreenTemplate extends React.Component<any, any> {
     static defaultProps = {
         title: '类型安全宝',
-        goBack: ()=>{},
+        goBack: () => {
+        },
         atRoot: false,
     }
 
@@ -43,8 +42,8 @@ export class ScreenTemplate extends React.Component<any, any> {
             /*@ts-ignore*/
             <View style={setting.screen}>
                 <View style={setting.safeArea}/>
-                <Appbar style={setting.bar} mode={this.props.atRoot?'center-aligned':'small'}>
-                    {this.props.atRoot?null:<Appbar.BackAction onPress={this.props.goBack}/>}
+                <Appbar style={setting.bar} mode={this.props.atRoot ? 'center-aligned' : 'small'}>
+                    {this.props.atRoot ? null : <Appbar.BackAction onPress={this.props.goBack}/>}
                     <Appbar.Content title={this.props.title}/>
                 </Appbar>
                 {/*@ts-ignore*/}

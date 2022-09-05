@@ -7,9 +7,9 @@ import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
 import Types.UserMeta.{Password, Token}
 import Utils.DBUtils
+import Utils.PasswordAutoEncoder._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
-import Utils.PasswordAutoEncoder._
 
 import scala.util.Try
 

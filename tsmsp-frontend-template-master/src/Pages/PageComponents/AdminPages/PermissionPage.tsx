@@ -1,15 +1,10 @@
-import {ScreenTemplate} from "../../../Utils/PageUtils/PageContainerUtil";
-import {ButtonTemplate, ButtonToSendMessage} from "../../../Utils/PageUtils/ButtonUtil";
+import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
-import {TraceId} from "Types/TraceMeta/TraceId";
-import {SCREEN_WIDTH} from "Utils/SettingsAndConstants";
-import QRCode from "react-native-qrcode-svg";
 import React, {useState} from "react";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {Permission} from "Types/UserMeta/Permission";
-import {UserIdentity} from "Types/UserIdentity";
 import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
-import {Card} from "react-native-paper";
 import {View} from "react-native";
 import {Token} from "Types/UserMeta/Token";
 import {RealName} from "Types/UserMeta/RealName";

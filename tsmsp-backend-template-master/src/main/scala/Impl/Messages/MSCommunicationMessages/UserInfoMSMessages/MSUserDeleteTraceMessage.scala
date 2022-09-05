@@ -3,11 +3,10 @@ package Impl.Messages.MSCommunicationMessages.UserInfoMSMessages
 import Exceptions.NoTraceException
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
+import Process.UserInfoMS.UserInfoMSDBUtils
 import Tables.UserTraceTable
 import Types.TraceMeta.TraceId
 import Types.UserMeta.UserId
-import UserInfoMS.UserInfoMSDBUtils
-import Utils.DBUtils
 import org.joda.time.DateTime
 
 import scala.util.Try

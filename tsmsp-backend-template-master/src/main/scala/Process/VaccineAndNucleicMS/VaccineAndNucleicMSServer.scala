@@ -1,6 +1,7 @@
+package Process.VaccineAndNucleicMS
+
 import Globals.GlobalVariables
 import Process.TSMSPPortalHttpServer
-import VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import akka.actor.typed.ActorSystem
 import com.typesafe.scalalogging.Logger
 
@@ -8,7 +9,7 @@ import scala.util.{Failure, Success, Try}
 
 
 object VaccineAndNucleicMSServer {
-  val logger = Logger("VaccineAndNucleicMSServer")
+  val logger: Logger = Logger("VaccineAndNucleicMSServer")
   def main(args: Array[String]): Unit = try {
     VaccineAndNucleicMSDBUtils.initDatabase()
     implicit val system : ActorSystem[VaccineAndNucleicMSMaster.Message] = ActorSystem(VaccineAndNucleicMSMaster(), "vaccineAndNucleicMSServer")

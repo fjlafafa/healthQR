@@ -4,6 +4,8 @@ import Types.PlaceMeta._
 import Types.TraceMeta._
 import Types.UserMeta._
 
+import scala.language.implicitConversions
+
 object EnumAutoConverter {
   //UserMeta
   implicit def StringToPermission(permission: String): Permission = Permission.getType(permission)

@@ -30,7 +30,7 @@
       "Utils/*": ["Utils/*"]
     },
     "types": [
-      "reflect-metadata",
+//      "reflect-metadata",
       "node"
     ],
     "jsx": "react-native"

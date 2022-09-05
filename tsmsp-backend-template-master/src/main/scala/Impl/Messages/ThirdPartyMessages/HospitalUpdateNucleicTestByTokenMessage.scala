@@ -6,7 +6,7 @@ import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSH
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
 import Tables.UserIdentityTable
-import Types.UserMeta.{IdentityNumber, NucleicTestResultReporter, Token}
+import Types.UserMeta.{NucleicTestResultReporter, Token}
 import Utils.DBUtils
 import Utils.HTTPUtils.sender
 import org.joda.time.DateTime

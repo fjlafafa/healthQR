@@ -1,3 +1,5 @@
+package Process.UserInfoMS
+
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
 import akka.actor.typed.scaladsl.Behaviors
@@ -12,7 +14,7 @@ object UserInfoMSMaster {
   val workerNumber = 4
   def apply(): Behavior[Message] = {
     Behaviors.setup[Message] {ctx =>
-      val workers = for (i <- 0 to workerNumber - 1)
+      val workers = for (i <- 0 until workerNumber)
         yield ctx.spawn(UserInfoMSWorker(i), "worker"+i)
       Behaviors.receiveMessage[Message] {
         case RouterRequest(query, router) =>

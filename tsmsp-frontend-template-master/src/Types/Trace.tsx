@@ -6,26 +6,27 @@ import {ReportType} from "./TraceMeta/ReportType";
 import {DateClass} from "./Templates/DateClass";
 
 //...
-export class Trace{
-    id : TraceId
-    userId : UserId
-    time : DateClass
-    visitPlaceId : PlaceId
+export class Trace {
+    id: TraceId
+    userId: UserId
+    time: DateClass
+    visitPlaceId: PlaceId
     detailedPlaceDescription: DetailedPlaceDescription
     reportType: ReportType
+
     constructor(
-        id : TraceId,
-        userId : UserId,
-        time : DateClass,
-        visitPlaceId : PlaceId,
+        id: TraceId,
+        userId: UserId,
+        time: DateClass,
+        visitPlaceId: PlaceId,
         detailedPlaceDescription: DetailedPlaceDescription,
         reportType: ReportType) {
-            this.id=id
-            this.userId=userId
-            this.time=time
-            this.visitPlaceId=visitPlaceId
-            this.detailedPlaceDescription=detailedPlaceDescription
-            this.reportType=reportType
+        this.id = id
+        this.userId = userId
+        this.time = time
+        this.visitPlaceId = visitPlaceId
+        this.detailedPlaceDescription = detailedPlaceDescription
+        this.reportType = reportType
     }
 }
 

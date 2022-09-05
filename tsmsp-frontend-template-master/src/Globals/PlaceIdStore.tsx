@@ -1,8 +1,8 @@
 import create from 'zustand'
 
 export const PlaceIdStore = create(() => ({
-    PlaceId : '1'
+    PlaceId: '1'
 }))
 
-export const setPlaceId= (placeId: string) => PlaceIdStore.setState({ PlaceId: placeId })
-export const clearPlaceId= () => PlaceIdStore.setState({ PlaceId: '' })
+export const setPlaceId = (placeId: string) => PlaceIdStore.setState({PlaceId: placeId})
+export const clearPlaceId = () => PlaceIdStore.setState({PlaceId: ''})

@@ -2,6 +2,8 @@ package Utils
 
 import org.joda.time.DateTime
 
+import scala.collection.mutable
+
 object StringUtils {
   /** 定义win/linux下面的slash */
   val slash: String = if (System.getProperty("os.name").startsWith("Windows")) "\\" else "/"
@@ -27,8 +29,8 @@ object StringUtils {
   }
   /** 产生一个length长度的随机数字串 */
   def randomNumber(length: Int): Long = {
-    val chars = ('0' to '9')
-    val sb = new StringBuilder
+    val chars = '0' to '9'
+    val sb = new mutable.StringBuilder
     for (_ <- 1 to length) {
       val randomNum = util.Random.nextInt(chars.length)
       sb.append(chars(randomNum))
@@ -39,7 +41,7 @@ object StringUtils {
   /** 产生一个length长度的随机字符串 */
   def randomString(length: Int): String = {
     val chars = ('a' to 'z') ++ ('A' to 'Z')
-    val sb = new StringBuilder
+    val sb = new mutable.StringBuilder
     for (_ <- 1 to length) {
       val randomNum = util.Random.nextInt(chars.length)
       sb.append(chars(randomNum))

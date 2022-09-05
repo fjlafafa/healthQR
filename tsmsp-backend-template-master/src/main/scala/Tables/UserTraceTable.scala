@@ -1,13 +1,12 @@
 package Tables
 
 import Globals.{GlobalVariables, IdLengths}
+import Process.UserInfoMS.UserInfoMSDBUtils
 import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId}
 import Types.Trace
 import Types.TraceMeta.{ReportType, TraceId}
 import Types.UserMeta.UserId
-import UserInfoMS.UserInfoMSDBUtils
 import Utils.CustomColumnTypesUtils._
-import Utils.DBUtils
 import Utils.TokenUtils.RandomTraceId
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._

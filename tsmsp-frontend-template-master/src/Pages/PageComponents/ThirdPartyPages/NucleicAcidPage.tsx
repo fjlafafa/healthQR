@@ -21,28 +21,28 @@ import {HospitalUpdateRiskLevelMessage} from "Messages/ThirdPartyMessages/Hospit
 import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
 import {HospitalUpdateRiskLevelByTokenMessage} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelByTokenMessage";
 
-const IDStore = create(()=> ({identity: ' '}))
+const IDStore = create(() => ({identity: ' '}))
 const setIdentity = (identity: string) => IDStore.setState({identity})
-const UploadState = create( ()=>({state: '请上传核酸检测信息'}))
+const UploadState = create(() => ({state: '请上传核酸检测信息'}))
 
 
-export function NucleicAcidPage({navigation}:any){
+export function NucleicAcidPage({navigation}: any) {
 
     const {identity} = IDStore()
     const {state} = UploadState()
     const {token} = TokenStore.getState()
-    const goBack = ()=>navigation.navigate('ThirdParty.Overview')
+    const goBack = () => navigation.navigate('ThirdParty.Overview')
 
-    const [tosetStatus, setTosetStatus] = useState(true)//?
-    const [client, setClient] = useState({realName:new RealName(''),token:new Token('')})
+    const [tosetStatus, setTosetStatus] = useState(null)//?
+    const [client, setClient] = useState({realName: new RealName(''), token: new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
-        <View style={{height:30}}/>
+        <View style={{height: 30}}/>
         <TextTemplate>当前核酸检测目标用户为：{client.realName.name}</TextTemplate>
         <TextTemplate>设置检测结果为：{tosetStatus?'阳性':'阴性'}</TextTemplate>
         <ScanView
             handleData={(data: string) => {
-                const client = JSON.parse(data) as {realName:RealName,token:Token}
+                const client = JSON.parse(data) as { realName: RealName, token: Token }
                 setClient(client)
             }
             }/>
@@ -67,19 +67,25 @@ export function NucleicAcidPage({navigation}:any){
         }
             text={'设置核酸检测结果'}
         />
-        <View style={{height:30}}/>
+        <View style={{height: 30}}/>
         {/*<->*/}
-    <TextTemplate value={state}/>
+        <TextTemplate value={state}/>
 
-    <TextInputTemplate label='受检人身份证号' value={identity} onChangeText={(identity: string) => setIdentity(identity)}/>
+        <TextInputTemplate label='受检人身份证号' value={identity}
+                           onChangeText={(identity: string) => setIdentity(identity)}/>
 
-    <ButtonToSendMessage
-        checkBeforeSendMessage = {()=>(checkIdentityNumber(identity))}
-        checkElse = {()=>{alert('请重新检查身份证号是否填写正确')}}
-        toSendMessage ={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identity))}
-        text = '上传'
-        ifSuccess = {()=>{IDStore.setState({identity:" "})}}
-    />
+        <ButtonToSendMessage
+            checkBeforeSendMessage={() => (checkIdentityNumber(identity))}
+            checkElse={() => {
+                alert('请重新检查身份证号是否填写正确')
+            }}
+            toSendMessage={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identity))}
+            text='上传'
+            ifSuccess={() => {
+                IDStore.setState({identity: " "})
+            }}
+        />
 
 
-</ScreenTemplate>}
+    </ScreenTemplate>
+}

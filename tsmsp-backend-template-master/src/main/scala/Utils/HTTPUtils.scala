@@ -12,6 +12,7 @@ import akka.util.Timeout
 import java.util.concurrent.TimeUnit
 import scala.concurrent.duration.{Duration, DurationInt}
 import scala.concurrent.{Await, ExecutionContextExecutor, Future}
+import scala.language.postfixOps
 import scala.util.Try
 
 object HTTPUtils {

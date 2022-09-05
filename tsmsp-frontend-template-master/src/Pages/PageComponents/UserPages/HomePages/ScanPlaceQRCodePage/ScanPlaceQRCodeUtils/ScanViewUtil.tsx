@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {SendData} from "../../../../../../Utils/SendDataUtil";
-import {UserUpdateTraceMessage} from "../../../../../../Impl/Messages/UserMessages/UserUpdateTraceMessage";
-import {ScanView} from "../../../../../../Utils/PageUtils/ScanQRCodeUtil";
+import React from "react";
+import {SendData} from "Utils/SendDataUtil";
+import {UserUpdateTraceMessage} from "Messages/UserMessages/UserUpdateTraceMessage";
+import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import {DetailedPlaceDescription} from "Types/PlaceMeta/DetailedPlaceDescription";
 import {ReportType} from "Types/TraceMeta/ReportType";
 

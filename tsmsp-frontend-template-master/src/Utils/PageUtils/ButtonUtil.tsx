@@ -1,12 +1,8 @@
 import React from 'react'
 import {Button} from 'react-native-paper'
-import {APIUrl} from 'Globals/GlobalVariables'
 import {Text, View} from 'react-native'
-import {INNER_WIDTH, settingsAndConstants} from '../SettingsAndConstants'
-import {TSMSPReply} from '../../Impl/TSMSPReply'
-import {TextTemplate} from './TextUtil'
+import {INNER_WIDTH} from '../SettingsAndConstants'
 import {SendData} from 'Utils/SendDataUtil'
-import {TSMSPMessage} from "../../Impl/Messages/TSMSPMessage";
 
 const setting = {
     button:
@@ -20,16 +16,18 @@ const setting = {
             fontSize: 15,
             fontFamily: 'Arial'
         },
-    view:{
+    view: {
         height: 60,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 }
+
 export class ButtonTemplate extends React.Component<any> {
     static defaultProps = {
         icon: null,
-        onPress: ()=>{},//Usually we can use ifSuccess as inPress even if we are not sending message
+        onPress: () => {
+        },//Usually we can use ifSuccess as inPress even if we are not sending message
         mode: 'elevated',
         text: null,
         children: null,
@@ -39,14 +37,15 @@ export class ButtonTemplate extends React.Component<any> {
         //@ts-ignore
         return (<View style={setting.view}>
             <Button style={setting.button}
-            icon={this.props.icon}
-            mode={this.props.mode}
-            onPress={() => this.props.onPress()}>
-            <Text style={setting.text}>{this.props.text}</Text>
-            {this.props.children}
-        </Button></View>)
+                    icon={this.props.icon}
+                    mode={this.props.mode}
+                    onPress={() => this.props.onPress()}>
+                <Text style={setting.text}>{this.props.text}</Text>
+                {this.props.children}
+            </Button></View>)
     }
 }
+
 /**参数说明：
  *
  * ifSuccess, ifFail接受含一个参数（回复message）的函数，实际用不到的话写_:any就行
@@ -58,10 +57,14 @@ export class ButtonTemplate extends React.Component<any> {
  * 鲁棒性可能不足，如果页面卡住可以考虑下是这里什么参数名字或类型错误*/
 export class ButtonToSendMessage extends React.Component<any> {
     static defaultProps = {
-        checkBeforeSendMessage: ()=>{return true},
-        checkElse: ()=>{},
+        checkBeforeSendMessage: () => {
+            return true
+        },
+        checkElse: () => {
+        },
         toSendMessage: null,
-        onPress: ()=>{},//Usually we can use ifSuccess as inPress even if we are not sending message
+        onPress: () => {
+        },//Usually we can use ifSuccess as inPress even if we are not sending message
     }
 
     render() {
@@ -70,7 +73,7 @@ export class ButtonToSendMessage extends React.Component<any> {
             text={this.props.text}
             onPress={() => {
                 this.props.onPress()
-                if(this.props.checkBeforeSendMessage()) {
+                if (this.props.checkBeforeSendMessage()) {
                     if (this.props.toSendMessage === null) {
                         alert('空消息')
                     }else{

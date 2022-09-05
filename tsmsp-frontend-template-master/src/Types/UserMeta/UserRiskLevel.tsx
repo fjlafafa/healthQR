@@ -1,6 +1,4 @@
-import {PlaceRiskLevel} from "../PlaceMeta/PlaceRiskLevel";
-
-export enum UserRiskLevel{
+export enum UserRiskLevel {
     red = "Dangerous",
     yellow = "Closely Related",
     popUps = "Vulnerable",
@@ -8,9 +6,9 @@ export enum UserRiskLevel{
 }
 
 
-export function mapUserRiskToColor(riskLevel:UserRiskLevel){
-    if (riskLevel===UserRiskLevel.green) return 'green'
-    if (riskLevel===UserRiskLevel.yellow) return 'gold'
-    if (riskLevel===UserRiskLevel.popUps) return 'grey'
+export function mapUserRiskToColor(riskLevel: UserRiskLevel) {
+    if (riskLevel === UserRiskLevel.green) return 'green'
+    if (riskLevel === UserRiskLevel.yellow) return 'gold'
+    if (riskLevel === UserRiskLevel.popUps) return 'grey'
     return '#d00'
 }
