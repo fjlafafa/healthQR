@@ -17,8 +17,7 @@ import scala.util.Try
 case class UserGetPlaceMessage(userToken: Token, visitedPlaceId: List[PlaceId]) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     DBUtils.exec(UserIdentityTable.checkUserIdByToken(userToken)).getOrElse(throw TokenNotExistsException())
-    val places = PlaceTable.getPlaceList(visitedPlaceId).get
-    TSMSPReply(STATUS_OK, IOUtils.serialize(places).get)
+    MSUserGetPlaceMessage(visitedPlaceId).send(GlobalVariables.PlaceInfoMSIP).get
   }
 }
 
