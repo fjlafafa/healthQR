@@ -17,7 +17,7 @@ export function GeneratePlaceQRPage({navigation}: any) {
 
     //const values
     const {PlaceId} = PlaceIdStore()
-    const avatar = require('../../../Assets/icon.png')
+    const avatar = require('Assets/icon.png')
 
     const goBack = () => navigation.navigate('Admin.Overview')
 

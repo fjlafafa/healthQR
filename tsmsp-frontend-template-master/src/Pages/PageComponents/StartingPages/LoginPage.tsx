@@ -42,10 +42,8 @@ export function LoginPage({navigation}: any) {
 
                     if (reply === Roles.user) {
                         navigation.navigate('User.Overview')
-                    } else if (reply === Roles.admin) {
-                        navigation.navigate('Admin.Overview')
-                    } else if (reply === Roles.nucleic) {
-                        navigation.navigate('ThirdParty.Overview')
+                    } else {
+                        navigation.navigate('SuperUser.InfoQRCodePage')
                     }
                     clearLoginInfo()
                 })

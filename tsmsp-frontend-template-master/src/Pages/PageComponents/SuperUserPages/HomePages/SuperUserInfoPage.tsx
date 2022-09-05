@@ -11,9 +11,10 @@ import {RegisterCode} from "Utils/PageUtils/InfoQRCodeUtil";
 import {clearUserToken, TokenStore} from "Globals/TokenStore";
 import {ScreenTemplate, ScrollTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
+import {ViewSwitcher} from "Pages/PageComponents/SuperUserPages/HomePages/HomePagesUtils/BarUtil";
 
 
-export function ThirdPartyInfoPage({navigation}: any) {
+export function SuperUserInfoPage({navigation}: any) {
     const {token} = TokenStore()
     const [realName, setRealName] = useState(new RealName(''))
     const refresh = () => {
@@ -25,8 +26,12 @@ export function ThirdPartyInfoPage({navigation}: any) {
     }
     useFocusEffect(React.useCallback(refresh, []))
 
-    const goBack = () => navigation.navigate('ThirdParty.Overview')
+    const goBack = () => {
+        navigation.navigate('Login')
+        clearUserToken()
+    }
     return <ScreenTemplate goBack={goBack}>
+        <ViewSwitcher state={'SuperUser.InfoQRCodePage'} navigation={navigation}/>
         <ScrollTemplate>
             <View style={{
                 width: SCREEN_WIDTH,

@@ -1,12 +1,16 @@
-import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {ScreenTemplate, ScrollTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
+import {ViewSwitcher} from "Pages/PageComponents/SuperUserPages/HomePages/HomePagesUtils/BarUtil";
+import React from "react";
 
 export function AdminOverviewPage({navigation}: any) {
     const goBack = () => {
-        navigation.navigate('Login')
+        navigation.navigate('SuperUser.InfoQRCodePage')
     }
 
     return <ScreenTemplate goBack={goBack}>
+        <ViewSwitcher state={'Admin.Overview'} navigation={navigation}/>
+        <ScrollTemplate>
         <ButtonTemplate
             onPress={() => navigation.navigate('Admin.GeneratePlaceQR')}
             text='生成地点码'
@@ -19,5 +23,6 @@ export function AdminOverviewPage({navigation}: any) {
             onPress={() => navigation.navigate('Admin.InfoQRCodePage')}
             text='展示信息'
         />
+        </ScrollTemplate>
     </ScreenTemplate>
 }

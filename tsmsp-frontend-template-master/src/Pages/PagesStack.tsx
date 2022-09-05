@@ -13,18 +13,18 @@ import {VaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelative
 import {NavigationContainer} from "@react-navigation/native";
 
 import {UserOverviewPage} from "./PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPage";
-import {GeneratePlaceQRPage} from "./PageComponents/AdminPages/GeneratePlaceQRPage";
+import {GeneratePlaceQRPage} from "./PageComponents/SuperUserPages/AdminPages/GeneratePlaceQRPage";
 import {ModifyVaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/ModifyVaccinePage";
 import {InfoQRCodePage} from "./PageComponents/UserPages/HomePages/InfoQRCodePage/InfoQRCodePage";
 import {AdminBrotherPage} from "./PageComponents/TestPages/AdminBrotherPage";
-import {AdminOverviewPage} from "./PageComponents/AdminPages/AdminOverviewPage";
-import {PermissionPage} from "./PageComponents/AdminPages/PermissionPage";
-import {NucleicAcidPage} from "./PageComponents/ThirdPartyPages/NucleicAcidPage";
-import {ThirdPartyOverviewPage} from "./PageComponents/ThirdPartyPages/ThirdPartyOverviewPage";
-import {VaccineRegisterPage} from "./PageComponents/ThirdPartyPages/VaccineRegisterPage";
+import {AdminOverviewPage} from "./PageComponents/SuperUserPages/HomePages/AdminOverviewPage";
+import {PermissionPage} from "./PageComponents/SuperUserPages/AdminPages/PermissionPage";
+import {NucleicAcidPage} from "./PageComponents/SuperUserPages/ThirdPartyPages/NucleicAcidPage";
+import {ThirdPartyOverviewPage} from "./PageComponents/SuperUserPages/HomePages/ThirdPartyOverviewPage";
+import {VaccineRegisterPage} from "./PageComponents/SuperUserPages/ThirdPartyPages/VaccineRegisterPage";
 import {TracePage} from "./PageComponents/UserPages/TraceRelativePages/TracePage";
-import {AdminInfoQRCodePage} from "./PageComponents/AdminPages/AdminInfoQRPage";
-import {ThirdPartyInfoPage} from "./PageComponents/ThirdPartyPages/ThirdPartyInfoPage";
+import {AdminInfoQRCodePage} from "./PageComponents/SuperUserPages/AdminPages/AdminInfoQRPage";
+import {SuperUserInfoPage} from "./PageComponents/SuperUserPages/HomePages/SuperUserInfoPage";
 
 const Stack = createNativeStackNavigator()
 
@@ -48,11 +48,10 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'Admin.GeneratePlaceQR'} component={GeneratePlaceQRPage}/>
                     <Stack.Screen name={'Admin.Overview'} component={AdminOverviewPage}/>
                     <Stack.Screen name={'Admin.Permission'} component={PermissionPage}/>
-                    <Stack.Screen name={'Admin.InfoQRCodePage'} component={AdminInfoQRCodePage}/>
                     <Stack.Screen name={'ThirdParty.NucleicAcid'} component={NucleicAcidPage}/>
                     <Stack.Screen name={'ThirdParty.Overview'} component={ThirdPartyOverviewPage}/>
                     <Stack.Screen name={'ThirdParty.VaccineRegister'} component={VaccineRegisterPage}/>
-                    <Stack.Screen name={'ThirdParty.InfoQRCodePage'} component={ThirdPartyInfoPage}/>
+                    <Stack.Screen name={'SuperUser.InfoQRCodePage'} component={SuperUserInfoPage}/>
                     {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
                     {AllowAdmin ? <Stack.Screen name={'AdminBrother'} component={AdminBrotherPage}/> : null}
                 </Stack.Group>

@@ -15,7 +15,7 @@ import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
 import {
     HospitalUpdateNucleicTestByTokenMessage
-} from 'Impl/Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage'
+} from 'Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage'
 import {SendData} from "Utils/SendDataUtil";
 import {HospitalUpdateRiskLevelMessage} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
 import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
