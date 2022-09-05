@@ -1,5 +1,5 @@
 import {ButtonTemplate} from "../../../../Utils/PageUtils/ButtonUtil";
-import {ScreenTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
+import {ScreenTemplate, ScrollTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
 import {TokenStore} from "../../../../Globals/TokenStore";
 import React, {useState} from "react";
 import {Trace} from "../../../../Types/Trace";
@@ -10,8 +10,9 @@ import {useFocusEffect} from "@react-navigation/native";
 import {HeaderTemplate} from "../../../../Utils/PageUtils/HeaderUtil";
 import {TraceTable} from "../../../../Utils/PageUtils/TraceTableUtil";
 import {Token} from "Types/UserMeta/Token";
+import {DataTable} from "react-native-paper";
 
-export function TracePage({navigation}:any){
+export function TracePage({navigation}: any) {
     const {token} = TokenStore()
 
     //refreshing
@@ -25,14 +26,16 @@ export function TracePage({navigation}:any){
     }
     useFocusEffect(React.useCallback(refresh, []))
 
-    const goBack=()=>navigation.navigate('User.ScanPlaceQRCode')
+    const goBack = () => navigation.navigate('User.ScanPlaceQRCode')
 
     return <ScreenTemplate goBack={goBack}>
+        <ScrollTemplate>
         <HeaderTemplate text='我的行程表'/>
         <TraceTable token={token} traceList={traceHistory}/>
         <ButtonTemplate
-            onPress={()=>navigation.navigate('User.ModifyTrace')}
+            onPress={() => navigation.navigate('User.ModifyTrace')}
             text='修改我的行程'
         />
+        </ScrollTemplate>
     </ScreenTemplate>
 }

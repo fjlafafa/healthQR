@@ -2,7 +2,7 @@ import {Place} from "../../../../../../Types/Place";
 import {evaluateRisk, mapRiskToColor, PlaceRiskLevel} from "../../../../../../Types/PlaceMeta/PlaceRiskLevel";
 import {View, Text, ScrollView} from "react-native";
 import {Trace} from "Types/Trace";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {PlaceId} from "Types/PlaceMeta/PlaceId";
 import {Province} from "Types/PlaceMeta/Province";
 import {City} from "Types/PlaceMeta/City";
@@ -12,21 +12,29 @@ import {SendData} from "Utils/SendDataUtil";
 import {UserGetPlaceMessage} from "Messages/UserMessages/UserGetPlaceMessage";
 import {Token} from "Types/UserMeta/Token";
 
-function ListItem (props:{token: string,trace:Trace}) {
-    const [data, setPlaceData] = useState<Place>(new Place(new PlaceId(0), new Province(''), new City(''), new District(''), new SubDistrict(''), PlaceRiskLevel.red))
-    useEffect(() => {
+class ListItem extends React.Component<any, any>{
+    constructor(props:any) {
+        super(props)
+        this.state={
+            data:new Place(new PlaceId(0), new Province(''), new City(''), new District(''), new SubDistrict(''), PlaceRiskLevel.red)
+        }
+    }
+    componentDidMount() {
         SendData(
-            new UserGetPlaceMessage(new Token(props.token), new PlaceId(props.trace.visitPlaceId.id)),
+            new UserGetPlaceMessage(new Token(this.props.token), new PlaceId(this.props.trace.visitPlaceId.id)),
             (reply: Place) => {
-                setPlaceData(reply)
+                this.setState({data:reply})
             }
         )
-    }, [])
-    return <View key={data.id.id}><Text style={{color:mapRiskToColor(data.riskLevel)}}>{data.province.name} {data.city.name} {data.district.name}</Text></View>
+    }
+
+    render(){
+        return <Text style={{color:mapRiskToColor(this.state.data.riskLevel)}}>{this.state.data.province.name} {this.state.data.city.name} {this.state.data.district.name}</Text>
+    }
 }
 export function PlanTraceList(props: { token:string,trace:Array<Trace> }) {
 
     return <ScrollView style={{flex:1}}>
-        {props.trace.map((a:Trace)=><ListItem token={props.token} trace={a}/>)}
+        {props.trace.map((a:Trace)=><ListItem key={a.id.id} token={props.token} trace={a}/>)}
     </ScrollView>
 }

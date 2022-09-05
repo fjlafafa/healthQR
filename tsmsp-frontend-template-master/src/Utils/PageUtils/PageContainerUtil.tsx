@@ -55,6 +55,7 @@ export class ScreenTemplate extends React.Component<any, any> {
 }
 
 //一定会渲染到屏幕外的话拿这个包一下
+//如果要渲染datatable也拿这个包一下
 export function ScrollTemplate(props: any) {
     //@ts-ignore
     return (

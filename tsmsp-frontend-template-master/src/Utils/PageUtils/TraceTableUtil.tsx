@@ -2,7 +2,7 @@ import {Trace} from "../../Types/Trace";
 import {Place} from "../../Types/Place";
 import {DataTable} from 'react-native-paper'
 import {mapRiskToCharacter, PlaceRiskLevel} from "../../Types/PlaceMeta/PlaceRiskLevel";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Province} from "../../Types/PlaceMeta/Province";
 import { City } from "Types/PlaceMeta/City";
 import {SubDistrict} from "../../Types/PlaceMeta/SubDistrict";
@@ -31,9 +31,15 @@ function DataRow(props:{token: string,trace:Trace}){
     </DataTable.Row>
 }
 
+class ListItem extends React.Component<any, any>{
+    render() {
+        return <DataRow token={this.props.token} trace={this.props.trace}/>
+    }
+}
+
 export function TraceTable(props:{token: string,traceList:Array<Trace>}){
-    const datas=props.traceList.map((trace)=>{
-        return <DataRow token={props.token} trace={trace}/>
+    const dataItem=props.traceList.map((trace)=>{
+        return <ListItem key={trace.id.id} token={props.token} trace={trace}/>
     })
     return <DataTable>
         <DataTable.Header>
@@ -46,7 +52,7 @@ export function TraceTable(props:{token: string,traceList:Array<Trace>}){
             <DataTable.Title numeric>街道</DataTable.Title>
             <DataTable.Title numeric>时间</DataTable.Title>
         </DataTable.Header>
-        {datas}
+        {dataItem}
     </DataTable>
 
 }

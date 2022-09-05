@@ -19,13 +19,25 @@ import {RealName} from "Types/UserMeta/RealName";
 import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Password} from "Types/UserMeta/Password";
 import {Permission} from "Types/UserMeta/Permission";
+import {DataTable} from "react-native-paper";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
     const goBack=()=>navigation.navigate('Login')
     return <ScreenTemplate goBack={goBack}>
         <ScrollTemplate>
-
+            <DataTable>
+                <DataTable.Header>
+                    <DataTable.Title sortDirection='descending'>
+                        风险
+                    </DataTable.Title>
+                    <DataTable.Title numeric>省</DataTable.Title>
+                    <DataTable.Title numeric>市</DataTable.Title>
+                    <DataTable.Title numeric>区</DataTable.Title>
+                    <DataTable.Title numeric>街道</DataTable.Title>
+                    <DataTable.Title numeric>时间</DataTable.Title>
+                </DataTable.Header>
+            </DataTable>
 
             <ButtonTemplate
                 onPress={() => navigation.navigate('AdminBrother')}
