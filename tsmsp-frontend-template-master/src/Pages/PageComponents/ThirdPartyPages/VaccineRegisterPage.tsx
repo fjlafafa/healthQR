@@ -42,17 +42,6 @@ export function VaccineRegisterPage({navigation}: any) {
         <TextTemplate>当前疫苗注射目标用户为：{client.realName.name}</TextTemplate>
         <TextTemplate>更新疫苗情况</TextTemplate>
         <ScanView
-            checkData={(data: string) => {
-                try {
-                    const descrilized=JSON.parse(data) as {realName:RealName,token:Token}
-                    if(descrilized.realName==undefined||descrilized.token==undefined){
-                        return false
-                    }
-            } catch (e) {
-                return false
-            }
-                return true
-            }}
             handleData={(data: string) => {
                 const client = JSON.parse(data) as { realName: RealName, token: Token }
                 setClient(client)

@@ -16,7 +16,6 @@ export function PermissionPage({navigation}: any) {
     const {token} = TokenStore()
 
     const goBack = () => navigation.navigate('Admin.Overview')
-    //const testdata='{"fid":{"dick":123321}}'
     const [tosetPremission, setTosetPremmission] = useState(Permission.normal)
     const [client, setClient] = useState({realName: new RealName(''), token: new Token('')})
 

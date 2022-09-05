@@ -14,36 +14,32 @@ import {View} from "react-native";
 import {Token} from "Types/UserMeta/Token";
 import {SCREEN_WIDTH} from "Utils/SettingsAndConstants";
 
-function DataRow(props: { token: string, trace: Trace }) {
-    const [data, setPlaceData] = useState<Place>(new Place(new PlaceId(0), new Province(''), new City(''), new District(''), new SubDistrict(''), PlaceRiskLevel.red))
-    useEffect(() => {
-        SendData(
-            new UserGetPlaceMessage(new Token(props.token), new PlaceId(props.trace.visitPlaceId.id)),
-            (reply: Place) => {
-                setPlaceData(reply)
-            }
-        )
-    }, [])
-
+function DataRow(props: {place: Place}) {
     return <DataTable.Row>
-        <DataTable.Cell>{mapRiskToCharacter(data.riskLevel)}</DataTable.Cell>
-        <DataTable.Cell numeric>{data.province.name}</DataTable.Cell>
-        <DataTable.Cell numeric>{data.city.name}</DataTable.Cell>
-        <DataTable.Cell numeric>{data.district.name}</DataTable.Cell>
-        <DataTable.Cell numeric>{data.subDistrict.name}</DataTable.Cell>
-        <DataTable.Cell numeric>{new Date(props.trace.time.millis).toLocaleDateString()}</DataTable.Cell>
+        <DataTable.Cell>{mapRiskToCharacter(props.place.riskLevel)}</DataTable.Cell>
+        <DataTable.Cell numeric>{props.place.province.name}</DataTable.Cell>
+        <DataTable.Cell numeric>{props.place.city.name}</DataTable.Cell>
+        <DataTable.Cell numeric>{props.place.district.name}</DataTable.Cell>
+        <DataTable.Cell numeric>{props.place.subDistrict.name}</DataTable.Cell>
     </DataTable.Row>
 }
 
 class ListItem extends React.Component<any, any> {
     render() {
-        return <DataRow token={this.props.token} trace={this.props.trace}/>
+        return <DataRow place={this.props.place}/>
     }
 }
 
 export function TraceTable(props: { token: string, traceList: Array<Trace> }) {
-    const dataItem = props.traceList.map((trace) => {
-        return <ListItem key={trace.id.id} token={props.token} trace={trace}/>
+    const [placeData, setPlaceData] = useState(Array<Place>())
+    const placesId=props.traceList.map((trace:Trace)=>trace.visitPlaceId)
+
+    useEffect(()=>{SendData(
+            new UserGetPlaceMessage(new Token(props.token), placesId),
+            (reply: Place[]) => setPlaceData(reply))},[])
+
+    const dataItem = placeData.map((place:Place) => {
+        return <ListItem key={place.id.id} place={place}/>
     })
     return <View style={{width: SCREEN_WIDTH}}><DataTable>
         <DataTable.Header>
@@ -54,7 +50,6 @@ export function TraceTable(props: { token: string, traceList: Array<Trace> }) {
             <DataTable.Title numeric>市</DataTable.Title>
             <DataTable.Title numeric>区</DataTable.Title>
             <DataTable.Title numeric>街道</DataTable.Title>
-            <DataTable.Title numeric>时间</DataTable.Title>
         </DataTable.Header>
         {dataItem}
     </DataTable></View>

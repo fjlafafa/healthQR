@@ -2,7 +2,7 @@ import {Place} from "Types/Place";
 import {evaluateRisk, mapRiskToColor, PlaceRiskLevel} from "Types/PlaceMeta/PlaceRiskLevel";
 import {ScrollView, Text} from "react-native";
 import {Trace} from "Types/Trace";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {PlaceId} from "Types/PlaceMeta/PlaceId";
 import {Province} from "Types/PlaceMeta/Province";
 import {City} from "Types/PlaceMeta/City";
@@ -21,8 +21,10 @@ class ListItem extends React.Component<any, any> {
 export function PlanTraceList(props: { token:string,trace:Array<Trace> }) {
     const [places,setPlaces]=useState(Array<Place>())
     const placesId=props.trace.map((trace:Trace)=>trace.visitPlaceId)
-    SendData(new UserGetPlaceMessage(new Token(props.token),placesId),
-        (replyMessage:Place[])=>setPlaces(replyMessage))
+    useEffect(()=>{
+        SendData(new UserGetPlaceMessage(new Token(props.token),placesId),
+            (replyMessage:Place[])=>{setPlaces(replyMessage)
+        alert(JSON.stringify(replyMessage))})},[])
     const sortedPlaces=places.sort((a:Place,b:Place)=>{
         if(evaluateRisk(a.riskLevel)>evaluateRisk(b.riskLevel)) return -1
         if(evaluateRisk(a.riskLevel)==evaluateRisk(b.riskLevel)) return 0

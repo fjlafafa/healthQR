@@ -7,7 +7,7 @@ import {mapUserRiskToColor} from "Types/UserMeta/UserRiskLevel";
 export function HealthCode(props: { userInfo: UserInformation }) {
     const avatar = require('Assets/icon.png')
     return <QRCode
-        value={JSON.stringify(props.userInfo)}
+        value={JSON.stringify([props.userInfo.id,props.userInfo.riskLevel,props.userInfo.vaccinationStatus,props.userInfo.recentNucleicTestTime.millis])}
         logo={avatar}
         size={SCREEN_WIDTH * 0.9}
         color={mapUserRiskToColor(props.userInfo.riskLevel)}

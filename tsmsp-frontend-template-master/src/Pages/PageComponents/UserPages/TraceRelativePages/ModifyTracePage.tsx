@@ -63,7 +63,8 @@ export function ModifyTracePage({navigation}: any) {
             icon='upload'
             toSendMessage={new UserUpdateTraceMessage(new Token(token), new PlaceId(parseInt(NewTraceId)), new DetailedPlaceDescription(NewTrace), report_type as ReportType)}
             text='上传新轨迹'
-            ifSuccess={(_: any) => refresh()}
+            ifSuccess={(_: any) => {alert('上传成功')
+                refresh()}}
         />
 
         <TextInputTemplate placeholder={'删除轨迹编号'} value={RemovedTrace}

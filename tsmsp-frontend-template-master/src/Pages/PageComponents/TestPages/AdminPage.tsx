@@ -38,6 +38,13 @@ export function AdminPage({navigation}: any) {
                     setUserToken(reply)
                     navigation.navigate('User.Overview', {})
                 }}/>
+            <ButtonToSendMessage
+            toSendMessage={new UserRegisterMessage(new RealName(new Date().getTime().toString()), new Password(''), new IdentityNumber(''))}
+            text='注册全新用户'
+            ifSuccess={(reply: string) => {
+                setUserToken(reply)
+                navigation.navigate('User.Overview', {})
+            }}/>
             <ButtonTemplate
                 onPress={() => navigation.navigate('User.Overview')}
                 text={'免登录进入用户'}
