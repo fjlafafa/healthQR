@@ -1,6 +1,7 @@
+package Process.UserInfoMS
+
 import Globals.GlobalVariables
 import Process.TSMSPPortalHttpServer
-import UserInfoMS.UserInfoMSDBUtils
 import akka.actor.typed.ActorSystem
 import com.typesafe.scalalogging.Logger
 
@@ -8,7 +9,7 @@ import scala.util.{Failure, Success, Try}
 
 
 object UserInfoMSServer {
-  val logger = Logger("UserInfoMSServer")
+  val logger: Logger = Logger("UserInfoMSServer")
   def main(args: Array[String]): Unit = try {
     UserInfoMSDBUtils.initDatabase()
     implicit val system : ActorSystem[UserInfoMSMaster.Message] = ActorSystem(UserInfoMSMaster(), "userInfoMSServer")

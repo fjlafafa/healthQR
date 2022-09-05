@@ -1,7 +1,7 @@
 package Types.Templates
 
 import Impl.JacksonSerializable
-import Types.PlaceMeta.{City, DetailedPlaceDescription, District, Province, SubDistrict}
+import Types.PlaceMeta._
 import Types.UserMeta.RealName
 import com.fasterxml.jackson.annotation.{JsonSubTypes, JsonTypeInfo}
 

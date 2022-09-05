@@ -2,12 +2,11 @@ package Tables
 
 import Exceptions.UserNotExistsException
 import Globals.GlobalVariables
+import Process.VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import Types.UserMeta._
 import Types.{UserInformation, UserRiskLevels, VaccinationStatuses}
 import Utils.CustomColumnTypesUtils._
-import Utils.DBUtils
 import Utils.EnumAutoConverter._
-import VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag

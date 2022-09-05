@@ -3,12 +3,13 @@ package Utils
 import Globals.GlobalVariables
 import Tables._
 import Types.UserMeta.{Administrator, IdentityNumber, Password, RealName}
+import Utils.PasswordAutoEncoder._
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
+
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import Utils.PasswordAutoEncoder._
 
 
 object DBUtils {

@@ -3,10 +3,10 @@ package Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages
 import Exceptions.TokenNotExistsException
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
+import Process.VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import Tables.UserInformationTable
 import Types.UserMeta.UserId
 import Utils.IOUtils
-import VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import org.joda.time.DateTime
 
 import scala.util.Try

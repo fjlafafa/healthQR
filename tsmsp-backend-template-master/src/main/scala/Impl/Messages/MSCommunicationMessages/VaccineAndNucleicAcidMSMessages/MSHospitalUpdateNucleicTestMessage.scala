@@ -2,10 +2,9 @@ package Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages
 
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
-import Tables.{UserIdentityTable, UserInformationTable}
-import Types.UserMeta.{IdentityNumber, UserId}
-import Utils.DBUtils
-import VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
+import Process.VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
+import Tables.UserInformationTable
+import Types.UserMeta.UserId
 import org.joda.time.DateTime
 
 import scala.util.Try

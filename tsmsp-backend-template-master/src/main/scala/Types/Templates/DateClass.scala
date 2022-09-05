@@ -10,7 +10,7 @@ import org.joda.time.DateTime
 
 @JsonSerialize(using = classOf[DateTimeSerializer])
 @JsonDeserialize(using = classOf[DateTimeDeserializer])
-case class DateClass(val date:DateTime) extends JacksonSerializable
+case class DateClass(date:DateTime) extends JacksonSerializable
 
 class DateTimeSerializer extends StdSerializer[DateClass](classOf[DateClass]) {
   override def serialize(value: DateClass, gen: JsonGenerator, provider: SerializerProvider): Unit =
@@ -20,5 +20,5 @@ class DateTimeSerializer extends StdSerializer[DateClass](classOf[DateClass]) {
 //???
 class DateTimeDeserializer extends StdDeserializer[DateClass](classOf[DateClass]) {
   override def deserialize(p: JsonParser, ctxt: DeserializationContext): DateClass=
-    new DateClass(new DateTime(p.getText))
+    DateClass(new DateTime(p.getText))
 }

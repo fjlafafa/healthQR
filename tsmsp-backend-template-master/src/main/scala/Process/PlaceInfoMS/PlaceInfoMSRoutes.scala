@@ -1,9 +1,11 @@
+package Process.PlaceInfoMS
+
 import Impl.Messages.TSMSPMessage
-import PlaceInfoMSServer.logger
+import Process.PlaceInfoMS.PlaceInfoMSServer.logger
 import Utils.IOUtils
 import Utils.IOUtils.{fromObject, fromString}
-import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.AskPattern.Askable
+import akka.actor.typed.{ActorSystem, Scheduler}
 import akka.http.scaladsl.model.headers.HttpOriginRange
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
@@ -12,8 +14,8 @@ import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
 import com.typesafe.scalalogging.Logger
 
-import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.DurationInt
+import scala.concurrent.{Await, ExecutionContextExecutor, Future}
 import scala.util.{Failure, Try}
 
 
@@ -25,8 +27,8 @@ class PlaceInfoMSRoutes()(implicit val system: ActorSystem[PlaceInfoMSMaster.Mes
     allowedOrigins = HttpOriginRange.* // * refers to all
   )
   implicit val timeout: Timeout = 3.seconds
-  implicit val scheduler = system.scheduler
-  implicit val ec = system.executionContext
+  implicit val scheduler: Scheduler = system.scheduler
+  implicit val ec: ExecutionContextExecutor = system.executionContext
   val routes: Route = {
       concat(
         (path("api") & cors(settings)) {

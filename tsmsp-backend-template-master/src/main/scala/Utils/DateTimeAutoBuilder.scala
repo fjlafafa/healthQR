@@ -1,7 +1,8 @@
 package Utils
 
-import Types.TraceMeta._
 import org.joda.time.DateTime
+
+import scala.language.implicitConversions
 
 object DateTimeAutoBuilder {
 

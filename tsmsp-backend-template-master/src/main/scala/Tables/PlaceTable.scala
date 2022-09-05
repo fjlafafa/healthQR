@@ -2,11 +2,10 @@ package Tables
 
 import Exceptions.PlaceNotExistsException
 import Globals.GlobalVariables
-import PlaceInfoMS.PlaceInfoMSDBUtils
+import Process.PlaceInfoMS.PlaceInfoMSDBUtils
 import Types.PlaceMeta._
 import Types.{Place, PlaceRiskLevels}
 import Utils.CustomColumnTypesUtils._
-import Utils.DBUtils
 import os.Path
 import play.api.libs.json.{JsArray, JsObject, Json}
 import slick.jdbc.PostgresProfile.api._

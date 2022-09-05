@@ -1,4 +1,4 @@
-package PlaceInfoMS
+package Process.PlaceInfoMS
 
 import Globals.{DataPaths, GlobalVariables}
 import Tables._

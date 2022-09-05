@@ -2,12 +2,12 @@ package Impl.Messages.MSCommunicationMessages.UserInfoMSMessages
 
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
+import Process.UserInfoMS.UserInfoMSDBUtils
 import Tables.UserTraceTable
 import Types.UserMeta.UserId
-import UserInfoMS.UserInfoMSDBUtils
-import Utils.{DBUtils, IOUtils}
-import org.joda.time.DateTime
 import Utils.DateTimeAutoBuilder._
+import Utils.IOUtils
+import org.joda.time.DateTime
 
 import scala.util.Try
 

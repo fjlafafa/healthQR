@@ -1,9 +1,8 @@
 package Impl.Messages.UserMessages
 
-import Exceptions.{PermissionDeniedException, TokenNotExistsException}
+import Exceptions.TokenNotExistsException
 import Globals.GlobalVariables
-import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages
-import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.{MSHospitalUpdateNucleicTestMessage, MSUserCheckInfoMessage}
+import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSUserCheckInfoMessage
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
 import Tables.UserIdentityTable

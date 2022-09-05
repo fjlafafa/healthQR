@@ -1,11 +1,10 @@
 package Impl.Messages.UserMessages
 
-import Exceptions.{TokenNotExistsException, WrongPasswordException}
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
 import Types.UserMeta.Token
-import Utils.{DBUtils, IOUtils}
+import Utils.IOUtils
 import org.joda.time.DateTime
 
 import scala.util.Try

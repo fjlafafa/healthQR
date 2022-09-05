@@ -1,6 +1,6 @@
-package UserInfoMS
+package Process.UserInfoMS
 
-import Globals.{DataPaths, GlobalVariables}
+import Globals.GlobalVariables
 import Tables._
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
