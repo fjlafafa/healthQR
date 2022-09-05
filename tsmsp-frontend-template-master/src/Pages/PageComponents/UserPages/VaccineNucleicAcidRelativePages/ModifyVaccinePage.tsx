@@ -11,8 +11,8 @@ import {
 } from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
 import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
 import {
-    HospitalUpdateRiskLevelMessage
-} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
+    HospitalUploadPositiveNucleicTestResultMessage
+} from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultMessage";
 import {TokenStore} from "Globals/TokenStore";
 import {Token} from "Types/UserMeta/Token";
 import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
@@ -63,7 +63,7 @@ export function ModifyVaccinePage({navigation}: any) {
                 alert('风险等级错误')
             }}
             icon='upload'
-            toSendMessage={new HospitalUpdateRiskLevelMessage(new Token(token), new IdentityNumber(identityNumber), riskLevel as UserRiskLevel)}
+            toSendMessage={new HospitalUploadPositiveNucleicTestResultMessage(new Token(token), new IdentityNumber(identityNumber), riskLevel as UserRiskLevel)}
             text='更新风险等级'
         />
 

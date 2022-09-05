@@ -17,9 +17,9 @@ import {
     HospitalUpdateNucleicTestByTokenMessage
 } from 'Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage'
 import {SendData} from "Utils/SendDataUtil";
-import {HospitalUpdateRiskLevelMessage} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
+import {HospitalUploadPositiveNucleicTestResultMessage} from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultMessage";
 import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
-import {HospitalUpdateRiskLevelByTokenMessage} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelByTokenMessage";
+import {HospitalUploadPositiveNucleicTestResultByTokenMessage} from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultByTokenMessage";
 
 const IDStore = create(() => ({identity: ' '}))
 const setIdentity = (identity: string) => IDStore.setState({identity})
@@ -58,9 +58,9 @@ export function NucleicAcidPage({navigation}: any) {
         ]}/>
         <ButtonTemplate
             onPress={()=>{
-                SendData(new HospitalUpdateNucleicTestByTokenMessage(new Token(token),client.token))
+                SendData(new HospitalUpdateNucleicTestByTokenMessage(new Token(token), client.token))
                 if (tosetStatus) {
-                    SendData(new HospitalUpdateRiskLevelByTokenMessage(new Token(token),client.token,UserRiskLevel.red))
+                    SendData(new HospitalUploadPositiveNucleicTestResultByTokenMessage(new Token(token), client.token))
                 }
             }
 

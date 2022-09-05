@@ -3,15 +3,13 @@ import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
 import {Token} from "Types/UserMeta/Token";
 
-export class HospitalUpdateRiskLevelMessage extends TSMSPMessage {
+export class HospitalUploadPositiveNucleicTestResultMessage extends TSMSPMessage {
     userToken: Token
     identityNumber: IdentityNumber
-    riskLevel: UserRiskLevel
 
-    constructor(userToken: Token, identityNumber: IdentityNumber, riskLevel: UserRiskLevel) {
+    constructor(userToken: Token, identityNumber: IdentityNumber) {
         super()
         this.userToken = userToken
         this.identityNumber = identityNumber
-        this.riskLevel = riskLevel
     }
 }
