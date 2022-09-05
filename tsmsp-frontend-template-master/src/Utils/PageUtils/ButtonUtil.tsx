@@ -71,7 +71,9 @@ export class ButtonToSendMessage extends React.Component<any> {
             onPress={() => {
                 this.props.onPress()
                 if(this.props.checkBeforeSendMessage()) {
-                    if (!this.props.toSendMessage === null){
+                    if (this.props.toSendMessage === null) {
+                        alert('空消息')
+                    }else{
                         SendData(
                             this.props.toSendMessage,
                             this.props.ifSuccess,
