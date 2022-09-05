@@ -1,28 +1,28 @@
-import {ScreenTemplate, ScrollTemplate} from "../../../../../Utils/PageUtils/PageContainerUtil";
+import {ScreenTemplate, ScrollTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {View} from "react-native";
-import {DAY_MILLIS, SCREEN_WIDTH} from "../../../../../Utils/SettingsAndConstants";
+import {DAY_MILLIS, SCREEN_WIDTH} from "Utils/SettingsAndConstants";
 import {Card} from "react-native-paper";
-import {TextTemplate} from "../../../../../Utils/PageUtils/TextUtil";
-import {ButtonTemplate} from "../../../../../Utils/PageUtils/ButtonUtil";
+import {TextTemplate} from "Utils/PageUtils/TextUtil";
+import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React, {useState} from "react";
-import {clearUserToken, TokenStore} from "../../../../../Globals/TokenStore";
-import {SendData} from "../../../../../Utils/SendDataUtil";
-import {UserGetTraceMessage} from "../../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
+import {clearUserToken, TokenStore} from "Globals/TokenStore";
+import {SendData} from "Utils/SendDataUtil";
+import {UserGetTraceMessage} from "Messages/UserMessages/UserGetTraceMessage";
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
-import {Trace} from "../../../../../Types/Trace";
+import {Trace} from "Types/Trace";
 import {useFocusEffect} from "@react-navigation/native";
-import {TextClock} from "../../../../../Utils/PageUtils/ClockUtil";
-import {DateClass} from "../../../../../Types/Templates/DateClass";
-import {VaccinationStatus} from "../../../../../Types/UserMeta/VaccinationStatus";
+import {TextClock} from "Utils/PageUtils/ClockUtil";
+import {DateClass} from "Types/Templates/DateClass";
+import {VaccinationStatus} from "Types/UserMeta/VaccinationStatus";
 import {VaccineView} from "./UserOverviewPageUtils/VaccineUtil";
 import {NucleicAcidView} from "./UserOverviewPageUtils/NucleicAcidUtil";
 import {PlanTraceList} from "./UserOverviewPageUtils/PlanTraceListUtil";
 import {HealthCode} from "./UserOverviewPageUtils/HealthCodeUtil";
-import {UserInformation} from "../../../../../Types/UserInformation";
-import {UserId} from "../../../../../Types/UserMeta/UserId";
-import {UserRiskLevel} from "../../../../../Types/UserMeta/UserRiskLevel";
-import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
+import {UserInformation} from "Types/UserInformation";
+import {UserId} from "Types/UserMeta/UserId";
+import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
+import {HeaderTemplate} from "Utils/PageUtils/HeaderUtil";
 import {Token} from "Types/UserMeta/Token";
 import {UserGetInfoMessage} from "Messages/UserMessages/UserGetInfoMessage";
 
@@ -32,7 +32,7 @@ export function UserOverviewPage({navigation}: any) {
 
     //refreshing
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
-    const [info, setInfo] = useState(new UserInformation(new UserId(0),new DateClass(0),VaccinationStatus.none,UserRiskLevel.popUps))
+    const [info, setInfo] = useState(new UserInformation(new UserId(0), new DateClass(0), VaccinationStatus.none, UserRiskLevel.popUps))
     const refresh = () => {
         SendData(
             new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
@@ -48,7 +48,7 @@ export function UserOverviewPage({navigation}: any) {
     useFocusEffect(React.useCallback(refresh, []))
 
     //go back
-    const goBack=()=>{
+    const goBack = () => {
         navigation.navigate('Login')
         clearUserToken()
     }

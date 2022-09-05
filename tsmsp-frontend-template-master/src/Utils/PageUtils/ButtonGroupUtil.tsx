@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button} from "react-native-paper";
 import {Text, View} from "react-native";
 import {INNER_WIDTH} from "Utils/SettingsAndConstants";
@@ -46,7 +46,7 @@ export class ButtonGroup extends React.Component<P, any> {
                               disabled={props.name == this.state.pressed}
                               onPress={() => {
                                   props.onPress()
-                                  this.setState({pressed:props.name})
+                                  this.setState({pressed: props.name})
                               }}/>
         })
 

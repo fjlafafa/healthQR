@@ -1,5 +1,4 @@
-
 export enum ReportType {
-     auto = "Auto recorded",
-     self = "Self uploaded",
+    auto = "Auto recorded",
+    self = "Self uploaded",
 }

@@ -23,8 +23,8 @@ import {NucleicAcidPage} from "./PageComponents/ThirdPartyPages/NucleicAcidPage"
 import {ThirdPartyOverviewPage} from "./PageComponents/ThirdPartyPages/ThirdPartyOverviewPage";
 import {VaccineRegisterPage} from "./PageComponents/ThirdPartyPages/VaccineRegisterPage";
 import {TracePage} from "./PageComponents/UserPages/TraceRelativePages/TracePage";
-import {AdminInfoQRCodePage} from "Pages/PageComponents/AdminPages/AdminInfoQRPage";
-import {ThirdPartyInfoPage} from "Pages/PageComponents/ThirdPartyPages/ThirdPartyInfoPage";
+import {AdminInfoQRCodePage} from "./PageComponents/AdminPages/AdminInfoQRPage";
+import {ThirdPartyInfoPage} from "./PageComponents/ThirdPartyPages/ThirdPartyInfoPage";
 
 const Stack = createNativeStackNavigator()
 

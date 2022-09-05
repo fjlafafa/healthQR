@@ -1,10 +1,10 @@
-import {UserInformation} from "../../../../../../Types/UserInformation";
-import {SCREEN_WIDTH} from "../../../../../../Utils/SettingsAndConstants";
+import {UserInformation} from "Types/UserInformation";
+import {SCREEN_WIDTH} from "Utils/SettingsAndConstants";
 import QRCode from "react-native-qrcode-svg";
 import React from "react";
-import {mapUserRiskToColor} from "../../../../../../Types/UserMeta/UserRiskLevel";
+import {mapUserRiskToColor} from "Types/UserMeta/UserRiskLevel";
 
-export function HealthCode(props:{userInfo:UserInformation}){
+export function HealthCode(props: { userInfo: UserInformation }) {
     const avatar = require('Assets/icon.png')
     return <QRCode
         value={JSON.stringify(props.userInfo)}

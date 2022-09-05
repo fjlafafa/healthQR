@@ -1,70 +1,77 @@
-import {ButtonTemplate, ButtonToSendMessage} from "../../../../Utils/PageUtils/ButtonUtil";
-import {ScreenTemplate} from '../../../../Utils/PageUtils/PageContainerUtil'
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
+import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import React from "react";
-import {checkIdentityNumber} from "../../../../Utils/FormatUtils/IdentityNumberUtil";
-import {TextInputTemplate} from "../../../../Utils/PageUtils/TextInputUtil";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
 import create from "zustand";
-import {HospitalUpdateNucleicTestMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
-import {HospitalUpdateVaccinationMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
-import {UserRiskLevel} from "../../../../Types/UserMeta/UserRiskLevel";
-import {HospitalUpdateRiskLevelMessage} from "../../../../Impl/Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
+import {
+    HospitalUpdateNucleicTestMessage
+} from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
+import {
+    HospitalUpdateVaccinationMessage
+} from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
+import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
+import {
+    HospitalUpdateRiskLevelMessage
+} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
 import {TokenStore} from "Globals/TokenStore";
 import {Token} from "Types/UserMeta/Token";
 import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 
-const patientInfoStore= create(() => ({
+const patientInfoStore = create(() => ({
     identityNumber: "",
     riskLevel: ""
 }))
-const setIdentityNumber= (identityNumber:string) => patientInfoStore.setState({ identityNumber })
-const setRiskLevel= (riskLevel:string) => patientInfoStore.setState({ riskLevel })
+const setIdentityNumber = (identityNumber: string) => patientInfoStore.setState({identityNumber})
+const setRiskLevel = (riskLevel: string) => patientInfoStore.setState({riskLevel})
 
-export function ModifyVaccinePage ({navigation}:any) {
+export function ModifyVaccinePage({navigation}: any) {
     const {token} = TokenStore()
-    const {identityNumber, riskLevel}=patientInfoStore()
+    const {identityNumber, riskLevel} = patientInfoStore()
 
-    const goBack=()=>navigation.navigate('User.Vaccine')
+    const goBack = () => navigation.navigate('User.Vaccine')
     return <ScreenTemplate goBack={goBack}>
 
-        <TextInputTemplate placeholder={'检测人身份证号'} value={identityNumber} onChangeText={(newText: string)=>setIdentityNumber(newText)}/>
+        <TextInputTemplate placeholder={'检测人身份证号'} value={identityNumber}
+                           onChangeText={(newText: string) => setIdentityNumber(newText)}/>
 
         <ButtonToSendMessage
             // checkBeforeSendMessage = {()=>(checkIdentityNumber(identityNumber))}
-            checkElse = {()=>{
+            checkElse={() => {
                 alert('身份证号不正确！')
             }}
-            icon = 'upload'
-            toSendMessage = {new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identityNumber))}
-            text = '刷新核酸日期'
+            icon='upload'
+            toSendMessage={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identityNumber))}
+            text='刷新核酸日期'
         />
 
         <ButtonToSendMessage
             // checkBeforeSendMessage = {()=>(checkIdentityNumber(identityNumber))}
-            checkElse = {()=>{
+            checkElse={() => {
                 alert('身份证号不正确！')
             }}
-            icon = 'upload'
-            toSendMessage = {new HospitalUpdateVaccinationMessage(new Token(token), new IdentityNumber(identityNumber))}
-            text = '刷新疫苗接种情况'
+            icon='upload'
+            toSendMessage={new HospitalUpdateVaccinationMessage(new Token(token), new IdentityNumber(identityNumber))}
+            text='刷新疫苗接种情况'
         />
 
-        <TextInputTemplate placeholder={'新风险等级'} value={riskLevel} onChangeText={(newText: string)=>setRiskLevel(newText)}/>
+        <TextInputTemplate placeholder={'新风险等级'} value={riskLevel}
+                           onChangeText={(newText: string) => setRiskLevel(newText)}/>
 
         <ButtonToSendMessage
-            checkBeforeSendMessage = {()=>(Object.values(UserRiskLevel).includes(riskLevel as UserRiskLevel))}
-            checkElse = {()=>{
+            checkBeforeSendMessage={() => (Object.values(UserRiskLevel).includes(riskLevel as UserRiskLevel))}
+            checkElse={() => {
                 alert('风险等级错误')
             }}
-            icon = 'upload'
-            toSendMessage = {new HospitalUpdateRiskLevelMessage(new Token(token), new IdentityNumber(identityNumber), riskLevel as UserRiskLevel)}
-            text = '更新风险等级'
+            icon='upload'
+            toSendMessage={new HospitalUpdateRiskLevelMessage(new Token(token), new IdentityNumber(identityNumber), riskLevel as UserRiskLevel)}
+            text='更新风险等级'
         />
 
         <ButtonTemplate
-        onPress={() => {
-            navigation.navigate('Admin',{})
-        }}
-        text = '返回主页'/>
+            onPress={() => {
+                navigation.navigate('Admin', {})
+            }}
+            text='返回主页'/>
 
     </ScreenTemplate>
 }

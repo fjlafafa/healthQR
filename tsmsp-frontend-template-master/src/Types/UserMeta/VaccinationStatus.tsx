@@ -1,4 +1,3 @@
-
 export enum VaccinationStatus {
     triple = "Three",
     dual = "Two",

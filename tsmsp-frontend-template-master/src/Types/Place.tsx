@@ -4,7 +4,6 @@ import {City} from "./PlaceMeta/City";
 import {District} from "./PlaceMeta/District";
 import {SubDistrict} from "./PlaceMeta/SubDistrict";
 import {PlaceRiskLevel} from "./PlaceMeta/PlaceRiskLevel";
-import {Trace} from "./Trace";
 
 export class Place {
     id: PlaceId
@@ -13,6 +12,7 @@ export class Place {
     district: District
     subDistrict: SubDistrict
     riskLevel: PlaceRiskLevel
+
     constructor(
         id: PlaceId,
         province: Province,

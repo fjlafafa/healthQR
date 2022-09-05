@@ -1,8 +1,8 @@
 import create from 'zustand'
 
 export const TokenStore = create(() => ({
-    token : ''
+    token: ''
 }))
 
-export const setUserToken= (token:string) => TokenStore.setState({ token })
-export const clearUserToken= () => TokenStore.setState({ token: '' })
+export const setUserToken = (token: string) => TokenStore.setState({token})
+export const clearUserToken = () => TokenStore.setState({token: ''})

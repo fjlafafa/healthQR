@@ -1,16 +1,15 @@
-import {ButtonTemplate} from "../../../../Utils/PageUtils/ButtonUtil";
-import {ScreenTemplate, ScrollTemplate} from "../../../../Utils/PageUtils/PageContainerUtil";
-import {TokenStore} from "../../../../Globals/TokenStore";
+import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
+import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {TokenStore} from "Globals/TokenStore";
 import React, {useState} from "react";
-import {Trace} from "../../../../Types/Trace";
-import {SendData} from "../../../../Utils/SendDataUtil";
-import {UserGetTraceMessage} from "../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
+import {Trace} from "Types/Trace";
+import {SendData} from "Utils/SendDataUtil";
+import {UserGetTraceMessage} from "Messages/UserMessages/UserGetTraceMessage";
 import {DAY_MILLIS} from "Utils/SettingsAndConstants";
 import {useFocusEffect} from "@react-navigation/native";
-import {HeaderTemplate} from "../../../../Utils/PageUtils/HeaderUtil";
-import {TraceTable} from "../../../../Utils/PageUtils/TraceTableUtil";
+import {HeaderTemplate} from "Utils/PageUtils/HeaderUtil";
+import {TraceTable} from "Utils/PageUtils/TraceTableUtil";
 import {Token} from "Types/UserMeta/Token";
-import {DataTable} from "react-native-paper";
 
 export function TracePage({navigation}: any) {
     const {token} = TokenStore()

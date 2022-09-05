@@ -4,12 +4,10 @@ import {SendData} from "Utils/SendDataUtil";
 import {UserGetRealNameMessage} from "Messages/UserMessages/UserGetRealNameMessage";
 import {Token} from "Types/UserMeta/Token";
 import {useFocusEffect} from "@react-navigation/native";
-import {ViewSwitcher} from "Pages/PageComponents/UserPages/HomePages/HomePagesUtils/BarUtil";
 import {View} from "react-native";
 import {SCREEN_WIDTH} from "Utils/SettingsAndConstants";
 import {Card} from "react-native-paper";
 import {RegisterCode} from "Utils/PageUtils/InfoQRCodeUtil";
-import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {clearUserToken, TokenStore} from "Globals/TokenStore";
 import {ScreenTemplate, ScrollTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
@@ -54,7 +52,7 @@ export function ThirdPartyInfoPage({navigation}: any) {
             </View>
 
             <ButtonTemplate
-                onPress={()=> {
+                onPress={() => {
                     navigation.navigate('Login')
                     clearUserToken()
                 }}
