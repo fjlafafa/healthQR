@@ -1,6 +1,6 @@
 import {TSMSPMessage} from 'Messages/TSMSPMessage'
 import {TSMSPReply} from "Impl/TSMSPReply";
-import {Permission} from "Types/UserMeta/Permission";
+import {Roles} from "Types/UserMeta/Roles";
 import {Token} from "Types/UserMeta/Token";
 
 export class UserCheckPermissionMessage extends TSMSPMessage {
@@ -11,7 +11,7 @@ export class UserCheckPermissionMessage extends TSMSPMessage {
         this.userToken = userToken
     }
 
-    override getReplyMessage(replyJson: TSMSPReply): Permission {
-        return JSON.parse(replyJson.message) as Permission
+    override getReplyMessage(replyJson: TSMSPReply): Roles {
+        return JSON.parse(replyJson.message) as Roles
     }
 }

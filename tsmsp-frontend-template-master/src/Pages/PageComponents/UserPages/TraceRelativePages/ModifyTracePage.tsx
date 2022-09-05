@@ -49,7 +49,7 @@ export function ModifyTracePage({navigation}: any) {
     useFocusEffect(React.useCallback(refresh, []))
 
     const goBack = () => navigation.navigate('User.Trace')
-    return <ScreenTemplate goBack={goBack}>
+    return <ScreenTemplate goBack={goBack} title={'修改行程'}>
         <TextInputTemplate placeholder={'访问地点代码'} value={NewTraceId}
                            onChangeText={(newText: string) => setNewTraceId(newText)}/>
         <TextInputTemplate placeholder={'新轨迹地点名称'} value={NewTrace}

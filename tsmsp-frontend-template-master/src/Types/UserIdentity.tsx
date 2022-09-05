@@ -2,7 +2,7 @@ import {UserId} from "./UserMeta/UserId";
 import {Password} from "./UserMeta/Password";
 import {RealName} from "./UserMeta/RealName";
 import {IdentityNumber} from "./UserMeta/IdentityNumber";
-import {Permission} from "./UserMeta/Permission";
+import {Roles} from "./UserMeta/Roles";
 import {Token} from "Types/UserMeta/Token";
 import {DateClass} from "Types/Templates/DateClass";
 
@@ -13,7 +13,7 @@ export class UserIdentity {
     realName: RealName
     token: Token
     refreshTime: DateClass
-    permission: Permission
+    permission: Roles
 
     constructor(
         userId: UserId,
@@ -22,7 +22,7 @@ export class UserIdentity {
         realName: RealName,
         token: Token,
         refreshTime: DateClass,
-        permission: Permission
+        permission: Roles
     ) {
 
         this.userId = userId
