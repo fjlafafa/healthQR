@@ -68,6 +68,10 @@ object PlaceTable {
     )
   }
 
+  def getPlaceList(places: List[PlaceId]): Try[List[Place]] = Try {
+    places.map(getPlace(_).get)
+  }
+
   def isEmpty: Try[Boolean] = Try{
     PlaceInfoMSDBUtils.exec(placeTable.size.result)==0
   }
