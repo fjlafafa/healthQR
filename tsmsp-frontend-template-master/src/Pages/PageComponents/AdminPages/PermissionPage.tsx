@@ -10,7 +10,7 @@ import {Permission} from "Types/UserMeta/Permission";
 import {UserIdentity} from "Types/UserIdentity";
 import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
 import {Card} from "react-native-paper";
-import { View } from "react-native";
+import {View} from "react-native";
 import {Token} from "Types/UserMeta/Token";
 import {RealName} from "Types/UserMeta/RealName";
 import {AdminChangePermissionMessage} from "Messages/AdminMessages/AdminChangePermissionMessage";
@@ -18,23 +18,23 @@ import {TokenStore} from "Globals/TokenStore";
 
 export function PermissionPage({navigation}: any) {
 
-    const {token}=TokenStore()
+    const {token} = TokenStore()
 
     const goBack = () => navigation.navigate('Admin.Overview')
     //const testdata='{"fid":{"dick":123321}}'
     const [tosetPremission, setTosetPremmission] = useState(Permission.normal)
-    const [client, setClient] = useState({realName:new RealName(''),token:new Token('')})
+    const [client, setClient] = useState({realName: new RealName(''), token: new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
-        <View style={{height:30}}/>
-        <TextTemplate>当前设置权限目标用户为：{(client === null ? '未定' : client.realName.name)}</TextTemplate>
+        <View style={{height: 30}}/>
+        <TextTemplate>当前设置权限目标用户为：{client.realName.name}</TextTemplate>
         <TextTemplate>设置权限为：{tosetPremission.toString()}</TextTemplate>
         <ScanView
             handleData={(data: string) => {
-                const client = JSON.parse(data) as {realName:RealName,token:Token}
-                setClient(client)
-            }
-            }/>
+        const client = JSON.parse(data) as { realName: RealName, token: Token }
+        setClient(client)
+    }
+    }/>
         <ButtonGroup chosen={Permission.normal} subprops={[
             {
                 name: Permission.normal.toString(),
@@ -48,8 +48,8 @@ export function PermissionPage({navigation}: any) {
             },
         ]}/>
         <ButtonToSendMessage
-            toSendMessage={new AdminChangePermissionMessage(new Token(token),client.token,tosetPremission)}
+            toSendMessage={new AdminChangePermissionMessage(new Token(token), client.token, tosetPremission)}
             text={'设置权限'}/>
-        <View style={{height:30}}/>
+        <View style={{height: 30}}/>
     </ScreenTemplate>
 }
