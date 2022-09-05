@@ -1,9 +1,13 @@
 package Types
 
-object Permissions {
+object Roles {
+  val superAdmin: String = "Super Admin"
   val admin: String = "Admin"
   val normal: String = "Normal"
   val nucleic: String = "Nucleic Test"
+  val vaccine: String = "Vaccination"
+  val hospital: String = "Hospital"
+  val government: String = "Government"
 }
 
 object ReportTypes {

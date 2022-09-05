@@ -1,5 +1,5 @@
 export enum Roles {
-    superAdmin="Super Admin",
+    superAdmin = "Super Admin",
     admin = "Admin",
     user = "Normal",
     nucleic = "Nucleic Test",
