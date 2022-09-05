@@ -10,6 +10,16 @@ object Roles {
   val government: String = "Government"
 }
 
+object Permissions {
+  val setAdmin: String = "Set Admin"
+  val setThirdParty: String = "Set Third Party"
+  val updateVaccination: String = "Update Vaccination"
+  val updateNucleicTest: String = "Update Nucleic Test"
+  val recoverPatient: String = "Recover Patient"
+  val setRiskOfPlace: String = "Set Risk of Place"
+  val setRiskOfUser: String = "Set Risk of User"
+}
+
 object ReportTypes {
   val auto = "Auto recorded"
   val self = "Self uploaded"
