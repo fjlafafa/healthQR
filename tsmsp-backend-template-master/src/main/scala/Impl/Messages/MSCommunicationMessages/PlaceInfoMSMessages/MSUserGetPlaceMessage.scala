@@ -9,9 +9,9 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class MSUserGetPlaceMessage(visitedPlaceId: PlaceId) extends TSMSPMessage {
+case class MSUserGetPlaceMessage(visitedPlaceId: List[PlaceId]) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val trace = PlaceTable.getPlace(visitedPlaceId).get
-    TSMSPReply(STATUS_OK, IOUtils.serialize(trace).get)
+    val places = PlaceTable.getPlaceList(visitedPlaceId).get
+    TSMSPReply(STATUS_OK, IOUtils.serialize(places).get)
   }
 }
