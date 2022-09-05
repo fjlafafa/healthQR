@@ -26,6 +26,9 @@ object UserInformationTable {
   def addUser(userId: UserId): DBIO[Int] =
     userInformationTable += UserInformation(userId, DateTime.now(), VaccinationStatuses.none, UserRiskLevels.green)
 
+  def checkInfoById(userId: UserId): DBIO[Option[UserInformation]]=
+    userInformationTable.filter(_.id===userId).result.headOption
+
   def updateNucleicTest(userId: UserId, time: DateTime): DBIO[Int] =
     userInformationTable.filter(_.id === userId).map(_.recentNucleicTestTime).update(time)
 

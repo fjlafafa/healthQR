@@ -1,17 +1,14 @@
 import {ScreenTemplate, ScrollTemplate} from "../../../../../Utils/PageUtils/PageContainerUtil";
-import {Text, View} from "react-native";
-import {SCREEN_WIDTH} from "../../../../../Utils/SettingsAndConstants";
+import {View} from "react-native";
+import {DAY_MILLIS, SCREEN_WIDTH} from "../../../../../Utils/SettingsAndConstants";
 import {Card} from "react-native-paper";
-import QRCode from "react-native-qrcode-svg";
 import {TextTemplate} from "../../../../../Utils/PageUtils/TextUtil";
-import {BoundedTraceList} from "../../../../../Utils/PageUtils/ListUtil";
 import {ButtonTemplate} from "../../../../../Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React, {useState} from "react";
-import {TokenStore, clearUserToken} from "../../../../../Globals/TokenStore";
+import {clearUserToken, TokenStore} from "../../../../../Globals/TokenStore";
 import {SendData} from "../../../../../Utils/SendDataUtil";
 import {UserGetTraceMessage} from "../../../../../Impl/Messages/UserMessages/UserGetTraceMessage";
-import {DAY_MILLIS} from "../../../../../Utils/SettingsAndConstants";
 import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
 import {Trace} from "../../../../../Types/Trace";
 import {useFocusEffect} from "@react-navigation/native";
@@ -21,20 +18,13 @@ import {VaccinationStatus} from "../../../../../Types/UserMeta/VaccinationStatus
 import {VaccineView} from "./UserOverviewPageUtils/VaccineUtil";
 import {NucleicAcidView} from "./UserOverviewPageUtils/NucleicAcidUtil";
 import {PlanTraceList} from "./UserOverviewPageUtils/PlanTraceListUtil";
-import {Place} from "../../../../../Types/Place";
-import {PlaceId} from "../../../../../Types/PlaceMeta/PlaceId";
-import {Province} from "Types/PlaceMeta/Province";
-import {City} from "Types/PlaceMeta/City";
-import {District} from "Types/PlaceMeta/District";
-import {SubDistrict} from "../../../../../Types/PlaceMeta/SubDistrict";
-import {PlaceRiskLevel} from 'Types/PlaceMeta/PlaceRiskLevel'
 import {HealthCode} from "./UserOverviewPageUtils/HealthCodeUtil";
 import {UserInformation} from "../../../../../Types/UserInformation";
 import {UserId} from "../../../../../Types/UserMeta/UserId";
 import {UserRiskLevel} from "../../../../../Types/UserMeta/UserRiskLevel";
 import {HeaderTemplate} from "../../../../../Utils/PageUtils/HeaderUtil";
-import {TraceTable} from "../../../../../Utils/PageUtils/TraceTableUtil";
 import {Token} from "Types/UserMeta/Token";
+import {UserGetInfoMessage} from "Messages/UserMessages/UserGetInfoMessage";
 
 
 export function UserOverviewPage({navigation}: any) {
@@ -42,11 +32,17 @@ export function UserOverviewPage({navigation}: any) {
 
     //refreshing
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
+    const [info, setInfo] = useState(new UserInformation(new UserId(0),new DateClass(0),VaccinationStatus.none,UserRiskLevel.popUps))
     const refresh = () => {
         SendData(
             new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
+            })
+        SendData(
+            new UserGetInfoMessage(new Token(token)),
+            (reply: UserInformation) => {
+                setInfo(reply)
             })
     }
     useFocusEffect(React.useCallback(refresh, []))
@@ -81,7 +77,7 @@ export function UserOverviewPage({navigation}: any) {
                     <View style={{height: SCREEN_WIDTH * 0.025}}/>
                     {/*健康码*/}
                     <HealthCode
-                        userInfo={new UserInformation(new UserId(123), new DateClass(new Date().getTime()), VaccinationStatus.dual, UserRiskLevel.red)}/>
+                        userInfo={info}/>
                 </Card>
             </View>
             <View style={{
@@ -93,10 +89,10 @@ export function UserOverviewPage({navigation}: any) {
 
                     {/*核酸疫苗*/}
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <VaccineView vaccinationStatus={VaccinationStatus.none}/>
+                        <VaccineView vaccinationStatus={info.vaccinationStatus}/>
                     </View>
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <NucleicAcidView recentNucleicTestTime={new DateClass(new Date().getTime() - 321211138)}/>
+                        <NucleicAcidView recentNucleicTestTime={info.recentNucleicTestTime}/>
                     </View>
                 </View>
                 <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#080'*/}}>

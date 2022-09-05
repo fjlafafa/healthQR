@@ -13,6 +13,11 @@ import {View} from "react-native";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import {VaccinationStatus} from "Types/UserMeta/VaccinationStatus";
+import {HospitalUpdateVaccinationMessage} from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
+import {RealName} from "Types/UserMeta/RealName";
+import {
+    HospitalUpdateVaccinationByTokenMessage
+} from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationByTokenMessage";
 
 const IDStore = create(()=> ({identity: ' '}))
 const setIdentity = (identity: string) => IDStore.setState({identity})
@@ -30,29 +35,30 @@ export function VaccineRegisterPage({navigation}:any){
     const {vaccine} = VaccineNum()
 
     const [tosetVaccine, setTosetVaccine] = useState(VaccinationStatus.none)
-    const [client, setClient] = useState(null as null | UserIdentity)
+    const [client, setClient] = useState({realName:new RealName(''),token:new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
         <View style={{height:30}}/>
-        <TextTemplate>当前设置权限目标用户为：{(client === null ? '未定' : client.userId)}</TextTemplate>
-        <TextTemplate>设置疫苗注射状况为：{tosetVaccine.toString()}</TextTemplate>
+        <TextTemplate>当前疫苗注射目标用户为：{client.realName.name}</TextTemplate>
+        <TextTemplate>更新疫苗情况</TextTemplate>
         <ScanView
             handleData={(data: string) => {
-                const client = JSON.parse(data) as UserIdentity
+                const client = JSON.parse(data) as {realName:RealName,token:Token}
                 setClient(client)
             }
             }/>
+        <ButtonToSendMessage
+            toSendMessage = {new HospitalUpdateVaccinationByTokenMessage(new Token(token), client.token)}
+            text={'打一针'}/>
+        {/**/}
 
         <TextInputTemplate label='接种人身份证号' value={identity} onChangeText={(identity: string) =>IDStore.setState({identity})} />
         <TextInputTemplate label='接种针数' value={vaccine} onChangeText={(vaccine: string) => VaccineNum.setState({vaccine})} />
 
         <ButtonToSendMessage
-            text={'打一针'}/>
-        {/**/}
-        <ButtonToSendMessage
             checkBeforeSendMessage = {()=>(checkIdentityNumber(identity))}
             checkElse = {()=>{alert('请重新检查身份证号是否填写正确')}}
-            toSendMessage ={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identity))}
+            toSendMessage = {new HospitalUpdateVaccinationMessage(new Token(token), new IdentityNumber(identity))}
             text = '上传'
         />
 

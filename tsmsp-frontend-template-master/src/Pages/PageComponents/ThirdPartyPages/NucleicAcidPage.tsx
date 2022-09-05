@@ -16,6 +16,7 @@ import {UserIdentity} from "Types/UserIdentity";
 import {View} from "react-native";
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
+import {HospitalUpdateNucleicTestByTokenMessage} from 'Impl/Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage'
 
 const IDStore = create(()=> ({identity: ' '}))
 const setIdentity = (identity: string) => IDStore.setState({identity})
@@ -30,33 +31,23 @@ export function NucleicAcidPage({navigation}:any){
     const goBack = ()=>navigation.navigate('ThirdParty.Overview')
 
     const [tosetStatus, setTosetStatus] = useState(null)//?
-    const [client, setClient] = useState(null as null | UserIdentity)
+    const [client, setClient] = useState({realName:new RealName(''),token:new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
         <View style={{height:30}}/>
-        <TextTemplate>当前核酸检测目标用户为：{(client === null ? '未定' : client.userId)}</TextTemplate>
-        <TextTemplate>设置检测结果为：{tosetStatus}</TextTemplate>
+        <TextTemplate>当前核酸检测目标用户为：{client.realName.name}</TextTemplate>
+        <TextTemplate>设置检测结果为：阴性</TextTemplate>
         <ScanView
             handleData={(data: string) => {
-                const client = JSON.parse(data) as UserIdentity
+                const client = JSON.parse(data) as {realName:RealName,token:Token}
                 setClient(client)
             }
             }/>
         {/*?*/}
-        <ButtonGroup chosen={Permission.normal} subprops={[
-            {
-                name: Permission.normal.toString(),
-                onPress: () => setTosetStatus(null),
-            }, {
-                name: Permission.admin.toString(),
-                onPress: () => setTosetStatus(null),
-            }, {
-                name: Permission.nucleic.toString(),
-                onPress: () => setTosetStatus(null),
-            },
-        ]}/>
         <ButtonToSendMessage
-            text={'设置核酸检测结果'}/>
+            toSendMessage ={new HospitalUpdateNucleicTestByTokenMessage(new Token(token),client.token)}
+            text={'设置核酸检测结果'}
+        />
         <View style={{height:30}}/>
         {/*<->*/}
     <TextTemplate value={state}/>

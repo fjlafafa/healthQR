@@ -27,9 +27,12 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserDeleteTraceMessage], name = "UserDeleteTraceMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetRealNameMessage], name = "UserGetRealNameMessage"),
     new JsonSubTypes.Type(value = classOf[UserDeleteAccountMessage], name = "UserDeleteAccountMessage"),
+    new JsonSubTypes.Type(value = classOf[UserGetInfoMessage], name = "UserGetInfoMessage"),
     new JsonSubTypes.Type(value = classOf[AdminChangePermissionMessage], name = "AdminChangePermissionMessage"),
     new JsonSubTypes.Type(value = classOf[AdminDropDataBasesMessage], name = "AdminDropDataBasesMessage"),
     new JsonSubTypes.Type(value = classOf[AdminTestMessage], name = "AdminTestMessage"),
+    new JsonSubTypes.Type(value = classOf[HospitalUpdateNucleicTestByTokenMessage], name = "HospitalUpdateNucleicTestByTokenMessage"),
+    new JsonSubTypes.Type(value = classOf[HospitalUpdateVaccinationByTokenMessage], name = "HospitalUpdateVaccinationByTokenMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateNucleicTestMessage], name = "HospitalUpdateNucleicTestMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateVaccinationMessage], name = "HospitalUpdateVaccinationMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelMessage], name = "HospitalUpdateRiskLevelMessage"),
@@ -39,6 +42,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdateNucleicTestMessage], name = "MSHospitalUpdateNucleicTestMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdateVaccinationMessage], name = "MSHospitalUpdateVaccinationMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdateRiskLevelMessage], name = "MSHospitalUpdateRiskLevelMessage"),
+    new JsonSubTypes.Type(value = classOf[MSUserCheckInfoMessage], name = "MSUserCheckInfoMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserGetPlaceMessage], name = "MSUserGetPlaceMessage"),
   ))
 abstract class TSMSPMessage extends JacksonSerializable {
