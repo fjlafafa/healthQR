@@ -34,9 +34,10 @@ export function TraceTable(props: { token: string, traceList: Array<Trace> }) {
     const [placeData, setPlaceData] = useState(Array<Place>())
     const placesId=props.traceList.map((trace:Trace)=>trace.visitPlaceId)
 
-    useEffect(()=>{SendData(
+    useEffect(()=>{
+        SendData(
             new UserGetPlaceMessage(new Token(props.token), placesId),
-            (reply: Place[]) => setPlaceData(reply))},[])
+            (reply: Place[]) => setPlaceData(reply))},[props.traceList])
 
     const dataItem = placeData.map((place:Place) => {
         return <ListItem key={place.id.id} place={place}/>

@@ -24,7 +24,7 @@ export function PlanTraceList(props: { token:string,trace:Array<Trace> }) {
     useEffect(()=>{
         SendData(new UserGetPlaceMessage(new Token(props.token),placesId),
             (replyMessage:Place[])=>{setPlaces(replyMessage)
-        alert(JSON.stringify(replyMessage))})},[])
+        alert(JSON.stringify(replyMessage))})},[props.trace])
     const sortedPlaces=places.sort((a:Place,b:Place)=>{
         if(evaluateRisk(a.riskLevel)>evaluateRisk(b.riskLevel)) return -1
         if(evaluateRisk(a.riskLevel)==evaluateRisk(b.riskLevel)) return 0
