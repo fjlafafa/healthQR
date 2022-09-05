@@ -1,22 +1,25 @@
 import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {HospitalUpdateNucleicTestMessage} from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
 import create from 'zustand'
-import {ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
+import {ButtonTemplate, ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
 import React, {useState} from "react";
 import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
 import {TokenStore} from "Globals/TokenStore";
-import {useNavigation} from "@react-navigation/native";
 import {RealName} from "Types/UserMeta/RealName";
 import {Token} from "Types/UserMeta/Token";
 import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
-import {Permission} from "Types/UserMeta/Permission";
-import {UserIdentity} from "Types/UserIdentity";
 import {View} from "react-native";
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
-import {HospitalUpdateNucleicTestByTokenMessage} from 'Impl/Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage'
+import {
+    HospitalUpdateNucleicTestByTokenMessage
+} from 'Impl/Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage'
+import {SendData} from "Utils/SendDataUtil";
+import {HospitalUpdateRiskLevelMessage} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelMessage";
+import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
+import {HospitalUpdateRiskLevelByTokenMessage} from "Messages/ThirdPartyMessages/HospitalUpdateRiskLevelByTokenMessage";
 
 const IDStore = create(()=> ({identity: ' '}))
 const setIdentity = (identity: string) => IDStore.setState({identity})
@@ -30,13 +33,13 @@ export function NucleicAcidPage({navigation}:any){
     const {token} = TokenStore.getState()
     const goBack = ()=>navigation.navigate('ThirdParty.Overview')
 
-    const [tosetStatus, setTosetStatus] = useState(null)//?
+    const [tosetStatus, setTosetStatus] = useState(true)//?
     const [client, setClient] = useState({realName:new RealName(''),token:new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
         <View style={{height:30}}/>
         <TextTemplate>当前核酸检测目标用户为：{client.realName.name}</TextTemplate>
-        <TextTemplate>设置检测结果为：阴性</TextTemplate>
+        <TextTemplate>设置检测结果为：{tosetStatus?'阳性':'阴性'}</TextTemplate>
         <ScanView
             handleData={(data: string) => {
                 const client = JSON.parse(data) as {realName:RealName,token:Token}
@@ -44,8 +47,24 @@ export function NucleicAcidPage({navigation}:any){
             }
             }/>
         {/*?*/}
-        <ButtonToSendMessage
-            toSendMessage ={new HospitalUpdateNucleicTestByTokenMessage(new Token(token),client.token)}
+        <ButtonGroup chosen={'阳性'} subprops={[
+            {
+                name: '阳性',
+                onPress: () => setTosetStatus(true),
+            }, {
+                name: '阴性',
+                onPress: () => setTosetStatus(false),
+            },
+        ]}/>
+        <ButtonTemplate
+            onPress={()=>{
+                SendData(new HospitalUpdateNucleicTestByTokenMessage(new Token(token),client.token))
+                if (tosetStatus) {
+                    SendData(new HospitalUpdateRiskLevelByTokenMessage(new Token(token),client.token,UserRiskLevel.red))
+                }
+            }
+
+        }
             text={'设置核酸检测结果'}
         />
         <View style={{height:30}}/>

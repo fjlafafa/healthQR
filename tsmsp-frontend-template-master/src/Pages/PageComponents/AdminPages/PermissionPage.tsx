@@ -31,10 +31,11 @@ export function PermissionPage({navigation}: any) {
         <TextTemplate>设置权限为：{tosetPremission.toString()}</TextTemplate>
         <ScanView
             handleData={(data: string) => {
-        const client = JSON.parse(data) as { realName: RealName, token: Token }
-        setClient(client)
-    }
-    }/>
+                const client = JSON.parse(data) as { realName: RealName, token: Token }
+                setClient(client)
+            }
+            }
+        />
         <ButtonGroup chosen={Permission.normal} subprops={[
             {
                 name: Permission.normal.toString(),
