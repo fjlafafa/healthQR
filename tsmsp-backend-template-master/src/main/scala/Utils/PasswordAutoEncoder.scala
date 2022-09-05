@@ -5,5 +5,5 @@ import Types.UserMeta._
 import scala.language.implicitConversions
 
 object PasswordAutoEncoder {
-  implicit def PasswordEncoder(password: Password): PasswordHash = PasswordHash(password.token.hashCode().toString)
+  def PasswordEncoder(password: Password, salt: Salt): PasswordHash = PasswordHash((password.token+salt.name).hashCode().toString)
 }

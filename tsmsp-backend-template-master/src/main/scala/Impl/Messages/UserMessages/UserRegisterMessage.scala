@@ -5,31 +5,33 @@ import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
-import Types.UserMeta.{IdentityNumber, Password, RealName}
+import Types.UserMeta.{IdentityNumber, Password, RealName, Salt}
 import Utils.DBUtils
 import Utils.EnumAutoConverter._
 import Utils.PasswordAutoEncoder._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
-
+import Utils.StringUtils
 import scala.util.Try
 
 case class UserRegisterMessage(realName: RealName, password: Password, identityNumber: IdentityNumber, permission: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    if (UserIdentityTable.checkUserExists(realName).get) throw UserNameAlreadyExistsException()
+    if (UserIdentityTable.checkUserExists(identityNumber).get) throw UserNameAlreadyExistsException()
     else {
+      val salt = Salt(StringUtils.randomString(15))
       val userId = DBUtils.exec(
         (UserIdentityTable
           .addUser(
             realName,
-            password,
+            PasswordEncoder(password,salt),
             identityNumber,
-            permission)
+            permission,
+            salt)
            >>
-          UserIdentityTable.checkIdByRealName(realName).flatMap(
+          UserIdentityTable.checkIdByIdentityNumber(identityNumber).flatMap(
             userId => UserInformationTable.addUser(userId.getOrElse(throw TokenNotExistsException()))
           ) >>
-          UserIdentityTable.checkIdByRealName(realName)
+          UserIdentityTable.checkIdByIdentityNumber(identityNumber)
           ).transactionally
       ).get
       TSMSPReply(STATUS_OK, UserIdentityTable.checkToken(userId).get.token)

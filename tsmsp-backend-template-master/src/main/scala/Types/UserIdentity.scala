@@ -10,5 +10,6 @@ case class UserIdentity(
                          realName: RealName,
                          token: Token,
                          refreshTime: DateTime,
-                         permission: Permission
+                         permission: Permission,
+                         salt: Salt
                 )

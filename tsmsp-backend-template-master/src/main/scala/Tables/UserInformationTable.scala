@@ -16,6 +16,7 @@ class UserInformationTable(tag : Tag) extends Table[UserInformation](tag, Global
   def recentNucleicTestTime = column[DateTime]("recent_nucleic_test_time")
   def vaccinationStatus = column[VaccinationStatus]("vaccination_status")
   def riskLevel = column[UserRiskLevel]("risk_level")
+  def temperature = column[Temperature]("temperature")
   def * = (id, recentNucleicTestTime, vaccinationStatus, riskLevel).mapTo[UserInformation]
 }
 
@@ -30,6 +31,9 @@ object UserInformationTable {
 
   def updateNucleicTest(userId: UserId, time: DateTime): DBIO[Int] =
     userInformationTable.filter(_.id === userId).map(_.recentNucleicTestTime).update(time)
+
+  def updateTemperature(userId: UserId, time: DateTime,  temperature: Temperature):DBIO[Int] =
+    userInformationTable.filter(_.id === userId).map(_.temperature).update(temperature)
 
   def updateVaccinationStatus(userId: UserId): DBIO[Int] = {
     userInformationTable.filter(_.id === userId).map(_.vaccinationStatus).update(
