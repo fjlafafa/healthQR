@@ -12,6 +12,7 @@ import {SendData} from "../SendDataUtil";
 import {UserGetPlaceMessage} from "../../Impl/Messages/UserMessages/UserGetPlaceMessage";
 import {View} from "react-native";
 import {Token} from "Types/UserMeta/Token";
+import {SCREEN_WIDTH} from "Utils/SettingsAndConstants";
 
 function DataRow(props:{token: string,trace:Trace}){
     const [data,setPlaceData]=useState<Place>(new Place(new PlaceId(0),new Province(''),new City(''),new District(''),new SubDistrict(''), PlaceRiskLevel.red))
@@ -41,7 +42,7 @@ export function TraceTable(props:{token: string,traceList:Array<Trace>}){
     const dataItem=props.traceList.map((trace)=>{
         return <ListItem key={trace.id.id} token={props.token} trace={trace}/>
     })
-    return <DataTable>
+    return <View style={{width:SCREEN_WIDTH}}><DataTable>
         <DataTable.Header>
             <DataTable.Title sortDirection='descending'>
                 风险
@@ -53,6 +54,6 @@ export function TraceTable(props:{token: string,traceList:Array<Trace>}){
             <DataTable.Title numeric>时间</DataTable.Title>
         </DataTable.Header>
         {dataItem}
-    </DataTable>
+    </DataTable></View>
 
 }

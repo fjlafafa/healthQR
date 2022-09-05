@@ -1,8 +1,8 @@
 import {Place} from "../../../../../../Types/Place";
 import {evaluateRisk, mapRiskToColor, PlaceRiskLevel} from "../../../../../../Types/PlaceMeta/PlaceRiskLevel";
-import {View, Text, ScrollView} from "react-native";
+import {ScrollView, Text} from "react-native";
 import {Trace} from "Types/Trace";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {PlaceId} from "Types/PlaceMeta/PlaceId";
 import {Province} from "Types/PlaceMeta/Province";
 import {City} from "Types/PlaceMeta/City";
@@ -13,28 +13,27 @@ import {UserGetPlaceMessage} from "Messages/UserMessages/UserGetPlaceMessage";
 import {Token} from "Types/UserMeta/Token";
 
 class ListItem extends React.Component<any, any>{
-    constructor(props:any) {
-        super(props)
-        this.state={
-            data:new Place(new PlaceId(0), new Province(''), new City(''), new District(''), new SubDistrict(''), PlaceRiskLevel.red)
-        }
-    }
-    componentDidMount() {
-        SendData(
-            new UserGetPlaceMessage(new Token(this.props.token), new PlaceId(this.props.trace.visitPlaceId.id)),
-            (reply: Place) => {
-                this.setState({data:reply})
-            }
-        )
-    }
-
     render(){
-        return <Text style={{color:mapRiskToColor(this.state.data.riskLevel)}}>{this.state.data.province.name} {this.state.data.city.name} {this.state.data.district.name}</Text>
+        return <Text style={{color:mapRiskToColor(this.props.place.riskLevel)}}>{this.props.place.province.name} {this.props.place.city.name} {this.props.place.district.name}</Text>
     }
 }
 export function PlanTraceList(props: { token:string,trace:Array<Trace> }) {
+    const places=props.trace.map((a:Trace)=>{
+        let place=new Place(new PlaceId(0),new Province(''),new City(''),new District(''),new SubDistrict(''),PlaceRiskLevel.green)
+        SendData(
+            new UserGetPlaceMessage(new Token(props.token), a.visitPlaceId),
+            (reply: Place) => place=reply
+        )
+        return place
+    })
+    const sortedPlaces=places.sort((a:Place,b:Place)=>{
+        if(evaluateRisk(a.riskLevel)>evaluateRisk(b.riskLevel)) return -1
+        if(evaluateRisk(a.riskLevel)==evaluateRisk(b.riskLevel)) return 0
+        if(evaluateRisk(a.riskLevel)<evaluateRisk(b.riskLevel)) return 1
+        return 0
+    })
 
     return <ScrollView style={{flex:1}}>
-        {props.trace.map((a:Trace)=><ListItem key={a.id.id} token={props.token} trace={a}/>)}
+        {sortedPlaces.map((a:Place)=><ListItem key={a.id.id} place={a}/>)}
     </ScrollView>
 }

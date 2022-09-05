@@ -22,7 +22,8 @@ export function NucleicAcidView (props: {
         )
     )
 
-    const nucleicAcidTime=Math.floor(millis/DAY_MILLIS)
+    const midTime=Math.floor(millis/DAY_MILLIS)
+    const nucleicAcidTime=(midTime>14?'>14':(midTime<0?0:midTime))
 
     return <Card style={{width:'90%',height:'80%', justifyContent: 'center', backgroundColor:nucleicAcidColor}}>
         <Card.Content><Text style={setting.text}>核酸检测结果</Text></Card.Content>

@@ -29,13 +29,11 @@ export function TracePage({navigation}: any) {
     const goBack = () => navigation.navigate('User.ScanPlaceQRCode')
 
     return <ScreenTemplate goBack={goBack}>
-        <ScrollTemplate>
         <HeaderTemplate text='我的行程表'/>
         <TraceTable token={token} traceList={traceHistory}/>
         <ButtonTemplate
             onPress={() => navigation.navigate('User.ModifyTrace')}
             text='修改我的行程'
         />
-        </ScrollTemplate>
     </ScreenTemplate>
 }
