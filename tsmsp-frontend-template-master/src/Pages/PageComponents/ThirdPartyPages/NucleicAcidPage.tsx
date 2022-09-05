@@ -33,7 +33,7 @@ export function NucleicAcidPage({navigation}: any) {
     const {token} = TokenStore.getState()
     const goBack = () => navigation.navigate('ThirdParty.Overview')
 
-    const [tosetStatus, setTosetStatus] = useState(null)//?
+    const [tosetStatus, setTosetStatus] = useState(true)//?
     const [client, setClient] = useState({realName: new RealName(''), token: new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
