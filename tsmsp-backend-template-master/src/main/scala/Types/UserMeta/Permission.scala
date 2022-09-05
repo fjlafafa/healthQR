@@ -11,15 +11,19 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 @JsonSerialize(using = classOf[PermissionTypeSerializer])
 @JsonDeserialize(using = classOf[PermissionTypeDeserializer])
 sealed abstract class Permission(val v:String) extends JacksonSerializable
-case object Administrator extends Permission(admin)
-case object NormalUser extends Permission(normal)
-case object NucleicTestResultReporter extends Permission(nucleic)
+case object SetAdmin extends Permission(setAdmin)
+case object SetThirdParty extends Permission(setThirdParty)
+case object UpdateVaccination extends Permission(updateVaccination)
+case object UpdateNucleicTest extends Permission(updateNucleicTest)
+case object RecoverPatient extends Permission(recoverPatient)
+case object SetRiskOfPlace extends Permission(setRiskOfPlace)
+case object SetRiskOfUser extends Permission(setRiskOfUser)
 
 
-object Permission{
+object Permission {
   def objectList: List[Permission] =
-    List(Administrator, NormalUser, NucleicTestResultReporter)
-  def getType(v:String): Permission= objectList.filter(_.v==v).head
+    List(SetAdmin, SetThirdParty, UpdateVaccination, UpdateNucleicTest, RecoverPatient, SetRiskOfPlace, SetRiskOfUser)
+  def getType(v:String): Permission = objectList.filter(_.v==v).head
 }
 
 class PermissionTypeSerializer extends StdSerializer[Permission](classOf[Permission]) {
@@ -28,6 +32,6 @@ class PermissionTypeSerializer extends StdSerializer[Permission](classOf[Permiss
 }
 
 class PermissionTypeDeserializer extends StdDeserializer[Permission](classOf[Permission]) {
-  override def deserialize(p: JsonParser, ctxt: DeserializationContext): Permission=
+  override def deserialize(p: JsonParser, ctxt: DeserializationContext): Permission =
     Permission.getType(p.getText)
 }

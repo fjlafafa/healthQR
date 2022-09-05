@@ -8,12 +8,17 @@ import {RealName} from "Types/UserMeta/RealName";
 import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Password} from "Types/UserMeta/Password";
 import {DataTable} from "react-native-paper";
+import {TextTemplate} from "Utils/PageUtils/TextUtil";
+import {checkPermission, Permissions, Roles} from "Types/UserMeta/Roles";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
     const goBack = () => navigation.navigate('Login')
     return <ScreenTemplate goBack={goBack}>
         <ScrollTemplate>
+            <TextTemplate>{checkPermission(Roles.admin,Permissions.setAdmin)?1:0}</TextTemplate>
+            <TextTemplate>{checkPermission(Roles.user,Permissions.setAdmin)?1:0}</TextTemplate>
+            <TextTemplate>{checkPermission(Roles.government,Permissions.setRiskOfPlace)?1:0}</TextTemplate>
             <DataTable>
                 <DataTable.Header>
                     <DataTable.Title sortDirection='descending'>

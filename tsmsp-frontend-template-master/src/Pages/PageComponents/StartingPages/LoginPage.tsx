@@ -7,7 +7,7 @@ import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {AllowAdmin} from 'Globals/GlobalVariables'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {Permission} from "Types/UserMeta/Permission";
+import {Roles} from "Types/UserMeta/Roles";
 import {SendData} from "Utils/SendDataUtil";
 import {UserCheckPermissionMessage} from "Messages/UserMessages/UserCheckPermissionMessage";
 import {RealName} from "Types/UserMeta/RealName";
@@ -38,14 +38,12 @@ export function LoginPage({navigation}: any) {
             toSendMessage={new UserLoginMessage(new RealName(userName), new Password(password))}
             ifSuccess={(reply: string) => {
                 setUserToken(reply)
-                SendData(new UserCheckPermissionMessage(new Token(reply)), (reply: Permission) => {
+                SendData(new UserCheckPermissionMessage(new Token(reply)), (reply: Roles) => {
 
-                    if (reply === Permission.normal) {
+                    if (reply === Roles.user) {
                         navigation.navigate('User.Overview')
-                    } else if (reply === Permission.admin) {
-                        navigation.navigate('Admin.Overview')
-                    } else if (reply === Permission.nucleic) {
-                        navigation.navigate('ThirdParty.Overview')
+                    } else {
+                        navigation.navigate('SuperUser.InfoQRCodePage')
                     }
                     clearLoginInfo()
                 })

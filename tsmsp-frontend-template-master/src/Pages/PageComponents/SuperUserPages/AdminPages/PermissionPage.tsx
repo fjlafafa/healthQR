@@ -3,7 +3,7 @@ import {ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import React, {useState} from "react";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";
-import {Permission} from "Types/UserMeta/Permission";
+import {Roles} from "Types/UserMeta/Roles";
 import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
 import {View} from "react-native";
 import {Token} from "Types/UserMeta/Token";
@@ -16,7 +16,7 @@ export function PermissionPage({navigation}: any) {
     const {token} = TokenStore()
 
     const goBack = () => navigation.navigate('Admin.Overview')
-    const [tosetPremission, setTosetPremmission] = useState(Permission.normal)
+    const [tosetPremission, setTosetPremmission] = useState(Roles.user)
     const [client, setClient] = useState({realName: new RealName(''), token: new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
@@ -30,16 +30,16 @@ export function PermissionPage({navigation}: any) {
             }
             }
         />
-        <ButtonGroup chosen={Permission.normal} subprops={[
+        <ButtonGroup chosen={Roles.user} subprops={[
             {
-                name: Permission.normal.toString(),
-                onPress: () => setTosetPremmission(Permission.normal),
+                name: Roles.user.toString(),
+                onPress: () => setTosetPremmission(Roles.user),
             }, {
-                name: Permission.admin.toString(),
-                onPress: () => setTosetPremmission(Permission.admin),
+                name: Roles.admin.toString(),
+                onPress: () => setTosetPremmission(Roles.admin),
             }, {
-                name: Permission.nucleic.toString(),
-                onPress: () => setTosetPremmission(Permission.nucleic),
+                name: Roles.nucleic.toString(),
+                onPress: () => setTosetPremmission(Roles.nucleic),
             },
         ]}/>
         <ButtonToSendMessage
