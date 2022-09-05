@@ -10,8 +10,8 @@ export enum Roles {
 export enum Permissions {
     setAdmin,
     setThirdParty,
-    vaccination,
-    nucleicTest,
+    updateVaccination,
+    updateNucleicTest,
     recoverPatient,
     setRiskOfPlace,
     setRiskOfUser,
@@ -19,8 +19,8 @@ export enum Permissions {
 const PermissionTable =new Map([
     [Permissions.setAdmin,[Roles.superAdmin]],
     [Permissions.setThirdParty,[Roles.superAdmin,Roles.admin]],
-    [Permissions.vaccination,[Roles.superAdmin,Roles.admin,Roles.hospital,Roles.vaccine]],
-    [Permissions.nucleicTest,[Roles.superAdmin,Roles.admin,Roles.hospital,Roles.nucleic]],
+    [Permissions.updateVaccination,[Roles.superAdmin,Roles.admin,Roles.hospital,Roles.vaccine]],
+    [Permissions.updateNucleicTest,[Roles.superAdmin,Roles.admin,Roles.hospital,Roles.nucleic]],
     [Permissions.recoverPatient,[Roles.superAdmin,Roles.admin,Roles.hospital]],
     [Permissions.setRiskOfPlace,[Roles.superAdmin,Roles.admin,Roles.government]],
     [Permissions.setRiskOfUser,[Roles.superAdmin,Roles.admin,Roles.government]],
