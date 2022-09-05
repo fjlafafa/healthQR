@@ -14,10 +14,10 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserGetPlaceMessage(userToken: Token, visitedPlaces: List[PlaceId]) extends TSMSPMessage {
+case class UserGetPlaceMessage(userToken: Token, visitedPlaceId: List[PlaceId]) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     DBUtils.exec(UserIdentityTable.checkUserIdByToken(userToken)).getOrElse(throw TokenNotExistsException())
-    val places = PlaceTable.getPlaceList(visitedPlaces).get
+    val places = PlaceTable.getPlaceList(visitedPlaceId).get
     TSMSPReply(STATUS_OK, IOUtils.serialize(places).get)
   }
 }
