@@ -103,14 +103,7 @@ export function UserOverviewPage({navigation}: any) {
                     <Card style={{width: '90%', height: '90%', alignItems: 'center', justifyContent: 'center'}}>
                         {/*行程数据 准备加一个查看详情功能*/}
                         <TextTemplate>14天内行程记录</TextTemplate>
-                        <PlanTraceList tracePlace={[
-                            new Place(new PlaceId(1), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"), PlaceRiskLevel.red),
-                            new Place(new PlaceId(2), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"), PlaceRiskLevel.green),
-                            new Place(new PlaceId(3), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"), PlaceRiskLevel.green),
-                            new Place(new PlaceId(4), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"), PlaceRiskLevel.green),
-                            new Place(new PlaceId(5), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"), PlaceRiskLevel.green),
-                            new Place(new PlaceId(6), new Province("Beijing"), new City("Beijing"), new District("Haidian"), new SubDistrict("Hello world?!"), PlaceRiskLevel.yellow),
-                        ]}/>
+                        <PlanTraceList token={token} trace={traceHistory}/>
                     </Card>
                 </View>
             </View>

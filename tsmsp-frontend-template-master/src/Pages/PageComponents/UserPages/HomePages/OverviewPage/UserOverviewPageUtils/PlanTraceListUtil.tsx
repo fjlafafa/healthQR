@@ -1,22 +1,32 @@
 import {Place} from "../../../../../../Types/Place";
-import {evaluateRisk, mapRiskToColor} from "../../../../../../Types/PlaceMeta/PlaceRiskLevel";
+import {evaluateRisk, mapRiskToColor, PlaceRiskLevel} from "../../../../../../Types/PlaceMeta/PlaceRiskLevel";
 import {View, Text, ScrollView} from "react-native";
+import {Trace} from "Types/Trace";
+import {useEffect, useState} from "react";
+import {PlaceId} from "Types/PlaceMeta/PlaceId";
+import {Province} from "Types/PlaceMeta/Province";
+import {City} from "Types/PlaceMeta/City";
+import {District} from "Types/PlaceMeta/District";
+import {SubDistrict} from "Types/PlaceMeta/SubDistrict";
+import {SendData} from "Utils/SendDataUtil";
+import {UserGetPlaceMessage} from "Messages/UserMessages/UserGetPlaceMessage";
+import {Token} from "Types/UserMeta/Token";
 
-export function PlanTraceList(props: { tracePlace:Array<Place> }) {
-    const sortedTrace=props.tracePlace.sort((a:Place,b:Place)=>{
-        const an=evaluateRisk(a.riskLevel)
-        const bn=evaluateRisk(b.riskLevel)
-        if (an>bn)
-            return -1
-        else if (an==bn)
-            return 0
-        else
-            return 1
-    })
-    const items=sortedTrace.map((a:Place)=>{
-            return <View key={a.id.id}><Text style={{color:mapRiskToColor(a.riskLevel)}}>{a.province.name} {a.city.name} {a.district.name}</Text></View>
-    })
+function ListItem (props:{token: string,trace:Trace}) {
+    const [data, setPlaceData] = useState<Place>(new Place(new PlaceId(0), new Province(''), new City(''), new District(''), new SubDistrict(''), PlaceRiskLevel.red))
+    useEffect(() => {
+        SendData(
+            new UserGetPlaceMessage(new Token(props.token), new PlaceId(props.trace.visitPlaceId.id)),
+            (reply: Place) => {
+                setPlaceData(reply)
+            }
+        )
+    }, [])
+    return <View key={data.id.id}><Text style={{color:mapRiskToColor(data.riskLevel)}}>{data.province.name} {data.city.name} {data.district.name}</Text></View>
+}
+export function PlanTraceList(props: { token:string,trace:Array<Trace> }) {
+
     return <ScrollView style={{flex:1}}>
-        {items}
+        {props.trace.map((a:Trace)=><ListItem token={props.token} trace={a}/>)}
     </ScrollView>
 }

@@ -24,9 +24,9 @@ object DBUtils {
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
-        UserIdentityTable.addUser(RealName("root"),Password("root"),IdentityNumber("root"),Administrator),
       ).transactionally
     )
+    if(!UserIdentityTable.checkUserExists(RealName("root")).get) exec(UserIdentityTable.addUser(RealName("root"),Password("root"),IdentityNumber("root"),Administrator))
     }
 
   def dropDatabases():Unit={
