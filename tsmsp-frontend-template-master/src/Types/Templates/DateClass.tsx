@@ -1,10 +1,10 @@
-import {JacksonSerializable} from "Impl/JacksonSerializable";
+import { JacksonSerializable } from "Impl/JacksonSerializable";
 
 export class DateClass extends JacksonSerializable {
-    millis: number
+  millis: number;
 
-    constructor(millis: number) {
-        super()
-        this.millis = millis
-    }
+  constructor(millis: number) {
+    super();
+    this.millis = millis;
+  }
 }

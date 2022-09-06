@@ -1,7 +1,7 @@
-import {IDClass} from "../Templates/IDClass";
+import { IDClass } from "../Templates/IDClass";
 
 export class UserId extends IDClass {
-    constructor(id: number) {
-        super(id)
-    }
+  constructor(id: number) {
+    super(id);
+  }
 }
