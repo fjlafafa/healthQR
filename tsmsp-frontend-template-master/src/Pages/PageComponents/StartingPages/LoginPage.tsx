@@ -55,6 +55,7 @@ export function LoginPage({navigation}: any) {
         />
 
         <ButtonTemplate
+            icon = 'table-key'
         onPress={() => {
             navigation.navigate('FindPassword')
             clearLoginInfo()
