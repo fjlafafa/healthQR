@@ -5,9 +5,9 @@ import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
-import Types.UserMeta.{Password, Token, Salt}
-import Utils.{DBUtils, PasswordAutoEncoder, StringUtils}
-import Utils.PasswordAutoEncoder._
+import Types.UserMeta.{Password, Salt, Token}
+import Utils.MessageTypesUtils.PasswordAutoEncoder._
+import Utils.{DBUtils, StringUtils}
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 

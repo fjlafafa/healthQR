@@ -36,7 +36,7 @@ object IOUtils {
   }
 
   def deserializeList[T](bytes: String)(implicit tag: ClassTag[T]): Try[List[T]] = Try{
-    bytes.split("[\\[,\\]]").drop(1).toList.map(deserialize[T](_).get) // May not be correct
+    bytes.split("[\\[,\\]]").drop(1).dropRight(1).toList.map(deserialize[T](_).get) // May not be correct
   }
 
   def toObject[T: ClassTag](inputString: Option[String]): Try[Option[T]] = Try {

@@ -5,8 +5,8 @@ import Impl.{STATUS_OK, TSMSPReply}
 import Process.UserInfoMS.UserInfoMSDBUtils
 import Tables.UserTraceTable
 import Types.UserMeta.UserId
-import Utils.DateTimeAutoBuilder._
 import Utils.IOUtils
+import Utils.MessageTypesUtils.DateTimeAutoBuilder._
 import org.joda.time.DateTime
 
 import scala.util.Try

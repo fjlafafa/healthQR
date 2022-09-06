@@ -39,6 +39,12 @@ object UserTraceTable {
   def checkAllTrace(userId: UserId): DBIO[Seq[Trace]] =
     userTraceTable.filter(ut => ut.userId === userId).sortBy(_.time).result
 
+  def checkUserWithTrace(placeId: PlaceId, startTime : DateTime, endTime : DateTime): DBIO[Seq[UserId]] =
+    userTraceTable.filter(ut => ut.visitPlaceId === placeId && ut.time <= endTime && ut.time >= startTime).map(_.userId).result
+
+  def getAlertTimeWithTrace(placeId: PlaceId, startTime: DateTime, endTime: DateTime): DBIO[Seq[DateTime]] =
+    userTraceTable.filter(ut => ut.visitPlaceId === placeId && ut.time <= endTime && ut.time >= startTime).map(_.time).result
+
   def checkTraceExists(userId: UserId, trace: TraceId): Try[Boolean] = Try(
     UserInfoMSDBUtils.exec(userTraceTable.filter(ut => ut.userId === userId && ut.id === trace).size.result) > 0
   )
