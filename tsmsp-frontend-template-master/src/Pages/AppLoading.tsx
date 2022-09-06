@@ -1,3 +1,3 @@
-export function AppLoading({navigation}: any) {
-    return null
+export function AppLoading({ navigation }: any) {
+  return null;
 }

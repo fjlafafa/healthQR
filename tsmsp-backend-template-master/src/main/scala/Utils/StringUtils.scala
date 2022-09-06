@@ -27,6 +27,7 @@ object StringUtils {
       case _ => 0 //meaning not defined.
     }
   }
+
   /** 产生一个length长度的随机数字串 */
   def randomNumber(length: Int): Long = {
     val chars = '0' to '9'

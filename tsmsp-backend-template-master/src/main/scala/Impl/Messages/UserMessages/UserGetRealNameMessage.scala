@@ -13,6 +13,6 @@ case class UserGetRealNameMessage(userToken: Token) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val userId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(userToken)).get
     val realName = DBUtils.exec(UserIdentityTable.checkRealNameById(userId)).get
-    TSMSPReply(STATUS_OK,IOUtils.serialize(realName).get)
+    TSMSPReply(STATUS_OK, IOUtils.serialize(realName).get)
   }
 }

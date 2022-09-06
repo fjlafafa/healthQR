@@ -10,17 +10,22 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 
 @JsonSerialize(using = classOf[VaccinationStatusTypeSerializer])
 @JsonDeserialize(using = classOf[VaccinationStatusTypeDeserializer])
-sealed abstract class VaccinationStatus(val v:String) extends JacksonSerializable
+sealed abstract class VaccinationStatus(val v: String) extends JacksonSerializable
+
 case object Triple extends VaccinationStatus(triple)
+
 case object Dual extends VaccinationStatus(dual)
+
 case object Single extends VaccinationStatus(single)
+
 case object No extends VaccinationStatus(none)
 
 
-object VaccinationStatus{
+object VaccinationStatus {
   def objectList: List[VaccinationStatus] =
     List(Triple, Dual, Single, No)
-  def getType(v:String): VaccinationStatus= objectList.filter(_.v==v).head
+
+  def getType(v: String): VaccinationStatus = objectList.filter(_.v == v).head
 
   def step: Map[VaccinationStatus, VaccinationStatus] = Map(
     No -> Single,
@@ -36,6 +41,6 @@ class VaccinationStatusTypeSerializer extends StdSerializer[VaccinationStatus](c
 }
 
 class VaccinationStatusTypeDeserializer extends StdDeserializer[VaccinationStatus](classOf[VaccinationStatus]) {
-  override def deserialize(p: JsonParser, ctxt: DeserializationContext): VaccinationStatus=
+  override def deserialize(p: JsonParser, ctxt: DeserializationContext): VaccinationStatus =
     VaccinationStatus.getType(p.getText)
 }

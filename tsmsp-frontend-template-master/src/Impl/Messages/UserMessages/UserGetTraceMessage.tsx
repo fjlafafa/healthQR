@@ -1,21 +1,21 @@
-import {TSMSPMessage} from 'Messages/TSMSPMessage'
-import {TSMSPReply} from "Impl/TSMSPReply";
-import {Trace} from "Types/Trace";
-import {Token} from "Types/UserMeta/Token";
+import { TSMSPMessage } from "Messages/TSMSPMessage";
+import { TSMSPReply } from "Impl/TSMSPReply";
+import { Trace } from "Types/Trace";
+import { Token } from "Types/UserMeta/Token";
 
 export class UserGetTraceMessage extends TSMSPMessage {
-    userToken: Token
-    startTime: number
-    endTime: number
+  userToken: Token;
+  startTime: number;
+  endTime: number;
 
-    constructor(userToken: Token, startTime: number, endTime: number) {
-        super()
-        this.userToken = userToken
-        this.startTime = startTime
-        this.endTime = endTime
-    }
+  constructor(userToken: Token, startTime: number, endTime: number) {
+    super();
+    this.userToken = userToken;
+    this.startTime = startTime;
+    this.endTime = endTime;
+  }
 
-    override getReplyMessage(replyJson: TSMSPReply): Trace[] {
-        return JSON.parse(replyJson.message) as Trace[]
-    }
+  override getReplyMessage(replyJson: TSMSPReply): Trace[] {
+    return JSON.parse(replyJson.message) as Trace[];
+  }
 }

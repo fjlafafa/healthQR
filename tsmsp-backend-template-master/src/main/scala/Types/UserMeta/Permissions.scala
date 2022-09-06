@@ -10,20 +10,28 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 
 @JsonSerialize(using = classOf[PermissionTypeSerializer])
 @JsonDeserialize(using = classOf[PermissionTypeDeserializer])
-sealed abstract class Permissions(val v:String) extends JacksonSerializable
+sealed abstract class Permissions(val v: String) extends JacksonSerializable
+
 case object SetAdmin extends Permissions(setAdmin)
+
 case object SetThirdParty extends Permissions(setThirdParty)
+
 case object UpdateVaccination extends Permissions(updateVaccination)
+
 case object UpdateNucleicTest extends Permissions(updateNucleicTest)
+
 case object RecoverPatient extends Permissions(recoverPatient)
+
 case object SetRiskOfPlace extends Permissions(setRiskOfPlace)
+
 case object SetRiskOfUser extends Permissions(setRiskOfUser)
 
 
 object Permissions {
   def objectList: List[Permissions] =
     List(SetAdmin, SetThirdParty, UpdateVaccination, UpdateNucleicTest, RecoverPatient, SetRiskOfPlace, SetRiskOfUser)
-  def getType(v:String): Permissions = objectList.filter(_.v==v).head
+
+  def getType(v: String): Permissions = objectList.filter(_.v == v).head
 }
 
 class PermissionTypeSerializer extends StdSerializer[Permissions](classOf[Permissions]) {

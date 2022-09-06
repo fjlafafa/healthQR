@@ -1,4 +1,5 @@
 package Types.Templates
+
 import Impl.JacksonSerializable
 import Types.UserMeta.Temperature
 import com.fasterxml.jackson.annotation.{JsonSubTypes, JsonTypeInfo}
@@ -9,4 +10,4 @@ import com.fasterxml.jackson.annotation.{JsonSubTypes, JsonTypeInfo}
     new JsonSubTypes.Type(value = classOf[Temperature], name = "Temperature"),
   )
 )
-abstract class NumberClass (val num : Double) extends JacksonSerializable
+abstract class NumberClass(val num: Double) extends JacksonSerializable

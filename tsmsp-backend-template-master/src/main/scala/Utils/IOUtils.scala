@@ -35,7 +35,7 @@ object IOUtils {
     objectMapper.readValue(bytes.getBytes(), tag.runtimeClass).asInstanceOf[T]
   }
 
-  def deserializeList[T](bytes: String)(implicit tag: ClassTag[T]): Try[List[T]] = Try{
+  def deserializeList[T](bytes: String)(implicit tag: ClassTag[T]): Try[List[T]] = Try {
     bytes.split("[\\[,\\]]").drop(1).dropRight(1).toList.map(deserialize[T](_).get) // May not be correct
   }
 
@@ -84,6 +84,7 @@ object IOUtils {
     },
     entity = IOUtils.serialize(reply).get
   )
+
   def fromString(success: Boolean, reply: String): HttpResponse = HttpResponse(
     status = {
       if (success) StatusCodes.OK else StatusCodes.BadRequest

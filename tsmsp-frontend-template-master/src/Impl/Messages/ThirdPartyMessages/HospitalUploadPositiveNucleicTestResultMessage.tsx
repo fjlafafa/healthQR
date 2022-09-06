@@ -1,15 +1,15 @@
-import {TSMSPMessage} from 'Messages/TSMSPMessage'
-import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
-import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
-import {Token} from "Types/UserMeta/Token";
+import { TSMSPMessage } from "Messages/TSMSPMessage";
+import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
+import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
+import { Token } from "Types/UserMeta/Token";
 
 export class HospitalUploadPositiveNucleicTestResultMessage extends TSMSPMessage {
-    userToken: Token
-    identityNumber: IdentityNumber
+  userToken: Token;
+  identityNumber: IdentityNumber;
 
-    constructor(userToken: Token, identityNumber: IdentityNumber) {
-        super()
-        this.userToken = userToken
-        this.identityNumber = identityNumber
-    }
+  constructor(userToken: Token, identityNumber: IdentityNumber) {
+    super();
+    this.userToken = userToken;
+    this.identityNumber = identityNumber;
+  }
 }

@@ -1,10 +1,10 @@
-import {JacksonSerializable} from "Impl/JacksonSerializable";
+import { JacksonSerializable } from "Impl/JacksonSerializable";
 
 export abstract class NameClass extends JacksonSerializable {
-    name: string
+  name: string;
 
-    constructor(name: string) {
-        super()
-        this.name = name
-    }
+  constructor(name: string) {
+    super();
+    this.name = name;
+  }
 }

@@ -4,7 +4,7 @@ import Exceptions.UserNotExistsException
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
-import Types.UserMeta.{IdentityNumber, Token}
+import Types.UserMeta.IdentityNumber
 import Utils.{DBUtils, IOUtils}
 import org.joda.time.DateTime
 

@@ -13,7 +13,7 @@ import scala.util.Try
 case class MSHospitalUpdateUserRiskLevelMessage(clientIds: List[UserId], riskLevel: UserRiskLevel) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     VaccineAndNucleicMSDBUtils.exec(
-            UserInformationTable.increaseRiskLevel(clientIds, riskLevel).transactionally
+      UserInformationTable.increaseRiskLevel(clientIds, riskLevel).transactionally
     )
     TSMSPReply(STATUS_OK, "风险等级更新成功！")
   }

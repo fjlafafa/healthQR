@@ -10,9 +10,10 @@ import scala.util.{Failure, Success, Try}
 
 object VaccineAndNucleicMSServer {
   val logger: Logger = Logger("VaccineAndNucleicMSServer")
+
   def main(args: Array[String]): Unit = try {
     VaccineAndNucleicMSDBUtils.initDatabase()
-    implicit val system : ActorSystem[VaccineAndNucleicMSMaster.Message] = ActorSystem(VaccineAndNucleicMSMaster(), "vaccineAndNucleicMSServer")
+    implicit val system: ActorSystem[VaccineAndNucleicMSMaster.Message] = ActorSystem(VaccineAndNucleicMSMaster(), "vaccineAndNucleicMSServer")
     TSMSPPortalHttpServer.startHttpServer(new VaccineAndNucleicMSRoutes().routes, system, GlobalVariables.VaccineAndNucleicMSPortal)
   } catch {
     case exception: Exception =>

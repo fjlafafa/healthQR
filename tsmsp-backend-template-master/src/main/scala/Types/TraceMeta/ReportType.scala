@@ -10,15 +10,18 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 
 @JsonSerialize(using = classOf[ReportTypeTypeSerializer])
 @JsonDeserialize(using = classOf[ReportTypeTypeDeserializer])
-sealed abstract class ReportType(val v:String) extends JacksonSerializable
+sealed abstract class ReportType(val v: String) extends JacksonSerializable
+
 case object ScanQRCodeReport extends ReportType(auto)
+
 case object SelfReport extends ReportType(self)
 
 
-object ReportType{
+object ReportType {
   def objectList: List[ReportType] =
     List(ScanQRCodeReport, SelfReport)
-  def getType(v:String): ReportType= objectList.filter(_.v==v).head
+
+  def getType(v: String): ReportType = objectList.filter(_.v == v).head
 }
 
 class ReportTypeTypeSerializer extends StdSerializer[ReportType](classOf[ReportType]) {
@@ -27,6 +30,6 @@ class ReportTypeTypeSerializer extends StdSerializer[ReportType](classOf[ReportT
 }
 
 class ReportTypeTypeDeserializer extends StdDeserializer[ReportType](classOf[ReportType]) {
-  override def deserialize(p: JsonParser, ctxt: DeserializationContext): ReportType=
+  override def deserialize(p: JsonParser, ctxt: DeserializationContext): ReportType =
     ReportType.getType(p.getText)
 }

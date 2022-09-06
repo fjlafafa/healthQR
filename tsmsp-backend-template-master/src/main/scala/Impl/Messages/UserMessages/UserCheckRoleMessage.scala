@@ -12,6 +12,6 @@ import scala.util.Try
 case class UserCheckRoleMessage(userToken: Token) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val role = UserIdentityTable.getRoleFromToken(userToken).get
-    TSMSPReply(STATUS_OK,IOUtils.serialize(role).get)
+    TSMSPReply(STATUS_OK, IOUtils.serialize(role).get)
   }
 }

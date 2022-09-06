@@ -30,27 +30,27 @@ class VaccineAndNucleicMSRoutes()(implicit val system: ActorSystem[VaccineAndNuc
   implicit val scheduler: Scheduler = system.scheduler
   implicit val ec: ExecutionContextExecutor = system.executionContext
   val routes: Route = {
-      concat(
-        (path("api") & cors(settings)) {
-          post {
-            entity(as[String]) { bytes =>
-              Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
-              Try {
-                val message = IOUtils.deserialize[TSMSPMessage](bytes).get
-                //message.handle()
-                val ans : Future[VaccineAndNucleicMSMaster.RouterResponse] = system.ask(ref => VaccineAndNucleicMSMaster.RouterRequest(message, ref))
-                Await.result(ans, timeout.duration).result
-              } match {
-                case Success(value) =>
-                  logger.info("处理成功")
-                  complete(fromObject(success = true, value))
-                case Failure(e: Throwable) =>
-                  logger.error(s"出现未知错误${e.getMessage}")
-                  complete(fromString(success = true, e.getMessage))
-              }
+    concat(
+      (path("api") & cors(settings)) {
+        post {
+          entity(as[String]) { bytes =>
+            Logger("TSMSP-Portal-Route").info("$ api got a post: " + bytes)
+            Try {
+              val message = IOUtils.deserialize[TSMSPMessage](bytes).get
+              //message.handle()
+              val ans: Future[VaccineAndNucleicMSMaster.RouterResponse] = system.ask(ref => VaccineAndNucleicMSMaster.RouterRequest(message, ref))
+              Await.result(ans, timeout.duration).result
+            } match {
+              case Success(value) =>
+                logger.info("处理成功")
+                complete(fromObject(success = true, value))
+              case Failure(e: Throwable) =>
+                logger.error(s"出现未知错误${e.getMessage}")
+                complete(fromString(success = true, e.getMessage))
             }
           }
-        },
-      )
+        }
+      },
+    )
   }
 }

@@ -1,11 +1,11 @@
-import {TSMSPMessage} from 'Messages/TSMSPMessage'
-import {Token} from "Types/UserMeta/Token";
+import { TSMSPMessage } from "Messages/TSMSPMessage";
+import { Token } from "Types/UserMeta/Token";
 
 export class UserDeleteAccountMessage extends TSMSPMessage {
-    userToken: Token
+  userToken: Token;
 
-    constructor(userToken: Token) {
-        super()
-        this.userToken = userToken
-    }
+  constructor(userToken: Token) {
+    super();
+    this.userToken = userToken;
+  }
 }

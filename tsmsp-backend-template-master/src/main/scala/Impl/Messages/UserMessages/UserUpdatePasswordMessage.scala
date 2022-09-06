@@ -21,7 +21,7 @@ case class UserUpdatePasswordMessage(userToken: Token, password: Password) exten
         userId =>
           UserIdentityTable.updatePassword(userId.getOrElse(throw TokenNotExistsException()), PasswordEncoder(password, newSalt), newSalt) >>
             UserIdentityTable.checkRealNameById(userId.getOrElse(throw TokenNotExistsException())
-        )
+            )
       ).transactionally
     ).getOrElse(throw TokenNotExistsException())
     TSMSPReply(STATUS_OK, userRealName.name)

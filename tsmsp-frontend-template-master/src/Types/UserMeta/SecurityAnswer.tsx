@@ -1,7 +1,7 @@
-import {TokenClass} from "../Templates/TokenClass";
+import { TokenClass } from "../Templates/TokenClass";
 
 export class SecurityAnswer extends TokenClass {
-    constructor(token: string) {
-        super(token)
-    }
+  constructor(token: string) {
+    super(token);
+  }
 }

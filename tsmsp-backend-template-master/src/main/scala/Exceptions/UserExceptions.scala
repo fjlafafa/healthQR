@@ -3,6 +3,7 @@ package Exceptions
 case class TokenNotExistsException() extends Exception {
   override def getMessage: String = "错误！用户不存在或登录信息已过期！"
 }
+
 case class RoleNotExistsException() extends Exception {
   override def getMessage: String = "错误！不存在的权限角色！"
 }

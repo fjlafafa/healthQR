@@ -1,10 +1,10 @@
-import {JacksonSerializable} from "Impl/JacksonSerializable";
+import { JacksonSerializable } from "Impl/JacksonSerializable";
 
 export abstract class DoubleClass extends JacksonSerializable {
-    value: number
+  value: number;
 
-    constructor(value: number) {
-        super()
-        this.value = value
-    }
+  constructor(value: number) {
+    super();
+    this.value = value;
+  }
 }
