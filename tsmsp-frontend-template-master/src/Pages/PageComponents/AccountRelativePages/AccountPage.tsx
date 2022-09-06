@@ -3,6 +3,7 @@ import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
 import {StatusBar} from "expo-status-bar";
 import React from "react";
+import {clearUserRole} from "Globals/RoleStore";
 
 export function AccountPage({navigation}: any) {
     const goBack = () => navigation.navigate('User.Overview')
@@ -24,6 +25,7 @@ export function AccountPage({navigation}: any) {
             onPress={() => {
                 navigation.navigate('Login')
                 clearUserToken()
+                clearUserRole()
             }}
             text='退出登录'/>
 

@@ -6,12 +6,11 @@ import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
 import Types.UserMeta.{IdentityNumber, Password, RealName, Salt, SecurityAnswer, SecurityQuestion}
-import Utils.DBUtils
+import Utils.{DBUtils, IOUtils, StringUtils}
 import Utils.EnumAutoConverter._
 import Utils.PasswordAutoEncoder._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
-import Utils.StringUtils
 
 import scala.util.Try
 
@@ -38,7 +37,7 @@ case class UserRegisterMessage(realName: RealName, password: Password, identityN
           UserIdentityTable.checkIdByIdentityNumber(identityNumber)
           ).transactionally
       ).get
-      TSMSPReply(STATUS_OK, UserIdentityTable.checkToken(userId).get.token)
+      TSMSPReply(STATUS_OK, IOUtils.serialize(UserIdentityTable.checkToken(userId).get).get)
     }
   }
 }

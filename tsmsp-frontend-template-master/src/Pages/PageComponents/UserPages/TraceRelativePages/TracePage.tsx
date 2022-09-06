@@ -18,7 +18,7 @@ export function TracePage({navigation}: any) {
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
-            new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
+            new UserGetTraceMessage(token, (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
             })

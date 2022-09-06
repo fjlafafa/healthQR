@@ -21,7 +21,7 @@ export function InfoQRCodePage({navigation}: any) {
     const [realName, setRealName] = useState(new RealName(''))
     const refresh = () => {
         SendData(
-            new UserGetRealNameMessage(new Token(token)),
+            new UserGetRealNameMessage(token),
             (reply: RealName) => {
                 setRealName(reply)
             })
@@ -49,7 +49,7 @@ export function InfoQRCodePage({navigation}: any) {
                         }}>
 
                             <RegisterCode
-                                userInfo={{realName: realName, token: new Token(token)}}
+                                userInfo={{realName: realName, token: token}}
                             />
                         </View>
                         <View style={{height: '2%'}}/>

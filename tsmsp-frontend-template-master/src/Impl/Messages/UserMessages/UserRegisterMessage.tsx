@@ -5,6 +5,8 @@ import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Roles} from "Types/UserMeta/Roles";
 import {SecurityQuestion} from "Types/UserMeta/SecurityQuestion";
 import {SecurityAnswer} from "Types/UserMeta/SecurityAnswer";
+import {TSMSPReply} from "Impl/TSMSPReply";
+import {Token} from "Types/UserMeta/Token";
 
 export class UserRegisterMessage extends TSMSPMessage {
     realName: RealName
@@ -22,5 +24,8 @@ export class UserRegisterMessage extends TSMSPMessage {
         this.role = Roles.normal
         this.securityQuestion = securityQuestion
         this.securityAnswer = securityAnswer
+    }
+    override getReplyMessage(replyJson: TSMSPReply): Token {
+        return JSON.parse(replyJson.message) as Token
     }
 }

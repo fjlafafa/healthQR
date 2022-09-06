@@ -25,6 +25,7 @@ import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
 import {HeaderTemplate} from "Utils/PageUtils/HeaderUtil";
 import {Token} from "Types/UserMeta/Token";
 import {UserGetInfoMessage} from "Messages/UserMessages/UserGetInfoMessage";
+import {clearUserRole} from "Globals/RoleStore";
 import {TemperatureView} from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/Temperature";
 import {Temperature} from "Types/UserMeta/Temperature";
 
@@ -36,12 +37,12 @@ export function UserOverviewPage({navigation}: any) {
     const [info, setInfo] = useState(new UserInformation(new UserId(0), new DateClass(0), VaccinationStatus.none, UserRiskLevel.popUps, new Temperature(36.6)))
     const refresh = () => {
         SendData(
-            new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
+            new UserGetTraceMessage(token, (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
             })
         SendData(
-            new UserGetInfoMessage(new Token(token)),
+            new UserGetInfoMessage(token),
             (reply: UserInformation) => {
                 setInfo(reply)
             })
@@ -52,6 +53,7 @@ export function UserOverviewPage({navigation}: any) {
     const goBack = () => {
         navigation.navigate('Login')
         clearUserToken()
+        clearUserRole()
     }
 
     return <ScreenTemplate goBack={goBack}>

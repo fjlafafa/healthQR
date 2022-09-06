@@ -100,7 +100,7 @@ export function GeneratePlaceQRPage({navigation}: any) {
             </View>
             <ButtonToSendMessage
                 text={'查验并生成地点码'}
-                toSendMessage={new UserGetPlaceMessage(new Token(token), new Array(placeId))}
+                toSendMessage={new UserGetPlaceMessage(token, new Array(placeId))}
                 ifSuccess={(place: Place[]) => {
                     setPlaceIdShowed(place[0].id)
                     setPlaceShowed(place[0])

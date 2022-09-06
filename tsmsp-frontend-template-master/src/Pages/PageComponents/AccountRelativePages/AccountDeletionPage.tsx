@@ -4,18 +4,19 @@ import {clearUserToken, TokenStore} from 'Globals/TokenStore'
 import {UserDeleteAccountMessage} from 'Messages/UserMessages/UserDeleteAccountMessage'
 import {ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
-import {Token} from "Types/UserMeta/Token";
+import {clearUserRole} from "Globals/RoleStore";
 
 export function AccountDeletionPage({navigation}: any) {
     const {token} = TokenStore()
     const goBack = () => navigation.navigate('User.Account')
     return <ScreenTemplate goBack={goBack}>
         <ButtonToSendMessage
-            toSendMessage={new UserDeleteAccountMessage(new Token(token))}
+            toSendMessage={new UserDeleteAccountMessage(token)}
             ifSuccess={(reply: string) => {
                 alert('用户注销成功！')
                 navigation.navigate('Login')
                 clearUserToken()
+                clearUserRole()
             }}
             text='确认注销'/>
 

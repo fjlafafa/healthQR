@@ -35,7 +35,7 @@ export function PasswordPage({navigation}: any) {
                 alert('两次输入密码不一致！请重新输入！')
                 clearConfirmedPassword()
             }}
-            toSendMessage={new UserUpdatePasswordMessage(new Token(token), new Password(password))}
+            toSendMessage={new UserUpdatePasswordMessage(token, new Password(password))}
             ifSuccess={(reply: string) => {
                 alert('用户' + reply + '的密码已修改')
                 clearInfo()

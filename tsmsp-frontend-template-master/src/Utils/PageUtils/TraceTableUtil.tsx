@@ -30,13 +30,13 @@ class ListItem extends React.Component<any, any> {
     }
 }
 
-export function TraceTable(props: { token: string, traceList: Array<Trace> }) {
+export function TraceTable(props: { token: Token, traceList: Array<Trace> }) {
     const [placeData, setPlaceData] = useState(Array<Place>())
     const placesId=props.traceList.map((trace:Trace)=>trace.visitPlaceId)
 
     useEffect(()=>{
         SendData(
-            new UserGetPlaceMessage(new Token(props.token), placesId),
+            new UserGetPlaceMessage(props.token, placesId),
             (reply: Place[]) => setPlaceData(reply))},[props.traceList])
 
     const dataItem = placeData.map((place:Place) => {

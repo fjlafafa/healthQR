@@ -59,9 +59,9 @@ export function NucleicAcidPage({navigation}: any) {
         <ButtonTemplate
             icon = 'upload'
             onPress={()=>{
-                SendData(new HospitalUpdateNucleicTestByTokenMessage(new Token(token), client.token))
+                SendData(new HospitalUpdateNucleicTestByTokenMessage(token, client.token))
                 if (tosetStatus) {
-                    SendData(new HospitalUploadPositiveNucleicTestResultByTokenMessage(new Token(token), client.token))
+                    SendData(new HospitalUploadPositiveNucleicTestResultByTokenMessage(token, client.token))
                 }
             }
 
@@ -81,7 +81,7 @@ export function NucleicAcidPage({navigation}: any) {
             checkElse={() => {
                 alert('请重新检查身份证号是否填写正确')
             }}
-            toSendMessage={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identity))}
+            toSendMessage={new HospitalUpdateNucleicTestMessage(token, new IdentityNumber(identity))}
             text='上传'
             ifSuccess={() => {
                 IDStore.setState({identity: " "})
