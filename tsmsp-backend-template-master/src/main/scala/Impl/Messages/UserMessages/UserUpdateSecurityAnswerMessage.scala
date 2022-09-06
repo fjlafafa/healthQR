@@ -6,7 +6,7 @@ import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
 import Types.UserMeta.{SecurityAnswer, SecurityQuestion, Token}
 import Utils.DBUtils
-import Utils.PasswordAutoEncoder.SecurityAnswerEncoder
+import Utils.MessageTypesUtils.PasswordAutoEncoder.SecurityAnswerEncoder
 import org.joda.time.DateTime
 
 import scala.util.Try
