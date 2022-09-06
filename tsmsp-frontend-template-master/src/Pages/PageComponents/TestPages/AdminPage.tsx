@@ -12,6 +12,7 @@ import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {checkPermission, Permissions, Roles} from "Types/UserMeta/Roles";
 import {SecurityQuestion} from "Types/UserMeta/SecurityQuestion";
 import {SecurityAnswer} from "Types/UserMeta/SecurityAnswer";
+import {Token} from "Types/UserMeta/Token";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
@@ -42,16 +43,16 @@ export function AdminPage({navigation}: any) {
             <ButtonToSendMessage
                 toSendMessage={new UserRegisterMessage(new RealName(''), new Password(''), new IdentityNumber(''),new SecurityQuestion(''),new SecurityAnswer(''))}
                 text='注册空用户'
-                ifSuccess={(reply: string) => {
+                ifSuccess={(reply: Token) => {
                     setUserToken(reply)
-                    navigation.navigate('User.Overview', {})
+                    navigation.navigate('User.Overview')
                 }}/>
             <ButtonToSendMessage
             toSendMessage={new UserRegisterMessage(new RealName(new Date().getTime().toString()), new Password(''), new IdentityNumber(''), new SecurityQuestion(''), new SecurityAnswer(''))}
             text='注册全新用户'
-            ifSuccess={(reply: string) => {
+            ifSuccess={(reply: Token) => {
                 setUserToken(reply)
-                navigation.navigate('User.Overview', {})
+                navigation.navigate('User.Overview')
             }}/>
             <ButtonTemplate
                 onPress={() => navigation.navigate('User.Overview')}

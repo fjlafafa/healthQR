@@ -2,13 +2,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import React from 'react'
 import {LoginPage} from './PageComponents/StartingPages/LoginPage'
 import {RegisterPage} from './PageComponents/StartingPages/RegisterPage'
-import {PasswordPage} from './PageComponents/UserPages/AccountRelativePages/PasswordPage'
+import {PasswordPage} from './PageComponents/AccountRelativePages/PasswordPage'
 import {ScanPlaceQRCodePage} from './PageComponents/UserPages/HomePages/ScanPlaceQRCodePage/ScanPlaceQRCodePage'
 import {ModifyTracePage} from './PageComponents/UserPages/TraceRelativePages/ModifyTracePage'
-import {AccountDeletionPage} from './PageComponents/UserPages/AccountRelativePages/AccountDeletionPage'
+import {AccountDeletionPage} from './PageComponents/AccountRelativePages/AccountDeletionPage'
 import {AdminPage} from './PageComponents/TestPages/AdminPage'
 import {AllowAdmin} from 'Globals/GlobalVariables'
-import {AccountPage} from "./PageComponents/UserPages/AccountRelativePages/AccountPage";
+import {AccountPage} from "./PageComponents/AccountRelativePages/AccountPage";
 import {VaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/VaccinePage";
 import {NavigationContainer} from "@react-navigation/native";
 

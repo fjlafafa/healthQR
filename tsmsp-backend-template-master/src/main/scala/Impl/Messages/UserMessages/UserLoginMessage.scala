@@ -5,7 +5,7 @@ import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
 import Types.UserMeta.{IdentityNumber, Password, UserId}
-import Utils.DBUtils
+import Utils.{DBUtils, IOUtils}
 import Utils.PasswordAutoEncoder._
 import org.joda.time.DateTime
 
@@ -16,7 +16,7 @@ case class UserLoginMessage(identityNumber: IdentityNumber, password: Password) 
     val Salt = DBUtils.exec(UserIdentityTable.checkSaltByIdentityNumber(identityNumber)).getOrElse(throw UserNotExistsException())
     if (UserIdentityTable.checkPassword(identityNumber, PasswordEncoder(password, Salt)).get) {
       val userId = DBUtils.exec(UserIdentityTable.checkIdByIdentityNumber(identityNumber)).getOrElse(throw UserNotExistsException())
-      TSMSPReply(STATUS_OK, UserIdentityTable.checkToken(userId).get.token)
+      TSMSPReply(STATUS_OK, IOUtils.serialize(UserIdentityTable.checkToken(userId).get).get)
     }
     else throw WrongPasswordException()
   }

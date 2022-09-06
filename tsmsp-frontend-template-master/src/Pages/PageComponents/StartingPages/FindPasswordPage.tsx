@@ -45,7 +45,7 @@ export function FindPasswordPage({navigation}:any){
         <ButtonToSendMessage
             toSendMessage={new UserSendSecurityAnswerMessage(identityNumber,securityAnswer)}
             ifSuccess={(reply:Token)=>{
-                setUserToken(reply.token)
+                setUserToken(reply)
                 UserLogin(navigation,reply, clearPageInfo)
                 alert('请尽快重新设置密码')
             }}

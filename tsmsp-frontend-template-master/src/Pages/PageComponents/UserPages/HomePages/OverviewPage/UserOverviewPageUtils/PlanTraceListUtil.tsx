@@ -18,11 +18,11 @@ class ListItem extends React.Component<any, any> {
             style={{color: mapRiskToColor(this.props.place.riskLevel)}}>{this.props.place.province.name} {this.props.place.city.name} {this.props.place.district.name}</Text>
     }
 }
-export function PlanTraceList(props: { token:string,trace:Array<Trace> }) {
+export function PlanTraceList(props: { token:Token,trace:Array<Trace> }) {
     const [places,setPlaces]=useState(Array<Place>())
     const placesId=props.trace.map((trace:Trace)=>trace.visitPlaceId)
     useEffect(()=>{
-        SendData(new UserGetPlaceMessage(new Token(props.token),placesId),
+        SendData(new UserGetPlaceMessage(props.token,placesId),
             (replyMessage:Place[])=>setPlaces(replyMessage))},
         [props.trace])
     const sortedPlaces=places.sort((a:Place,b:Place)=>{

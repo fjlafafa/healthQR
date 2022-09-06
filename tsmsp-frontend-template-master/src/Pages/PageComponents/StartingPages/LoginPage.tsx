@@ -38,9 +38,9 @@ export function LoginPage({navigation}: any) {
         <ButtonToSendMessage
             icon='login'
             toSendMessage={new UserLoginMessage(new IdentityNumber(userName), new Password(password))}
-            ifSuccess={(reply: string) => {
+            ifSuccess={(reply: Token) => {
                 setUserToken(reply)
-                UserLogin(navigation,new Token(reply), clearLoginInfo)
+                UserLogin(navigation,reply, clearLoginInfo)
             }}
             text='登录'
         />

@@ -11,10 +11,6 @@ export function AdminBrotherPage({navigation}: any) {
     const [nothing, update] = useState(0)
     return <ScreenTemplate>
         <ScrollTemplate>
-            <TextInputTemplate placeholder={'真实姓名'} value={token}
-                               onChangeText={(newText: string) => setUserToken(newText)}/>
-
-
             <ButtonTemplate
                 onPress={() => navigation.navigate('Admin')}
                 text='返回主测试'/>

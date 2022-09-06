@@ -14,6 +14,7 @@ import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Password} from "Types/UserMeta/Password";
 import {SecurityQuestion} from "Types/UserMeta/SecurityQuestion";
 import {SecurityAnswer} from "Types/UserMeta/SecurityAnswer";
+import {Token} from "Types/UserMeta/Token";
 
 const registerStore = create(() => ({
     realName: '',
@@ -47,7 +48,7 @@ export function RegisterPage({navigation}: any) {
             }}
             toSendMessage={new UserRegisterMessage(new RealName(realName), new Password(password), new IdentityNumber(identityNumber), new SecurityQuestion('你的密码是？'), new SecurityAnswer(password))}
             text='注册'
-            ifSuccess={(reply: string) => {
+            ifSuccess={(reply: Token) => {
                 setUserToken(reply)
                 navigation.navigate('User.Overview')
                 alert('请尽快前往个人账户中心设置密码丢失安全问题！')

@@ -12,6 +12,7 @@ import {clearUserToken, TokenStore} from "Globals/TokenStore";
 import {ScreenTemplate, ScrollTemplate} from "Utils/PageUtils/PageContainerUtil";
 import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
 import {ViewSwitcher} from "Pages/PageComponents/SuperUserPages/HomePages/HomePagesUtils/BarUtil";
+import {clearUserRole} from "Globals/RoleStore";
 
 
 export function SuperUserInfoPage({navigation}: any) {
@@ -19,7 +20,7 @@ export function SuperUserInfoPage({navigation}: any) {
     const [realName, setRealName] = useState(new RealName(''))
     const refresh = () => {
         SendData(
-            new UserGetRealNameMessage(new Token(token)),
+            new UserGetRealNameMessage(token),
             (reply: RealName) => {
                 setRealName(reply)
             })
@@ -29,6 +30,7 @@ export function SuperUserInfoPage({navigation}: any) {
     const goBack = () => {
         navigation.navigate('Login')
         clearUserToken()
+        clearUserRole()
     }
     return <ScreenTemplate goBack={goBack}>
         <ViewSwitcher state={'SuperUser.InfoQRCodePage'} navigation={navigation}/>
@@ -50,7 +52,7 @@ export function SuperUserInfoPage({navigation}: any) {
                     }}>
 
                         <RegisterCode
-                            userInfo={{realName: realName, token: new Token(token)}}
+                            userInfo={{realName: realName, token: token}}
                         />
                     </View>
                 </Card>
@@ -58,10 +60,7 @@ export function SuperUserInfoPage({navigation}: any) {
 
             <ButtonTemplate
                 icon = 'logout'
-                onPress={() => {
-                    navigation.navigate('Login')
-                    clearUserToken()
-                }}
+                onPress={goBack}
                 text={'退出登录'}
             />
         </ScrollTemplate>

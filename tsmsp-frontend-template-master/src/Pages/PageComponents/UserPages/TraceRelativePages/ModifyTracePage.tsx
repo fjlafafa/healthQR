@@ -41,7 +41,7 @@ export function ModifyTracePage({navigation}: any) {
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
     const refresh = () => {
         SendData(
-            new UserGetTraceMessage(new Token(token), (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
+            new UserGetTraceMessage(token, (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
             (reply: Trace[]) => {
                 setTraceHistory(reply)
             })
@@ -61,7 +61,7 @@ export function ModifyTracePage({navigation}: any) {
                 alert('地点号码不符合要求(长度应为9)！')
             }}
             icon='upload'
-            toSendMessage={new UserUpdateTraceMessage(new Token(token), new PlaceId(parseInt(NewTraceId)), new DetailedPlaceDescription(NewTrace), report_type as ReportType)}
+            toSendMessage={new UserUpdateTraceMessage(token, new PlaceId(parseInt(NewTraceId)), new DetailedPlaceDescription(NewTrace), report_type as ReportType)}
             text='上传新轨迹'
             ifSuccess={(_: any) => {alert('上传成功')
                 refresh()}}
@@ -72,7 +72,7 @@ export function ModifyTracePage({navigation}: any) {
 
         <ButtonToSendMessage
             icon = 'delete'
-            toSendMessage={new UserDeleteTraceMessage(new Token(token), new TraceId(parseInt(RemovedTrace)))}
+            toSendMessage={new UserDeleteTraceMessage(token, new TraceId(parseInt(RemovedTrace)))}
             ifSuccess={(replyMessage: string) => {
                 alert('轨迹\'' + replyMessage + '\'删除成功！')
                 setRemovedTrace('')

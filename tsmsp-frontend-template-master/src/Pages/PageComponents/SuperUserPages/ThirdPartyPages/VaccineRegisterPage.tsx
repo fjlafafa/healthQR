@@ -49,7 +49,7 @@ export function VaccineRegisterPage({navigation}: any) {
             }/>
         <ButtonToSendMessage
             icon = 'upload'
-            toSendMessage={new HospitalUpdateVaccinationByTokenMessage(new Token(token), client.token)}
+            toSendMessage={new HospitalUpdateVaccinationByTokenMessage(token, client.token)}
             text={'打一针'}/>
         {/**/}
 
@@ -64,7 +64,7 @@ export function VaccineRegisterPage({navigation}: any) {
             checkElse={() => {
                 alert('请重新检查身份证号是否填写正确')
             }}
-            toSendMessage={new HospitalUpdateVaccinationMessage(new Token(token), new IdentityNumber(identity))}
+            toSendMessage={new HospitalUpdateVaccinationMessage(token, new IdentityNumber(identity))}
             text='上传'
         />
 
