@@ -10,15 +10,15 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class AdminChangePermissionMessage(adminToken: Token, clientToken:Token, newPermission: Roles) extends TSMSPMessage {
+case class AdminChangeRoleMessage(adminToken: Token, clientToken:Token, newRole: Roles) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val permission = UserIdentityTable.getPermissionFromToken(adminToken).get
+    val role = UserIdentityTable.getRoleFromToken(adminToken).get
     val clientId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(clientToken)).getOrElse(throw TokenNotExistsException())
 
-    if (permission != Administrator) {
+    if (role != Administrator) {
       throw PermissionDeniedException()
     }
-    DBUtils.exec(UserIdentityTable.updatePermissionById(clientId,newPermission))
+    DBUtils.exec(UserIdentityTable.updateRoleById(clientId,newRole))
     TSMSPReply(STATUS_OK,"设置权限成功！")
   }
 }

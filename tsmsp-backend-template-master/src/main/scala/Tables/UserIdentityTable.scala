@@ -64,7 +64,7 @@ object UserIdentityTable {
   def checkIdByIdentityNumber(identityNumber: IdentityNumber): DBIO[Option[UserId]] =
     userIdentityTable.filter(u => u.identityNumber === identityNumber).map(_.userId).result.headOption
 
-  def checkPermissionById(userId: UserId): DBIO[Option[Roles]] =
+  def checkRoleById(userId: UserId): DBIO[Option[Roles]] =
     userIdentityTable.filter(u => u.userId === userId).map(_.permission).result.headOption
 
   def checkRealNameById(userId: UserId): DBIO[Option[RealName]] =
@@ -74,9 +74,9 @@ object UserIdentityTable {
   DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(_.password).update(newPassword) >>
     userIdentityTable.filter(_.userId === userId).map(_.salt).update(newSalt)
 
-  def updatePermissionById(userId: UserId, newPermission: Roles):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.permission).update(newPermission)
+  def updateRoleById(userId: UserId, newRole: Roles):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.permission).update(newRole)
 
-  def getPermissionFromToken(token: Token): Try[Roles] = Try(
+  def getRoleFromToken(token: Token): Try[Roles] = Try(
     DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.permission).result.headOption).getOrElse(
       throw TokenNotExistsException()
     )

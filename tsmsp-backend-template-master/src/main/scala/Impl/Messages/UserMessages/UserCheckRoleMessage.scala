@@ -9,9 +9,9 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class UserCheckPermissionMessage(userToken: Token) extends TSMSPMessage {
+case class UserCheckRoleMessage(userToken: Token) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val permission = UserIdentityTable.getPermissionFromToken(userToken).get
-    TSMSPReply(STATUS_OK,IOUtils.serialize(permission).get)
+    val role = UserIdentityTable.getRoleFromToken(userToken).get
+    TSMSPReply(STATUS_OK,IOUtils.serialize(role).get)
   }
 }
