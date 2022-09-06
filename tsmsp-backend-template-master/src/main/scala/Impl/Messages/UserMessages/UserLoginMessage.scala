@@ -4,9 +4,9 @@ import Exceptions.{UserNotExistsException, WrongPasswordException}
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
-import Types.UserMeta.{IdentityNumber, Password, UserId}
+import Types.UserMeta.{IdentityNumber, Password}
+import Utils.MessageTypesUtils.PasswordAutoEncoder._
 import Utils.{DBUtils, IOUtils}
-import Utils.PasswordAutoEncoder._
 import org.joda.time.DateTime
 
 import scala.util.Try

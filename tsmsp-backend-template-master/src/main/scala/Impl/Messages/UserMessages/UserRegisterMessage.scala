@@ -5,10 +5,10 @@ import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
-import Types.UserMeta.{IdentityNumber, Password, RealName, Salt, SecurityAnswer, SecurityQuestion}
+import Types.UserMeta._
+import Utils.MessageTypesUtils.EnumAutoConverter._
+import Utils.MessageTypesUtils.PasswordAutoEncoder._
 import Utils.{DBUtils, IOUtils, StringUtils}
-import Utils.EnumAutoConverter._
-import Utils.PasswordAutoEncoder._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 

@@ -5,8 +5,8 @@ import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
 import Types.UserMeta.{IdentityNumber, SecurityAnswer}
+import Utils.MessageTypesUtils.PasswordAutoEncoder.SecurityAnswerEncoder
 import Utils.{DBUtils, IOUtils}
-import Utils.PasswordAutoEncoder.SecurityAnswerEncoder
 import org.joda.time.DateTime
 
 import scala.util.Try

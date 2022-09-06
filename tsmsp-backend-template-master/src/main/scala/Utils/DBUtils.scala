@@ -2,8 +2,8 @@ package Utils
 
 import Globals.GlobalVariables
 import Tables._
-import Types.UserMeta.{Administrator, IdentityNumber, Password, RealName, Salt, SecurityAnswer, SecurityQuestion}
-import Utils.PasswordAutoEncoder._
+import Types.UserMeta._
+import Utils.MessageTypesUtils.PasswordAutoEncoder._
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
 import slick.jdbc.PostgresProfile.api._
@@ -27,7 +27,15 @@ object DBUtils {
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
       ).transactionally
     )
-    if(!UserIdentityTable.checkUserExists(IdentityNumber("root")).get) exec(UserIdentityTable.addUser(RealName("root"),PasswordEncoder(Password("root"),Salt("saltsalt")),IdentityNumber("root"),Administrator,Salt("saltsalt"),SecurityQuestion("1+1=?"),SecurityAnswerEncoder(SecurityAnswer("2"),Salt("saltsalt"))))
+    if(!UserIdentityTable.checkUserExists(IdentityNumber("root")).get)
+      exec(
+        UserIdentityTable.addUser(
+          RealName("root"),
+          PasswordEncoder(Password("root"),Salt("saltsalt")),
+          IdentityNumber("root"),Administrator,Salt("saltsalt"),
+          SecurityQuestion("1+1=?"),
+          SecurityAnswerEncoder(SecurityAnswer("2"),Salt("saltsalt"))
+        ))
     }
 
   def dropDatabases():Unit={
