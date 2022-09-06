@@ -16,7 +16,7 @@ export function PermissionPage({navigation}: any) {
     const {token} = TokenStore()
 
     const goBack = () => navigation.navigate('Admin.Overview')
-    const [tosetPremission, setTosetPremmission] = useState(Roles.user)
+    const [tosetPremission, setTosetPremmission] = useState(Roles.normal)
     const [client, setClient] = useState({realName: new RealName(''), token: new Token('')})
 
     return <ScreenTemplate goBack={goBack}>
@@ -30,10 +30,10 @@ export function PermissionPage({navigation}: any) {
             }
             }
         />
-        <ButtonGroup chosen={Roles.user} subprops={[
+        <ButtonGroup chosen={Roles.normal} subprops={[
             {
-                name: Roles.user.toString(),
-                onPress: () => setTosetPremmission(Roles.user),
+                name: Roles.normal.toString(),
+                onPress: () => setTosetPremmission(Roles.normal),
             }, {
                 name: Roles.admin.toString(),
                 onPress: () => setTosetPremmission(Roles.admin),

@@ -40,7 +40,7 @@ export function LoginPage({navigation}: any) {
                 setUserToken(reply)
                 SendData(new UserCheckPermissionMessage(new Token(reply)), (reply: Roles) => {
 
-                    if (reply === Roles.user) {
+                    if (reply === Roles.normal) {
                         navigation.navigate('User.Overview')
                     } else {
                         navigation.navigate('SuperUser.InfoQRCodePage')

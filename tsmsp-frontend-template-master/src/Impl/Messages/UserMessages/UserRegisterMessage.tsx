@@ -15,6 +15,6 @@ export class UserRegisterMessage extends TSMSPMessage {
         this.realName = realName
         this.password = password
         this.identityNumber = identityNumber
-        this.permission = Roles.user
+        this.permission = Roles.normal
     }
 }
