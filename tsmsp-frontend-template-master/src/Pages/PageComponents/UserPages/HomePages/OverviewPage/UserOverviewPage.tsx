@@ -119,6 +119,13 @@ export function UserOverviewPage({navigation}: any) {
                 <HeaderTemplate text='其他微服务'/>
 
                 <ButtonTemplate
+                    onPress={() => {
+                        navigation.navigate('User.Temperature')
+                    }}
+                    text='上传体温'
+                />
+
+                <ButtonTemplate
                     icon = 'account'
                     onPress={() => {
                         navigation.navigate('User.Account')
