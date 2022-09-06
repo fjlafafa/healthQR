@@ -12,6 +12,7 @@ export function AdminOverviewPage({navigation}: any) {
         <ViewSwitcher state={'Admin.Overview'} navigation={navigation}/>
         <ScrollTemplate>
         <ButtonTemplate
+            icon = 'qrcode'
             onPress={() => navigation.navigate('Admin.GeneratePlaceQR')}
             text='生成地点码'
         />

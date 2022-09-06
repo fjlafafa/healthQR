@@ -25,11 +25,11 @@ export function ScanPlaceQRCodePage({navigation}: any) {
                     alignItems: 'center',
                     justifyContent: 'center',/*backgroundColor: '#f0f'/**/
                 }}>
-                    {cameraOn ? <PlaceScanView token={token}/> : <Button mode='text' onPress={() => {
+                    {cameraOn ? <PlaceScanView token={token}/> : <Button icon={'qrcode-scan'} mode='text' onPress={() => {
                         setCamera(true)
                     }}>点击开启地点扫码</Button>}
                 </View>
-                <ButtonTemplate onPress={() => {
+                <ButtonTemplate icon = 'qrcode-scan' onPress={() => {
                     if (cameraOn)
                         setCamera(false)
                     else
@@ -39,6 +39,7 @@ export function ScanPlaceQRCodePage({navigation}: any) {
                 </ButtonTemplate>
                 <HeaderTemplate text='行程相关微服务'/>
                 <ButtonTemplate
+                    icon = 'map'
                     onPress={() => navigation.navigate('User.Trace')}
                     text='我的行程'
                 />

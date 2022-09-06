@@ -113,12 +113,14 @@ export function UserOverviewPage({navigation}: any) {
                 <HeaderTemplate text='其他微服务'/>
 
                 <ButtonTemplate
+                    icon = 'account'
                     onPress={() => {
                         navigation.navigate('User.Account')
                     }}
                     text='个人账户'
                 />
                 <ButtonTemplate
+                    icon = 'logout'
                     onPress={() => goBack()}
                     text='退出登录'
                 />
