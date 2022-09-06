@@ -7,7 +7,7 @@ import {ScanPlaceQRCodePage} from './PageComponents/UserPages/HomePages/ScanPlac
 import {ModifyTracePage} from './PageComponents/UserPages/TraceRelativePages/ModifyTracePage'
 import {AccountDeletionPage} from './PageComponents/AccountPages/AccountDeletionPage'
 import {AdminPage} from './PageComponents/TestPages/AdminPage'
-import {AllowAdmin} from 'Globals/GlobalVariables'
+import {AllowTester} from 'Globals/GlobalVariables'
 import {AccountOverviewPage} from "./PageComponents/AccountPages/AccountOverviewPage";
 import {VaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/VaccinePage";
 import {NavigationContainer} from "@react-navigation/native";
@@ -65,8 +65,8 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'ThirdParty.NucleicAcidByManual'} component={NucleicAcidByManualPage}/>
                     <Stack.Screen name={'SuperUser.InfoQRCodePage'} component={SuperUserInfoPage}/>
                     <Stack.Screen name={'User.Temperature'} component={TemperaturePage}/>
-                    {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
-                    {AllowAdmin ? <Stack.Screen name={'AdminBrother'} component={AdminBrotherPage}/> : null}
+                    {AllowTester ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
+                    {AllowTester ? <Stack.Screen name={'AdminBrother'} component={AdminBrotherPage}/> : null}
                 </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>)

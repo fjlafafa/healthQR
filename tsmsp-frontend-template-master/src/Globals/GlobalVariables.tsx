@@ -1,4 +1,4 @@
-export const AllowAdmin : boolean = true
+export const AllowTester : boolean = true
 //When set to false, will close all admin function
 
 

@@ -4,7 +4,7 @@ import create from 'zustand'
 import {setUserToken} from 'Globals/TokenStore'
 import {UserLoginMessage} from 'Messages/UserMessages/UserLoginMessage'
 import {ButtonTemplate, ButtonToSendMessage} from 'Utils/PageUtils/ButtonUtil'
-import {AllowAdmin} from 'Globals/GlobalVariables'
+import {AllowTester} from 'Globals/GlobalVariables'
 import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {Roles} from "Types/UserMeta/Roles";
@@ -65,7 +65,7 @@ export function LoginPage({navigation}: any) {
 
         {
             //管理员界面唯一入口
-            AllowAdmin ?
+            AllowTester ?
                 <ButtonTemplate
                     onPress={
                         () => {
