@@ -1,7 +1,7 @@
 package Impl.Messages
 
-import Impl.Messages.AdminMessages.AdminChangeRoleMessage
-import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.{MSHospitalUpdatePlaceRiskLevelMessage, MSUserGetPlaceMessage}
+import Impl.Messages.AdminMessages.{AdminChangeRoleMessage, GovernorUpdateRiskOfPlaceMessage, GovernorUpdateRiskOfUserMessage}
+import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.{MSGovernorUpdateRiskOfPlaceMessage, MSHospitalUpdatePlaceRiskLevelMessage, MSUserGetPlaceMessage}
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages._
 import Impl.Messages.TestMessages.{AdminDropDataBasesMessage, AdminTestMessage}
@@ -43,6 +43,12 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[HospitalUpdateVaccinationMessage], name = "HospitalUpdateVaccinationMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelByTokenMessage], name = "HospitalUpdateRiskLevelByTokenMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUploadPositiveNucleicTestResultMessage], name = "HospitalUploadPositiveNucleicTestResultMessage"),
+    new JsonSubTypes.Type(value = classOf[HospitalUpdatePatientRecoveryMessage], name = "HospitalUpdatePatientRecoveryMessage"),
+    new JsonSubTypes.Type(value = classOf[HospitalUpdatePatientRecoveryByTokenMessage], name = "HospitalUpdatePatientRecoveryByTokenMessage"),
+    new JsonSubTypes.Type(value = classOf[GovernorUpdateRiskOfUserMessage], name = "GovernorUpdateRiskOfUserMessage"),
+    new JsonSubTypes.Type(value = classOf[GovernorUpdateRiskOfPlaceMessage], name = "GovernorUpdateRiskOfPlaceMessage"),
+    new JsonSubTypes.Type(value = classOf[MSGovernorUpdateRiskOfPlaceMessage], name = "MSGovernorUpdateRiskOfPlaceMessage"),
+    new JsonSubTypes.Type(value = classOf[MSGovernorUpdateRiskOfUserMessage], name = "MSGovernorUpdateRiskOfUserMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserDeleteTraceMessage], name = "MSUserDeleteTraceMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserGetTraceMessage], name = "MSUserGetTraceMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserUpdateTraceMessage], name = "MSUserUpdateTraceMessage"),
@@ -50,6 +56,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdateVaccinationMessage], name = "MSHospitalUpdateVaccinationMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdateUserRiskLevelMessage], name = "MSHospitalUpdateUserRiskLevelMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdatePlaceRiskLevelMessage], name = "MSHospitalUpdatePlaceRiskLevelMessage"),
+    new JsonSubTypes.Type(value = classOf[MSHospitalUpdatePatientRecoveryMessage], name = "MSHospitalUpdatePatientRecoveryMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserCheckInfoMessage], name = "MSUserCheckInfoMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserGetPlaceMessage], name = "MSUserGetPlaceMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalDiffusionMessage], name = "MSHospitalDiffusionMessage"),

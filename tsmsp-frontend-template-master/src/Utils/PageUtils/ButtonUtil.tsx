@@ -31,8 +31,7 @@ export class ButtonTemplate extends React.Component<any> {
   };
 
   render() {
-    //@ts-ignore
-    return (
+    return (//@ts-ignore
       <View style={setting.view}>
         <Button
           style={setting.button}

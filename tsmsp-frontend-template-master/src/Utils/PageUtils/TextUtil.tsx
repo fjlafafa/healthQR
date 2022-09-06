@@ -14,12 +14,13 @@ const setting = {
   view: {
     height: 30,
     alignItems: "center",
+    justifyContent: "center",
   },
 };
 
 export function TextTemplate(props: any) {
-  //@ts-ignore
-  return (
+
+  return (//@ts-ignore
     <View style={setting.view}>
       <Text style={setting.text}>{props.children}</Text>
     </View>
@@ -27,8 +28,7 @@ export function TextTemplate(props: any) {
 }
 
 export function LargeTextTemplate(props: any) {
-  //@ts-ignore
-  return (
+  return (//@ts-ignore
     <View style={setting.view}>
       <Text style={setting.large}>{props.children}</Text>
     </View>

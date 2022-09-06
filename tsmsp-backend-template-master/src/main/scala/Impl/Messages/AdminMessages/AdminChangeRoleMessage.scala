@@ -4,7 +4,7 @@ import Exceptions.{PermissionDeniedException, TokenNotExistsException}
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
-import Types.UserMeta.{Administrator, Roles, Token}
+import Types.UserMeta.{Administrator, Roles, SuperAdministrator, Token}
 import Utils.DBUtils
 import org.joda.time.DateTime
 
@@ -17,6 +17,14 @@ case class AdminChangeRoleMessage(adminToken: Token, clientToken: Token, newRole
 
     if (role != Administrator) {
       throw PermissionDeniedException()
+    }
+    if(newRole == SuperAdministrator) {
+      throw PermissionDeniedException()
+    }
+      if (role != SuperAdministrator) {
+      if(newRole == Administrator){
+        throw PermissionDeniedException()
+      }
     }
     DBUtils.exec(UserIdentityTable.updateRoleById(clientId, newRole))
     TSMSPReply(STATUS_OK, "设置权限成功！")

@@ -183,13 +183,18 @@ export function UserOverviewPage({ navigation }: any) {
             text="上传体温"
           />
 
-          <ButtonTemplate
-            icon="account"
+            <ButtonTemplate
+                icon="account"
+                onPress={() => {
+                    navigation.navigate("Account.Overview");
+                }}
+                text="个人账户"
+            /><ButtonTemplate
             onPress={() => {
-              navigation.navigate("Account.Overview");
+                navigation.navigate("User.Helping");
             }}
-            text="个人账户"
-          />
+            text="助查询"
+        />
           <ButtonTemplate
             icon="logout"
             onPress={() => goBack()}
