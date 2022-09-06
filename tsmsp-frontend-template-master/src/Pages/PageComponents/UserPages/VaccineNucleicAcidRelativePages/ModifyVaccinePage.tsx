@@ -67,12 +67,5 @@ export function ModifyVaccinePage({navigation}: any) {
             text='更新风险等级'
         />
 
-        <ButtonTemplate
-            icon = 'home'
-            onPress={() => {
-                navigation.navigate('Admin')
-            }}
-            text='返回主页'/>
-
     </ScreenTemplate>
 }

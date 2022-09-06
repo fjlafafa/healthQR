@@ -81,14 +81,6 @@ export function ModifyTracePage({navigation}: any) {
             text='删除记录'
         />
 
-        <ButtonTemplate
-            icon = 'home'
-            onPress={() => {
-                navigation.navigate('User.Overview')
-                clearRemovedTraceInfo()
-            }}
-            text='返回主界面'/>
-
 
         <TraceTable token={token} traceList={traceHistory}/>
 

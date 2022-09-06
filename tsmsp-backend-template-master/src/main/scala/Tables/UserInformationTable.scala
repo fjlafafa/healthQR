@@ -25,7 +25,7 @@ object UserInformationTable {
   val userInformationTable = TableQuery[UserInformationTable]
 
   def addUser(userId: UserId): DBIO[Int] =
-    userInformationTable += UserInformation(userId, DateTime.now(), VaccinationStatuses.none, UserRiskLevels.green, Temperature(36.6))
+    userInformationTable += UserInformation(userId, DateTime.now().minusYears(2), VaccinationStatuses.none, UserRiskLevels.green, Temperature(36.6))
 
   def checkInfoById(userId: UserId): DBIO[Option[UserInformation]]=
     userInformationTable.filter(_.id===userId).result.headOption

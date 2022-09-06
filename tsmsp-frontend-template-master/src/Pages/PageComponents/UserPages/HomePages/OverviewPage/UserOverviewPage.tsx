@@ -59,6 +59,7 @@ export function UserOverviewPage({navigation}: any) {
     return <ScreenTemplate goBack={goBack}>
         <ViewSwitcher state={'User.Overview'} navigation={navigation}/>
         <ScrollTemplate>
+            <View style={{height: SCREEN_WIDTH*0.03}}/>
             <View style={{
                 width: SCREEN_WIDTH,
                 height: SCREEN_WIDTH * 0.18,
@@ -85,7 +86,7 @@ export function UserOverviewPage({navigation}: any) {
             </View>
             <View style={{
                 width: SCREEN_WIDTH,
-                height: SCREEN_WIDTH * 0.45,
+                height: SCREEN_WIDTH * 0.55,
                 flexDirection: 'row', /*backgroundColor: '#00f'/**/
             }}>
                 <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#008'/**/}}>
@@ -103,7 +104,7 @@ export function UserOverviewPage({navigation}: any) {
                 </View>
                 <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#080'*/}}>
                     <Card style={{width: '90%', height: '90%', alignItems: 'center', justifyContent: 'center'}}>
-                        {/*行程数据 准备加一个查看详情功能*/}
+                        {/*行程数据*/}
                         <TextTemplate>14天内行程记录</TextTemplate>
                         <PlanTraceList token={token} trace={traceHistory}/>
                     </Card>
