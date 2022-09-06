@@ -7,5 +7,6 @@ case class UserInformation(
                             id : UserId,
                             recentNucleicTestTime: DateTime,
                             vaccinationStatus: VaccinationStatus,
-                            riskLevel: UserRiskLevel
+                            riskLevel: UserRiskLevel,
+                            temperature: Temperature,
                 )
