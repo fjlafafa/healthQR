@@ -1,7 +1,7 @@
 export enum Roles {
     superAdmin = "Super Admin",
     admin = "Admin",
-    user = "Normal",
+    normal = "Normal",
     nucleic = "Nucleic Test",
     vaccine = "Vaccination",
     hospital = "Hospital",

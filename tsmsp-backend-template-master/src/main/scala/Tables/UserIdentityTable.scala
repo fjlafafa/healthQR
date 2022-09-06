@@ -21,7 +21,7 @@ class UserIdentityTable(tag : Tag) extends Table[UserIdentity](tag, GlobalVariab
   def realName = column[RealName]("real_name")
   def token = column[Token]("token")
   def refreshTime = column[DateTime]("refresh_time")
-  def permission = column[Role]("permission")
+  def permission = column[Roles]("permission")
   def salt = column[Salt]("Salt")
   def * = (userId, identityNumber, password, realName, token, refreshTime, permission, salt).mapTo[UserIdentity]
 }
@@ -29,7 +29,7 @@ class UserIdentityTable(tag : Tag) extends Table[UserIdentity](tag, GlobalVariab
 object UserIdentityTable {
   val userIdentityTable = TableQuery[UserIdentityTable]
 
-  def addUser(realName: RealName, password: PasswordHash, identityNumber: IdentityNumber, permission : Role, salt: Salt): DBIO[Int] =
+  def addUser(realName: RealName, password: PasswordHash, identityNumber: IdentityNumber, permission : Roles, salt: Salt): DBIO[Int] =
     userIdentityTable += UserIdentity(RandomUserId(IdLengths.user), identityNumber, password, realName, Token(""), DateTime.now().minusYears(2), permission, salt)
 
   def dropUser(userId: UserId): DBIO[Int] = userIdentityTable.filter(_.userId === userId).delete
@@ -64,7 +64,7 @@ object UserIdentityTable {
   def checkIdByIdentityNumber(identityNumber: IdentityNumber): DBIO[Option[UserId]] =
     userIdentityTable.filter(u => u.identityNumber === identityNumber).map(_.userId).result.headOption
 
-  def checkPermissionById(userId: UserId): DBIO[Option[Role]] =
+  def checkRoleById(userId: UserId): DBIO[Option[Roles]] =
     userIdentityTable.filter(u => u.userId === userId).map(_.permission).result.headOption
 
   def checkRealNameById(userId: UserId): DBIO[Option[RealName]] =
@@ -74,9 +74,9 @@ object UserIdentityTable {
   DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(_.password).update(newPassword) >>
     userIdentityTable.filter(_.userId === userId).map(_.salt).update(newSalt)
 
-  def updatePermissionById(userId: UserId, newPermission: Role):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.permission).update(newPermission)
+  def updateRoleById(userId: UserId, newRole: Roles):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.permission).update(newRole)
 
-  def getPermissionFromToken(token: Token): Try[Role] = Try(
+  def getRoleFromToken(token: Token): Try[Roles] = Try(
     DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.permission).result.headOption).getOrElse(
       throw TokenNotExistsException()
     )

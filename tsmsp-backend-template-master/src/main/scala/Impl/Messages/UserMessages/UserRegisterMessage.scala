@@ -14,7 +14,7 @@ import slick.jdbc.PostgresProfile.api._
 import Utils.StringUtils
 import scala.util.Try
 
-case class UserRegisterMessage(realName: RealName, password: Password, identityNumber: IdentityNumber, permission: String) extends TSMSPMessage {
+case class UserRegisterMessage(realName: RealName, password: Password, identityNumber: IdentityNumber, role: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     if (UserIdentityTable.checkUserExists(identityNumber).get) throw UserNameAlreadyExistsException()
     else {
@@ -25,7 +25,7 @@ case class UserRegisterMessage(realName: RealName, password: Password, identityN
             realName,
             PasswordEncoder(password,salt),
             identityNumber,
-            permission,
+            role,
             salt)
            >>
           UserIdentityTable.checkIdByIdentityNumber(identityNumber).flatMap(
