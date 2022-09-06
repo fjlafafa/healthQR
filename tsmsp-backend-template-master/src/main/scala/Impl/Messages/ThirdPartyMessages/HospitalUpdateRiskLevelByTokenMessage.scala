@@ -18,7 +18,7 @@ import scala.util.Try
 case class HospitalUpdateRiskLevelByTokenMessage(userToken: Token, clientToken: Token, riskLevel: String) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val role = UserIdentityTable.getRoleFromToken(userToken).get
-    if (!checkPermission(role,UpdateNucleicTest)) {
+    if (!checkPermission(role, UpdateNucleicTest)) {
       throw PermissionDeniedException()
     }
     val clientId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(clientToken)).getOrElse(throw TokenNotExistsException())

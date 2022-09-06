@@ -14,30 +14,40 @@ import slick.lifted.Tag
 
 import scala.util.Try
 
-class UserIdentityTable(tag : Tag) extends Table[UserIdentity](tag, GlobalVariables.mainSchema, "user_identity") {
+class UserIdentityTable(tag: Tag) extends Table[UserIdentity](tag, GlobalVariables.mainSchema, "user_identity") {
   def userId = column[UserId]("user_id", O.PrimaryKey)
+
   def identityNumber = column[IdentityNumber]("identity_number")
+
   def password = column[PasswordHash]("password")
+
   def realName = column[RealName]("real_name")
+
   def token = column[Token]("token")
+
   def refreshTime = column[DateTime]("refresh_time")
+
   def role = column[Roles]("permission")
+
   def salt = column[Salt]("salt")
+
   def securityQuestion = column[SecurityQuestion]("security_question")
+
   def securityAnswerHash = column[SecurityAnswerHash]("security_answer_hash")
+
   def * = (userId, identityNumber, password, realName, token, refreshTime, role, salt, securityQuestion, securityAnswerHash).mapTo[UserIdentity]
 }
 
 object UserIdentityTable {
   val userIdentityTable = TableQuery[UserIdentityTable]
 
-  def addUser(realName: RealName, password: PasswordHash, identityNumber: IdentityNumber, role : Roles, salt: Salt, securityQuestion: SecurityQuestion, securityAnswerHash: SecurityAnswerHash): DBIO[Int] = {
+  def addUser(realName: RealName, password: PasswordHash, identityNumber: IdentityNumber, role: Roles, salt: Salt, securityQuestion: SecurityQuestion, securityAnswerHash: SecurityAnswerHash): DBIO[Int] = {
     userIdentityTable += UserIdentity(RandomUserId(IdLengths.user), identityNumber, password, realName, Token(""), DateTime.now().minusYears(2), role, salt, securityQuestion, securityAnswerHash)
   }
 
   def dropUser(userId: UserId): DBIO[Int] = userIdentityTable.filter(_.userId === userId).delete
 
-  def checkToken(userId : UserId) : Try[Token] = Try {
+  def checkToken(userId: UserId): Try[Token] = Try {
     val nowTokenPair = DBUtils.exec(userIdentityTable.filter(ut => ut.userId === userId).map(ut => (ut.token, ut.refreshTime)).result.headOption).getOrElse(throw UserNotExistsException())
     if (nowTokenPair._2.isAfter(DateTime.now().minusHours(2))) {
       DBUtils.exec(userIdentityTable.filter(ut => ut.userId === userId).map(_.refreshTime).update(DateTime.now()))
@@ -50,7 +60,7 @@ object UserIdentityTable {
     }
   }
 
-  def checkUserIdByToken(token : Token) : DBIO[Option[UserId]] =
+  def checkUserIdByToken(token: Token): DBIO[Option[UserId]] =
     userIdentityTable.filter(ut => ut.token === token && ut.refreshTime >= DateTime.now().minusHours(2)).map(_.userId).result.headOption
 
   def checkSaltByIdentityNumber(identityNumber: IdentityNumber):
@@ -78,9 +88,9 @@ object UserIdentityTable {
   def checkRealNameById(userId: UserId): DBIO[Option[RealName]] =
     userIdentityTable.filter(u => u.userId === userId).map(_.realName).result.headOption
 
-  def updatePassword(userId: UserId, newPassword: PasswordHash, newSalt: Salt):  DBIO[Int] =
+  def updatePassword(userId: UserId, newPassword: PasswordHash, newSalt: Salt): DBIO[Int] =
     userIdentityTable.filter(_.userId === userId).map(_.password).update(newPassword) >>
-    userIdentityTable.filter(_.userId === userId).map(_.salt).update(newSalt)
+      userIdentityTable.filter(_.userId === userId).map(_.salt).update(newSalt)
 
   def updateSecurityAnswer(userId: UserId, newSecurityAnswer: SecurityAnswerHash): DBIO[Int] =
     userIdentityTable.filter(_.userId === userId).map(_.securityAnswerHash).update(newSecurityAnswer)
@@ -94,7 +104,7 @@ object UserIdentityTable {
   def checkSecurityAnswer(identityNumber: IdentityNumber, securityAnswerHash: SecurityAnswerHash): Try[Boolean] = Try(
     DBUtils.exec(userIdentityTable.filter(u => u.identityNumber === identityNumber && u.securityAnswerHash === securityAnswerHash).size.result) > 0)
 
-  def updateRoleById(userId: UserId, newRole: Roles):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.role).update(newRole)
+  def updateRoleById(userId: UserId, newRole: Roles): DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.role).update(newRole)
 
   def getRoleFromToken(token: Token): Try[Roles] = Try(
     DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.role).result.headOption).getOrElse(

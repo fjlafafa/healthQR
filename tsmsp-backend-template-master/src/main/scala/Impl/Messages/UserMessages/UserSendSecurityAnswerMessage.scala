@@ -16,7 +16,7 @@ case class UserSendSecurityAnswerMessage(identityNumber: IdentityNumber, securit
     val Salt = DBUtils.exec(UserIdentityTable.checkSaltByIdentityNumber(identityNumber)).getOrElse(throw UserNotExistsException())
     if (UserIdentityTable.checkSecurityAnswer(identityNumber, SecurityAnswerEncoder(securityAnswer, Salt)).get) {
       val userId = DBUtils.exec(UserIdentityTable.checkIdByIdentityNumber(identityNumber)).getOrElse(throw UserNotExistsException())
-      TSMSPReply(STATUS_OK, IOUtils.serialize( UserIdentityTable.checkToken(userId).get).get)
+      TSMSPReply(STATUS_OK, IOUtils.serialize(UserIdentityTable.checkToken(userId).get).get)
     }
     else throw WrongSecurityAnswerException()
   }

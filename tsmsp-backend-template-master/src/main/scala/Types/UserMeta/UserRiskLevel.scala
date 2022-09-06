@@ -10,17 +10,22 @@ import com.fasterxml.jackson.databind.{DeserializationContext, SerializerProvide
 
 @JsonSerialize(using = classOf[UserRiskLevelTypeSerializer])
 @JsonDeserialize(using = classOf[UserRiskLevelTypeDeserializer])
-sealed abstract class UserRiskLevel(val v:String) extends JacksonSerializable
+sealed abstract class UserRiskLevel(val v: String) extends JacksonSerializable
+
 case object Red extends UserRiskLevel(red)
+
 case object Yellow extends UserRiskLevel(yellow)
+
 case object PopUps extends UserRiskLevel(popUps)
+
 case object Green extends UserRiskLevel(green)
 
 
-object UserRiskLevel{
+object UserRiskLevel {
   def objectList: List[UserRiskLevel] =
     List(Red, Yellow, PopUps, Green)
-  def getType(v:String): UserRiskLevel= objectList.filter(_.v==v).head
+
+  def getType(v: String): UserRiskLevel = objectList.filter(_.v == v).head
 }
 
 class UserRiskLevelTypeSerializer extends StdSerializer[UserRiskLevel](classOf[UserRiskLevel]) {
@@ -29,6 +34,6 @@ class UserRiskLevelTypeSerializer extends StdSerializer[UserRiskLevel](classOf[U
 }
 
 class UserRiskLevelTypeDeserializer extends StdDeserializer[UserRiskLevel](classOf[UserRiskLevel]) {
-  override def deserialize(p: JsonParser, ctxt: DeserializationContext): UserRiskLevel=
+  override def deserialize(p: JsonParser, ctxt: DeserializationContext): UserRiskLevel =
     UserRiskLevel.getType(p.getText)
 }

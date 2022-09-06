@@ -7,15 +7,21 @@ import akka.actor.typed.{ActorRef, Behavior}
 
 object VaccineAndNucleicMSMaster {
   sealed trait Message
+
   final case class RouterRequest(query: TSMSPMessage, router: ActorRef[RouterResponse]) extends Message
+
   final case class WorkerResponse(result: TSMSPReply, router: ActorRef[RouterResponse]) extends Message
+
   case class WorkerTask(query: TSMSPMessage, router: ActorRef[RouterResponse], master: ActorRef[VaccineAndNucleicMSMaster.Message])
+
   case class RouterResponse(result: TSMSPReply)
+
   val workerNumber = 4
+
   def apply(): Behavior[Message] = {
-    Behaviors.setup[Message] {ctx =>
+    Behaviors.setup[Message] { ctx =>
       val workers = for (i <- 0 until workerNumber)
-        yield ctx.spawn(VaccineAndNucleicMSWorker(i), "worker"+i)
+        yield ctx.spawn(VaccineAndNucleicMSWorker(i), "worker" + i)
       Behaviors.receiveMessage[Message] {
         case RouterRequest(query, router) =>
           val r = scala.util.Random
@@ -31,8 +37,9 @@ object VaccineAndNucleicMSMaster {
 
 object VaccineAndNucleicMSWorker {
   case class Answer(result: TSMSPReply)
+
   def apply(id: Int): Behavior[VaccineAndNucleicMSMaster.WorkerTask] = {
-    Behaviors.setup[VaccineAndNucleicMSMaster.WorkerTask] {ctx =>
+    Behaviors.setup[VaccineAndNucleicMSMaster.WorkerTask] { ctx =>
       Behaviors.receiveMessage[VaccineAndNucleicMSMaster.WorkerTask] {
         case VaccineAndNucleicMSMaster.WorkerTask(query, router, master) =>
           ctx.log.info(s"Worker $id begin working.")

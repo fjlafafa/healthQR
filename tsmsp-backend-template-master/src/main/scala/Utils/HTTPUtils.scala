@@ -20,13 +20,15 @@ object HTTPUtils {
   /**
    * 这三个是akka-http-Client执行时的隐式参数，其中timeout代表了单次请求的时间限制。
    */
-  implicit val system:  ActorSystem = GlobalVariables.clientSystem.classicSystem
+  implicit val system: ActorSystem = GlobalVariables.clientSystem.classicSystem
   implicit val ec: ExecutionContextExecutor = system.dispatcher
   implicit val timeout: Timeout = Timeout(10, TimeUnit.SECONDS)
+
   case class ConnectionFailedException() extends Exception {
     override def getMessage: String = "网络连接错误！"
   }
-  def sendMessage(message : JacksonSerializable, uri : String): Try[TSMSPReply]= Try {
+
+  def sendMessage(message: JacksonSerializable, uri: String): Try[TSMSPReply] = Try {
     /**
      * 使用akka自带的自动retry功能，失败时自动重试
      */
@@ -54,9 +56,10 @@ object HTTPUtils {
 
   /**
    * 隐式转换，给所有继承了JacksonSerializable的子类提供了send方法，可以很方便地调用。
+   *
    * @param message
    */
-  implicit class sender(message : JacksonSerializable) {
-    def send(uri : String) : Try[TSMSPReply] = sendMessage(message, uri)
+  implicit class sender(message: JacksonSerializable) {
+    def send(uri: String): Try[TSMSPReply] = sendMessage(message, uri)
   }
 }

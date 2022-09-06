@@ -1,5 +1,6 @@
 package Types.Templates
 //Not Used
+
 import Impl.JacksonSerializable
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.annotation.{JsonDeserialize, JsonSerialize}
@@ -10,7 +11,7 @@ import org.joda.time.DateTime
 
 @JsonSerialize(using = classOf[DateTimeSerializer])
 @JsonDeserialize(using = classOf[DateTimeDeserializer])
-case class DateClass(date:DateTime) extends JacksonSerializable
+case class DateClass(date: DateTime) extends JacksonSerializable
 
 class DateTimeSerializer extends StdSerializer[DateClass](classOf[DateClass]) {
   override def serialize(value: DateClass, gen: JsonGenerator, provider: SerializerProvider): Unit =
@@ -19,6 +20,6 @@ class DateTimeSerializer extends StdSerializer[DateClass](classOf[DateClass]) {
 
 //???
 class DateTimeDeserializer extends StdDeserializer[DateClass](classOf[DateClass]) {
-  override def deserialize(p: JsonParser, ctxt: DeserializationContext): DateClass=
+  override def deserialize(p: JsonParser, ctxt: DeserializationContext): DateClass =
     DateClass(new DateTime(p.getText))
 }

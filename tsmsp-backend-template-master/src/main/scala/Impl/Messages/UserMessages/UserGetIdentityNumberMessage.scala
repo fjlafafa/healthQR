@@ -1,8 +1,6 @@
 package Impl.Messages.UserMessages
 
 import Exceptions.TokenNotExistsException
-import Globals.GlobalVariables
-import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSUserCheckInfoMessage
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
@@ -16,5 +14,6 @@ case class UserGetIdentityNumberMessage(userToken: Token) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     val userId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(userToken)).getOrElse(throw TokenNotExistsException())
     val identityNumber = DBUtils.exec(UserIdentityTable.checkIdentityNumberById(userId)).get
-    TSMSPReply(STATUS_OK, IOUtils.serialize(identityNumber).get)}
+    TSMSPReply(STATUS_OK, IOUtils.serialize(identityNumber).get)
+  }
 }

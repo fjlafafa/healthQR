@@ -4,7 +4,7 @@ import Types.UserMeta._
 import org.joda.time.DateTime
 
 case class UserIdentity(
-                         userId : UserId,
+                         userId: UserId,
                          identityNumber: IdentityNumber,
                          password: PasswordHash,
                          realName: RealName,
@@ -14,4 +14,4 @@ case class UserIdentity(
                          salt: Salt,
                          securityQuestion: SecurityQuestion,
                          securityAnswerHash: SecurityAnswerHash,
-                            )
+                       )

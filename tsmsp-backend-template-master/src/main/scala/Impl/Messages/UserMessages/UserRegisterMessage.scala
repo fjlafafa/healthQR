@@ -23,14 +23,14 @@ case class UserRegisterMessage(realName: RealName, password: Password, identityN
         (UserIdentityTable
           .addUser(
             realName,
-            PasswordEncoder(password,salt),
+            PasswordEncoder(password, salt),
             identityNumber,
             role,
             salt,
             securityQuestion,
             SecurityAnswerEncoder(securityAnswer, salt),
           )
-           >>
+          >>
           UserIdentityTable.checkIdByIdentityNumber(identityNumber).flatMap(
             userId => UserInformationTable.addUser(userId.getOrElse(throw TokenNotExistsException()))
           ) >>

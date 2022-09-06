@@ -1,8 +1,6 @@
 package Impl.Messages.UserMessages
 
 import Exceptions.TokenNotExistsException
-import Globals.GlobalVariables
-import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSUserCheckInfoMessage
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable

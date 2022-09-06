@@ -17,27 +17,28 @@ object PlaceInfoMSDBUtils {
   lazy val DBConfig: Config = ConfigFactory
     .parseString(s"""""") withFallback ConfigFactory.load
 
-  lazy val db=Database.forConfig("tsmsp", config=DBConfig)
+  lazy val db = Database.forConfig("tsmsp", config = DBConfig)
 
-  def exec[T] : DBIO[T] => T = action => Await.result(db.run(action), Duration.Inf)
-  def initDatabase():Unit={
+  def exec[T]: DBIO[T] => T = action => Await.result(db.run(action), Duration.Inf)
+
+  def initDatabase(): Unit = {
     exec(
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         PlaceTable.placeTable.schema.createIfNotExists,
       ).transactionally
     )
-    if(PlaceTable.isEmpty.get){
+    if (PlaceTable.isEmpty.get) {
       Try {
         exec(PlaceTable.initPlace(DataPaths.PlaceData).transactionally)
       } match {
         case Success(_) => Logger("PlaceInfoMSServer").info("Places successfully initialized")
         case Failure(e) => Logger("PlaceInfoMSServer").info(s"Place initialization failure, return value $e")
-        }
-     }
+      }
     }
+  }
 
-  def dropDatabases():Unit={
+  def dropDatabases(): Unit = {
     exec(
       DBIO.seq(
         PlaceTable.placeTable.schema.dropIfExists,

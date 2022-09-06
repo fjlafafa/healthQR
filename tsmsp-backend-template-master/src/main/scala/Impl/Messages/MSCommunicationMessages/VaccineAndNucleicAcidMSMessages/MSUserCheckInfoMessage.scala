@@ -13,7 +13,7 @@ import scala.util.Try
 
 case class MSUserCheckInfoMessage(clientId: UserId) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val userInfo=VaccineAndNucleicMSDBUtils.exec(UserInformationTable.checkInfoById(clientId)).getOrElse(throw TokenNotExistsException())
+    val userInfo = VaccineAndNucleicMSDBUtils.exec(UserInformationTable.checkInfoById(clientId)).getOrElse(throw TokenNotExistsException())
     TSMSPReply(STATUS_OK, IOUtils.serialize(userInfo).get)
   }
 }

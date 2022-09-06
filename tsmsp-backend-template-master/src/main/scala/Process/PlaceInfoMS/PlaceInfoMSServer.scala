@@ -10,9 +10,10 @@ import scala.util.{Failure, Success, Try}
 
 object PlaceInfoMSServer {
   val logger: Logger = Logger("PlaceInfoMSServer")
+
   def main(args: Array[String]): Unit = try {
     PlaceInfoMSDBUtils.initDatabase()
-    implicit val system : ActorSystem[PlaceInfoMSMaster.Message] = ActorSystem(PlaceInfoMSMaster(), "placeInfoMSServer")
+    implicit val system: ActorSystem[PlaceInfoMSMaster.Message] = ActorSystem(PlaceInfoMSMaster(), "placeInfoMSServer")
     TSMSPPortalHttpServer.startHttpServer(new PlaceInfoMSRoutes().routes, system, GlobalVariables.PlaceInfoMSPortal)
   } catch {
     case exception: Exception =>

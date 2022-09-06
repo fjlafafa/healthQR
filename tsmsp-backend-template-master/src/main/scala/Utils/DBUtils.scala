@@ -17,28 +17,29 @@ object DBUtils {
   lazy val DBConfig: Config = ConfigFactory
     .parseString(s"""""") withFallback ConfigFactory.load
 
-  lazy val db=Database.forConfig("tsmsp", config=DBConfig)
+  lazy val db = Database.forConfig("tsmsp", config = DBConfig)
 
-  def exec[T] : DBIO[T] => T = action => Await.result(db.run(action), Duration.Inf)
-  def initDatabase():Unit={
+  def exec[T]: DBIO[T] => T = action => Await.result(db.run(action), Duration.Inf)
+
+  def initDatabase(): Unit = {
     exec(
       DBIO.seq(
         sql"CREATE SCHEMA IF NOT EXISTS #${GlobalVariables.mainSchema.get}".as[Long],
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
       ).transactionally
     )
-    if(!UserIdentityTable.checkUserExists(IdentityNumber("root")).get)
+    if (!UserIdentityTable.checkUserExists(IdentityNumber("root")).get)
       exec(
         UserIdentityTable.addUser(
           RealName("root"),
-          PasswordEncoder(Password("root"),Salt("saltsalt")),
-          IdentityNumber("root"),Administrator,Salt("saltsalt"),
+          PasswordEncoder(Password("root"), Salt("saltsalt")),
+          IdentityNumber("root"), Administrator, Salt("saltsalt"),
           SecurityQuestion("1+1=?"),
-          SecurityAnswerEncoder(SecurityAnswer("2"),Salt("saltsalt"))
+          SecurityAnswerEncoder(SecurityAnswer("2"), Salt("saltsalt"))
         ))
-    }
+  }
 
-  def dropDatabases():Unit={
+  def dropDatabases(): Unit = {
     exec(
       DBIO.seq(
         UserIdentityTable.userIdentityTable.schema.dropIfExists,

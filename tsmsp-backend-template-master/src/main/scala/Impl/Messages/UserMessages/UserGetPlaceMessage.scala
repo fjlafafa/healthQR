@@ -4,11 +4,11 @@ import Exceptions.TokenNotExistsException
 import Globals.GlobalVariables
 import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.MSUserGetPlaceMessage
 import Impl.Messages.TSMSPMessage
-import Impl.{STATUS_OK, TSMSPReply}
-import Tables.{PlaceTable, UserIdentityTable}
+import Impl.TSMSPReply
+import Tables.UserIdentityTable
 import Types.PlaceMeta.PlaceId
 import Types.UserMeta.Token
-import Utils.{DBUtils, IOUtils}
+import Utils.DBUtils
 import Utils.HTTPUtils.sender
 import org.joda.time.DateTime
 
