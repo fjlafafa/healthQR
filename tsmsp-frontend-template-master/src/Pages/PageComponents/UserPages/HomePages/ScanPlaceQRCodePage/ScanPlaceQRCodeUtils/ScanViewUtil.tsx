@@ -4,16 +4,23 @@ import {UserUpdateTraceMessage} from "Messages/UserMessages/UserUpdateTraceMessa
 import {ScanView} from "Utils/PageUtils/ScanQRCodeUtil";
 import {DetailedPlaceDescription} from "Types/PlaceMeta/DetailedPlaceDescription";
 import {ReportType} from "Types/TraceMeta/ReportType";
+import {PlaceId} from "Types/PlaceMeta/PlaceId";
 
 export function PlaceScanView(props: any) {
-    const report_type: string = 'Auto recorded'
-    const detailed_desc: string = ''
     return <ScanView
-        checkData={(data: any) => !isNaN(parseInt(data))}
-        handleData={(data: any) => {
-            SendData(new UserUpdateTraceMessage(props.token, data, new DetailedPlaceDescription(detailed_desc), report_type as ReportType))
+        handleData={(data: string) => {
+            const placeId=JSON.parse(data) as PlaceId
+            SendData(
+                new UserUpdateTraceMessage(
+                    props.token,
+                    placeId,
+                    new DetailedPlaceDescription(''),
+                    ReportType.auto
+                ),
+                (_:any)=>alert('上传成功')
+            )
         }
-        }/>
+    }/>
 }
 
 /*
