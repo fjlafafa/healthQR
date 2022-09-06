@@ -13,7 +13,7 @@ export class UserIdentity {
     realName: RealName
     token: Token
     refreshTime: DateClass
-    permission: Roles
+    role: Roles
 
     constructor(
         userId: UserId,
@@ -22,7 +22,7 @@ export class UserIdentity {
         realName: RealName,
         token: Token,
         refreshTime: DateClass,
-        permission: Roles
+        role: Roles
     ) {
 
         this.userId = userId
@@ -31,6 +31,6 @@ export class UserIdentity {
         this.token = token
         this.refreshTime = refreshTime
         this.identityNumber = identityNumber
-        this.permission = permission
+        this.role = role
     }
 }

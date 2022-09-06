@@ -17,7 +17,7 @@ export function AdminPage({navigation}: any) {
     return <ScreenTemplate goBack={goBack}>
         <ScrollTemplate>
             <TextTemplate>{checkPermission(Roles.admin,Permissions.setAdmin)?1:0}</TextTemplate>
-            <TextTemplate>{checkPermission(Roles.user,Permissions.setAdmin)?1:0}</TextTemplate>
+            <TextTemplate>{checkPermission(Roles.normal,Permissions.setAdmin)?1:0}</TextTemplate>
             <TextTemplate>{checkPermission(Roles.government,Permissions.setRiskOfPlace)?1:0}</TextTemplate>
             <DataTable>
                 <DataTable.Header>

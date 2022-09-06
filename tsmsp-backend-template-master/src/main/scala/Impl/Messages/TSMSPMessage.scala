@@ -1,6 +1,6 @@
 package Impl.Messages
 
-import Impl.Messages.AdminMessages.AdminChangePermissionMessage
+import Impl.Messages.AdminMessages.AdminChangeRoleMessage
 import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.MSUserGetPlaceMessage
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages._
@@ -19,7 +19,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserGetPlaceMessage], name = "UserGetPlaceMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetTraceMessage], name = "UserGetTraceMessage"),
     new JsonSubTypes.Type(value = classOf[UserLoginMessage], name = "UserLoginMessage"),
-    new JsonSubTypes.Type(value = classOf[UserCheckPermissionMessage], name = "UserCheckPermissionMessage"),
+    new JsonSubTypes.Type(value = classOf[UserCheckRoleMessage], name = "UserCheckRoleMessage"),
     new JsonSubTypes.Type(value = classOf[UserRegisterMessage], name = "UserRegisterMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdatePasswordMessage], name = "UserUpdatePasswordMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdateTraceMessage], name = "UserUpdateTraceMessage"),
@@ -28,7 +28,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserDeleteAccountMessage], name = "UserDeleteAccountMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetInfoMessage], name = "UserGetInfoMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetSecurityQuestionMessage], name = "UserGetSecurityQuestionMessage"),
-    new JsonSubTypes.Type(value = classOf[AdminChangePermissionMessage], name = "AdminChangePermissionMessage"),
+    new JsonSubTypes.Type(value = classOf[AdminChangeRoleMessage], name = "AdminChangeRoleMessage"),
     new JsonSubTypes.Type(value = classOf[AdminDropDataBasesMessage], name = "AdminDropDataBasesMessage"),
     new JsonSubTypes.Type(value = classOf[AdminTestMessage], name = "AdminTestMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateNucleicTestByTokenMessage], name = "HospitalUpdateNucleicTestByTokenMessage"),

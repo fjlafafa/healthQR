@@ -8,7 +8,7 @@ import scala.language.implicitConversions
 
 object EnumAutoConverter {
   //UserMeta
-  implicit def StringToPermission(permission: String): Role = Role.getType(permission)
+  implicit def StringToRole(role: String): Roles = Roles.getType(role)
   implicit def StringToUserRiskLevel(userRiskLevel: String): UserRiskLevel = UserRiskLevel.getType(userRiskLevel)
   implicit def StringToVaccinationStatus(vaccinationStatus: String): VaccinationStatus = VaccinationStatus.getType(vaccinationStatus)
 

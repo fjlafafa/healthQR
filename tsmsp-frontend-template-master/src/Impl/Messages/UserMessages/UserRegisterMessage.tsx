@@ -10,7 +10,7 @@ export class UserRegisterMessage extends TSMSPMessage {
     realName: RealName
     password: Password
     identityNumber: IdentityNumber
-    permission: Roles
+    role: Roles
     securityQuestion: SecurityQuestion
     securityAnswer: SecurityAnswer
 
@@ -19,7 +19,7 @@ export class UserRegisterMessage extends TSMSPMessage {
         this.realName = realName
         this.password = password
         this.identityNumber = identityNumber
-        this.permission = Roles.user
+        this.role = Roles.normal
         this.securityQuestion = securityQuestion
         this.securityAnswer = securityAnswer
     }

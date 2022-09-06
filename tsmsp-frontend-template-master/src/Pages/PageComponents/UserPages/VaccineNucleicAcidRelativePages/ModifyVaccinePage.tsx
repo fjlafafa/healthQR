@@ -63,7 +63,7 @@ export function ModifyVaccinePage({navigation}: any) {
                 alert('风险等级错误')
             }}
             icon='upload'
-            toSendMessage={new HospitalUploadPositiveNucleicTestResultMessage(new Token(token), new IdentityNumber(identityNumber), riskLevel as UserRiskLevel)}
+            toSendMessage={new HospitalUploadPositiveNucleicTestResultMessage(new Token(token), new IdentityNumber(identityNumber))}
             text='更新风险等级'
         />
 

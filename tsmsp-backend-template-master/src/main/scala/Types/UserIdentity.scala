@@ -10,7 +10,7 @@ case class UserIdentity(
                          realName: RealName,
                          token: Token,
                          refreshTime: DateTime,
-                         permission: Role,
+                         role: Roles,
                          salt: Salt,
                          securityQuestion: SecurityQuestion,
                          securityAnswerHash: SecurityAnswerHash,
