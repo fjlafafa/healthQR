@@ -48,6 +48,7 @@ export function VaccineRegisterPage({navigation}: any) {
             }
             }/>
         <ButtonToSendMessage
+            icon = 'upload'
             toSendMessage={new HospitalUpdateVaccinationByTokenMessage(new Token(token), client.token)}
             text={'打一针'}/>
         {/**/}
@@ -58,6 +59,7 @@ export function VaccineRegisterPage({navigation}: any) {
                            onChangeText={(vaccine: string) => VaccineNum.setState({vaccine})}/>
 
         <ButtonToSendMessage
+            icon = 'upload'
             checkBeforeSendMessage={() => (checkIdentityNumber(identity))}
             checkElse={() => {
                 alert('请重新检查身份证号是否填写正确')

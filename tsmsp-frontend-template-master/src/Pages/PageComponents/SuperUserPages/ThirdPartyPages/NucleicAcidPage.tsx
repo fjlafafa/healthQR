@@ -57,6 +57,7 @@ export function NucleicAcidPage({navigation}: any) {
             },
         ]}/>
         <ButtonTemplate
+            icon = 'upload'
             onPress={()=>{
                 SendData(new HospitalUpdateNucleicTestByTokenMessage(new Token(token), client.token))
                 if (tosetStatus) {
@@ -75,6 +76,7 @@ export function NucleicAcidPage({navigation}: any) {
                            onChangeText={(identity: string) => setIdentity(identity)}/>
 
         <ButtonToSendMessage
+            icon = 'upload'
             checkBeforeSendMessage={() => (checkIdentityNumber(identity))}
             checkElse={() => {
                 alert('请重新检查身份证号是否填写正确')

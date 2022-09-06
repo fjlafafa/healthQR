@@ -57,6 +57,7 @@ export function SuperUserInfoPage({navigation}: any) {
             </View>
 
             <ButtonTemplate
+                icon = 'logout'
                 onPress={() => {
                     navigation.navigate('Login')
                     clearUserToken()

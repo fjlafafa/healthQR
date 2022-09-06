@@ -39,7 +39,7 @@ export function ModifyVaccinePage({navigation}: any) {
             checkElse={() => {
                 alert('身份证号不正确！')
             }}
-            icon='upload'
+            icon='update'
             toSendMessage={new HospitalUpdateNucleicTestMessage(new Token(token), new IdentityNumber(identityNumber))}
             text='刷新核酸日期'
         />
@@ -49,7 +49,7 @@ export function ModifyVaccinePage({navigation}: any) {
             checkElse={() => {
                 alert('身份证号不正确！')
             }}
-            icon='upload'
+            icon='update'
             toSendMessage={new HospitalUpdateVaccinationMessage(new Token(token), new IdentityNumber(identityNumber))}
             text='刷新疫苗接种情况'
         />
@@ -62,12 +62,13 @@ export function ModifyVaccinePage({navigation}: any) {
             checkElse={() => {
                 alert('风险等级错误')
             }}
-            icon='upload'
+            icon='update'
             toSendMessage={new HospitalUploadPositiveNucleicTestResultMessage(new Token(token), new IdentityNumber(identityNumber))}
             text='更新风险等级'
         />
 
         <ButtonTemplate
+            icon = 'home'
             onPress={() => {
                 navigation.navigate('Admin', {})
             }}

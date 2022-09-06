@@ -6,6 +6,7 @@ export function VaccinePage({navigation}: any) {
     const goBack = () => navigation.navigate('User.InfoQRCodePage')
     return <ScreenTemplate goBack={goBack}>
         <ButtonTemplate
+            icon = 'account-edit'
             onPress={() => navigation.navigate('User.ModifyVaccine')}
             text='修改我的疫苗核酸信息'/>
 

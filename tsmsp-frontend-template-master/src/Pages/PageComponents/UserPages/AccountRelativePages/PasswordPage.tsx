@@ -29,6 +29,7 @@ export function PasswordPage({navigation}: any) {
         <TextInputTemplate placeholder={'确认密码'} value={confirmed_password}
                            onChangeText={(newText: string) => setConfirmedPassword(newText)} secureTextEntry={true}/>
         <ButtonToSendMessage
+            icon = 'upload'
             checkBeforeSendMessage={() => (password.localeCompare(confirmed_password) == 0)}
             checkElse={() => {
                 alert('两次输入密码不一致！请重新输入！')

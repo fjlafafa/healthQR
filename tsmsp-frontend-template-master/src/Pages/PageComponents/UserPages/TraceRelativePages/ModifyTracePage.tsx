@@ -71,6 +71,7 @@ export function ModifyTracePage({navigation}: any) {
                            onChangeText={(newText: string) => setRemovedTrace(newText)}/>
 
         <ButtonToSendMessage
+            icon = 'delete'
             toSendMessage={new UserDeleteTraceMessage(new Token(token), new TraceId(parseInt(RemovedTrace)))}
             ifSuccess={(replyMessage: string) => {
                 alert('轨迹\'' + replyMessage + '\'删除成功！')
@@ -81,6 +82,7 @@ export function ModifyTracePage({navigation}: any) {
         />
 
         <ButtonTemplate
+            icon = 'home'
             onPress={() => {
                 navigation.navigate('User.Overview')
                 clearRemovedTraceInfo()
