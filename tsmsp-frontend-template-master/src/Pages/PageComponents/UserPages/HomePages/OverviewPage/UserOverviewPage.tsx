@@ -25,6 +25,7 @@ import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
 import {HeaderTemplate} from "Utils/PageUtils/HeaderUtil";
 import {Token} from "Types/UserMeta/Token";
 import {UserGetInfoMessage} from "Messages/UserMessages/UserGetInfoMessage";
+import {TemperatureView} from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/Temperature";
 
 
 export function UserOverviewPage({navigation}: any) {
@@ -82,7 +83,7 @@ export function UserOverviewPage({navigation}: any) {
             </View>
             <View style={{
                 width: SCREEN_WIDTH,
-                height: SCREEN_WIDTH * 0.35,
+                height: SCREEN_WIDTH * 0.45,
                 flexDirection: 'row', /*backgroundColor: '#00f'/**/
             }}>
                 <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#008'/**/}}>
@@ -93,6 +94,9 @@ export function UserOverviewPage({navigation}: any) {
                     </View>
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                         <NucleicAcidView recentNucleicTestTime={info.recentNucleicTestTime}/>
+                    </View>
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <TemperatureView temperature={39}/>
                     </View>
                 </View>
                 <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#080'*/}}>

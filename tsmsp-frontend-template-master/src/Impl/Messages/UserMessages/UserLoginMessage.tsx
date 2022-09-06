@@ -11,4 +11,4 @@ export class UserLoginMessage extends TSMSPMessage {
         this.identityNumber = identityNumber
         this.password = password
     }
-}2
+}
