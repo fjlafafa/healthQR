@@ -48,7 +48,7 @@ export function LoginPage({navigation}: any) {
         <ButtonTemplate
             icon = 'account-multiple-plus'
             onPress={() => {
-                navigation.navigate('Register')
+                navigation.navigate('Start.Register')
                 clearLoginInfo()
             }}
             text='注册'
@@ -56,7 +56,7 @@ export function LoginPage({navigation}: any) {
 
         <ButtonTemplate
         onPress={() => {
-            navigation.navigate('FindPassword')
+            navigation.navigate('Start.FindPassword')
             clearLoginInfo()
         }}
         text='找回密码'

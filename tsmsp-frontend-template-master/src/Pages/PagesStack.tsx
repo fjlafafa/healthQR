@@ -2,13 +2,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import React from 'react'
 import {LoginPage} from './PageComponents/StartingPages/LoginPage'
 import {RegisterPage} from './PageComponents/StartingPages/RegisterPage'
-import {PasswordPage} from './PageComponents/AccountRelativePages/PasswordPage'
+import {PasswordPage} from './PageComponents/AccountPages/PasswordPage'
 import {ScanPlaceQRCodePage} from './PageComponents/UserPages/HomePages/ScanPlaceQRCodePage/ScanPlaceQRCodePage'
 import {ModifyTracePage} from './PageComponents/UserPages/TraceRelativePages/ModifyTracePage'
-import {AccountDeletionPage} from './PageComponents/AccountRelativePages/AccountDeletionPage'
+import {AccountDeletionPage} from './PageComponents/AccountPages/AccountDeletionPage'
 import {AdminPage} from './PageComponents/TestPages/AdminPage'
 import {AllowAdmin} from 'Globals/GlobalVariables'
-import {AccountPage} from "./PageComponents/AccountRelativePages/AccountPage";
+import {AccountOverviewPage} from "./PageComponents/AccountPages/AccountOverviewPage";
 import {VaccinePage} from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/VaccinePage";
 import {NavigationContainer} from "@react-navigation/native";
 
@@ -25,6 +25,8 @@ import {VaccineRegisterPage} from "./PageComponents/SuperUserPages/ThirdPartyPag
 import {TracePage} from "./PageComponents/UserPages/TraceRelativePages/TracePage";
 import {SuperUserInfoPage} from "./PageComponents/SuperUserPages/HomePages/SuperUserInfoPage";
 import {FindPasswordPage} from "Pages/PageComponents/StartingPages/FindPasswordPage";
+import {SecurityQuestionPage} from "Pages/PageComponents/AccountPages/SecurityQuestionPage";
+import {AccountInfoPage} from "Pages/PageComponents/AccountPages/AccountInfoPage";
 
 const Stack = createNativeStackNavigator()
 
@@ -33,13 +35,15 @@ export function PagesStack({navigation}: any) {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Group screenOptions={{headerShown: false}}>
-                    <Stack.Screen name={'Login'} component={LoginPage}/>
-                    <Stack.Screen name={'FindPassword'} component={FindPasswordPage}/>
-                    <Stack.Screen name={'Register'} component={RegisterPage}/>
+                    <Stack.Screen name={'Start.Login'} component={LoginPage}/>
+                    <Stack.Screen name={'Start.FindPassword'} component={FindPasswordPage}/>
+                    <Stack.Screen name={'Start.Register'} component={RegisterPage}/>
                     <Stack.Screen name={'User.Overview'} component={UserOverviewPage}/>
-                    <Stack.Screen name={'User.Account'} component={AccountPage}/>
-                    <Stack.Screen name={'User.AccountDeletion'} component={AccountDeletionPage}/>
-                    <Stack.Screen name={'User.Password'} component={PasswordPage}/>
+                    <Stack.Screen name={'Account.Overview'} component={AccountOverviewPage}/>
+                    <Stack.Screen name={'Account.Deletion'} component={AccountDeletionPage}/>
+                    <Stack.Screen name={'Account.Password'} component={PasswordPage}/>
+                    <Stack.Screen name={'Account.SecurityQuestion'} component={SecurityQuestionPage}/>
+                    <Stack.Screen name={'Account.Info'} component={AccountInfoPage}/>
                     <Stack.Screen name={'User.ScanPlaceQRCode'} component={ScanPlaceQRCodePage}/>
                     <Stack.Screen name={'User.Trace'} component={TracePage}/>
                     <Stack.Screen name={'User.ModifyTrace'} component={ModifyTracePage}/>

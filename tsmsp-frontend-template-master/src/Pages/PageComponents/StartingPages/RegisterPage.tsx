@@ -30,7 +30,7 @@ const clearRegisterInfo = () => registerStore.setState(({realName: '', password:
 export function RegisterPage({navigation}: any) {
     const {realName, password, identityNumber} = registerStore()
 
-    const goBack = () => navigation.navigate('Login')
+    const goBack = () => navigation.navigate('Start.Login')
 
     return <ScreenTemplate goBack={goBack}>
         <TextInputTemplate label={'真实姓名'} value={realName}
@@ -51,7 +51,7 @@ export function RegisterPage({navigation}: any) {
             ifSuccess={(reply: Token) => {
                 setUserToken(reply)
                 navigation.navigate('User.Overview')
-                alert('请尽快前往个人账户中心设置密码丢失安全问题！')
+                alert('请尽快前往个人账户中心设置安全问题！')
                 clearRegisterInfo()
             }}
         />

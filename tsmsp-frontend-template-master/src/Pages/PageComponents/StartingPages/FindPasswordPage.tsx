@@ -24,7 +24,7 @@ export function FindPasswordPage({navigation}:any){
     }
 
     const goBack=()=>{
-        navigation.navigate('Login')
+        navigation.navigate('Start.Login')
         clearPageInfo()
     }
     return <ScreenTemplate goBack={goBack}>

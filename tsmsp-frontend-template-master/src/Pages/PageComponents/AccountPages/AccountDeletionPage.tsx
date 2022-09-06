@@ -8,13 +8,13 @@ import {clearUserRole} from "Globals/RoleStore";
 
 export function AccountDeletionPage({navigation}: any) {
     const {token} = TokenStore()
-    const goBack = () => navigation.navigate('User.Account')
+    const goBack = () => navigation.navigate('Account.Overview')
     return <ScreenTemplate goBack={goBack}>
         <ButtonToSendMessage
             toSendMessage={new UserDeleteAccountMessage(token)}
             ifSuccess={(reply: string) => {
                 alert('用户注销成功！')
-                navigation.navigate('Login')
+                navigation.navigate('Start.Login')
                 clearUserToken()
                 clearUserRole()
             }}

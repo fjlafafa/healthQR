@@ -16,7 +16,7 @@ import {Token} from "Types/UserMeta/Token";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
-    const goBack = () => navigation.navigate('Login')
+    const goBack = () => navigation.navigate('Start.Login')
     return <ScreenTemplate goBack={goBack}>
         <ScrollTemplate>
             <TextTemplate>{checkPermission(Roles.admin,Permissions.setAdmin)?1:0}</TextTemplate>
@@ -65,7 +65,7 @@ export function AdminPage({navigation}: any) {
                 onPress={() => navigation.navigate('ThirdParty.Overview')}
                 text={'免登录进入第三方'}/>
             <ButtonTemplate
-                onPress={() => navigation.navigate('Login')}
+                onPress={() => navigation.navigate('Start.Login')}
                 text='返回登录界面'/>
 
 

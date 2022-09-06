@@ -51,7 +51,7 @@ export function UserOverviewPage({navigation}: any) {
 
     //go back
     const goBack = () => {
-        navigation.navigate('Login')
+        navigation.navigate('Start.Login')
         clearUserToken()
         clearUserRole()
     }
@@ -121,7 +121,7 @@ export function UserOverviewPage({navigation}: any) {
                 <ButtonTemplate
                     icon = 'account'
                     onPress={() => {
-                        navigation.navigate('User.Account')
+                        navigation.navigate('Account.Overview')
                     }}
                     text='个人账户'
                 />
