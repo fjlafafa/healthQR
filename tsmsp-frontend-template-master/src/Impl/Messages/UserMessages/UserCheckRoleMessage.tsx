@@ -3,7 +3,7 @@ import {TSMSPReply} from "Impl/TSMSPReply";
 import {Roles} from "Types/UserMeta/Roles";
 import {Token} from "Types/UserMeta/Token";
 
-export class UserCheckPermissionMessage extends TSMSPMessage {
+export class UserCheckRoleMessage extends TSMSPMessage {
     userToken: Token
 
     constructor(userToken: Token) {

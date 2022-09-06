@@ -9,7 +9,7 @@ import {TextInputTemplate} from 'Utils/PageUtils/TextInputUtil'
 import {ScreenTemplate} from 'Utils/PageUtils/PageContainerUtil'
 import {Roles} from "Types/UserMeta/Roles";
 import {SendData} from "Utils/SendDataUtil";
-import {UserCheckPermissionMessage} from "Messages/UserMessages/UserCheckPermissionMessage";
+import {UserCheckRoleMessage} from "Messages/UserMessages/UserCheckRoleMessage";
 import {RealName} from "Types/UserMeta/RealName";
 import {Password} from "Types/UserMeta/Password";
 import {Token} from "Types/UserMeta/Token";
@@ -38,7 +38,7 @@ export function LoginPage({navigation}: any) {
             toSendMessage={new UserLoginMessage(new RealName(userName), new Password(password))}
             ifSuccess={(reply: string) => {
                 setUserToken(reply)
-                SendData(new UserCheckPermissionMessage(new Token(reply)), (reply: Roles) => {
+                SendData(new UserCheckRoleMessage(new Token(reply)), (reply: Roles) => {
 
                     if (reply === Roles.normal) {
                         navigation.navigate('User.Overview')

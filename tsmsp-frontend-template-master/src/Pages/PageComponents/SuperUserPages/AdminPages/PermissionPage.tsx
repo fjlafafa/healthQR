@@ -8,7 +8,7 @@ import {ButtonGroup} from "Utils/PageUtils/ButtonGroupUtil";
 import {View} from "react-native";
 import {Token} from "Types/UserMeta/Token";
 import {RealName} from "Types/UserMeta/RealName";
-import {AdminChangePermissionMessage} from "Messages/AdminMessages/AdminChangePermissionMessage";
+import {AdminChangeRoleMessage} from "Messages/AdminMessages/AdminChangeRoleMessage";
 import {TokenStore} from "Globals/TokenStore";
 
 export function PermissionPage({navigation}: any) {
@@ -43,7 +43,7 @@ export function PermissionPage({navigation}: any) {
             },
         ]}/>
         <ButtonToSendMessage
-            toSendMessage={new AdminChangePermissionMessage(new Token(token), client.token, tosetPremission)}
+            toSendMessage={new AdminChangeRoleMessage(new Token(token), client.token, tosetPremission)}
             text={'设置权限'}/>
         <View style={{height: 30}}/>
     </ScreenTemplate>
