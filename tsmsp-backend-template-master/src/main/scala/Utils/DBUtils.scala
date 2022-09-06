@@ -2,7 +2,7 @@ package Utils
 
 import Globals.GlobalVariables
 import Tables._
-import Types.UserMeta.{Administrator, IdentityNumber, Password, RealName}
+import Types.UserMeta.{Administrator, IdentityNumber, Password, RealName, Salt}
 import Utils.PasswordAutoEncoder._
 import com.typesafe.config.{Config, ConfigFactory}
 import slick.dbio.DBIO
@@ -27,7 +27,7 @@ object DBUtils {
         UserIdentityTable.userIdentityTable.schema.createIfNotExists,
       ).transactionally
     )
-    if(!UserIdentityTable.checkUserExists(RealName("root")).get) exec(UserIdentityTable.addUser(RealName("root"),Password("root"),IdentityNumber("root"),Administrator))
+    if(!UserIdentityTable.checkUserExists(IdentityNumber("root")).get) exec(UserIdentityTable.addUser(RealName("root"),PasswordEncoder(Password("root"),Salt("saltsalt")),IdentityNumber("root"),Administrator,Salt("saltsalt")))
     }
 
   def dropDatabases():Unit={
