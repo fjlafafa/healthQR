@@ -1,14 +1,14 @@
 import {TSMSPMessage} from 'Messages/TSMSPMessage'
-import {RealName} from "Types/UserMeta/RealName";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Password} from "Types/UserMeta/Password";
 
 export class UserLoginMessage extends TSMSPMessage {
-    realName: RealName
+    identityNumber: IdentityNumber
     password: Password
 
-    constructor(userName: RealName, password: Password) {
+    constructor(identityNumber: IdentityNumber, password: Password) {
         super()
-        this.realName = userName
+        this.identityNumber = identityNumber
         this.password = password
     }
-}
+}2
