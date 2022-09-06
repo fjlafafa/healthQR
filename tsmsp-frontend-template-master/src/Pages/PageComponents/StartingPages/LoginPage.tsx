@@ -53,6 +53,7 @@ export function LoginPage({navigation}: any) {
         />
         {/*<LoginIcon fontSize='large' > </LoginIcon>*/}
         <ButtonTemplate
+            icon = 'account-multiple-plus'
             onPress={() => {
                 navigation.navigate('Register')
                 clearLoginInfo()

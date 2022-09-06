@@ -31,6 +31,7 @@ export function TracePage({navigation}: any) {
         <HeaderTemplate text='我的行程表'/>
         <TraceTable token={token} traceList={traceHistory}/>
         <ButtonTemplate
+            icon = 'playlist-edit'
             onPress={() => navigation.navigate('User.ModifyTrace')}
             text='修改我的行程'
         />

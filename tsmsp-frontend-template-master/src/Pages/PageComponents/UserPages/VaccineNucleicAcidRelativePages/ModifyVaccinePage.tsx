@@ -68,6 +68,7 @@ export function ModifyVaccinePage({navigation}: any) {
         />
 
         <ButtonTemplate
+            icon = 'home'
             onPress={() => {
                 navigation.navigate('Admin', {})
             }}

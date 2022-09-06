@@ -66,6 +66,7 @@ export function GeneratePlaceQRPage({navigation}: any) {
             <SmallSpace/>
 
             <ButtonTemplate
+                icon = 'home'
                 onPress={() => {
                     navigation.navigate('User.Overview')
                 }}
