@@ -23,7 +23,6 @@ import {NucleicAcidPage} from "./PageComponents/SuperUserPages/ThirdPartyPages/N
 import {ThirdPartyOverviewPage} from "./PageComponents/SuperUserPages/HomePages/ThirdPartyOverviewPage";
 import {VaccineRegisterPage} from "./PageComponents/SuperUserPages/ThirdPartyPages/VaccineRegisterPage";
 import {TracePage} from "./PageComponents/UserPages/TraceRelativePages/TracePage";
-import {AdminInfoQRCodePage} from "./PageComponents/SuperUserPages/AdminPages/AdminInfoQRPage";
 import {SuperUserInfoPage} from "./PageComponents/SuperUserPages/HomePages/SuperUserInfoPage";
 
 const Stack = createNativeStackNavigator()

@@ -57,6 +57,12 @@ export class ButtonTemplate extends React.Component<any> {
  * 鲁棒性可能不足，如果页面卡住可以考虑下是这里什么参数名字或类型错误*/
 export class ButtonToSendMessage extends React.Component<any> {
     static defaultProps = {
+        ifSuccess: (replyMessage: any) => {
+            alert(replyMessage)
+        },
+        ifFail:  (replyMessage: any) => {
+            alert(replyMessage)
+        },
         checkBeforeSendMessage: () => {
             return true
         },

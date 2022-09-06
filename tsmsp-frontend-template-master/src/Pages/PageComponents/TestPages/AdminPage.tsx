@@ -10,6 +10,8 @@ import {Password} from "Types/UserMeta/Password";
 import {DataTable} from "react-native-paper";
 import {TextTemplate} from "Utils/PageUtils/TextUtil";
 import {checkPermission, Permissions, Roles} from "Types/UserMeta/Roles";
+import {SecurityQuestion} from "Types/UserMeta/SecurityQuestion";
+import {SecurityAnswer} from "Types/UserMeta/SecurityAnswer";
 
 //This is just a page for test
 export function AdminPage({navigation}: any) {
@@ -19,6 +21,7 @@ export function AdminPage({navigation}: any) {
             <TextTemplate>{checkPermission(Roles.admin,Permissions.setAdmin)?1:0}</TextTemplate>
             <TextTemplate>{checkPermission(Roles.normal,Permissions.setAdmin)?1:0}</TextTemplate>
             <TextTemplate>{checkPermission(Roles.government,Permissions.setRiskOfPlace)?1:0}</TextTemplate>
+            <TextTemplate>{(parseInt('adsfasd')===NaN?'NaN':',,,')}</TextTemplate>
             <DataTable>
                 <DataTable.Header>
                     <DataTable.Title sortDirection='descending'>
@@ -37,14 +40,14 @@ export function AdminPage({navigation}: any) {
                 text='返回副测试'/>
 
             <ButtonToSendMessage
-                toSendMessage={new UserRegisterMessage(new RealName(''), new Password(''), new IdentityNumber(''))}
+                toSendMessage={new UserRegisterMessage(new RealName(''), new Password(''), new IdentityNumber(''),new SecurityQuestion(''),new SecurityAnswer(''))}
                 text='注册空用户'
                 ifSuccess={(reply: string) => {
                     setUserToken(reply)
                     navigation.navigate('User.Overview', {})
                 }}/>
             <ButtonToSendMessage
-            toSendMessage={new UserRegisterMessage(new RealName(new Date().getTime().toString()), new Password(''), new IdentityNumber(''))}
+            toSendMessage={new UserRegisterMessage(new RealName(new Date().getTime().toString()), new Password(''), new IdentityNumber(''), new SecurityQuestion(''), new SecurityAnswer(''))}
             text='注册全新用户'
             ifSuccess={(reply: string) => {
                 setUserToken(reply)

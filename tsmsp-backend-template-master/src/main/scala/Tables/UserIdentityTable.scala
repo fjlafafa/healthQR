@@ -68,7 +68,7 @@ object UserIdentityTable {
     userIdentityTable.filter(u => u.identityNumber === identityNumber).map(_.userId).result.headOption
 
   def checkRoleById(userId: UserId): DBIO[Option[Roles]] =
-    userIdentityTable.filter(u => u.userId === userId).map(_.permission).result.headOption
+    userIdentityTable.filter(u => u.userId === userId).map(_.role).result.headOption
 
   def checkRealNameById(userId: UserId): DBIO[Option[RealName]] =
     userIdentityTable.filter(u => u.userId === userId).map(_.realName).result.headOption
@@ -83,10 +83,10 @@ object UserIdentityTable {
   def checkSecurityAnswer(identityNumber: IdentityNumber, securityAnswerHash: SecurityAnswerHash): Try[Boolean] = Try(
     DBUtils.exec(userIdentityTable.filter(u => u.identityNumber === identityNumber && u.securityAnswerHash === securityAnswerHash).size.result) > 0)
 
-  def updateRoleById(userId: UserId, newRole: Roles):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.permission).update(newPermission)
+  def updateRoleById(userId: UserId, newRole: Roles):  DBIO[Int] = userIdentityTable.filter(_.userId === userId).map(u => u.role).update(newRole)
 
   def getRoleFromToken(token: Token): Try[Roles] = Try(
-    DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.permission).result.headOption).getOrElse(
+    DBUtils.exec(userIdentityTable.filter(u => u.token === token).map(_.role).result.headOption).getOrElse(
       throw TokenNotExistsException()
     )
   )
