@@ -17,12 +17,9 @@ export function AdminOverviewPage({navigation}: any) {
             text='生成地点码'
         />
         <ButtonTemplate
+            icon = 'account-cog'
             onPress={() => navigation.navigate('Admin.Permission')}
             text='设置用户权限'
-        />
-        <ButtonTemplate
-            onPress={() => navigation.navigate('Admin.InfoQRCodePage')}
-            text='展示信息'
         />
         </ScrollTemplate>
     </ScreenTemplate>

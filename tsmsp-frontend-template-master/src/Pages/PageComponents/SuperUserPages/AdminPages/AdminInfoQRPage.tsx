@@ -51,6 +51,7 @@ export function AdminInfoQRCodePage({navigation}: any) {
                 </Card>
             </View>
             <ButtonTemplate
+                icon = 'logout'
                 onPress={() => {
                     navigation.navigate('Login')
                     clearUserToken()
