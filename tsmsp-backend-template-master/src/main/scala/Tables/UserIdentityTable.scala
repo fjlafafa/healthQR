@@ -54,7 +54,12 @@ object UserIdentityTable {
     userIdentityTable.filter(ut => ut.token === token && ut.refreshTime >= DateTime.now().minusHours(2)).map(_.userId).result.headOption
 
   def checkSaltByIdentityNumber(identityNumber: IdentityNumber):
-  DBIO[Option[Salt]] = userIdentityTable.filter(_.identityNumber===identityNumber).map(_.salt).result.headOption
+  DBIO[Option[Salt]] = userIdentityTable.filter(_.identityNumber === identityNumber).map(_.salt).result.headOption
+
+  def checkSaltByUserId(userId: UserId): DBIO[Option[Salt]] = userIdentityTable.filter(_.userId === userId).map(_.salt).result.headOption
+
+  def checkIdentityNumberById(userId: UserId): DBIO[Option[IdentityNumber]] =
+    userIdentityTable.filter(u => u.userId === userId).map(_.identityNumber).result.headOption
 
   def checkUserExists(identityNumber: IdentityNumber): Try[Boolean] = Try(DBUtils.exec(userIdentityTable.filter(_.identityNumber === identityNumber).size.result) > 0)
 
@@ -76,6 +81,12 @@ object UserIdentityTable {
   def updatePassword(userId: UserId, newPassword: PasswordHash, newSalt: Salt):  DBIO[Int] =
     userIdentityTable.filter(_.userId === userId).map(_.password).update(newPassword) >>
     userIdentityTable.filter(_.userId === userId).map(_.salt).update(newSalt)
+
+  def updateSecurityAnswer(userId: UserId, newSecurityAnswer: SecurityAnswerHash): DBIO[Int] =
+    userIdentityTable.filter(_.userId === userId).map(_.securityAnswerHash).update(newSecurityAnswer)
+
+  def updateSecurityQuestion(userId: UserId, newSecurityQuestion: SecurityQuestion): DBIO[Int] =
+    userIdentityTable.filter(_.userId === userId).map(_.securityQuestion).update(newSecurityQuestion)
 
   def getSecurityQuestionFromIdentityNumber(identityNumber: IdentityNumber): DBIO[Option[SecurityQuestion]] =
     userIdentityTable.filter(_.identityNumber === identityNumber).map(_.securityQuestion).result.headOption

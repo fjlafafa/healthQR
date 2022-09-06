@@ -28,7 +28,7 @@ export function SuperUserInfoPage({navigation}: any) {
     useFocusEffect(React.useCallback(refresh, []))
 
     const goBack = () => {
-        navigation.navigate('Login')
+        navigation.navigate('Start.Login')
         clearUserToken()
         clearUserRole()
     }
@@ -57,9 +57,16 @@ export function SuperUserInfoPage({navigation}: any) {
                     </View>
                 </Card>
             </View>
+            <ButtonTemplate
+                icon='account'
+                onPress={() => {
+                    navigation.navigate('Account.Overview')
+                }}
+                text='个人账户'
+            />
 
             <ButtonTemplate
-                icon = 'logout'
+                icon='logout'
                 onPress={goBack}
                 text={'退出登录'}
             />

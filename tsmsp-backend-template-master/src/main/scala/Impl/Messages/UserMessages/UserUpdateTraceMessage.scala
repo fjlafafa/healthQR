@@ -9,8 +9,8 @@ import Tables.UserIdentityTable
 import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId}
 import Types.UserMeta.Token
 import Utils.DBUtils
-import Utils.EnumAutoConverter._
 import Utils.HTTPUtils.sender
+import Utils.MessageTypesUtils.EnumAutoConverter._
 import org.joda.time.DateTime
 
 import scala.util.Try

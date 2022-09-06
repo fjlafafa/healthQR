@@ -1,4 +1,4 @@
-package Utils
+package Utils.MessageTypesUtils
 
 import Types.UserMeta._
 

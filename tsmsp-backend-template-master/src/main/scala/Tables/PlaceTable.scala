@@ -6,6 +6,7 @@ import Process.PlaceInfoMS.PlaceInfoMSDBUtils
 import Types.PlaceMeta._
 import Types.{Place, PlaceRiskLevels}
 import Utils.CustomColumnTypesUtils._
+import Utils.EnumUtils.placeRiskLevelGreaterOrEqual
 import os.Path
 import play.api.libs.json.{JsArray, JsObject, Json}
 import slick.jdbc.PostgresProfile.api._
@@ -67,6 +68,22 @@ object PlaceTable {
       throw PlaceNotExistsException()
     )
   }
+
+  def updatePlaceRiskLevel(placeId: PlaceId, riskLevel: PlaceRiskLevel): DBIO[Int] =
+      placeTable.filter(_.id === placeId).map(_.riskLevel).update(riskLevel)
+//  && placeRiskLevelGreaterOrEqual(riskLevel, pl.riskLevel)
+  def increasePlaceRiskLevel(placeIds: List[PlaceId], riskLevel: PlaceRiskLevel): DBIO[List[Int]] =
+    DBIO.sequence(
+        placeIds.filter(
+          placeId =>
+            placeRiskLevelGreaterOrEqual(riskLevel,
+              PlaceInfoMSDBUtils.exec(placeTable.filter(pl => pl.id === placeId).map(_.riskLevel).result.headOption)
+                .getOrElse(throw PlaceNotExistsException())
+        ))
+          .map(placeId =>
+            placeTable.filter(_.id === placeId).map(_.riskLevel).update(riskLevel)
+        )
+    )
 
   def getPlaceList(places: List[PlaceId]): Try[List[Place]] = Try {
     places.map(getPlace(_).get)

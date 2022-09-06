@@ -1,15 +1,17 @@
-package Utils
+package Utils.MessageTypesUtils
 
-import Types.PlaceMeta._
-import Types.TraceMeta._
-import Types.UserMeta._
+import Types.PlaceMeta.PlaceRiskLevel
+import Types.TraceMeta.ReportType
+import Types.UserMeta.{Roles, UserRiskLevel, VaccinationStatus}
 
 import scala.language.implicitConversions
 
 object EnumAutoConverter {
   //UserMeta
-  implicit def StringToRole(role: String): Roles = Roles.getType(role)
+  implicit def StringToPermission(permission: String): Roles = Roles.getType(permission)
+
   implicit def StringToUserRiskLevel(userRiskLevel: String): UserRiskLevel = UserRiskLevel.getType(userRiskLevel)
+
   implicit def StringToVaccinationStatus(vaccinationStatus: String): VaccinationStatus = VaccinationStatus.getType(vaccinationStatus)
 
   //PlaceMeta

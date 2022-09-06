@@ -22,7 +22,7 @@ export const clearInfo = () => passwordStore.setState(({password: '', confirmed_
 export function PasswordPage({navigation}: any) {
     const {token} = TokenStore()
     const {password, confirmed_password} = passwordStore()
-    const goBack = () => navigation.navigate('User.Account')
+    const goBack = () => navigation.navigate('Account.Overview')
     return <ScreenTemplate goBack={goBack}>
         <TextInputTemplate placeholder={'密码'} value={password}
                            onChangeText={(newText: string) => setPassword(newText)} secureTextEntry={true}/>

@@ -1,7 +1,7 @@
 package Impl.Messages
 
 import Impl.Messages.AdminMessages.AdminChangeRoleMessage
-import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.MSUserGetPlaceMessage
+import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.{MSHospitalUpdatePlaceRiskLevelMessage, MSUserGetPlaceMessage}
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages._
 import Impl.Messages.TestMessages.{AdminDropDataBasesMessage, AdminTestMessage}
@@ -25,9 +25,14 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserUpdateTraceMessage], name = "UserUpdateTraceMessage"),
     new JsonSubTypes.Type(value = classOf[UserDeleteTraceMessage], name = "UserDeleteTraceMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetRealNameMessage], name = "UserGetRealNameMessage"),
+    new JsonSubTypes.Type(value = classOf[UserUpdateSecurityQuestionMessage], name = "UserUpdateSecurityQuestionMessage"),
+    new JsonSubTypes.Type(value = classOf[UserUpdateSecurityAnswerMessage], name = "UserUpdateSecurityAnswerMessage"),
+    new JsonSubTypes.Type(value = classOf[UserGetIdMessage], name = "UserGetIdMessage"),
+    new JsonSubTypes.Type(value = classOf[UserGetIdentityNumberMessage], name = "UserGetIdentityNumberMessage"),
     new JsonSubTypes.Type(value = classOf[UserSendSecurityAnswerMessage], name = "UserSendSecurityAnswerMessage"),
     new JsonSubTypes.Type(value = classOf[UserDeleteAccountMessage], name = "UserDeleteAccountMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetInfoMessage], name = "UserGetInfoMessage"),
+    new JsonSubTypes.Type(value = classOf[UserGetOthersInfoMessage], name = "UserGetOthersInfoMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetSecurityQuestionMessage], name = "UserGetSecurityQuestionMessage"),
     new JsonSubTypes.Type(value = classOf[AdminChangeRoleMessage], name = "AdminChangeRoleMessage"),
     new JsonSubTypes.Type(value = classOf[AdminDropDataBasesMessage], name = "AdminDropDataBasesMessage"),
@@ -37,15 +42,17 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[HospitalUpdateNucleicTestMessage], name = "HospitalUpdateNucleicTestMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateVaccinationMessage], name = "HospitalUpdateVaccinationMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelByTokenMessage], name = "HospitalUpdateRiskLevelByTokenMessage"),
-    new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelMessage], name = "HospitalUpdateRiskLevelMessage"),
+    new JsonSubTypes.Type(value = classOf[HospitalUploadPositiveNucleicTestResultMessage], name = "HospitalUploadPositiveNucleicTestResultMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserDeleteTraceMessage], name = "MSUserDeleteTraceMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserGetTraceMessage], name = "MSUserGetTraceMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserUpdateTraceMessage], name = "MSUserUpdateTraceMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdateNucleicTestMessage], name = "MSHospitalUpdateNucleicTestMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdateVaccinationMessage], name = "MSHospitalUpdateVaccinationMessage"),
-    new JsonSubTypes.Type(value = classOf[MSHospitalUpdateRiskLevelMessage], name = "MSHospitalUpdateRiskLevelMessage"),
+    new JsonSubTypes.Type(value = classOf[MSHospitalUpdateUserRiskLevelMessage], name = "MSHospitalUpdateUserRiskLevelMessage"),
+    new JsonSubTypes.Type(value = classOf[MSHospitalUpdatePlaceRiskLevelMessage], name = "MSHospitalUpdatePlaceRiskLevelMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserCheckInfoMessage], name = "MSUserCheckInfoMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserGetPlaceMessage], name = "MSUserGetPlaceMessage"),
+    new JsonSubTypes.Type(value = classOf[MSHospitalDiffusionMessage], name = "MSHospitalDiffusionMessage"),
   ))
 abstract class TSMSPMessage extends JacksonSerializable {
   def handle(): TSMSPReply = reaction(

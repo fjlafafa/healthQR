@@ -6,7 +6,8 @@ import Process.VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import Types.UserMeta._
 import Types.{UserInformation, UserRiskLevels, VaccinationStatuses}
 import Utils.CustomColumnTypesUtils._
-import Utils.EnumAutoConverter._
+import Utils.EnumUtils.userRiskLevelGreaterOrEqual
+import Utils.MessageTypesUtils.EnumAutoConverter._
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.Tag
@@ -48,4 +49,16 @@ object UserInformationTable {
   def updateRiskLevel(userId: UserId, riskLevel: UserRiskLevel): DBIO[Int] =
     userInformationTable.filter(_.id === userId).map(_.riskLevel).update(riskLevel)
 
+  def increaseRiskLevel(userIds: List[UserId], riskLevel: UserRiskLevel): DBIO[List[Int]] =
+    DBIO.sequence(
+      userIds.filter(
+        userId =>
+          userRiskLevelGreaterOrEqual(riskLevel,
+            VaccineAndNucleicMSDBUtils.exec(userInformationTable.filter(_.id === userId).map(_.riskLevel).result.headOption)
+              .getOrElse(throw UserNotExistsException())
+          ))
+        .map(userId =>
+          userInformationTable.filter(_.id === userId).map(_.riskLevel).update(riskLevel)
+        )
+    )
   }
