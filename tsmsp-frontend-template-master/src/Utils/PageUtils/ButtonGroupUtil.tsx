@@ -32,22 +32,15 @@ function SubButton(props: subProps) {
 }
 
 export class ButtonGroup extends React.Component<P, any> {
-    constructor(props: P) {
-        super(props)
-        this.state = {
-            pressed: this.props.chosen as string | null
-        }
-    }
-
     render() {
         const buttonList = this.props.subprops.map((props: subProps) => {
-            return <SubButton key={props.name}
-                              name={props.name}
-                              disabled={props.name == this.state.pressed}
-                              onPress={() => {
-                                  props.onPress()
-                                  this.setState({pressed: props.name})
-                              }}/>
+            return <SubButton
+                key={props.name}
+                name={props.name}
+                disabled={props.name == this.props.chosen}
+                onPress={() => {
+                    props.onPress()
+                }}/>
         })
 
         //@ts-ignore

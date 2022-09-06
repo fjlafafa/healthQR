@@ -30,17 +30,19 @@ export function PermissionPage({navigation}: any) {
             }
             }
         />
-        <ButtonGroup chosen={Roles.normal} subprops={[
+        <ButtonGroup chosen={toSetPermission.toString()} subprops={[
             {
-                name: Roles.superAdmin.toString(),
-                onPress: () => setToSetPermission(Roles.superAdmin),
-            }, {
                 name: Roles.admin.toString(),
                 onPress: () => setToSetPermission(Roles.admin),
             }, {
                 name: Roles.normal.toString(),
                 onPress: () => setToSetPermission(Roles.normal),
             }, {
+                name: Roles.government.toString(),
+                onPress: () => setToSetPermission(Roles.government),
+            }
+        ]}/>
+        <ButtonGroup chosen={toSetPermission.toString()} subprops={[ {
                 name: Roles.nucleic.toString(),
                 onPress: () => setToSetPermission(Roles.nucleic),
             }, {
@@ -49,9 +51,6 @@ export function PermissionPage({navigation}: any) {
             }, {
                 name: Roles.hospital.toString(),
                 onPress: () => setToSetPermission(Roles.hospital),
-            }, {
-                name: Roles.government.toString(),
-                onPress: () => setToSetPermission(Roles.government),
             }
         ]}/>
         <ButtonToSendMessage

@@ -47,7 +47,7 @@ export function NucleicAcidPage({navigation}: any) {
             }
             }/>
         {/*?*/}
-        <ButtonGroup chosen={'阳性'} subprops={[
+        <ButtonGroup chosen={(tosetStatus?'阳性':'阴性')} subprops={[
             {
                 name: '阳性',
                 onPress: () => setTosetStatus(true),
