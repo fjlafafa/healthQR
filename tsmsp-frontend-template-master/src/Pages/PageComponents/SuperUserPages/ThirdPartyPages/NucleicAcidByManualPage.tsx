@@ -26,48 +26,33 @@ const setIdentity = (identity: string) => IDStore.setState({identity})
 const UploadState = create(() => ({state: '请上传核酸检测信息'}))
 
 
-export function NucleicAcidPage({navigation}: any) {
+export function NucleicAcidByManualPage({navigation}: any) {
 
     const {identity} = IDStore()
     const {state} = UploadState()
     const {token} = TokenStore.getState()
     const goBack = () => navigation.navigate('ThirdParty.Overview')
 
-    const [tosetStatus, setTosetStatus] = useState(true)//?
-    const [client, setClient] = useState({realName: new RealName(''), token: new Token('')})
-
     return <ScreenTemplate goBack={goBack}>
         <View style={{height: 30}}/>
-        <TextTemplate>当前核酸检测目标用户为：{client.realName.name}</TextTemplate>
-        <TextTemplate>设置检测结果为：{tosetStatus?'阳性':'阴性'}</TextTemplate>
-        <ScanView
-            handleData={(data: string) => {
-                const client = JSON.parse(data) as { realName: RealName, token: Token }
-                setClient(client)
-            }
-            }/>
-        {/*?*/}
-        <ButtonGroup chosen={'阳性'} subprops={[
-            {
-                name: '阳性',
-                onPress: () => setTosetStatus(true),
-            }, {
-                name: '阴性',
-                onPress: () => setTosetStatus(false),
-            },
-        ]}/>
-        <ButtonTemplate
-            icon = 'upload'
-            onPress={()=>{
-                SendData(new HospitalUpdateNucleicTestByTokenMessage(token, client.token))
-                if (tosetStatus) {
-                    SendData(new HospitalUploadPositiveNucleicTestResultByTokenMessage(token, client.token))
-                }
-            }
+        <TextTemplate value={state}/>
 
-        }
-            text={'设置核酸检测结果'}
+        <TextInputTemplate label='受检人身份证号' value={identity}
+                           onChangeText={(identity: string) => setIdentity(identity)}/>
+
+        <ButtonToSendMessage
+            icon = 'upload'
+            checkBeforeSendMessage={() => (checkIdentityNumber(identity))}
+            checkElse={() => {
+                alert('请重新检查身份证号是否填写正确')
+            }}
+            toSendMessage={new HospitalUpdateNucleicTestMessage(token, new IdentityNumber(identity))}
+            text='上传'
+            ifSuccess={() => {
+                IDStore.setState({identity: " "})
+            }}
         />
-        <View style={{height: 30}}/>
+
+
     </ScreenTemplate>
 }

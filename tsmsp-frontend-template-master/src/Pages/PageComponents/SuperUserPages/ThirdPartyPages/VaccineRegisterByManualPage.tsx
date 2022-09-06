@@ -25,7 +25,7 @@ const TestVaccine = (vaccine: string) => {
     return vaccine === '1' || vaccine === '2' || vaccine === '3'
 }
 
-export function VaccineRegisterPage({navigation}: any) {
+export function VaccineRegisterByManualPage({navigation}: any) {
 
 
     const {token} = TokenStore()
@@ -39,17 +39,22 @@ export function VaccineRegisterPage({navigation}: any) {
 
     return <ScreenTemplate goBack={goBack}>
         <View style={{height: 30}}/>
-        <TextTemplate>当前疫苗注射目标用户为：{client.realName.name}</TextTemplate>
-        <TextTemplate>更新疫苗情况</TextTemplate>
-        <ScanView
-            handleData={(data: string) => {
-                const client = JSON.parse(data) as { realName: RealName, token: Token }
-                setClient(client)
-            }
-            }/>
+
+        <TextInputTemplate label='接种人身份证号' value={identity}
+                           onChangeText={(identity: string) => IDStore.setState({identity})}/>
+        <TextInputTemplate label='接种针数' value={vaccine}
+                           onChangeText={(vaccine: string) => VaccineNum.setState({vaccine})}/>
+
         <ButtonToSendMessage
             icon = 'upload'
-            toSendMessage={new HospitalUpdateVaccinationByTokenMessage(token, client.token)}
-            text={'打一针'}/>
+            checkBeforeSendMessage={() => (checkIdentityNumber(identity))}
+            checkElse={() => {
+                alert('请重新检查身份证号是否填写正确')
+            }}
+            toSendMessage={new HospitalUpdateVaccinationMessage(token, new IdentityNumber(identity))}
+            text='上传'
+        />
+
+
     </ScreenTemplate>
 }

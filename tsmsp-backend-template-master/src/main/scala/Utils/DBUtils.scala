@@ -32,7 +32,7 @@ object DBUtils {
         UserIdentityTable.addUser(
           RealName("root"),
           PasswordEncoder(Password("root"),Salt("saltsalt")),
-          IdentityNumber("root"),Administrator,Salt("saltsalt"),
+          IdentityNumber("root"),SuperAdministrator,Salt("saltsalt"),
           SecurityQuestion("1+1=?"),
           SecurityAnswerEncoder(SecurityAnswer("2"),Salt("saltsalt"))
         ))

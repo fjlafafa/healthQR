@@ -28,6 +28,10 @@ import {FindPasswordPage} from "Pages/PageComponents/StartingPages/FindPasswordP
 import {SecurityQuestionPage} from "Pages/PageComponents/AccountPages/SecurityQuestionPage";
 import {AccountInfoPage} from "Pages/PageComponents/AccountPages/AccountInfoPage";
 import {TemperaturePage} from "Pages/PageComponents/UserPages/TemperaturePage";
+import {
+    VaccineRegisterByManualPage
+} from "Pages/PageComponents/SuperUserPages/ThirdPartyPages/VaccineRegisterByManualPage";
+import {NucleicAcidByManualPage} from "Pages/PageComponents/SuperUserPages/ThirdPartyPages/NucleicAcidByManualPage";
 
 const Stack = createNativeStackNavigator()
 
@@ -57,6 +61,8 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'ThirdParty.NucleicAcid'} component={NucleicAcidPage}/>
                     <Stack.Screen name={'ThirdParty.Overview'} component={ThirdPartyOverviewPage}/>
                     <Stack.Screen name={'ThirdParty.VaccineRegister'} component={VaccineRegisterPage}/>
+                    <Stack.Screen name={'ThirdParty.VaccineRegisterByManual'} component={VaccineRegisterByManualPage}/>
+                    <Stack.Screen name={'ThirdParty.NucleicAcidByManual'} component={NucleicAcidByManualPage}/>
                     <Stack.Screen name={'SuperUser.InfoQRCodePage'} component={SuperUserInfoPage}/>
                     <Stack.Screen name={'User.Temperature'} component={TemperaturePage}/>
                     {AllowAdmin ? <Stack.Screen name={'Admin'} component={AdminPage}/> : null}
