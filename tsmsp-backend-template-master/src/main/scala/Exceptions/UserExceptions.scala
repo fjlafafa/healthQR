@@ -12,6 +12,10 @@ case class WrongPasswordException() extends Exception {
   override def getMessage: String = "错误！用户名密码错误或用户不存在"
 }
 
+case class WrongSecurityAnswerException() extends Exception {
+  override def getMessage: String = "错误！安全回答错误"
+}
+
 case class UserNameAlreadyExistsException() extends Exception {
   override def getMessage: String = "错误！用户名已经存在了"
 }

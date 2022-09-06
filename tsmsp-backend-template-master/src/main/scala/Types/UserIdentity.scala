@@ -11,5 +11,7 @@ case class UserIdentity(
                          token: Token,
                          refreshTime: DateTime,
                          permission: Role,
-                         salt: Salt
+                         salt: Salt,
+                         securityQuestion: SecurityQuestion,
+                         securityAnswerHash: SecurityAnswerHash,
                             )

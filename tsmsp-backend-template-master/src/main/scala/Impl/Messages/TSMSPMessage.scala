@@ -27,6 +27,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserGetRealNameMessage], name = "UserGetRealNameMessage"),
     new JsonSubTypes.Type(value = classOf[UserDeleteAccountMessage], name = "UserDeleteAccountMessage"),
     new JsonSubTypes.Type(value = classOf[UserGetInfoMessage], name = "UserGetInfoMessage"),
+    new JsonSubTypes.Type(value = classOf[UserGetSecurityQuestionMessage], name = "UserGetSecurityQuestionMessage"),
     new JsonSubTypes.Type(value = classOf[AdminChangePermissionMessage], name = "AdminChangePermissionMessage"),
     new JsonSubTypes.Type(value = classOf[AdminDropDataBasesMessage], name = "AdminDropDataBasesMessage"),
     new JsonSubTypes.Type(value = classOf[AdminTestMessage], name = "AdminTestMessage"),

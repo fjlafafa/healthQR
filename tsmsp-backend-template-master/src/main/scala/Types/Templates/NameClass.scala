@@ -2,8 +2,7 @@ package Types.Templates
 
 import Impl.JacksonSerializable
 import Types.PlaceMeta._
-import Types.UserMeta.RealName
-import Types.UserMeta.Salt
+import Types.UserMeta._
 import com.fasterxml.jackson.annotation.{JsonSubTypes, JsonTypeInfo}
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
@@ -16,7 +15,8 @@ import com.fasterxml.jackson.annotation.{JsonSubTypes, JsonTypeInfo}
     new JsonSubTypes.Type(value = classOf[District], name = "District"),
     new JsonSubTypes.Type(value = classOf[Province], name = "Province"),
     new JsonSubTypes.Type(value = classOf[RealName], name = "RealName"),
-    new JsonSubTypes.Type(value = classOf[Salt], name = "Salt")
+    new JsonSubTypes.Type(value = classOf[Salt], name = "Salt"),
+    new JsonSubTypes.Type(value = classOf[SecurityQuestion], name = "SecurityQuestion"),
   )
 )
 abstract class NameClass(val name: String) extends JacksonSerializable
