@@ -6,7 +6,7 @@ import {View} from "react-native";
 import {SCREEN_WIDTH} from "Utils/SettingsAndConstants";
 import QRCode from "react-native-qrcode-svg";
 import {Card} from "react-native-paper";
-import {LargeTextTemplate} from "Utils/PageUtils/TextUtil";
+import {LargeTextTemplate, TextTemplate} from "Utils/PageUtils/TextUtil";
 import {SmallSpace} from "Utils/PageUtils/SpaceUtil";
 import {PlaceId} from "Types/PlaceMeta/PlaceId";
 import {UserGetPlaceMessage} from "Messages/UserMessages/UserGetPlaceMessage";
@@ -26,13 +26,13 @@ import {Token} from "Types/UserMeta/Token";
 export function GeneratePlaceQRPage({navigation}: any) {
 
     //const values
-    const [placeId,setPlaceId]=useState(new PlaceId(0))
-    const [placeIdShowed,setPlaceIdShowed]=useState(new PlaceId(0))
-    const [placeShowed,setPlaceShowed]=useState(new Place(new PlaceId(0),new Province(''),new City(''),new District(''),new SubDistrict(''),PlaceRiskLevel.red))
+    const [placeId, setPlaceId] = useState(new PlaceId(0))
+    const [placeIdShowed, setPlaceIdShowed] = useState(new PlaceId(0))
+    const [placeShowed, setPlaceShowed] = useState(new Place(new PlaceId(0), new Province(''), new City(''), new District(''), new SubDistrict(''), PlaceRiskLevel.red))
     const avatar = require('Assets/icon.png')
 
     const goBack = () => navigation.navigate('Admin.Overview')
-    const {token}=TokenStore()
+    const {token} = TokenStore()
 
     return <ScreenTemplate goBack={goBack}>
         {/*ts-ignore*/}
@@ -47,23 +47,22 @@ export function GeneratePlaceQRPage({navigation}: any) {
 
             <Card style={{width: '95%', height: '13%', alignItems: 'center'}}>
                 <SmallSpace/>
-                <LargeTextTemplate> 请输入地点代码以查询二维码 </LargeTextTemplate>
+                <TextTemplate> 请输入地点代码以查询二维码 </TextTemplate>
             </Card>
 
 
             <View style={{height: SCREEN_WIDTH * 0.03}}/>
 
             <Card style={{width: '95%', height: '12%', alignItems: 'center'}}>
-                <SmallSpace/>
-
-                <TextInputTemplate placeholder={'地点代码'} value={PlaceId}
-                                   onChangeText={(newText: string) => {
-                                       try {
-                                           setPlaceId(new PlaceId(parseInt(newText)))
-                                       } catch(e) {
-                                           alert('请输入合法字符')
-                                       }
-                                   }}/>
+                <TextInputTemplate
+                    placeholder={'地点代码'} value={placeId}
+                    onChangeText={(newText: string) => {
+                        try {
+                            setPlaceId(new PlaceId(parseInt(newText)))
+                        } catch (e) {
+                            alert('请输入合法字符')
+                        }
+                    }}/>
             </Card>
 
             <SmallSpace/>
@@ -84,13 +83,15 @@ export function GeneratePlaceQRPage({navigation}: any) {
             <SmallSpace/>
             <ButtonToSendMessage
                 text={'查验并生成地点码'}
-                toSendMessage={new UserGetPlaceMessage(new Token(token),[placeIdShowed])}
-                ifSuccess={(place:Place[])=>{
+                toSendMessage={new UserGetPlaceMessage(new Token(token), [placeIdShowed])}
+                ifSuccess={(place: Place[]) => {
                     setPlaceIdShowed(place[0].id)
                     setPlaceShowed(place[0])
                 }
                 }/>
-            <TextInputTemplate disabled={true} value={placeShowed.province.name+placeShowed.city.name+placeShowed.district.name+placeShowed.subDistrict.name} label={'地点'}/>
+            <TextInputTemplate disabled={true}
+                               value={placeShowed.province.name + placeShowed.city.name + placeShowed.district.name + placeShowed.subDistrict.name}
+                               label={'地点'}/>
 
         </View>
 
