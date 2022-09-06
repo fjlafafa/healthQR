@@ -17,14 +17,14 @@ class UserInformationTable(tag : Tag) extends Table[UserInformation](tag, Global
   def vaccinationStatus = column[VaccinationStatus]("vaccination_status")
   def riskLevel = column[UserRiskLevel]("risk_level")
   def temperature = column[Temperature]("temperature")
-  def * = (id, recentNucleicTestTime, vaccinationStatus, riskLevel).mapTo[UserInformation]
+  def * = (id, recentNucleicTestTime, vaccinationStatus, riskLevel, temperature).mapTo[UserInformation]
 }
 
 object UserInformationTable {
   val userInformationTable = TableQuery[UserInformationTable]
 
   def addUser(userId: UserId): DBIO[Int] =
-    userInformationTable += UserInformation(userId, DateTime.now(), VaccinationStatuses.none, UserRiskLevels.green)
+    userInformationTable += UserInformation(userId, DateTime.now(), VaccinationStatuses.none, UserRiskLevels.green, Temperature(36.6))
 
   def checkInfoById(userId: UserId): DBIO[Option[UserInformation]]=
     userInformationTable.filter(_.id===userId).result.headOption

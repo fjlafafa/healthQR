@@ -27,14 +27,14 @@ import {Token} from "Types/UserMeta/Token";
 import {UserGetInfoMessage} from "Messages/UserMessages/UserGetInfoMessage";
 import {clearUserRole} from "Globals/RoleStore";
 import {TemperatureView} from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/Temperature";
-
+import {Temperature} from "Types/UserMeta/Temperature";
 
 export function UserOverviewPage({navigation}: any) {
     const {token} = TokenStore()
 
     //refreshing
     const [traceHistory, setTraceHistory] = useState(Array<Trace>())
-    const [info, setInfo] = useState(new UserInformation(new UserId(0), new DateClass(0), VaccinationStatus.none, UserRiskLevel.popUps))
+    const [info, setInfo] = useState(new UserInformation(new UserId(0), new DateClass(0), VaccinationStatus.none, UserRiskLevel.popUps, new Temperature(36.6)))
     const refresh = () => {
         SendData(
             new UserGetTraceMessage(token, (new Date().getTime() - DAY_MILLIS), new Date().getTime()),
@@ -98,7 +98,7 @@ export function UserOverviewPage({navigation}: any) {
                         <NucleicAcidView recentNucleicTestTime={info.recentNucleicTestTime}/>
                     </View>
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <TemperatureView temperature={39}/>
+                        <TemperatureView temperature={info.temperature}/>
                     </View>
                 </View>
                 <View style={{flex: 1, justifyContent: 'center', /*backgroundColor: '#080'*/}}>
