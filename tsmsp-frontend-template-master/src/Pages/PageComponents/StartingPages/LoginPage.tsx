@@ -14,6 +14,7 @@ import {RealName} from "Types/UserMeta/RealName";
 import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Password} from "Types/UserMeta/Password";
 import {Token} from "Types/UserMeta/Token";
+import {UserLogin} from "Utils/LoginUtils";
 
 //const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
 
@@ -39,15 +40,7 @@ export function LoginPage({navigation}: any) {
             toSendMessage={new UserLoginMessage(new IdentityNumber(userName), new Password(password))}
             ifSuccess={(reply: string) => {
                 setUserToken(reply)
-                SendData(new UserCheckRoleMessage(new Token(reply)), (reply: Roles) => {
-
-                    if (reply === Roles.normal) {
-                        navigation.navigate('User.Overview')
-                    } else {
-                        navigation.navigate('SuperUser.InfoQRCodePage')
-                    }
-                    clearLoginInfo()
-                })
+                UserLogin(navigation,new Token(reply), clearLoginInfo)
             }}
             text='登录'
         />
@@ -59,6 +52,14 @@ export function LoginPage({navigation}: any) {
             }}
             text='注册'
         />
+
+        <ButtonTemplate
+        onPress={() => {
+            navigation.navigate('FindPassword')
+            clearLoginInfo()
+        }}
+        text='找回密码'
+    />
 
         {
             //管理员界面唯一入口

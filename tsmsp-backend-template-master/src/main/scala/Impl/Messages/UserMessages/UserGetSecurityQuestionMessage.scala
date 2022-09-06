@@ -5,7 +5,7 @@ import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.UserIdentityTable
 import Types.UserMeta.{IdentityNumber, Token}
-import Utils.DBUtils
+import Utils.{DBUtils, IOUtils}
 import org.joda.time.DateTime
 
 import scala.util.Try
@@ -15,6 +15,6 @@ case class UserGetSecurityQuestionMessage(identityNumber: IdentityNumber) extend
     val question = DBUtils.exec(
       UserIdentityTable.getSecurityQuestionFromIdentityNumber(identityNumber)
     ).getOrElse(throw UserNotExistsException())
-    TSMSPReply(STATUS_OK, question.name)
+    TSMSPReply(STATUS_OK, IOUtils.serialize(question).get)
   }
 }

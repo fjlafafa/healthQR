@@ -24,6 +24,7 @@ import {ThirdPartyOverviewPage} from "./PageComponents/SuperUserPages/HomePages/
 import {VaccineRegisterPage} from "./PageComponents/SuperUserPages/ThirdPartyPages/VaccineRegisterPage";
 import {TracePage} from "./PageComponents/UserPages/TraceRelativePages/TracePage";
 import {SuperUserInfoPage} from "./PageComponents/SuperUserPages/HomePages/SuperUserInfoPage";
+import {FindPasswordPage} from "Pages/PageComponents/StartingPages/FindPasswordPage";
 
 const Stack = createNativeStackNavigator()
 
@@ -33,6 +34,7 @@ export function PagesStack({navigation}: any) {
             <Stack.Navigator>
                 <Stack.Group screenOptions={{headerShown: false}}>
                     <Stack.Screen name={'Login'} component={LoginPage}/>
+                    <Stack.Screen name={'FindPassword'} component={FindPasswordPage}/>
                     <Stack.Screen name={'Register'} component={RegisterPage}/>
                     <Stack.Screen name={'User.Overview'} component={UserOverviewPage}/>
                     <Stack.Screen name={'User.Account'} component={AccountPage}/>
