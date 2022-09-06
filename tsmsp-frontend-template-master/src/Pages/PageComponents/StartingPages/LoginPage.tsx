@@ -11,6 +11,7 @@ import {Roles} from "Types/UserMeta/Roles";
 import {SendData} from "Utils/SendDataUtil";
 import {UserCheckPermissionMessage} from "Messages/UserMessages/UserCheckPermissionMessage";
 import {RealName} from "Types/UserMeta/RealName";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
 import {Password} from "Types/UserMeta/Password";
 import {Token} from "Types/UserMeta/Token";
 
@@ -30,12 +31,12 @@ const clearLoginInfo = () => loginStore.setState(({userName: '', password: ''}))
 export function LoginPage({navigation}: any) {
     const {userName, password} = loginStore()
     return (<ScreenTemplate atRoot={true}>
-        <TextInputTemplate label='真实姓名' value={userName} onChangeText={(newText: string) => setUserName(newText)}/>
+        <TextInputTemplate label='身份证号' value={userName} onChangeText={(newText: string) => setUserName(newText)}/>
         <TextInputTemplate label='密码' value={password} onChangeText={(newText: string) => setPassword(newText)}
                            secureTextEntry={true}/>
         <ButtonToSendMessage
             icon='login'
-            toSendMessage={new UserLoginMessage(new RealName(userName), new Password(password))}
+            toSendMessage={new UserLoginMessage(new IdentityNumber(userName), new Password(password))}
             ifSuccess={(reply: string) => {
                 setUserToken(reply)
                 SendData(new UserCheckPermissionMessage(new Token(reply)), (reply: Roles) => {
