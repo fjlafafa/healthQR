@@ -55,7 +55,7 @@ export function PermissionPage({navigation}: any) {
             }
         ]}/>
         <ButtonToSendMessage
-            toSendMessage={new AdminChangeRoleMessage(token, client.token, toSetPremission)}
+            toSendMessage={new AdminChangeRoleMessage(token, client.token, toSetPermission)}
             text={'设置权限'}/>
         <View style={{height: 30}}/>
     </ScreenTemplate>
