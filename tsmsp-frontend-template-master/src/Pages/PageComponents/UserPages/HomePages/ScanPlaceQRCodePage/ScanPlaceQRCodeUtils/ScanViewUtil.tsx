@@ -12,10 +12,9 @@ export function PlaceScanView(props: any) {
     <ScanView
       handleData={(data: string) => {
         const placeId = JSON.parse(data) as PlaceId;
-        alert("handle");
         SendData(
           new UserUpdateTraceMessage(
-            new Token(props.token),
+            props.token,
             placeId,
             new DetailedPlaceDescription(""),
             ReportType.auto
