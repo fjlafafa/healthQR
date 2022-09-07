@@ -74,11 +74,11 @@ export function RegisterPage({ navigation }: any) {
 
         {/*console.log('试图使用用户名'+userName+',密码'+password + ',真实姓名'+realName + '注册！')*/}
         <ButtonToSendMessage
-          checkBeforeSendMessage={() =>
-            checkRealName(realName) &&
-            checkPassword(password) &&
-            checkIdentityNumber(identityNumber)
-          }
+          // checkBeforeSendMessage={() =>
+          //   checkRealName(realName) &&
+          //   checkPassword(password) &&
+          //   checkIdentityNumber(identityNumber)
+          // }
           checkElse={() => {
             alert("姓名、密码（至少六位）或身份证号不符要求！");
           }}

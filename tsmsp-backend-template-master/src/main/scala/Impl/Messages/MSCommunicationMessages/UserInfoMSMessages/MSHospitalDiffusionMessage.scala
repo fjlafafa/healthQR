@@ -34,17 +34,18 @@ case class MSHospitalDiffusionMessage(diagnosedUserId: List[UserId]) extends TSM
         )
       }
       val sourcePlaceRiskLevel = UserRiskLevelToPlaceRiskLevel(sourceUserRiskLevel)
-      val sourcePlaceId: List[PlaceId] = sourceUserTrace.map(_.visitPlaceId)
+      val sourcePlaceId: List[PlaceId] = sourceUserTrace.map(_.visitPlaceId).distinct
       MSHospitalUpdatePlaceRiskLevelMessage(sourcePlaceId, sourcePlaceRiskLevel).send(GlobalVariables.PlaceInfoMSIP)
 
       val visitSourcePlaceTime: List[DateTime] = sourceUserTrace.map(_.time)
       val visitSourcePlaceFilterStartTime = visitSourcePlaceTime.map(_.minusMinutes(30))
       val visitSourcePlaceFilterEndTime = visitSourcePlaceTime.map(_.minusWeeks(-2))
-      val diffusedUserId: List[UserId] =
+      val diffusedUserId: List[UserId] = {
         (sourcePlaceId zip (visitSourcePlaceFilterStartTime zip visitSourcePlaceFilterEndTime)).flatMap(
           info =>
             UserInfoMSDBUtils.exec(UserTraceTable.checkUserWithTrace(info._1, info._2._1, info._2._2))
         ).distinct.filterNot(userId => sourceUserIds.contains(userId))
+      }
       val diffusedUserRiskLevel = PlaceRiskLevelToUserRiskLevel(sourcePlaceRiskLevel)
       val diffusedUserAlertTime: List[DateTime] =
         (sourcePlaceId zip (visitSourcePlaceFilterStartTime zip visitSourcePlaceFilterEndTime)).flatMap(
