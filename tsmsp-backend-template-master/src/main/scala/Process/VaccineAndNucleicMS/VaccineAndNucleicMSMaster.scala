@@ -25,7 +25,7 @@ object VaccineAndNucleicMSMaster {
       Behaviors.receiveMessage[Message] {
         case RouterRequest(query, router) =>
           val r = scala.util.Random
-          workers(r.nextInt(workerNumber - 1)) ! WorkerTask(query, router, ctx.self)
+          workers(r.nextInt(workerNumber)) ! WorkerTask(query, router, ctx.self)
           Behaviors.same
         case WorkerResponse(answer, router) =>
           router ! RouterResponse(answer)
