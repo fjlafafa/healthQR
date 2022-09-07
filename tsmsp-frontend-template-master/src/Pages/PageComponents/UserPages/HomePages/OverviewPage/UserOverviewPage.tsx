@@ -178,6 +178,7 @@ export function UserOverviewPage({ navigation }: any) {
           <HeaderTemplate text="其他微服务" />
 
           <ButtonTemplate
+              icon="thermometer-chevron-up"
             onPress={() => {
               navigation.navigate("User.Temperature");
             }}
@@ -192,6 +193,7 @@ export function UserOverviewPage({ navigation }: any) {
             text="个人账户"
           />
           <ButtonTemplate
+            icon="human-male-girl"
             onPress={() => {
               navigation.navigate("User.Helping");
             }}
