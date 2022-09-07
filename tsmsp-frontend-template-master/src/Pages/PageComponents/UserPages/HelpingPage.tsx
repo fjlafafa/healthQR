@@ -103,7 +103,7 @@ export function HelpingPage({ navigation }: any) {
         />
 
         <ButtonToSendMessage
-          icon="upload"
+          icon="account-search"
           checkBeforeSendMessage={() =>
             checkIdentityNumber(identityNumber.token)
           }

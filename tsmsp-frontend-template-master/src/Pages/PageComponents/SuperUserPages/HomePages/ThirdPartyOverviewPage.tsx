@@ -43,11 +43,13 @@ export function ThirdPartyOverviewPage({ navigation }: any) {
           disabled={!checkPermission(role, Permissions.updateVaccination)}
         />
         <ButtonTemplate
+          icon="bed"
           onPress={() => navigation.navigate("ThirdParty.RecoverPatient")}
           text="康复"
           disabled={!checkPermission(role, Permissions.recoverPatient)}
         />
         <ButtonTemplate
+          icon="bed"
           onPress={() =>
             navigation.navigate("ThirdParty.RecoverPatientByManual")
           }
