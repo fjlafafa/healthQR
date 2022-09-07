@@ -1,7 +1,7 @@
 package Impl.Messages
 
 import Impl.Messages.AdminMessages.{AdminChangeRoleMessage, GovernorUpdateRiskOfPlaceMessage, GovernorUpdateRiskOfUserMessage}
-import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.{MSGovernorUpdateRiskOfPlaceMessage, MSHospitalUpdatePlaceRiskLevelMessage, MSUserGetPlaceMessage}
+import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.{MSGovernorUpdateRiskOfPlaceMessage, MSHospitalUpdatePlaceRiskLevelMessage, MSUserGetPlaceMessage, MSUserGetPlaceRiskLevelMessage}
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages._
 import Impl.Messages.TestMessages._
@@ -60,6 +60,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[MSHospitalUpdatePatientRecoveryMessage], name = "MSHospitalUpdatePatientRecoveryMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserCheckInfoMessage], name = "MSUserCheckInfoMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserGetPlaceMessage], name = "MSUserGetPlaceMessage"),
+    new JsonSubTypes.Type(value = classOf[MSUserGetPlaceRiskLevelMessage], name = "MSUserGetPlaceRiskLevelMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalDiffusionMessage], name = "MSHospitalDiffusionMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserUpdateTemperatureMessage], name = "MSUserUpdateTemperatureMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdateTemperatureMessage], name = "UserUpdateTemperatureMessage"),
