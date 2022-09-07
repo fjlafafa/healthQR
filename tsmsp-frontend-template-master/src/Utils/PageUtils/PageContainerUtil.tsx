@@ -1,7 +1,11 @@
-import {SCREEN_HEIGHT, SCREEN_WIDTH, settingsAndConstants,} from "../SettingsAndConstants";
-import {ImageBackground, ScrollView, StyleSheet, View} from "react-native";
+import {
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  settingsAndConstants,
+} from "../SettingsAndConstants";
+import { ImageBackground, ScrollView, StyleSheet, View } from "react-native";
 import React from "react";
-import {Appbar} from "react-native-paper";
+import { Appbar } from "react-native-paper";
 
 const safeAreaHeight: number = 25;
 const setting = StyleSheet.create({
@@ -30,8 +34,8 @@ const setting = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: 'center',
-    resizeMode: "cover"
+    justifyContent: "center",
+    resizeMode: "cover",
   },
 });
 
@@ -40,27 +44,35 @@ export class ScreenTemplate extends React.Component<any, any> {
     title: "类型安全宝",
     goBack: () => {},
     atRoot: false,
-    background_image: require('Assets/Images/水墨竹.jpg'),
-    background_opacity: 0.5
+    background_image: require("Assets/Images/水墨竹.jpg"),
+    background_opacity: 0.5,
   };
 
   render() {
     return (
       /*@ts-ignore*/
       <View style={setting.screen}>
-        <ImageBackground source={this.props.background_image} resizeMode="cover" style={setting.image} imageStyle={{opacity: this.props.background_opacity}}>
-        <View style={setting.safeArea} />
-        <Appbar
-          style={setting.bar}
-          mode={this.props.atRoot ? "center-aligned" : "small"}
+        <ImageBackground
+          source={this.props.background_image}
+          resizeMode="cover"
+          style={setting.image}
+          imageStyle={{ opacity: this.props.background_opacity }}
         >
-          {this.props.atRoot ? null : (
-            <Appbar.BackAction onPress={this.props.goBack} />
-          )}
-          <Appbar.Content title={this.props.title} />
-        </Appbar>
-        {/*@ts-ignore*/}
-        {React.createElement(View, { ...this.props, style: setting.container })}
+          <View style={setting.safeArea} />
+          <Appbar
+            style={setting.bar}
+            mode={this.props.atRoot ? "center-aligned" : "small"}
+          >
+            {this.props.atRoot ? null : (
+              <Appbar.BackAction onPress={this.props.goBack} />
+            )}
+            <Appbar.Content title={this.props.title} />
+          </Appbar>
+          {/*@ts-ignore*/}
+          {React.createElement(View, {
+            ...this.props,
+            style: setting.container,
+          })}
         </ImageBackground>
       </View>
     );

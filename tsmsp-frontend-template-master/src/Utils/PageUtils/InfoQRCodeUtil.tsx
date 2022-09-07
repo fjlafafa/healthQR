@@ -1,5 +1,5 @@
 import QRCode from "react-native-qrcode-svg";
-import {SCREEN_WIDTH} from "../SettingsAndConstants";
+import { SCREEN_WIDTH } from "../SettingsAndConstants";
 import React from "react";
 
 export function RegisterCode(props: any) {

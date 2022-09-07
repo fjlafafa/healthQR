@@ -32,7 +32,8 @@ export class ButtonTemplate extends React.Component<any> {
   };
 
   render() {
-    return (//@ts-ignore
+    return (
+      //@ts-ignore
       <View style={setting.view}>
         <Button
           style={setting.button}
@@ -72,7 +73,7 @@ export class ButtonToSendMessage extends React.Component<any> {
     checkElse: () => {},
     toSendMessage: null,
     onPress: () => {}, //Usually we can use ifSuccess as inPress even if we are not sending message
-    disabled: false
+    disabled: false,
   };
 
   render() {
