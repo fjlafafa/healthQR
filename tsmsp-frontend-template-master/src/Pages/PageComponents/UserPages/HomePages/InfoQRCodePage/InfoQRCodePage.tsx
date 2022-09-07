@@ -125,6 +125,10 @@ export function InfoQRCodePage({ navigation }: any) {
             />
           </View>
         </View>
+          <ButtonTemplate
+              icon={'refresh'}
+              onPress={()=>refresh()}
+              text={'刷新'}/>
       </ScrollTemplate>
     </ScreenTemplate>
   );
