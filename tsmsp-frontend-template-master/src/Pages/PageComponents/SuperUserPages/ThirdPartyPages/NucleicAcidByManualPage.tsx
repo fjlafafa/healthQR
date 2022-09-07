@@ -22,8 +22,8 @@ import { HospitalUploadPositiveNucleicTestResultMessage } from "Messages/ThirdPa
 import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
 import { HospitalUploadPositiveNucleicTestResultByTokenMessage } from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultByTokenMessage";
 
-const IDStore = create(() => ({ identity: " " }));
-const setIdentity = (identity: string) => IDStore.setState({ identity });
+const IDStore = create(() => ({ identity: new IdentityNumber('') }));
+const setIdentity = (identity: IdentityNumber) => IDStore.setState({ identity });
 const UploadState = create(() => ({ state: "请上传核酸检测信息" }));
 
 export function NucleicAcidByManualPage({ navigation }: any) {
@@ -31,6 +31,7 @@ export function NucleicAcidByManualPage({ navigation }: any) {
   const { state } = UploadState();
   const { token } = TokenStore.getState();
   const goBack = () => navigation.navigate("ThirdParty.Overview");
+  const [testResult, setTestResult] = useState(true); //?
 
   return (
     <ScreenTemplate goBack={goBack}>
@@ -39,27 +40,43 @@ export function NucleicAcidByManualPage({ navigation }: any) {
 
       <TextInputTemplate
         label="受检人身份证号"
-        value={identity}
-        onChangeText={(identity: string) => setIdentity(identity)}
+        value={identity.token}
+        onChangeText={(identity: string) => setIdentity(new IdentityNumber(identity))}
       />
+        <TextTemplate>
+            设置检测结果为：{testResult ? "阳性" : "阴性"}
+        </TextTemplate>
 
-      <ButtonToSendMessage
-        icon="upload"
-        checkBeforeSendMessage={() => checkIdentityNumber(identity)}
-        checkElse={() => {
-          alert("请重新检查身份证号是否填写正确");
-        }}
-        toSendMessage={
-          new HospitalUpdateNucleicTestMessage(
-            token,
-            new IdentityNumber(identity)
-          )
-        }
-        text="上传"
-        ifSuccess={() => {
-          IDStore.setState({ identity: " " });
-        }}
-      />
+        <ButtonGroup
+            chosen={testResult ? "阳性" : "阴性"}
+            subprops={[
+                {
+                    name: "阳性",
+                    onPress: () => setTestResult(true),
+                },
+                {
+                    name: "阴性",
+                    onPress: () => setTestResult(false),
+                },
+            ]}
+        />
+        <ButtonTemplate
+            icon="upload"
+            onPress={() => {
+                SendData(
+                    new HospitalUpdateNucleicTestMessage(token, identity)
+                );
+                if (testResult) {
+                    SendData(
+                        new HospitalUploadPositiveNucleicTestResultMessage(
+                            token,
+                            identity
+                        )
+                    );
+                }
+            }}
+            text={"设置核酸检测结果"}
+        />
     </ScreenTemplate>
   );
 }
