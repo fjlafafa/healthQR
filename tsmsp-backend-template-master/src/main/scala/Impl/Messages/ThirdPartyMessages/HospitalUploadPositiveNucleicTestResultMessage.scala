@@ -5,6 +5,7 @@ import Globals.GlobalVariables
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages.MSHospitalDiffusionMessage
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
+import Tables.PermissionRoleTable.checkPermission
 import Tables.UserIdentityTable
 import Types.UserMeta._
 import Utils.DBUtils
@@ -15,8 +16,8 @@ import scala.util.Try
 
 case class HospitalUploadPositiveNucleicTestResultMessage(userToken: Token, identityNumber: IdentityNumber) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
-    val permission = UserIdentityTable.getRoleFromToken(userToken).get
-    if (permission != NucleicTestResultReporter) {
+    val role = UserIdentityTable.getRoleFromToken(userToken).get
+    if (!checkPermission(role, UpdateNucleicTest)) {
       throw PermissionDeniedException()
     }
 
