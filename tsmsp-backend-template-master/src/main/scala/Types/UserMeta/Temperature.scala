@@ -2,4 +2,4 @@ package Types.UserMeta
 
 import Types.Templates.NumberClass
 
-case class Temperature(override val num: Double) extends NumberClass(num)
+case class Temperature(override val value: Double) extends NumberClass(value)
