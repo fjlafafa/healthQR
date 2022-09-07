@@ -125,13 +125,6 @@ export function InfoQRCodePage({ navigation }: any) {
             />
           </View>
         </View>
-        <HeaderTemplate text="核酸疫苗相关微服务" />
-        {/*一些微服务*/}
-        <ButtonTemplate
-          icon="needle"
-          onPress={() => navigation.navigate("User.Vaccine")}
-          text="我的核酸疫苗"
-        />
       </ScrollTemplate>
     </ScreenTemplate>
   );

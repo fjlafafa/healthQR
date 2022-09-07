@@ -22,17 +22,11 @@ import { HospitalUploadPositiveNucleicTestResultMessage } from "Messages/ThirdPa
 import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
 import { HospitalUploadPositiveNucleicTestResultByTokenMessage } from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultByTokenMessage";
 
-const IDStore = create(() => ({ identity: " " }));
-const setIdentity = (identity: string) => IDStore.setState({ identity });
-const UploadState = create(() => ({ state: "请上传核酸检测信息" }));
-
 export function NucleicAcidPage({ navigation }: any) {
-  const { identity } = IDStore();
-  const { state } = UploadState();
   const { token } = TokenStore.getState();
   const goBack = () => navigation.navigate("ThirdParty.Overview");
 
-  const [tosetStatus, setTosetStatus] = useState(true); //?
+  const [testResult, setTestResult] = useState(true); //?
   const [client, setClient] = useState({
     realName: new RealName(""),
     token: new Token(""),
@@ -40,12 +34,12 @@ export function NucleicAcidPage({ navigation }: any) {
 
   return (
     <ScreenTemplate goBack={goBack}>
-      <View style={{ height: 30 }} />
+      <View style={{ height: 30 }}/>
       <TextTemplate>
         当前核酸检测目标用户为：{client.realName.name}
       </TextTemplate>
       <TextTemplate>
-        设置检测结果为：{tosetStatus ? "阳性" : "阴性"}
+        设置检测结果为：{testResult ? "阳性" : "阴性"}
       </TextTemplate>
       <ScanView
         handleData={(data: string) => {
@@ -58,15 +52,15 @@ export function NucleicAcidPage({ navigation }: any) {
       />
       {/*?*/}
       <ButtonGroup
-        chosen={tosetStatus ? "阳性" : "阴性"}
+        chosen={testResult ? "阳性" : "阴性"}
         subprops={[
           {
             name: "阳性",
-            onPress: () => setTosetStatus(true),
+            onPress: () => setTestResult(true),
           },
           {
             name: "阴性",
-            onPress: () => setTosetStatus(false),
+            onPress: () => setTestResult(false),
           },
         ]}
       />
@@ -76,7 +70,7 @@ export function NucleicAcidPage({ navigation }: any) {
           SendData(
             new HospitalUpdateNucleicTestByTokenMessage(token, client.token)
           );
-          if (tosetStatus) {
+          if (testResult) {
             SendData(
               new HospitalUploadPositiveNucleicTestResultByTokenMessage(
                 token,

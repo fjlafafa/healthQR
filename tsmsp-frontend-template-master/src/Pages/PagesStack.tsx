@@ -9,12 +9,10 @@ import { AccountDeletionPage } from "./PageComponents/AccountPages/AccountDeleti
 import { AdminPage } from "./PageComponents/TestPages/AdminPage";
 import { AllowTester } from "Globals/GlobalVariables";
 import { AccountOverviewPage } from "./PageComponents/AccountPages/AccountOverviewPage";
-import { VaccinePage } from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/VaccinePage";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { UserOverviewPage } from "./PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPage";
 import { GeneratePlaceQRPage } from "./PageComponents/SuperUserPages/AdminPages/GeneratePlaceQRPage";
-import { ModifyVaccinePage } from "./PageComponents/UserPages/VaccineNucleicAcidRelativePages/ModifyVaccinePage";
 import { InfoQRCodePage } from "./PageComponents/UserPages/HomePages/InfoQRCodePage/InfoQRCodePage";
 import { AdminBrotherPage } from "./PageComponents/TestPages/AdminBrotherPage";
 import { AdminOverviewPage } from "./PageComponents/SuperUserPages/HomePages/AdminOverviewPage";
@@ -70,12 +68,7 @@ export function PagesStack({ navigation }: any) {
           />
           <Stack.Screen name={"User.Trace"} component={TracePage} />
           <Stack.Screen name={"User.ModifyTrace"} component={ModifyTracePage} />
-          <Stack.Screen name={"User.Vaccine"} component={VaccinePage} />
           <Stack.Screen name={"User.Helping"} component={HelpingPage} />
-          <Stack.Screen
-            name={"User.ModifyVaccine"}
-            component={ModifyVaccinePage}
-          />
           <Stack.Screen
             name={"User.InfoQRCodePage"}
             component={InfoQRCodePage}
