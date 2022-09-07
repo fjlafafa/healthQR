@@ -1,27 +1,18 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
+import {StatusBar} from "expo-status-bar";
 import create from "zustand";
-import { setUserToken } from "Globals/TokenStore";
-import { UserLoginMessage } from "Messages/UserMessages/UserLoginMessage";
-import {
-  ButtonTemplate,
-  ButtonToSendMessage,
-} from "Utils/PageUtils/ButtonUtil";
-import { AllowAdmin } from "Globals/GlobalVariables";
-import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
-import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { Roles } from "Types/UserMeta/Roles";
-import { SendData } from "Utils/SendDataUtil";
-import { UserCheckRoleMessage } from "Messages/UserMessages/UserCheckRoleMessage";
-import { RealName } from "Types/UserMeta/RealName";
-import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
-import { Password } from "Types/UserMeta/Password";
-import { Token } from "Types/UserMeta/Token";
-import { UserLogin } from "Utils/LoginUtils";
+import {setUserToken} from "Globals/TokenStore";
+import {UserLoginMessage} from "Messages/UserMessages/UserLoginMessage";
+import {ButtonTemplate, ButtonToSendMessage,} from "Utils/PageUtils/ButtonUtil";
+import {AllowAdmin} from "Globals/GlobalVariables";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
+import {Password} from "Types/UserMeta/Password";
+import {Token} from "Types/UserMeta/Token";
+import {UserLogin} from "Utils/LoginUtils";
 
-//const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
-
-// import LoginIcon from '@mui/icons-material/Login'
+const image = require('Assets/Images/水墨舟.jpeg')
 
 const loginStore = create(() => ({
   userName: "",
@@ -36,7 +27,7 @@ const clearLoginInfo = () =>
 export function LoginPage({ navigation }: any) {
   const { userName, password } = loginStore();
   return (
-    <ScreenTemplate atRoot={true}>
+    <ScreenTemplate atRoot={true} background_image={image}>
       <TextInputTemplate
         label="身份证号"
         value={userName}

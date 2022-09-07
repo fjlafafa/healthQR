@@ -1,27 +1,21 @@
-import React, { useState } from "react";
-import {
-  ButtonTemplate,
-  ButtonToSendMessage,
-} from "Utils/PageUtils/ButtonUtil";
-import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
-import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { ScrollView, View } from "react-native";
-import { SCREEN_WIDTH } from "Utils/SettingsAndConstants";
+import React, {useState} from "react";
+import {ButtonToSendMessage,} from "Utils/PageUtils/ButtonUtil";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {ScrollView, View} from "react-native";
+import {SCREEN_WIDTH} from "Utils/SettingsAndConstants";
 import QRCode from "react-native-qrcode-svg";
-import { Card } from "react-native-paper";
-import { LargeTextTemplate, TextTemplate } from "Utils/PageUtils/TextUtil";
-import { SmallSpace } from "Utils/PageUtils/SpaceUtil";
-import { PlaceId } from "Types/PlaceMeta/PlaceId";
-import { UserGetPlaceMessage } from "Messages/UserMessages/UserGetPlaceMessage";
-import { TokenStore } from "Globals/TokenStore";
-import { Place } from "Types/Place";
-import { Province } from "Types/PlaceMeta/Province";
-import { DetailedPlaceDescription } from "Types/PlaceMeta/DetailedPlaceDescription";
-import { PlaceRiskLevel } from "Types/PlaceMeta/PlaceRiskLevel";
-import { City } from "Types/PlaceMeta/City";
-import { District } from "Types/PlaceMeta/District";
-import { SubDistrict } from "Types/PlaceMeta/SubDistrict";
-import { Token } from "Types/UserMeta/Token";
+import {Card} from "react-native-paper";
+import {TextTemplate} from "Utils/PageUtils/TextUtil";
+import {PlaceId} from "Types/PlaceMeta/PlaceId";
+import {UserGetPlaceMessage} from "Messages/UserMessages/UserGetPlaceMessage";
+import {TokenStore} from "Globals/TokenStore";
+import {Place} from "Types/Place";
+import {Province} from "Types/PlaceMeta/Province";
+import {PlaceRiskLevel} from "Types/PlaceMeta/PlaceRiskLevel";
+import {City} from "Types/PlaceMeta/City";
+import {District} from "Types/PlaceMeta/District";
+import {SubDistrict} from "Types/PlaceMeta/SubDistrict";
 
 //import Select from 'react-select'
 
@@ -39,7 +33,7 @@ export function GeneratePlaceQRPage({ navigation }: any) {
       PlaceRiskLevel.red
     )
   );
-  const avatar = require("Assets/icon.png");
+  const avatar = require("Assets/Images/iiis-logo.png");
 
   const goBack = () => navigation.navigate("Admin.Overview");
   const { token } = TokenStore();

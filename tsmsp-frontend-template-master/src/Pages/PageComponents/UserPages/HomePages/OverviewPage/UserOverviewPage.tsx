@@ -1,36 +1,34 @@
-import {
-  ScreenTemplate,
-  ScrollTemplate,
-} from "Utils/PageUtils/PageContainerUtil";
-import { View } from "react-native";
-import { DAY_MILLIS, SCREEN_WIDTH } from "Utils/SettingsAndConstants";
-import { Card } from "react-native-paper";
-import { TextTemplate } from "Utils/PageUtils/TextUtil";
-import { ButtonTemplate } from "Utils/PageUtils/ButtonUtil";
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { clearUserToken, TokenStore } from "Globals/TokenStore";
-import { SendData } from "Utils/SendDataUtil";
-import { UserGetTraceMessage } from "Messages/UserMessages/UserGetTraceMessage";
-import { ViewSwitcher } from "../HomePagesUtils/BarUtil";
-import { Trace } from "Types/Trace";
-import { useFocusEffect } from "@react-navigation/native";
-import { TextClock } from "Utils/PageUtils/ClockUtil";
-import { DateClass } from "Types/Templates/DateClass";
-import { VaccinationStatus } from "Types/UserMeta/VaccinationStatus";
-import { VaccineView } from "./UserOverviewPageUtils/VaccineUtil";
-import { NucleicAcidView } from "./UserOverviewPageUtils/NucleicAcidUtil";
-import { PlanTraceList } from "./UserOverviewPageUtils/PlanTraceListUtil";
-import { HealthCode } from "./UserOverviewPageUtils/HealthCodeUtil";
-import { UserInformation } from "Types/UserInformation";
-import { UserId } from "Types/UserMeta/UserId";
-import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
-import { HeaderTemplate } from "Utils/PageUtils/HeaderUtil";
-import { Token } from "Types/UserMeta/Token";
-import { UserGetInfoMessage } from "Messages/UserMessages/UserGetInfoMessage";
-import { clearUserRole } from "Globals/RoleStore";
-import { TemperatureView } from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/Temperature";
-import { Temperature } from "Types/UserMeta/Temperature";
+import {ScreenTemplate, ScrollTemplate,} from "Utils/PageUtils/PageContainerUtil";
+import {View} from "react-native";
+import {DAY_MILLIS, SCREEN_WIDTH} from "Utils/SettingsAndConstants";
+import {Card} from "react-native-paper";
+import {TextTemplate} from "Utils/PageUtils/TextUtil";
+import {ButtonTemplate} from "Utils/PageUtils/ButtonUtil";
+import {StatusBar} from "expo-status-bar";
+import React, {useState} from "react";
+import {clearUserToken, TokenStore} from "Globals/TokenStore";
+import {SendData} from "Utils/SendDataUtil";
+import {UserGetTraceMessage} from "Messages/UserMessages/UserGetTraceMessage";
+import {ViewSwitcher} from "../HomePagesUtils/BarUtil";
+import {Trace} from "Types/Trace";
+import {useFocusEffect} from "@react-navigation/native";
+import {TextClock} from "Utils/PageUtils/ClockUtil";
+import {DateClass} from "Types/Templates/DateClass";
+import {VaccinationStatus} from "Types/UserMeta/VaccinationStatus";
+import {VaccineView} from "./UserOverviewPageUtils/VaccineUtil";
+import {NucleicAcidView} from "./UserOverviewPageUtils/NucleicAcidUtil";
+import {PlanTraceList} from "./UserOverviewPageUtils/PlanTraceListUtil";
+import {HealthCode} from "./UserOverviewPageUtils/HealthCodeUtil";
+import {UserInformation} from "Types/UserInformation";
+import {UserId} from "Types/UserMeta/UserId";
+import {UserRiskLevel} from "Types/UserMeta/UserRiskLevel";
+import {HeaderTemplate} from "Utils/PageUtils/HeaderUtil";
+import {UserGetInfoMessage} from "Messages/UserMessages/UserGetInfoMessage";
+import {clearUserRole} from "Globals/RoleStore";
+import {TemperatureView} from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/Temperature";
+import {Temperature} from "Types/UserMeta/Temperature";
+
+const image = require('Assets/Images/水墨梅.jfif')
 
 export function UserOverviewPage({ navigation }: any) {
   const { token } = TokenStore();
@@ -71,8 +69,8 @@ export function UserOverviewPage({ navigation }: any) {
   };
 
   return (
-    <ScreenTemplate goBack={goBack}>
-      <ViewSwitcher state={"User.Overview"} navigation={navigation} />
+    <ScreenTemplate goBack={goBack} background_image={image}>
+      <ViewSwitcher state={"User.Overview"} navigation={navigation}/>
       <ScrollTemplate>
         <View style={{ height: SCREEN_WIDTH * 0.03 }} />
         <View
