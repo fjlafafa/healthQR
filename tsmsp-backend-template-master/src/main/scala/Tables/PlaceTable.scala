@@ -96,6 +96,9 @@ object PlaceTable {
     places.map(getPlace(_).get)
   }
 
+  def getPlaceRiskLevel(placeId: PlaceId): DBIO[Option[PlaceRiskLevel]] =
+    placeTable.filter(_.id === placeId).map(_.riskLevel).result.headOption
+
   def isEmpty: Try[Boolean] = Try {
     PlaceInfoMSDBUtils.exec(placeTable.size.result) == 0
   }
