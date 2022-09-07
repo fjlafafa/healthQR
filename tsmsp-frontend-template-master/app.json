@@ -4,9 +4,9 @@
     "slug": "jiankangbao",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/Assets/icon.png",
+    "icon": "./src/Assets/Images/icon.png",
     "splash": {
-      "image": "./src/Assets/icon.png",
+      "image": "./src/Assets/Images/校徽.jpeg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

@@ -16,9 +16,7 @@ import {Password} from "Types/UserMeta/Password";
 import {Token} from "Types/UserMeta/Token";
 import {UserLogin} from "Utils/LoginUtils";
 
-//const image = { uri: 'https://zh-hans.reactjs.org/logo-og.png' }
-
-// import LoginIcon from '@mui/icons-material/Login'
+const image = require('Assets/Images/水墨舟.jpeg')
 
 const loginStore = create(() => ({
     userName: '',
@@ -31,7 +29,8 @@ const clearLoginInfo = () => loginStore.setState(({userName: '', password: ''}))
 
 export function LoginPage({navigation}: any) {
     const {userName, password} = loginStore()
-    return (<ScreenTemplate atRoot={true}>
+    return (
+        <ScreenTemplate atRoot={true} background_image={image}>
         <TextInputTemplate label='身份证号' value={userName} onChangeText={(newText: string) => setUserName(newText)}/>
         <TextInputTemplate label='密码' value={password} onChangeText={(newText: string) => setPassword(newText)}
                            secureTextEntry={true}/>

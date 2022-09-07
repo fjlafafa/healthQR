@@ -1,20 +1,30 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
+import {StatusBar} from "expo-status-bar";
 import create from "zustand";
-import { setUserToken } from "Globals/TokenStore";
-import { UserRegisterMessage } from "Messages/UserMessages/UserRegisterMessage";
-import { ButtonToSendMessage } from "Utils/PageUtils/ButtonUtil";
-import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
-import { checkIdentityNumber } from "Utils/FormatUtils/IdentityNumberUtil";
-import { checkPassword } from "Utils/FormatUtils/PasswordUtil";
-import { checkRealName } from "Utils/FormatUtils/RealNameUtil";
-import { RealName } from "Types/UserMeta/RealName";
-import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
-import { Password } from "Types/UserMeta/Password";
-import { SecurityQuestion } from "Types/UserMeta/SecurityQuestion";
-import { SecurityAnswer } from "Types/UserMeta/SecurityAnswer";
-import { Token } from "Types/UserMeta/Token";
+import {setUserToken} from "Globals/TokenStore";
+import {UserRegisterMessage} from "Messages/UserMessages/UserRegisterMessage";
+import {ButtonToSendMessage} from "Utils/PageUtils/ButtonUtil";
+import {ScreenTemplate} from "Utils/PageUtils/PageContainerUtil";
+import {TextInputTemplate} from "Utils/PageUtils/TextInputUtil";
+import {checkIdentityNumber} from "Utils/FormatUtils/IdentityNumberUtil";
+import {checkPassword} from "Utils/FormatUtils/PasswordUtil";
+import {checkRealName} from "Utils/FormatUtils/RealNameUtil";
+import {RealName} from "Types/UserMeta/RealName";
+import {IdentityNumber} from "Types/UserMeta/IdentityNumber";
+import {Password} from "Types/UserMeta/Password";
+import {SecurityQuestion} from "Types/UserMeta/SecurityQuestion";
+import {SecurityAnswer} from "Types/UserMeta/SecurityAnswer";
+import {Token} from "Types/UserMeta/Token";
+import {ImageBackground, StyleSheet} from "react-native";
+
+const image = require('Assets/Images/水墨舟.jpeg')
+const settings = StyleSheet.create({
+    image: {
+        flex: 1,
+        justifyContent: 'center',
+        resizeMode: "cover"
+    }
+})
 
 const registerStore = create(() => ({
   realName: "",
@@ -36,7 +46,8 @@ export function RegisterPage({ navigation }: any) {
 
   return (
     <ScreenTemplate goBack={goBack}>
-      <TextInputTemplate
+        <ImageBackground source={image} resizeMode="cover" style={settings.image} imageStyle={{opacity: 0.5}}>
+            <TextInputTemplate
         label={"真实姓名"}
         value={realName}
         onChangeText={(newText: string) => setUserName(newText)}
@@ -81,6 +92,7 @@ export function RegisterPage({ navigation }: any) {
         }}
       />
       <StatusBar style="auto" />
+        </ImageBackground>
     </ScreenTemplate>
   );
 }
