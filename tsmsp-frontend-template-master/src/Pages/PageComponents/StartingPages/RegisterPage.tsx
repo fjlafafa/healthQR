@@ -42,7 +42,10 @@ const clearRegisterInfo = () =>
 export function RegisterPage({ navigation }: any) {
   const { realName, password, identityNumber } = registerStore();
 
-  const goBack = () => navigation.navigate("Start.Login");
+  const goBack = () => {
+    navigation.navigate("Start.Login");
+    clearRegisterInfo()
+  }
 
   return (
     <ScreenTemplate goBack={goBack}>
