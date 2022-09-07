@@ -18,11 +18,11 @@ case class AdminChangeRoleMessage(adminToken: Token, clientToken: Token, newRole
     if (role != Administrator) {
       throw PermissionDeniedException()
     }
-    if(newRole == SuperAdministrator) {
+    if (newRole == SuperAdministrator) {
       throw PermissionDeniedException()
     }
-      if (role != SuperAdministrator) {
-      if(newRole == Administrator){
+    if (role != SuperAdministrator) {
+      if (newRole == Administrator) {
         throw PermissionDeniedException()
       }
     }

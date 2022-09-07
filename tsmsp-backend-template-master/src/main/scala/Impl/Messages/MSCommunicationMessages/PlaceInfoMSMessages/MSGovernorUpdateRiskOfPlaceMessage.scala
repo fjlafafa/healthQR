@@ -9,7 +9,7 @@ import org.joda.time.DateTime
 
 import scala.util.Try
 
-case class MSGovernorUpdateRiskOfPlaceMessage(placeId:PlaceId, placeRiskLevel:PlaceRiskLevel) extends TSMSPMessage {
+case class MSGovernorUpdateRiskOfPlaceMessage(placeId: PlaceId, placeRiskLevel: PlaceRiskLevel) extends TSMSPMessage {
   override def reaction(now: DateTime): Try[TSMSPReply] = Try {
     PlaceInfoMSDBUtils.exec(PlaceTable.updatePlaceRiskLevel(placeId, placeRiskLevel))
     TSMSPReply(STATUS_OK, "地点风险等级更新成功！")

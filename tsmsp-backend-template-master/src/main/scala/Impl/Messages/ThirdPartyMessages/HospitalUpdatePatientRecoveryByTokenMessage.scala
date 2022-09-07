@@ -3,12 +3,11 @@ package Impl.Messages.ThirdPartyMessages
 import Exceptions.{PermissionDeniedException, TokenNotExistsException}
 import Globals.GlobalVariables
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages.MSHospitalUpdatePatientRecoveryMessage
-import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSHospitalUpdateVaccinationMessage
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
 import Tables.PermissionRoleTable.checkPermission
 import Tables.UserIdentityTable
-import Types.UserMeta.{RecoverPatient, Token, UpdateVaccination}
+import Types.UserMeta.{RecoverPatient, Token}
 import Utils.DBUtils
 import Utils.HTTPUtils.sender
 import org.joda.time.DateTime

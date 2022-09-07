@@ -7,7 +7,6 @@ import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
 import Tables.PermissionRoleTable.checkPermission
 import Tables.UserIdentityTable
-import Types.PlaceMeta.PlaceRiskLevel
 import Types.UserMeta.{IdentityNumber, SetRiskOfUser, Token, UserRiskLevel}
 import Utils.DBUtils
 import Utils.HTTPUtils.sender

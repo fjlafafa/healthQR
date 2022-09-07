@@ -8,7 +8,7 @@ import Impl.TSMSPReply
 import Tables.PermissionRoleTable.checkPermission
 import Tables.UserIdentityTable
 import Types.PlaceMeta.{PlaceId, PlaceRiskLevel}
-import Types.UserMeta.{IdentityNumber, SetRiskOfPlace, Token}
+import Types.UserMeta.{SetRiskOfPlace, Token}
 import Utils.HTTPUtils.sender
 import org.joda.time.DateTime
 

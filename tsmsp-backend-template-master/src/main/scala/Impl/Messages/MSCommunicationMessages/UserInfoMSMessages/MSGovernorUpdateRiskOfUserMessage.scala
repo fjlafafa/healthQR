@@ -2,11 +2,9 @@ package Impl.Messages.MSCommunicationMessages.UserInfoMSMessages
 
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
-import Process.PlaceInfoMS.PlaceInfoMSDBUtils
 import Process.UserInfoMS.UserInfoMSDBUtils
-import Tables.{PlaceTable, UserInformationTable}
-import Types.PlaceMeta.{PlaceId, PlaceRiskLevel}
-import Types.UserMeta.{IdentityNumber, UserId, UserRiskLevel}
+import Tables.UserInformationTable
+import Types.UserMeta.{UserId, UserRiskLevel}
 import org.joda.time.DateTime
 
 import scala.util.Try
