@@ -1,11 +1,14 @@
 package Impl.Messages.UserMessages
 
 import Exceptions.{TokenNotExistsException, UserNameAlreadyExistsException}
+import Globals.GlobalVariables
 import Globals.GlobalVariables.clientSystem.executionContext
+import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSUserRegisterMessage
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.{UserIdentityTable, UserInformationTable}
 import Types.UserMeta._
+import Utils.HTTPUtils.sender
 import Utils.MessageTypesUtils.EnumAutoConverter._
 import Utils.MessageTypesUtils.PasswordAutoEncoder._
 import Utils.{DBUtils, IOUtils, StringUtils}
@@ -31,12 +34,10 @@ case class UserRegisterMessage(realName: RealName, password: Password, identityN
             SecurityAnswerEncoder(securityAnswer, salt),
           )
           >>
-          UserIdentityTable.checkIdByIdentityNumber(identityNumber).flatMap(
-            userId => UserInformationTable.addUser(userId.getOrElse(throw TokenNotExistsException()))
-          ) >>
           UserIdentityTable.checkIdByIdentityNumber(identityNumber)
           ).transactionally
       ).get
+      MSUserRegisterMessage(userId).send(GlobalVariables.VaccineAndNucleicMSIP).get
       TSMSPReply(STATUS_OK, IOUtils.serialize(UserIdentityTable.checkToken(userId).get).get)
     }
   }

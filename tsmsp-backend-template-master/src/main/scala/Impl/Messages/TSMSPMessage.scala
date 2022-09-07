@@ -21,6 +21,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[UserLoginMessage], name = "UserLoginMessage"),
     new JsonSubTypes.Type(value = classOf[UserCheckRoleMessage], name = "UserCheckRoleMessage"),
     new JsonSubTypes.Type(value = classOf[UserRegisterMessage], name = "UserRegisterMessage"),
+    new JsonSubTypes.Type(value = classOf[MSUserRegisterMessage], name = "MSUserRegisterMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdatePasswordMessage], name = "UserUpdatePasswordMessage"),
     new JsonSubTypes.Type(value = classOf[UserUpdateTraceMessage], name = "UserUpdateTraceMessage"),
     new JsonSubTypes.Type(value = classOf[UserDeleteTraceMessage], name = "UserDeleteTraceMessage"),
