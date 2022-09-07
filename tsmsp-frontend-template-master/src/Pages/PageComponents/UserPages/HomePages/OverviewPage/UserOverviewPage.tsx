@@ -174,6 +174,10 @@ export function UserOverviewPage({ navigation }: any) {
             justifyContent: "center" /*backgroundColor: '#f0f'/**/,
           }}
         >
+            <ButtonTemplate
+                icon={'refresh'}
+                onPress={()=>refresh()}
+                text={'刷新'}/>
           {/*其他微服务*/}
           <HeaderTemplate text="其他微服务" />
 
