@@ -66,7 +66,6 @@ export function PagesStack({navigation}: any) {
                     <Stack.Screen name={'Admin.GeneratePlaceQR'} component={GeneratePlaceQRPage}/>
                     <Stack.Screen name={'Admin.SetRiskOfPlaceByManual'} component={SetRiskOfPlaceByManualPage}/>
                     <Stack.Screen name={'Admin.SetRiskOfUserByManual'} component={SetRiskOfUserByManualPage}/>
-                    <Stack.Screen name={'Admin.GeneratePlaceQR'} component={GeneratePlaceQRPage}/>
                     <Stack.Screen name={'Admin.Overview'} component={AdminOverviewPage}/>
                     <Stack.Screen name={'Admin.Permission'} component={PermissionPage}/>
                     <Stack.Screen name={'ThirdParty.NucleicAcid'} component={NucleicAcidPage}/>

@@ -12,7 +12,7 @@ export function RecoverPatientByManualPage({navigation}:any){
     const {token} = TokenStore.getState()
     const goBack = () => navigation.navigate('ThirdParty.Overview')
     return <ScreenTemplate goBack={goBack}>
-        <TextInputTemplate label='恢复人身份证号' value={identity}
+        <TextInputTemplate label='恢复人身份证号' value={identity.token}
                            onChangeText={(identity: string) => setIdentity(new IdentityNumber(identity))}/>
 
         <ButtonToSendMessage

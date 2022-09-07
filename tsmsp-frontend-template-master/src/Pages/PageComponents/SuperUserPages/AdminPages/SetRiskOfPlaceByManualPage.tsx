@@ -17,12 +17,12 @@ export function SetRiskOfPlaceByManualPage({navigation}:any){
 
     const goBack = () => navigation.navigate('Admin.Overview')
     const {token} = TokenStore()
-    const [placeId, setPlaceId] = useState(new PlaceId(0))
+    const [placeId, setPlaceId] = useState(new PlaceId(NaN))
     const [riskLevel, setPlaceRiskLevel] = useState(PlaceRiskLevel.red)
 
     return <ScreenTemplate goBack={goBack}>
         <View style={{height: 30}}/>
-        <TextInputTemplate label='地点码' value={placeId.id}
+        <TextInputTemplate label='地点码' value={(isNaN(placeId.id)?'':placeId.id.toString())}
                            onChangeText={(id: string) => setPlaceId(new PlaceId(parseInt(id)))}/>
 
         <ButtonGroup chosen={riskLevel.toString()} subprops={[

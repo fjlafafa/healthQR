@@ -92,7 +92,7 @@ export function HelpingPage({ navigation }: any) {
                         />
                     </View>
                 </View>
-                <TextInputTemplate label='查询对象身份证号' value={identityNumber}
+                <TextInputTemplate label='查询对象身份证号' value={identityNumber.token}
                                    onChangeText={(identity: string) => setIdentityNumber(new IdentityNumber(identity))}/>
 
                 <ButtonToSendMessage

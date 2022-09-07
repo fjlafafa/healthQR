@@ -105,6 +105,8 @@ export function InfoQRCodePage({ navigation }: any) {
               flex: 1,
               alignItems: "center",
               justifyContent: "center",
+                height: '100%',
+                /*backgroundColor: '#f0f'/**/
             }}
           >
             <LargeVaccineView vaccinationStatus={info.vaccinationStatus} />
@@ -114,11 +116,11 @@ export function InfoQRCodePage({ navigation }: any) {
               flex: 1,
               alignItems: "center",
               justifyContent: "center",
+                height: '100%',
+                /*backgroundColor: '#f0f'/**/
             }}
           >
-            <LargeNucleicAcidView
-              recentNucleicTestTime={info.recentNucleicTestTime}
-            />
+            <LargeNucleicAcidView recentNucleicTestTime={info.recentNucleicTestTime}/>
           </View>
         </View>
         <HeaderTemplate text="核酸疫苗相关微服务" />
