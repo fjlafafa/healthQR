@@ -4,7 +4,7 @@ import Impl.Messages.AdminMessages.{AdminChangeRoleMessage, GovernorUpdateRiskOf
 import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.{MSGovernorUpdateRiskOfPlaceMessage, MSHospitalUpdatePlaceRiskLevelMessage, MSUserGetPlaceMessage}
 import Impl.Messages.MSCommunicationMessages.UserInfoMSMessages._
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages._
-import Impl.Messages.TestMessages.{AdminDropDataBasesMessage, AdminTestMessage}
+import Impl.Messages.TestMessages._
 import Impl.Messages.ThirdPartyMessages._
 import Impl.Messages.UserMessages._
 import Impl.{JacksonSerializable, STATUS_ERROR, TSMSPReply}
@@ -43,6 +43,7 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[HospitalUpdateVaccinationMessage], name = "HospitalUpdateVaccinationMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdateRiskLevelByTokenMessage], name = "HospitalUpdateRiskLevelByTokenMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUploadPositiveNucleicTestResultMessage], name = "HospitalUploadPositiveNucleicTestResultMessage"),
+    new JsonSubTypes.Type(value = classOf[HospitalUploadPositiveNucleicTestResultByTokenMessage], name = "HospitalUploadPositiveNucleicTestResultByTokenMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdatePatientRecoveryMessage], name = "HospitalUpdatePatientRecoveryMessage"),
     new JsonSubTypes.Type(value = classOf[HospitalUpdatePatientRecoveryByTokenMessage], name = "HospitalUpdatePatientRecoveryByTokenMessage"),
     new JsonSubTypes.Type(value = classOf[GovernorUpdateRiskOfUserMessage], name = "GovernorUpdateRiskOfUserMessage"),
