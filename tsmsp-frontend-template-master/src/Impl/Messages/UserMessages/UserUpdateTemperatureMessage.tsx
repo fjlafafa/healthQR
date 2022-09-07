@@ -2,7 +2,7 @@ import { TSMSPMessage } from "Messages/TSMSPMessage";
 import { Temperature } from "Types/UserMeta/Temperature";
 import { Token } from "Types/UserMeta/Token";
 
-export class UserUpdateTemperature extends TSMSPMessage {
+export class UserUpdateTemperatureMessage extends TSMSPMessage {
   userToken: Token;
   temperature: Temperature;
 

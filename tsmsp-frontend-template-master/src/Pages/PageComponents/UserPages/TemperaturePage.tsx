@@ -3,7 +3,7 @@ import { ButtonToSendMessage } from "Utils/PageUtils/ButtonUtil";
 import React from "react";
 import create from "zustand";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
-import { UserUpdateTemperature } from "Messages/UserMessages/UserUpdateTemperature";
+import { UserUpdateTemperatureMessage } from "Messages/UserMessages/UserUpdateTemperatureMessage";
 import { TokenStore } from "Globals/TokenStore";
 import { Temperature } from "Types/UserMeta/Temperature";
 import { checkTemperature } from "Utils/FormatUtils/TemperatureUtils";
@@ -31,7 +31,7 @@ export function TemperaturePage({ navigation }: any) {
           alert("请输入正确的摄氏度体温");
         }}
         toSendMessage={
-          new UserUpdateTemperature(token, new Temperature(+temperature))
+          new UserUpdateTemperatureMessage(token, new Temperature(+temperature))
         }
         text="上传"
         ifSuccess={() => {

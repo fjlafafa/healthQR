@@ -61,6 +61,8 @@ import scala.util.{Failure, Success, Try}
     new JsonSubTypes.Type(value = classOf[MSUserCheckInfoMessage], name = "MSUserCheckInfoMessage"),
     new JsonSubTypes.Type(value = classOf[MSUserGetPlaceMessage], name = "MSUserGetPlaceMessage"),
     new JsonSubTypes.Type(value = classOf[MSHospitalDiffusionMessage], name = "MSHospitalDiffusionMessage"),
+    new JsonSubTypes.Type(value = classOf[MSUserUpdateTemperatureMessage], name = "MSUserUpdateTemperatureMessage"),
+    new JsonSubTypes.Type(value = classOf[UserUpdateTemperatureMessage], name = "UserUpdateTemperatureMessage"),
   ))
 abstract class TSMSPMessage extends JacksonSerializable {
   def handle(): TSMSPReply = reaction(
