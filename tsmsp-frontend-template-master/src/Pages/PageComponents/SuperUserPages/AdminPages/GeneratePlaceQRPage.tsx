@@ -33,7 +33,7 @@ export function GeneratePlaceQRPage({ navigation }: any) {
       PlaceRiskLevel.red
     )
   );
-  const avatar = require("Assets/Images/iiis-logo.png");
+  const avatar = require("Assets/Images/钥匙盾.jpeg");
 
   const goBack = () => navigation.navigate("Admin.Overview");
   const { token } = TokenStore();

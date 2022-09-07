@@ -28,7 +28,7 @@ import {clearUserRole} from "Globals/RoleStore";
 import {TemperatureView} from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/Temperature";
 import {Temperature} from "Types/UserMeta/Temperature";
 
-const image = require('Assets/Images/水墨梅.jfif')
+const image = require('Assets/Images/水墨梅.jpeg')
 
 export function UserOverviewPage({ navigation }: any) {
   const { token } = TokenStore();
