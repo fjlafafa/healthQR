@@ -23,11 +23,16 @@ export function AdminOverviewPage({ navigation }: any) {
           onPress={() => navigation.navigate("Admin.GeneratePlaceQR")}
           text="生成地点码"
         />
-          <ButtonTemplate
-              onPress={() => navigation.navigate('Admin.SetRiskOfUserByManual')}
-              text="设置用户风险"
-              disabled={!checkPermission(role,Permissions.setRiskOfUser)}
-          />
+        <ButtonTemplate
+            onPress={() => navigation.navigate('Admin.Permission')}
+            text="设置用户权限"
+            disabled={!checkPermission(role,Permissions.setThirdParty)}
+        />
+        <ButtonTemplate
+            onPress={() => navigation.navigate('Admin.SetRiskOfUserByManual')}
+            text="设置用户风险"
+            disabled={!checkPermission(role,Permissions.setRiskOfUser)}
+        />
           <ButtonTemplate
               onPress={() => navigation.navigate('Admin.SetRiskOfPlaceByManual')}
               text="设置地点风险"

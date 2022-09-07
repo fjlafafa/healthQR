@@ -74,6 +74,7 @@ export function HelpingPage({ navigation }: any) {
                     <View
                         style={{
                             flex: 1,
+                            height:'100%',
                             alignItems: "center",
                             justifyContent: "center",
                         }}
@@ -83,6 +84,7 @@ export function HelpingPage({ navigation }: any) {
                     <View
                         style={{
                             flex: 1,
+                            height:'100%',
                             alignItems: "center",
                             justifyContent: "center",
                         }}
@@ -102,7 +104,9 @@ export function HelpingPage({ navigation }: any) {
                         alert('请重新检查身份证号是否填写正确')
                     }}
                     toSendMessage={new UserGetOthersInfoMessage(token, identityNumber)}
-                    ifSuccess={(reply:UserInformation)=>setInfo(reply)}
+                    ifSuccess={(reply:UserInformation)=>{
+                        setInfo(reply)
+                    }}
                     text='查看'
                 />
                 <StatusBar style="auto" />

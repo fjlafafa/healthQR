@@ -28,6 +28,7 @@ export class ButtonTemplate extends React.Component<any> {
     mode: "elevated",
     text: null,
     children: null,
+    disabled: false,
   };
 
   render() {
@@ -37,6 +38,7 @@ export class ButtonTemplate extends React.Component<any> {
           style={setting.button}
           icon={this.props.icon}
           mode={this.props.mode}
+          disabled={this.props.disabled}
           onPress={() => this.props.onPress()}
         >
           <Text style={setting.text}>{this.props.text}</Text>
@@ -70,6 +72,7 @@ export class ButtonToSendMessage extends React.Component<any> {
     checkElse: () => {},
     toSendMessage: null,
     onPress: () => {}, //Usually we can use ifSuccess as inPress even if we are not sending message
+    disabled: false
   };
 
   render() {
@@ -77,6 +80,7 @@ export class ButtonToSendMessage extends React.Component<any> {
       <ButtonTemplate
         icon={this.props.icon}
         text={this.props.text}
+        disabled={this.props.disabled}
         onPress={() => {
           this.props.onPress();
           if (this.props.checkBeforeSendMessage()) {
