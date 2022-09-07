@@ -3,8 +3,9 @@ package Impl.Messages.AdminMessages
 import Exceptions.{PermissionDeniedException, TokenNotExistsException}
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
+import Tables.PermissionRoleTable.checkPermission
 import Tables.UserIdentityTable
-import Types.UserMeta.{Administrator, Roles, SuperAdministrator, Token}
+import Types.UserMeta.{Administrator, Roles, SetAdmin, SetThirdParty, SuperAdministrator, Token}
 import Utils.DBUtils
 import org.joda.time.DateTime
 
@@ -15,13 +16,13 @@ case class AdminChangeRoleMessage(adminToken: Token, clientToken: Token, newRole
     val role = UserIdentityTable.getRoleFromToken(adminToken).get
     val clientId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(clientToken)).getOrElse(throw TokenNotExistsException())
 
-    if (role != Administrator) {
+    if (!checkPermission(role,SetThirdParty)) {
       throw PermissionDeniedException()
     }
     if (newRole == SuperAdministrator) {
       throw PermissionDeniedException()
     }
-    if (role != SuperAdministrator) {
+    if (!checkPermission(role,SetAdmin)) {
       if (newRole == Administrator) {
         throw PermissionDeniedException()
       }

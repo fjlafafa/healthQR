@@ -63,6 +63,8 @@ export function AccountInfoPage({ navigation }: any) {
         value={identityNumber.token}
         disabled={true}
       />
+
+
       <TextInputTemplate
         label={"权限身份"}
         value={role.toString()}
