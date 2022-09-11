@@ -48,8 +48,8 @@ export function ModifyTracePage({ navigation }: any) {
     SendData(
       new UserGetTraceMessage(
         token,
-          new Date().getTime() - 14* DAY_MILLIS,
-          new Date().getTime() + DAY_MILLIS
+        new Date().getTime() - 14 * DAY_MILLIS,
+        new Date().getTime() + DAY_MILLIS
       ),
       (reply: Trace[]) => {
         setTraceHistory(reply);

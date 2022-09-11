@@ -34,7 +34,7 @@ export function NucleicAcidPage({ navigation }: any) {
 
   return (
     <ScreenTemplate goBack={goBack}>
-      <View style={{ height: 30 }}/>
+      <View style={{ height: 30 }} />
       <TextTemplate>
         当前核酸检测目标用户为：{client.realName.name}
       </TextTemplate>

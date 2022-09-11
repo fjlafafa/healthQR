@@ -59,7 +59,7 @@ export function GeneratePlaceQRPage({ navigation }: any) {
             }}
           >
             <Card style={{ width: "95%", height: "80%", alignItems: "center" }}>
-              <View style={{ height: "20%" ,width: "100%", }} />
+              <View style={{ height: "20%", width: "100%" }} />
 
               <TextTemplate> 请输入地点代码以查询二维码 </TextTemplate>
             </Card>

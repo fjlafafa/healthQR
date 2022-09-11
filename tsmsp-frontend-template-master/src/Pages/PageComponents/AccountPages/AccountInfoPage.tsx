@@ -64,7 +64,6 @@ export function AccountInfoPage({ navigation }: any) {
         disabled={true}
       />
 
-
       <TextInputTemplate
         label={"权限身份"}
         value={role.toString()}
