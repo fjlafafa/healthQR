@@ -69,7 +69,6 @@ export function RegisterPage({ navigation }: any) {
           onChangeText={(newText: string) => setRealName(newText)}
         />
 
-        {/*console.log('试图使用用户名'+userName+',密码'+password + ',真实姓名'+realName + '注册！')*/}
         <ButtonToSendMessage
           checkBeforeSendMessage={() =>
             checkRealName(realName) &&
