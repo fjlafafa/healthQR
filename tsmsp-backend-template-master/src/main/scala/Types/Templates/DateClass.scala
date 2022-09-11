@@ -1,5 +1,4 @@
 package Types.Templates
-//Not Used
 
 import Impl.JacksonSerializable
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
@@ -18,7 +17,6 @@ class DateTimeSerializer extends StdSerializer[DateClass](classOf[DateClass]) {
     gen.writeString(value.date.getMillis.toString)
 }
 
-//???
 class DateTimeDeserializer extends StdDeserializer[DateClass](classOf[DateClass]) {
   override def deserialize(p: JsonParser, ctxt: DeserializationContext): DateClass =
     DateClass(new DateTime(p.getText))

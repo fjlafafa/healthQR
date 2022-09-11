@@ -78,7 +78,6 @@ object PlaceTable {
   def updatePlaceRiskLevel(placeId: PlaceId, riskLevel: PlaceRiskLevel): DBIO[Int] =
     placeTable.filter(_.id === placeId).map(_.riskLevel).update(riskLevel)
 
-  //  && placeRiskLevelGreaterOrEqual(riskLevel, pl.riskLevel)
   def increasePlaceRiskLevel(placeIds: List[PlaceId], riskLevel: PlaceRiskLevel): DBIO[List[Int]] =
     DBIO.sequence(
       placeIds.filter(
