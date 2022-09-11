@@ -73,11 +73,11 @@ export function RegisterPage({ navigation }: any) {
         />
 
         <ButtonToSendMessage
-          // checkBeforeSendMessage={() =>
-          //   checkRealName(realName) &&
-          //   checkPassword(password) &&
-          //   checkIdentityNumber(identityNumber)
-          // }
+          checkBeforeSendMessage={() =>
+            checkRealName(realName) &&
+            checkPassword(password) &&
+            checkIdentityNumber(identityNumber)
+          }
           checkElse={() => {
             alert("姓名、密码（至少六位）或身份证号不符要求！");
           }}

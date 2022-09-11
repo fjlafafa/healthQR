@@ -1,5 +1,6 @@
 package Process.PlaceInfoMS
 
+import Globals.MicroserviceSettings.placeInfoMSWorkerNumbers
 import Impl.Messages.TSMSPMessage
 import Impl.TSMSPReply
 import akka.actor.typed.scaladsl.Behaviors
@@ -16,16 +17,14 @@ object PlaceInfoMSMaster {
 
   case class RouterResponse(result: TSMSPReply)
 
-  val workerNumber = 4
-
   def apply(): Behavior[Message] = {
     Behaviors.setup[Message] { ctx =>
-      val workers = for (i <- 0 until workerNumber)
+      val workers = for (i <- 0 until placeInfoMSWorkerNumbers)
         yield ctx.spawn(PlaceInfoMSWorker(i), "worker" + i)
       Behaviors.receiveMessage[Message] {
         case RouterRequest(query, router) =>
           val r = scala.util.Random
-          workers(r.nextInt(workerNumber)) ! WorkerTask(query, router, ctx.self)
+          workers(r.nextInt(placeInfoMSWorkerNumbers)) ! WorkerTask(query, router, ctx.self)
           Behaviors.same
         case WorkerResponse(answer, router) =>
           router ! RouterResponse(answer)

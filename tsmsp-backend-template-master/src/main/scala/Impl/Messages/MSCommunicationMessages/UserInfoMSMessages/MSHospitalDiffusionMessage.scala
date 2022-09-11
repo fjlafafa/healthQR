@@ -22,6 +22,7 @@ case class MSHospitalDiffusionMessage(diagnosedUserId: List[UserId]) extends TSM
 
     def DiffusionStep(sourceUserInfo: (List[UserId], UserRiskLevel, List[DateTime])): (List[UserId], UserRiskLevel, List[DateTime]) = {
       val (sourceUserIds, sourceUserRiskLevel, alertTime) = sourceUserInfo
+
       // Set user level at this step
       MSHospitalUpdateUserRiskLevelMessage(sourceUserIds, sourceUserRiskLevel)
         .send(GlobalVariables.VaccineAndNucleicMSIP)
@@ -34,9 +35,10 @@ case class MSHospitalDiffusionMessage(diagnosedUserId: List[UserId]) extends TSM
         )
       }
       val sourcePlaceRiskLevel = UserRiskLevelToPlaceRiskLevel(sourceUserRiskLevel)
-      val sourcePlaceId: List[PlaceId] = sourceUserTrace.map(_.visitPlaceId).distinct
+      val sourcePlaceId: List[PlaceId] = sourceUserTrace.map(_.visitPlaceId)
       MSHospitalUpdatePlaceRiskLevelMessage(sourcePlaceId, sourcePlaceRiskLevel).send(GlobalVariables.PlaceInfoMSIP)
 
+      // find affected user at next step
       val visitSourcePlaceTime: List[DateTime] = sourceUserTrace.map(_.time)
       val visitSourcePlaceFilterStartTime = visitSourcePlaceTime.map(_.minusMinutes(30))
       val visitSourcePlaceFilterEndTime = visitSourcePlaceTime.map(_.minusWeeks(-2))
@@ -44,14 +46,14 @@ case class MSHospitalDiffusionMessage(diagnosedUserId: List[UserId]) extends TSM
         (sourcePlaceId zip (visitSourcePlaceFilterStartTime zip visitSourcePlaceFilterEndTime)).flatMap(
           info =>
             UserInfoMSDBUtils.exec(UserTraceTable.checkUserWithTrace(info._1, info._2._1, info._2._2))
-        ).distinct.filterNot(userId => sourceUserIds.contains(userId))
+        ).filterNot(userId => sourceUserIds.contains(userId))
       }
       val diffusedUserRiskLevel = PlaceRiskLevelToUserRiskLevel(sourcePlaceRiskLevel)
       val diffusedUserAlertTime: List[DateTime] =
         (sourcePlaceId zip (visitSourcePlaceFilterStartTime zip visitSourcePlaceFilterEndTime)).flatMap(
           info =>
             UserInfoMSDBUtils.exec(UserTraceTable.getAlertTimeWithTrace(info._1, info._2._1, info._2._2))
-        ).distinct
+        )
 
       Tuple3(diffusedUserId, diffusedUserRiskLevel, diffusedUserAlertTime)
     }
