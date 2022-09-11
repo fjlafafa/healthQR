@@ -65,5 +65,5 @@ object UserInformationTable {
         .map(userId =>
           userInformationTable.filter(_.id === userId).map(_.riskLevel).update(riskLevel)
         )
-    )
+    ).transactionally
 }

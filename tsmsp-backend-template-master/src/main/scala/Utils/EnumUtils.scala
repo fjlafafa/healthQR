@@ -8,10 +8,11 @@ object EnumUtils {
   def userRiskLevelGreaterOrEqual(userRiskLevel_a: UserRiskLevel, userRiskLevel_b: UserRiskLevel): Boolean = {
     if (userRiskLevel_a.v == userRiskLevel_b.v) return true
     else if (userRiskLevel_a.v == UserRiskLevels.red) return true
-    else if (userRiskLevel_a.v == UserRiskLevels.yellow)
-      if (userRiskLevel_b.v != UserRiskLevels.red) return true
-      else if (userRiskLevel_a.v == UserRiskLevels.popUps)
-        if (userRiskLevel_b.v == UserRiskLevels.green) return true
+    else if (userRiskLevel_a.v == UserRiskLevels.yellow) {
+        if (userRiskLevel_b.v != UserRiskLevels.red) return true
+      }
+    else if (userRiskLevel_a.v == UserRiskLevels.popUps)
+      if (userRiskLevel_b.v == UserRiskLevels.green) return true
 
     false
   }
