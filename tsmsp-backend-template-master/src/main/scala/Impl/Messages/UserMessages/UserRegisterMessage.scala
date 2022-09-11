@@ -1,12 +1,11 @@
 package Impl.Messages.UserMessages
 
-import Exceptions.{TokenNotExistsException, UserNameAlreadyExistsException}
+import Exceptions.UserNameAlreadyExistsException
 import Globals.GlobalVariables
-import Globals.GlobalVariables.clientSystem.executionContext
 import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSUserRegisterMessage
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
-import Tables.{UserIdentityTable, UserInformationTable}
+import Tables.UserIdentityTable
 import Types.UserMeta._
 import Utils.HTTPUtils.sender
 import Utils.MessageTypesUtils.EnumAutoConverter._

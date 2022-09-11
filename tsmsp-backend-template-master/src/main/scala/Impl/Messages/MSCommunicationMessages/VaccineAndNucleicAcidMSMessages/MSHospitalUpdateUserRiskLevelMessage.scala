@@ -6,7 +6,6 @@ import Process.VaccineAndNucleicMS.VaccineAndNucleicMSDBUtils
 import Tables.UserInformationTable
 import Types.UserMeta.{UserId, UserRiskLevel}
 import org.joda.time.DateTime
-import slick.jdbc.PostgresProfile.api._
 
 import scala.util.Try
 

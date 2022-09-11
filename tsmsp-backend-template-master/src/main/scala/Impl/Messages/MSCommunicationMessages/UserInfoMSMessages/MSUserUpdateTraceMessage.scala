@@ -1,6 +1,8 @@
 package Impl.Messages.MSCommunicationMessages.UserInfoMSMessages
 
+import Globals.GlobalVariables._
 import Impl.Messages.MSCommunicationMessages.PlaceInfoMSMessages.MSUserGetPlaceRiskLevelMessage
+import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSHospitalUpdateUserRiskLevelMessage
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Process.UserInfoMS.UserInfoMSDBUtils
@@ -8,12 +10,10 @@ import Tables.UserTraceTable
 import Types.PlaceMeta.{DetailedPlaceDescription, PlaceId, PlaceRiskLevel}
 import Types.TraceMeta.ReportType
 import Types.UserMeta.UserId
-import org.joda.time.DateTime
-import Globals.GlobalVariables._
-import Impl.Messages.MSCommunicationMessages.VaccineAndNucleicAcidMSMessages.MSHospitalUpdateUserRiskLevelMessage
-import Utils.MessageTypesUtils.EnumAutoConverter._
 import Utils.HTTPUtils.sender
+import Utils.MessageTypesUtils.EnumAutoConverter._
 import Utils.RiskLevelDiffusionUtils.PlaceRiskLevelToUserRiskLevel
+import org.joda.time.DateTime
 
 import scala.util.Try
 

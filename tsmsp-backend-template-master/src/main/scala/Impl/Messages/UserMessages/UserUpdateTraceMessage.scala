@@ -11,7 +11,6 @@ import Types.TraceMeta.ReportType
 import Types.UserMeta.Token
 import Utils.DBUtils
 import Utils.HTTPUtils.sender
-import Utils.MessageTypesUtils.EnumAutoConverter._
 import org.joda.time.DateTime
 
 import scala.util.Try

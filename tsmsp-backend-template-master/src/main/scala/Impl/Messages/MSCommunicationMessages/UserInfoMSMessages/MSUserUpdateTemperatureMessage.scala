@@ -2,12 +2,12 @@ package Impl.Messages.MSCommunicationMessages.UserInfoMSMessages
 
 import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
-import org.joda.time.DateTime
-import Tables.UserInformationTable
-import Types.UserMeta.UserId
-import Types.UserMeta.Temperature
-import scala.util.Try
 import Process.UserInfoMS.UserInfoMSDBUtils
+import Tables.UserInformationTable
+import Types.UserMeta.{Temperature, UserId}
+import org.joda.time.DateTime
+
+import scala.util.Try
 
 
 case class MSUserUpdateTemperatureMessage(userId: UserId, temperature: Temperature) extends TSMSPMessage {

@@ -5,7 +5,7 @@ import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Tables.PermissionRoleTable.checkPermission
 import Tables.UserIdentityTable
-import Types.UserMeta.{Administrator, Roles, SetAdmin, SetThirdParty, SuperAdministrator, Token}
+import Types.UserMeta._
 import Utils.DBUtils
 import org.joda.time.DateTime
 
@@ -16,13 +16,13 @@ case class AdminChangeRoleMessage(adminToken: Token, clientToken: Token, newRole
     val role = UserIdentityTable.getRoleFromToken(adminToken).get
     val clientId = DBUtils.exec(UserIdentityTable.checkUserIdByToken(clientToken)).getOrElse(throw TokenNotExistsException())
 
-    if (!checkPermission(role,SetThirdParty)) {
+    if (!checkPermission(role, SetThirdParty)) {
       throw PermissionDeniedException()
     }
     if (newRole == SuperAdministrator) {
       throw PermissionDeniedException()
     }
-    if (!checkPermission(role,SetAdmin)) {
+    if (!checkPermission(role, SetAdmin)) {
       if (newRole == Administrator) {
         throw PermissionDeniedException()
       }

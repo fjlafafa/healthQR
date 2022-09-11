@@ -26,7 +26,7 @@ class UserInfoMSRoutes()(implicit val system: ActorSystem[UserInfoMSMaster.Messa
   val settings: CorsSettings.Default = CorsSettings.defaultSettings.copy(
     allowedOrigins = HttpOriginRange.* // * refers to all
   )
-  implicit val timeout: Timeout = 3.seconds
+  implicit val timeout: Timeout = 10.seconds
   implicit val scheduler: Scheduler = system.scheduler
   implicit val ec: ExecutionContextExecutor = system.executionContext
   val routes: Route = {

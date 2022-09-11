@@ -34,7 +34,7 @@ const setting = StyleSheet.create({
   },
   image: {
     flex: 1,
-    width:'100%',
+    width: "100%",
     justifyContent: "center",
     resizeMode: "cover",
   },
@@ -53,29 +53,21 @@ export class ScreenTemplate extends React.Component<any, any> {
     return (
       /*@ts-ignore*/
       <View style={setting.screen}>
-
         <View style={setting.safeArea} />
         <Appbar
-            style={setting.bar}
-            mode={this.props.atRoot ? "center-aligned" : "small"}
+          style={setting.bar}
+          mode={this.props.atRoot ? "center-aligned" : "small"}
         >
           {this.props.atRoot ? null : (
-              <Appbar.BackAction onPress={this.props.goBack} />
+            <Appbar.BackAction onPress={this.props.goBack} />
           )}
           <Appbar.Content title={this.props.title} />
         </Appbar>
         {/*@ts-ignore*/}
-        <ImageBackground
-          source={this.props.background_image}
-          resizeMode="cover"
-          style={setting.image}
-          imageStyle={{ opacity: this.props.background_opacity }}
-        >
-          {React.createElement(View, {
-            ...this.props,
-            style: setting.container,
-          })}
-        </ImageBackground>
+        {React.createElement(View, {
+          ...this.props,
+          style: setting.container,
+        })}
       </View>
     );
   }

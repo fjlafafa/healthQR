@@ -5,7 +5,7 @@ import Impl.Messages.TSMSPMessage
 import Impl.{STATUS_OK, TSMSPReply}
 import Process.PlaceInfoMS.PlaceInfoMSDBUtils
 import Tables.PlaceTable
-import Types.PlaceMeta.{PlaceId, PlaceRiskLevel}
+import Types.PlaceMeta.PlaceId
 import org.joda.time.DateTime
 import slick.jdbc.PostgresProfile.api._
 
