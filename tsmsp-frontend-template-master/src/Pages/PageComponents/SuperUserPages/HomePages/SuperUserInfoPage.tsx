@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { RealName } from "Types/UserMeta/RealName";
 import { SendData } from "Utils/SendDataUtil";
 import { UserGetRealNameMessage } from "Messages/UserMessages/UserGetRealNameMessage";
-import { Token } from "Types/UserMeta/Token";
 import { useFocusEffect } from "@react-navigation/native";
 import { View } from "react-native";
 import { SCREEN_WIDTH } from "Utils/SettingsAndConstants";

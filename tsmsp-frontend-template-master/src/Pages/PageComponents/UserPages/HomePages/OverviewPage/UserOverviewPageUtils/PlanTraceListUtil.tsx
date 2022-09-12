@@ -7,11 +7,6 @@ import {
 import { ScrollView, Text } from "react-native";
 import { Trace } from "Types/Trace";
 import React, { useEffect, useState } from "react";
-import { PlaceId } from "Types/PlaceMeta/PlaceId";
-import { Province } from "Types/PlaceMeta/Province";
-import { City } from "Types/PlaceMeta/City";
-import { District } from "Types/PlaceMeta/District";
-import { SubDistrict } from "Types/PlaceMeta/SubDistrict";
 import { SendData } from "Utils/SendDataUtil";
 import { UserGetPlaceMessage } from "Messages/UserMessages/UserGetPlaceMessage";
 import { Token } from "Types/UserMeta/Token";

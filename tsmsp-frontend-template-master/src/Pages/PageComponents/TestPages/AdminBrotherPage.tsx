@@ -6,10 +6,8 @@ import {
   ScreenTemplate,
   ScrollTemplate,
 } from "Utils/PageUtils/PageContainerUtil";
-import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 
 export function AdminBrotherPage({ navigation }: any) {
-  //似乎每次返回navigation根节点，会清空过去的渲染栈
   const { token } = TokenStore();
   const [nothing, update] = useState(0);
   return (

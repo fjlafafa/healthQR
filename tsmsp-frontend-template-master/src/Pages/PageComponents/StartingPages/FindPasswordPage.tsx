@@ -1,11 +1,9 @@
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { identity } from "react-native-svg/lib/typescript/lib/Matrix2D";
 import React, { useState } from "react";
 import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
 import { SecurityQuestion } from "Types/UserMeta/SecurityQuestion";
 import { SecurityAnswer } from "Types/UserMeta/SecurityAnswer";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
-import { SendData } from "Utils/SendDataUtil";
 import { UserGetSecurityQuestionMessage } from "Messages/UserMessages/UserGetSecurityQuestionMessage";
 import { ButtonToSendMessage } from "Utils/PageUtils/ButtonUtil";
 import { UserSendSecurityAnswerMessage } from "Messages/UserMessages/UserSendSecurityAnswerMessage";

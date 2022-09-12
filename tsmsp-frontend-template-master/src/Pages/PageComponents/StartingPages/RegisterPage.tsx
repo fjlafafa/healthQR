@@ -44,8 +44,8 @@ export function RegisterPage({ navigation }: any) {
 
   const goBack = () => {
     navigation.navigate("Start.Login");
-    clearRegisterInfo()
-  }
+    clearRegisterInfo();
+  };
 
   return (
     <ScreenTemplate goBack={goBack}>

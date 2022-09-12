@@ -1,7 +1,6 @@
 import React from "react";
 import { FlatList, View } from "react-native";
 
-//To Implement
 const setting = {
   view: {
     height: 60,

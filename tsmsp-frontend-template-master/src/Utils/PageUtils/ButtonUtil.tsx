@@ -10,7 +10,6 @@ const setting = {
     height: 40,
   },
   text: {
-    //由于显示问题，暂时禁止使用大字体
     fontSize: 15,
     fontFamily: "Arial",
   },

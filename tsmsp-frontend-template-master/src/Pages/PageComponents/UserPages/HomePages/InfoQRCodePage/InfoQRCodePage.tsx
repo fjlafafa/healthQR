@@ -10,13 +10,11 @@ import {
   ScreenTemplate,
   ScrollTemplate,
 } from "Utils/PageUtils/PageContainerUtil";
-import { HeaderTemplate } from "Utils/PageUtils/HeaderUtil";
 import { TextTemplate } from "Utils/PageUtils/TextUtil";
 import { RegisterCode } from "Utils/PageUtils/InfoQRCodeUtil";
 import { ButtonTemplate } from "Utils/PageUtils/ButtonUtil";
 import { SendData } from "Utils/SendDataUtil";
 import { RealName } from "Types/UserMeta/RealName";
-import { Token } from "Types/UserMeta/Token";
 import { UserInformation } from "Types/UserInformation";
 import { UserId } from "Types/UserMeta/UserId";
 import { DateClass } from "Types/Templates/DateClass";
@@ -24,8 +22,6 @@ import { VaccinationStatus } from "Types/UserMeta/VaccinationStatus";
 import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
 import { Temperature } from "Types/UserMeta/Temperature";
 import { UserGetInfoMessage } from "Messages/UserMessages/UserGetInfoMessage";
-import { VaccineView } from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/VaccineUtil";
-import { NucleicAcidView } from "Pages/PageComponents/UserPages/HomePages/OverviewPage/UserOverviewPageUtils/NucleicAcidUtil";
 import { LargeNucleicAcidView } from "Pages/PageComponents/UserPages/HomePages/InfoQRCodePage/InfoQRUtils/NucleicAcidUtil";
 import { LargeVaccineView } from "Pages/PageComponents/UserPages/HomePages/InfoQRCodePage/InfoQRUtils/VaccineUtil";
 
@@ -125,10 +121,11 @@ export function InfoQRCodePage({ navigation }: any) {
             />
           </View>
         </View>
-          <ButtonTemplate
-              icon={'refresh'}
-              onPress={()=>refresh()}
-              text={'刷新'}/>
+        <ButtonTemplate
+          icon={"refresh"}
+          onPress={() => refresh()}
+          text={"刷新"}
+        />
       </ScrollTemplate>
     </ScreenTemplate>
   );

@@ -1,25 +1,18 @@
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { HospitalUpdateNucleicTestMessage } from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
-import create from "zustand";
 import {
   ButtonTemplate,
   ButtonToSendMessage,
 } from "Utils/PageUtils/ButtonUtil";
 import React, { useState } from "react";
-import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 import { TextTemplate } from "Utils/PageUtils/TextUtil";
-import { checkIdentityNumber } from "Utils/FormatUtils/IdentityNumberUtil";
 import { TokenStore } from "Globals/TokenStore";
 import { RealName } from "Types/UserMeta/RealName";
 import { Token } from "Types/UserMeta/Token";
-import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
 import { View } from "react-native";
 import { ScanView } from "Utils/PageUtils/ScanQRCodeUtil";
 import { ButtonGroup } from "Utils/PageUtils/ButtonGroupUtil";
 import { HospitalUpdateNucleicTestByTokenMessage } from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage";
 import { SendData } from "Utils/SendDataUtil";
-import { HospitalUploadPositiveNucleicTestResultMessage } from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultMessage";
-import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
 import { HospitalUploadPositiveNucleicTestResultByTokenMessage } from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultByTokenMessage";
 
 export function NucleicAcidPage({ navigation }: any) {
@@ -34,7 +27,7 @@ export function NucleicAcidPage({ navigation }: any) {
 
   return (
     <ScreenTemplate goBack={goBack}>
-      <View style={{ height: 30 }}/>
+      <View style={{ height: 30 }} />
       <TextTemplate>
         当前核酸检测目标用户为：{client.realName.name}
       </TextTemplate>

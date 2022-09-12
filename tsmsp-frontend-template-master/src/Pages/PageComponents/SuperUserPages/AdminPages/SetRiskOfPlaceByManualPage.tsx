@@ -5,13 +5,9 @@ import { PlaceRiskLevel } from "Types/PlaceMeta/PlaceRiskLevel";
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
 import { View } from "react-native";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
-import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
 import { ButtonToSendMessage } from "Utils/PageUtils/ButtonUtil";
-import { checkIdentityNumber } from "Utils/FormatUtils/IdentityNumberUtil";
-import { HospitalUpdateNucleicTestMessage } from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestMessage";
 import { GovernorUpdateRiskOfPlaceMessage } from "Messages/AdminMessages/GovernorUpdateRiskOfPlaceMessage";
 import { ButtonGroup } from "Utils/PageUtils/ButtonGroupUtil";
-import { Roles } from "Types/UserMeta/Roles";
 
 export function SetRiskOfPlaceByManualPage({ navigation }: any) {
   const goBack = () => navigation.navigate("Admin.Overview");

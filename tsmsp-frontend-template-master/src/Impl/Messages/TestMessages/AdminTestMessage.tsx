@@ -12,8 +12,6 @@ export class AdminTestMessage extends TSMSPMessage {
   }
 
   override getReplyMessage(replyJson: TSMSPReply) {
-    //const message = JSON.parse(replyJson.message) as Place
-    //return message
     return replyJson.message;
   }
 }

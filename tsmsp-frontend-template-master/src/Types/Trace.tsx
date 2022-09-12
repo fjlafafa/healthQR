@@ -5,7 +5,6 @@ import { DetailedPlaceDescription } from "./PlaceMeta/DetailedPlaceDescription";
 import { ReportType } from "./TraceMeta/ReportType";
 import { DateClass } from "./Templates/DateClass";
 
-//...
 export class Trace {
   id: TraceId;
   userId: UserId;

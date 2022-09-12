@@ -17,10 +17,7 @@ import { City } from "Types/PlaceMeta/City";
 import { District } from "Types/PlaceMeta/District";
 import { SubDistrict } from "Types/PlaceMeta/SubDistrict";
 
-//import Select from 'react-select'
-
 export function GeneratePlaceQRPage({ navigation }: any) {
-  //const values
   const [placeId, setPlaceId] = useState(new PlaceId(NaN));
   const [placeIdShowed, setPlaceIdShowed] = useState(new PlaceId(NaN));
   const [placeShowed, setPlaceShowed] = useState(
@@ -59,7 +56,7 @@ export function GeneratePlaceQRPage({ navigation }: any) {
             }}
           >
             <Card style={{ width: "95%", height: "80%", alignItems: "center" }}>
-              <View style={{ height: "20%" ,width: "100%", }} />
+              <View style={{ height: "20%", width: "100%" }} />
 
               <TextTemplate> 请输入地点代码以查询二维码 </TextTemplate>
             </Card>

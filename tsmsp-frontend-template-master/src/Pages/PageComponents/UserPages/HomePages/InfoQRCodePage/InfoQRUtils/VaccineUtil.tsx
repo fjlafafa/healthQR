@@ -2,7 +2,6 @@ import { VaccinationStatus } from "Types/UserMeta/VaccinationStatus";
 import React from "react";
 import { SCREEN_WIDTH } from "Utils/SettingsAndConstants";
 import { Card, Text } from "react-native-paper";
-import { LargeNucleicAcidView } from "Pages/PageComponents/UserPages/HomePages/InfoQRCodePage/InfoQRUtils/NucleicAcidUtil";
 
 const setting = {
   text: {

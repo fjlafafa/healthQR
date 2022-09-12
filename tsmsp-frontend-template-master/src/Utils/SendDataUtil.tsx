@@ -23,8 +23,7 @@ export function SendData(
       console.log(replyJson);
       if (replyJson.status == Impl.STATUS_OK)
         ifSuccess(toSendMessage.getReplyMessage(replyJson));
-      else
-          ifFail(replyJson.message);
+      else ifFail(replyJson.message);
     })
     .catch((e) => console.log(e));
 }

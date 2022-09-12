@@ -1,7 +1,6 @@
 import { TSMSPMessage } from "Messages/TSMSPMessage";
 import { Token } from "Types/UserMeta/Token";
 import { TSMSPReply } from "Impl/TSMSPReply";
-import { RealName } from "Types/UserMeta/RealName";
 import { UserId } from "Types/UserMeta/UserId";
 
 export class UserGetIdMessage extends TSMSPMessage {

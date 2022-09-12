@@ -51,8 +51,8 @@ export function UserOverviewPage({ navigation }: any) {
     SendData(
       new UserGetTraceMessage(
         token,
-          new Date().getTime() - 14* DAY_MILLIS,
-          new Date().getTime() + DAY_MILLIS
+        new Date().getTime() - 14 * DAY_MILLIS,
+        new Date().getTime() + DAY_MILLIS
       ),
       (reply: Trace[]) => {
         setTraceHistory(reply);
@@ -174,15 +174,16 @@ export function UserOverviewPage({ navigation }: any) {
             justifyContent: "center" /*backgroundColor: '#f0f'/**/,
           }}
         >
-            <ButtonTemplate
-                icon={'refresh'}
-                onPress={()=>refresh()}
-                text={'刷新'}/>
+          <ButtonTemplate
+            icon={"refresh"}
+            onPress={() => refresh()}
+            text={"刷新"}
+          />
           {/*其他微服务*/}
           <HeaderTemplate text="其他微服务" />
 
           <ButtonTemplate
-              icon="thermometer-chevron-up"
+            icon="thermometer-chevron-up"
             onPress={() => {
               navigation.navigate("User.Temperature");
             }}

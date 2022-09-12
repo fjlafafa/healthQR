@@ -27,7 +27,8 @@ export function TemperatureView(props: { temperature: Temperature }) {
       </Card.Content>
       <Card.Content>
         <Text style={setting.text}>
-          您的体温{props.temperature.value}{props.temperature.value < 37 ? "" : "太高了"}
+          您的体温{props.temperature.value}
+          {props.temperature.value < 37 ? "" : "太高了"}
         </Text>
       </Card.Content>
     </Card>
