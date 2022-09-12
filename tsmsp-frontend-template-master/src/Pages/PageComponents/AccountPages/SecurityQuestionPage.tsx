@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import create from "zustand";
 import { TokenStore } from "Globals/TokenStore";
-import { UserUpdatePasswordMessage } from "Messages/UserMessages/UserUpdatePasswordMessage";
 import {
   ButtonTemplate,
   ButtonToSendMessage,
 } from "Utils/PageUtils/ButtonUtil";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { Token } from "Types/UserMeta/Token";
-import { Password } from "Types/UserMeta/Password";
 import { useFocusEffect } from "@react-navigation/native";
 import { SendData } from "Utils/SendDataUtil";
-import { UserGetTraceMessage } from "Messages/UserMessages/UserGetTraceMessage";
-import { DAY_MILLIS } from "Utils/SettingsAndConstants";
-import { Trace } from "Types/Trace";
 import { UserGetIdentityNumberMessage } from "Messages/UserMessages/UserGetIdentityNumberMessage";
 import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
 import { SecurityQuestion } from "Types/UserMeta/SecurityQuestion";

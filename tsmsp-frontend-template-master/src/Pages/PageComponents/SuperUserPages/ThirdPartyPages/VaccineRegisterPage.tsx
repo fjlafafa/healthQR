@@ -1,17 +1,13 @@
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
 import { ButtonToSendMessage } from "Utils/PageUtils/ButtonUtil";
-import { checkIdentityNumber } from "Utils/FormatUtils/IdentityNumberUtil";
 import { Token } from "Types/UserMeta/Token";
-import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
 import React, { useState } from "react";
-import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 import create from "zustand";
 import { TokenStore } from "Globals/TokenStore";
 import { View } from "react-native";
 import { TextTemplate } from "Utils/PageUtils/TextUtil";
 import { ScanView } from "Utils/PageUtils/ScanQRCodeUtil";
 import { VaccinationStatus } from "Types/UserMeta/VaccinationStatus";
-import { HospitalUpdateVaccinationMessage } from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationMessage";
 import { RealName } from "Types/UserMeta/RealName";
 import { HospitalUpdateVaccinationByTokenMessage } from "Messages/ThirdPartyMessages/HospitalUpdateVaccinationByTokenMessage";
 

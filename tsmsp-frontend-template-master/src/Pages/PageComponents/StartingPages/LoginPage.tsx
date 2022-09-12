@@ -10,10 +10,6 @@ import {
 import { AllowTester } from "Globals/GlobalVariables";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { Roles } from "Types/UserMeta/Roles";
-import { SendData } from "Utils/SendDataUtil";
-import { UserCheckRoleMessage } from "Messages/UserMessages/UserCheckRoleMessage";
-import { RealName } from "Types/UserMeta/RealName";
 import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
 import { Password } from "Types/UserMeta/Password";
 import { Token } from "Types/UserMeta/Token";
@@ -60,7 +56,6 @@ export function LoginPage({ navigation }: any) {
         }}
         text="登录"
       />
-      {/*<LoginIcon fontSize='large' > </LoginIcon>*/}
       <ButtonTemplate
         icon="account-multiple-plus"
         onPress={() => {

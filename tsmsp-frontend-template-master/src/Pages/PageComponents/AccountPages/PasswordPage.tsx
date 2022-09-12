@@ -6,7 +6,6 @@ import { UserUpdatePasswordMessage } from "Messages/UserMessages/UserUpdatePassw
 import { ButtonToSendMessage } from "Utils/PageUtils/ButtonUtil";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";
-import { Token } from "Types/UserMeta/Token";
 import { Password } from "Types/UserMeta/Password";
 
 const passwordStore = create(() => ({

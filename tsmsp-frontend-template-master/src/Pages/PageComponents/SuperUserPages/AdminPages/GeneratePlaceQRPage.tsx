@@ -17,10 +17,7 @@ import { City } from "Types/PlaceMeta/City";
 import { District } from "Types/PlaceMeta/District";
 import { SubDistrict } from "Types/PlaceMeta/SubDistrict";
 
-//import Select from 'react-select'
-
 export function GeneratePlaceQRPage({ navigation }: any) {
-  //const values
   const [placeId, setPlaceId] = useState(new PlaceId(NaN));
   const [placeIdShowed, setPlaceIdShowed] = useState(new PlaceId(NaN));
   const [placeShowed, setPlaceShowed] = useState(

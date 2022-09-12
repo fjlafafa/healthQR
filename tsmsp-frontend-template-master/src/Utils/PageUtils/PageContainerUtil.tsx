@@ -64,10 +64,17 @@ export class ScreenTemplate extends React.Component<any, any> {
           <Appbar.Content title={this.props.title} />
         </Appbar>
         {/*@ts-ignore*/}
-        {React.createElement(View, {
-          ...this.props,
-          style: setting.container,
-        })}
+        <ImageBackground
+          source={this.props.background_image}
+          resizeMode="cover"
+          style={setting.image}
+          imageStyle={{ opacity: this.props.background_opacity }}
+        >
+          {React.createElement(View, {
+            ...this.props,
+            style: setting.container,
+          })}
+        </ImageBackground>
       </View>
     );
   }

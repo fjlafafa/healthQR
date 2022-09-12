@@ -1,11 +1,9 @@
 import { TokenStore } from "Globals/TokenStore";
 import React, { useState } from "react";
-import { UserId } from "Types/UserMeta/UserId";
 import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
 import { View } from "react-native";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 import { ButtonGroup } from "Utils/PageUtils/ButtonGroupUtil";
-import { Roles } from "Types/UserMeta/Roles";
 import { ButtonToSendMessage } from "Utils/PageUtils/ButtonUtil";
 import { GovernorUpdateRiskOfUserMessage } from "Messages/AdminMessages/GovernorUpdateRiskOfUserMessage";
 import { ScreenTemplate } from "Utils/PageUtils/PageContainerUtil";

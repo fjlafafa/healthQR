@@ -17,12 +17,10 @@ import { UserGetTraceMessage } from "Messages/UserMessages/UserGetTraceMessage";
 import { DAY_MILLIS } from "Utils/SettingsAndConstants";
 import { useFocusEffect } from "@react-navigation/native";
 import { TraceTable } from "Utils/PageUtils/TraceTableUtil";
-import { Token } from "Types/UserMeta/Token";
 import { TraceId } from "Types/TraceMeta/TraceId";
 import { DetailedPlaceDescription } from "Types/PlaceMeta/DetailedPlaceDescription";
 import { PlaceId } from "Types/PlaceMeta/PlaceId";
 import { ReportType } from "Types/TraceMeta/ReportType";
-//To implement
 const registerStore = create(() => ({
   RemovedTrace: "",
   NewTraceId: "",

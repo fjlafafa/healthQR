@@ -1,4 +1,3 @@
-//Implementing
 export enum PlaceRiskLevel {
   red = "High Risk",
   yellow = "Middle Risk",

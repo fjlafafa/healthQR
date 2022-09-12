@@ -6,11 +6,6 @@ import {
   PlaceRiskLevel,
 } from "Types/PlaceMeta/PlaceRiskLevel";
 import React, { useEffect, useState } from "react";
-import { Province } from "Types/PlaceMeta/Province";
-import { City } from "Types/PlaceMeta/City";
-import { SubDistrict } from "Types/PlaceMeta/SubDistrict";
-import { District } from "Types/PlaceMeta/District";
-import { PlaceId } from "Types/PlaceMeta/PlaceId";
 import { SendData } from "../SendDataUtil";
 import { UserGetPlaceMessage } from "Messages/UserMessages/UserGetPlaceMessage";
 import { View } from "react-native";

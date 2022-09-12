@@ -9,7 +9,6 @@ import { DAY_MILLIS } from "Utils/SettingsAndConstants";
 import { useFocusEffect } from "@react-navigation/native";
 import { HeaderTemplate } from "Utils/PageUtils/HeaderUtil";
 import { TraceTable } from "Utils/PageUtils/TraceTableUtil";
-import { Token } from "Types/UserMeta/Token";
 
 export function TracePage({ navigation }: any) {
   const { token } = TokenStore();

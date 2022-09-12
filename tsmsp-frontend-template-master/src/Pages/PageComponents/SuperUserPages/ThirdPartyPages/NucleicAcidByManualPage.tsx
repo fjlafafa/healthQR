@@ -8,19 +8,12 @@ import {
 import React, { useState } from "react";
 import { TextInputTemplate } from "Utils/PageUtils/TextInputUtil";
 import { TextTemplate } from "Utils/PageUtils/TextUtil";
-import { checkIdentityNumber } from "Utils/FormatUtils/IdentityNumberUtil";
 import { TokenStore } from "Globals/TokenStore";
-import { RealName } from "Types/UserMeta/RealName";
-import { Token } from "Types/UserMeta/Token";
 import { IdentityNumber } from "Types/UserMeta/IdentityNumber";
 import { View } from "react-native";
-import { ScanView } from "Utils/PageUtils/ScanQRCodeUtil";
 import { ButtonGroup } from "Utils/PageUtils/ButtonGroupUtil";
-import { HospitalUpdateNucleicTestByTokenMessage } from "Messages/ThirdPartyMessages/HospitalUpdateNucleicTestByTokenMessage";
 import { SendData } from "Utils/SendDataUtil";
 import { HospitalUploadPositiveNucleicTestResultMessage } from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultMessage";
-import { UserRiskLevel } from "Types/UserMeta/UserRiskLevel";
-import { HospitalUploadPositiveNucleicTestResultByTokenMessage } from "Messages/ThirdPartyMessages/HospitalUploadPositiveNucleicTestResultByTokenMessage";
 
 const IDStore = create(() => ({ identity: new IdentityNumber("") }));
 const setIdentity = (identity: IdentityNumber) =>
